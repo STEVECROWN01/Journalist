@@ -1,0 +1,93 @@
+// Schéma de données de la plateforme éditoriale
+// SQLite en développement/démonstration — basculer sur PostgreSQL
+// (provider "postgresql" + DATABASE_URL) pour la production Vercel.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+/// Comptes d'accès au back-office (mot de passe haché scrypt)
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+/// Publications éditoriales (bilingues FR/EN, statut brouillon/publié)
+model Publication {
+  id             String    @id @default(cuid())
+  slug           String    @unique
+  titleFr        String
+  titleEn        String
+  excerptFr      String
+  excerptEn      String
+  contentFr      String
+  contentEn      String
+  categoryFr     String
+  categoryEn     String
+  coverImage     String?
+  readingMinutes Int       @default(5)
+  featured       Boolean   @default(false)
+  status         String    @default("draft")
+  publishedAt    DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
+
+/// Productions audiovisuelles et documentaires (bilingues FR/EN)
+model Production {
+  id             String   @id @default(cuid())
+  slug           String   @unique
+  titleFr        String
+  titleEn        String
+  category       String // reportage | documentaire | interview | communication
+  year           Int
+  territoryFr    String
+  territoryEn    String
+  roleFr         String
+  roleEn         String
+  contextFr      String
+  contextEn      String
+  descriptionFr  String
+  descriptionEn  String
+  coverImage     String?
+  videoUrl       String?
+  order          Int      @default(0)
+  status         String   @default("draft")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+/// Demandes de contact transmises via le formulaire
+model ContactMessage {
+  id           String   @id @default(cuid())
+  name         String
+  organization String?
+  email        String
+  subject      String // collaboration-journalistique | production-documentaire | conseil-communication | formation | autre
+  message      String
+  locale       String   @default("fr")
+  read         Boolean  @default(false)
+  createdAt    DateTime @default(now())
+}
+
+/// Informations professionnelles éditables depuis le back-office
+model SiteSettings {
+  id        String   @id @default("main")
+  ownerName String   @default("Alexandre Morel")
+  baseCity  String   @default("Paris")
+  email     String   @default("contact@alexandre-morel.example")
+  phone     String   @default("+33 (0)1 00 00 00 00")
+  linkedin  String   @default("https://www.linkedin.com/in/alexandre-morel")
+  twitter   String   @default("https://x.com/alexandre_morel")
+  vimeo     String   @default("https://vimeo.com/alexandremorel")
+  updatedAt DateTime @updatedAt
+}

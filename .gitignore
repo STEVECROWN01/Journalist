@@ -1,0 +1,26 @@
+# dépendances
+node_modules
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# environnement (jamais commité)
+.env
+.env*.local
+
+# base SQLite locale
+/db/
+prisma/db/
+
+# journaux
+*.log
+
+# divers
+.DS_Store
+*.pem
+.eslintcache
+.vercel
