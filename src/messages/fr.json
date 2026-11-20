@@ -184,7 +184,7 @@
   },
   "about": {
     "meta": {
-      "title": "À propos — Alexandre Morel",
+      "title": "À propos",
       "description": "Un parcours façonné par le terrain et l'international : journalisme, documentaire, communication stratégique et formation. Biographie, expériences et vision professionnelle."
     },
     "hero": {
@@ -267,10 +267,22 @@
       "eyebrow": "Spécialisations",
       "title": "Domaines de spécialisation",
       "items": [
-        { "title": "Actualité internationale", "desc": "Géopolitique, relations internationales, mutations économiques et sociales." },
-        { "title": "Reportage de terrain", "desc": "Immersion, sourcing, collecte et vérification de l'information." },
-        { "title": "Récit documentaire", "desc": "Écriture et réalisation de récits audiovisuels de fond." },
-        { "title": "Communication des organisations", "desc": "Stratégie éditoriale, contenus, accompagnement des prises de parole." }
+        {
+          "title": "Actualité internationale",
+          "desc": "Géopolitique, relations internationales, mutations économiques et sociales."
+        },
+        {
+          "title": "Reportage de terrain",
+          "desc": "Immersion, sourcing, collecte et vérification de l'information."
+        },
+        {
+          "title": "Récit documentaire",
+          "desc": "Écriture et réalisation de récits audiovisuels de fond."
+        },
+        {
+          "title": "Communication des organisations",
+          "desc": "Stratégie éditoriale, contenus, accompagnement des prises de parole."
+        }
       ]
     },
     "skills": {
@@ -279,15 +291,33 @@
       "groups": {
         "journalism": {
           "title": "Journalisme",
-          "items": ["Investigation et sourcing", "Interview et relation aux sources", "Vérification et fact-checking", "Analyse de contexte", "Écriture journalistique"]
+          "items": [
+            "Investigation et sourcing",
+            "Interview et relation aux sources",
+            "Vérification et fact-checking",
+            "Analyse de contexte",
+            "Écriture journalistique"
+          ]
         },
         "audiovisual": {
           "title": "Audiovisuel",
-          "items": ["Conception et écriture documentaire", "Réalisation et direction de tournage", "Conduite d'interview filmée", "Structuration narrative", "Suivi de post-production"]
+          "items": [
+            "Conception et écriture documentaire",
+            "Réalisation et direction de tournage",
+            "Conduite d'interview filmée",
+            "Structuration narrative",
+            "Suivi de post-production"
+          ]
         },
         "advisory": {
           "title": "Conseil",
-          "items": ["Audit éditorial", "Stratégie de contenu", "Hiérarchisation des messages", "Accompagnement des porte-parole", "Formation des équipes"]
+          "items": [
+            "Audit éditorial",
+            "Stratégie de contenu",
+            "Hiérarchisation des messages",
+            "Accompagnement des porte-parole",
+            "Formation des équipes"
+          ]
         }
       }
     },
@@ -296,16 +326,30 @@
       "title": "Une philosophie professionnelle",
       "p1": "L'information n'est pas une matière première neutre : elle se construit, se vérifie, se hiérarchise. La responsabilité du journaliste — et plus largement de celui qui produit du récit — est de traiter cette matière avec honnêteté.",
       "p2": "Cette conviction traverse l'ensemble de la pratique professionnelle : du reportage au conseil, la même exigence s'applique. Comprendre avant d'affirmer. Documenter avant de publier. Écouter avant de conclure.",
-      "values": ["Précision", "Honnêteté", "Clarté", "Utilité"]
+      "values": [
+        "Précision",
+        "Honnêteté",
+        "Clarté",
+        "Utilité"
+      ]
     },
     "languages": {
       "eyebrow": "Langues & environnement",
       "title": "Un environnement résolument international",
       "p1": "Basé à Paris, le travail s'exerce dans un environnement international permanent : collaborations multilingues, déplacements, coordination d'équipes et de sources sur plusieurs fuseaux horaires.",
       "items": [
-        { "name": "Français", "level": "Langue native" },
-        { "name": "Anglais", "level": "Niveau professionnel — travail courant" },
-        { "name": "Espagnol", "level": "Niveau intermédiaire — terrain" }
+        {
+          "name": "Français",
+          "level": "Langue native"
+        },
+        {
+          "name": "Anglais",
+          "level": "Niveau professionnel — travail courant"
+        },
+        {
+          "name": "Espagnol",
+          "level": "Niveau intermédiaire — terrain"
+        }
       ]
     },
     "cta": {
@@ -316,7 +360,7 @@
   },
   "journalism": {
     "meta": {
-      "title": "Journalisme international — Alexandre Morel",
+      "title": "Journalisme international",
       "description": "Reportage, investigation et analyse des contextes internationaux : une pratique journalistique fondée sur le terrain, la vérification et la compréhension des acteurs."
     },
     "hero": {
@@ -334,12 +378,30 @@
       "eyebrow": "Domaines de couverture",
       "title": "Des terrains, des thèmes, des contextes",
       "items": [
-        { "title": "Géopolitique & relations internationales", "desc": "Dynamiques de puissance, conflits, diplomatie et recompositions régionales." },
-        { "title": "Économie & flux transfrontaliers", "desc": "Commerce, investissements, corridors économiques et leurs réalités humaines." },
-        { "title": "Sociétés & mutations urbaines", "desc": "Villes en transformation, générations, cultures et modes de vie." },
-        { "title": "Environnements complexes", "desc": "Zones sensibles, contextes de sécurité, travail avec précaution et méthode." },
-        { "title": "Médias & démocratie", "desc": "Écosystèmes d'information, désinformation, liberté de la presse." },
-        { "title": "Culture & idées", "desc": "Création, débats et trajectoires intellectuelles des mondes couverts." }
+        {
+          "title": "Géopolitique & relations internationales",
+          "desc": "Dynamiques de puissance, conflits, diplomatie et recompositions régionales."
+        },
+        {
+          "title": "Économie & flux transfrontaliers",
+          "desc": "Commerce, investissements, corridors économiques et leurs réalités humaines."
+        },
+        {
+          "title": "Sociétés & mutations urbaines",
+          "desc": "Villes en transformation, générations, cultures et modes de vie."
+        },
+        {
+          "title": "Environnements complexes",
+          "desc": "Zones sensibles, contextes de sécurité, travail avec précaution et méthode."
+        },
+        {
+          "title": "Médias & démocratie",
+          "desc": "Écosystèmes d'information, désinformation, liberté de la presse."
+        },
+        {
+          "title": "Culture & idées",
+          "desc": "Création, débats et trajectoires intellectuelles des mondes couverts."
+        }
       ]
     },
     "reporting": {
@@ -347,14 +409,26 @@
       "title": "Le terrain comme preuve",
       "p1": "Un reportage se juge à ce qu'il montre et à ce qu'il établit. La priorité est donnée aux situations filmées, aux témoignages recueillis dans des conditions de confiance et aux faits vérifiés — jamais à l'illustration d'un propos tenu à l'avance.",
       "p2": "L'investigation, elle, commence par le sourcing : cartographier les acteurs, croiser les documents, sécuriser les sources. Elle progresse par étapes vérifiables et assume ses limites quand les preuves manquent.",
-      "practices": ["Immersion et observation prolongée", "Recoupement systématique des faits", "Protection et anonymisation des sources", "Documentation des preuves", "Distinction assumée entre l'établi, le probable et l'incertain"]
+      "practices": [
+        "Immersion et observation prolongée",
+        "Recoupement systématique des faits",
+        "Protection et anonymisation des sources",
+        "Documentation des preuves",
+        "Distinction assumée entre l'établi, le probable et l'incertain"
+      ]
     },
     "research": {
       "eyebrow": "Recherche & collecte",
       "title": "Une méthode de collecte structurée",
       "p1": "La collecte d'information obéit à un protocole simple et exigeant : partir des sources ouvertes, confirmer par les sources humaines, documenter chaque étape. Les données publiques — registres, statistiques, imagerie, archives — sont exploitées avec recul et contextualisation.",
       "p2": "Dans les environnements où l'information est un enjeu de pouvoir, la prudence méthodologique n'est pas une option : elle conditionne la sécurité des sources comme la fiabilité du travail livré.",
-      "practices": ["Recherche en sources ouvertes (OSINT)", "Cartographie des acteurs et des intérêts", "Entretiens semi-directifs approfondis", "Vérification documentaire", "Chaîne de conservation des preuves"]
+      "practices": [
+        "Recherche en sources ouvertes (OSINT)",
+        "Cartographie des acteurs et des intérêts",
+        "Entretiens semi-directifs approfondis",
+        "Vérification documentaire",
+        "Chaîne de conservation des preuves"
+      ]
     },
     "analysis": {
       "eyebrow": "Analyse",
@@ -366,11 +440,26 @@
       "eyebrow": "Méthodologie",
       "title": "Une approche éditoriale en cinq temps",
       "steps": [
-        { "title": "Comprendre", "desc": "Lecture du contexte, cartographie des acteurs, identification des zones d'ombre." },
-        { "title": "Préparer", "desc": "Sourcing, hypothèses de travail, logistique et sécurité du reportage." },
-        { "title": "Recueillir", "desc": "Terrain, entretiens, observation, collecte documentaire." },
-        { "title": "Vérifier", "desc": "Recoupement des faits, hiérarchisation de ce qui est établi." },
-        { "title": "Restituer", "desc": "Écriture, mise en perspective, publication — et suivi des suites." }
+        {
+          "title": "Comprendre",
+          "desc": "Lecture du contexte, cartographie des acteurs, identification des zones d'ombre."
+        },
+        {
+          "title": "Préparer",
+          "desc": "Sourcing, hypothèses de travail, logistique et sécurité du reportage."
+        },
+        {
+          "title": "Recueillir",
+          "desc": "Terrain, entretiens, observation, collecte documentaire."
+        },
+        {
+          "title": "Vérifier",
+          "desc": "Recoupement des faits, hiérarchisation de ce qui est établi."
+        },
+        {
+          "title": "Restituer",
+          "desc": "Écriture, mise en perspective, publication — et suivi des suites."
+        }
       ]
     },
     "work": {
@@ -388,7 +477,7 @@
   },
   "productions": {
     "meta": {
-      "title": "Productions documentaires & audiovisuelles — Alexandre Morel",
+      "title": "Productions documentaires & audiovisuelles",
       "description": "Reportages, documentaires, entretiens et films de communication : un portfolio éditorial fondé sur le travail de terrain et la maîtrise du récit audiovisuel."
     },
     "hero": {
@@ -431,16 +520,37 @@
       "eyebrow": "Méthodologie",
       "title": "De l'idée à la diffusion",
       "steps": [
-        { "title": "Écriture & développement", "desc": "Recherche, angle, note d'intention, structure narrative et budget." },
-        { "title": "Préparation", "desc": "Repérages, casting de protagonistes, autorisations, logistique et sécurité." },
-        { "title": "Tournage", "desc": "Direction d'équipe, direction photo, son — avec adaptation permanente au terrain." },
-        { "title": "Post-production", "desc": "Montage, écriture sonore, étalonnage, diffusion et déclinaisons." }
+        {
+          "title": "Écriture & développement",
+          "desc": "Recherche, angle, note d'intention, structure narrative et budget."
+        },
+        {
+          "title": "Préparation",
+          "desc": "Repérages, casting de protagonistes, autorisations, logistique et sécurité."
+        },
+        {
+          "title": "Tournage",
+          "desc": "Direction d'équipe, direction photo, son — avec adaptation permanente au terrain."
+        },
+        {
+          "title": "Post-production",
+          "desc": "Montage, écriture sonore, étalonnage, diffusion et déclinaisons."
+        }
       ]
     },
     "skills": {
       "eyebrow": "Compétences",
       "title": "Compétences audiovisuelles",
-      "items": ["Conception et écriture documentaire", "Réalisation et direction d'équipe", "Direction photo en lumière naturelle", "Conduite d'interviews filmées", "Structuration narrative multi-formats", "Déclinaison plateforme (long, court, vertical)", "Suivi de post-production", "Documentation et droits"]
+      "items": [
+        "Conception et écriture documentaire",
+        "Réalisation et direction d'équipe",
+        "Direction photo en lumière naturelle",
+        "Conduite d'interviews filmées",
+        "Structuration narrative multi-formats",
+        "Déclinaison plateforme (long, court, vertical)",
+        "Suivi de post-production",
+        "Documentation et droits"
+      ]
     },
     "cta": {
       "title": "Un projet documentaire à réaliser ?",
@@ -450,7 +560,7 @@
   },
   "publications": {
     "meta": {
-      "title": "Publications & analyses — Alexandre Morel",
+      "title": "Publications & analyses",
       "description": "Méthodes, analyses et réflexions sur le journalisme international, le documentaire et la communication : un espace éditorial indépendant."
     },
     "hero": {
@@ -475,7 +585,8 @@
       "noResults": "Aucun résultat pour cette recherche."
     },
     "archives": {
-      "title": "Archives"
+      "title": "Archives",
+      "count": "{count, plural, =1 {1 article} other {# articles}}"
     },
     "readingTime": "{minutes} min de lecture",
     "publishedOn": "Publié le {date}",
@@ -492,7 +603,7 @@
   },
   "comms": {
     "meta": {
-      "title": "Communication & Conseil — Alexandre Morel",
+      "title": "Communication & Conseil",
       "description": "L'intelligence éditoriale au service de la communication des organisations : conseil éditorial, stratégie de contenu, production et formation."
     },
     "hero": {
@@ -511,12 +622,30 @@
       "eyebrow": "Domaines d'intervention",
       "title": "Six terrains d'intervention",
       "items": [
-        { "title": "Conseil éditorial", "desc": "Définir ce que l'organisation a à dire — et la meilleure manière de le dire." },
-        { "title": "Stratégie de contenu", "desc": "Lignes éditoriales, hiérarchisation des messages, calendriers et formats." },
-        { "title": "Production de contenus", "desc": "Films, reportages, portraits, articles : des contenus documentés et crédibles." },
-        { "title": "Prises de parole", "desc": "Préparation des dirigeants, discours, interventions publiques." },
-        { "title": "Veille & environnements", "desc": "Compréhension des marchés difficiles et des contextes d'implantation." },
-        { "title": "Formation des équipes", "desc": "Transmission des méthodes journalistiques aux équipes internes." }
+        {
+          "title": "Conseil éditorial",
+          "desc": "Définir ce que l'organisation a à dire — et la meilleure manière de le dire."
+        },
+        {
+          "title": "Stratégie de contenu",
+          "desc": "Lignes éditoriales, hiérarchisation des messages, calendriers et formats."
+        },
+        {
+          "title": "Production de contenus",
+          "desc": "Films, reportages, portraits, articles : des contenus documentés et crédibles."
+        },
+        {
+          "title": "Prises de parole",
+          "desc": "Préparation des dirigeants, discours, interventions publiques."
+        },
+        {
+          "title": "Veille & environnements",
+          "desc": "Compréhension des marchés difficiles et des contextes d'implantation."
+        },
+        {
+          "title": "Formation des équipes",
+          "desc": "Transmission des méthodes journalistiques aux équipes internes."
+        }
       ],
       "note": "Périmètre indicatif — les prestations définitives seront confirmées lors de la personnalisation du site."
     },
@@ -536,27 +665,59 @@
       "eyebrow": "Accompagnement",
       "title": "Une expertise au long cours",
       "p1": "L'accompagnement s'adapte à la maturité de chaque organisation : ponctuel pour un projet précis, régulier pour une transformation durable.",
-      "formats": ["Audit éditorial et stratégique", "Ateliers avec les équipes", "Accompagnement continu", "Production exécutive de contenus"]
+      "formats": [
+        "Audit éditorial et stratégique",
+        "Ateliers avec les équipes",
+        "Accompagnement continu",
+        "Production exécutive de contenus"
+      ]
     },
     "method": {
       "eyebrow": "Méthode",
       "title": "Une approche en quatre temps",
       "steps": [
-        { "title": "Écouter", "desc": "Entretiens, immersion, compréhension de l'organisation et de ses publics." },
-        { "title": "Diagnostiquer", "desc": "Audit des contenus et des messages, identification des écarts." },
-        { "title": "Construire", "desc": "Stratégie, lignes éditoriales, contenus pilotes." },
-        { "title": "Transmettre", "desc": "Formation des équipes et montée en autonomie." }
+        {
+          "title": "Écouter",
+          "desc": "Entretiens, immersion, compréhension de l'organisation et de ses publics."
+        },
+        {
+          "title": "Diagnostiquer",
+          "desc": "Audit des contenus et des messages, identification des écarts."
+        },
+        {
+          "title": "Construire",
+          "desc": "Stratégie, lignes éditoriales, contenus pilotes."
+        },
+        {
+          "title": "Transmettre",
+          "desc": "Formation des équipes et montée en autonomie."
+        }
       ]
     },
     "audiences": {
       "eyebrow": "Interlocuteurs",
       "title": "Pour quelles organisations ?",
       "items": [
-        { "title": "Entreprises", "desc": "Celles qui veulent une communication documentée, crédible et claire." },
-        { "title": "Institutions & organisations internationales", "desc": "Celles qui doivent expliquer des réalités complexes à des publics exigeants." },
-        { "title": "ONG & fondations", "desc": "Celles qui portent des causes et ont besoin de récits justes et documentés." },
-        { "title": "Médias & producteurs", "desc": "Ceux qui cherchent une expertise éditoriale et de terrain." },
-        { "title": "Agences & cabinets", "desc": "Ceux qui veulent renforcer une offre avec un regard journalistique." }
+        {
+          "title": "Entreprises",
+          "desc": "Celles qui veulent une communication documentée, crédible et claire."
+        },
+        {
+          "title": "Institutions & organisations internationales",
+          "desc": "Celles qui doivent expliquer des réalités complexes à des publics exigeants."
+        },
+        {
+          "title": "ONG & fondations",
+          "desc": "Celles qui portent des causes et ont besoin de récits justes et documentés."
+        },
+        {
+          "title": "Médias & producteurs",
+          "desc": "Ceux qui cherchent une expertise éditoriale et de terrain."
+        },
+        {
+          "title": "Agences & cabinets",
+          "desc": "Ceux qui veulent renforcer une offre avec un regard journalistique."
+        }
       ]
     },
     "cta": {
@@ -567,7 +728,7 @@
   },
   "training": {
     "meta": {
-      "title": "Formation & Transmission — Alexandre Morel",
+      "title": "Formation & Transmission",
       "description": "Ateliers, masterclasses et accompagnement : transmettre les méthodes du journalisme international aux étudiants, aux professionnels et aux équipes."
     },
     "hero": {
@@ -585,22 +746,52 @@
       "eyebrow": "Domaines de formation",
       "title": "Ce qui s'enseigne",
       "items": [
-        { "title": "Fondamentaux du métier", "desc": "Le cycle de l'information, la déontologie, la relation aux sources." },
-        { "title": "Reportage & terrain", "desc": "Préparation, sécurité, immersion, collecte en conditions réelles." },
-        { "title": "Interview & sourcing", "desc": "Conduite d'entretien, construction de la confiance, protection des sources." },
-        { "title": "Écriture journalistique", "desc": "Hiérarchisation, angle, structure, clarté — du fait brut au récit publié." },
-        { "title": "Vérification & éthique", "desc": "Fact-checking, OSINT, gestion de l'incertitude et des erreurs." },
-        { "title": "Production audiovisuelle", "desc": "Écriture documentaire, tournage, montage : les bases du récit filmé." }
+        {
+          "title": "Fondamentaux du métier",
+          "desc": "Le cycle de l'information, la déontologie, la relation aux sources."
+        },
+        {
+          "title": "Reportage & terrain",
+          "desc": "Préparation, sécurité, immersion, collecte en conditions réelles."
+        },
+        {
+          "title": "Interview & sourcing",
+          "desc": "Conduite d'entretien, construction de la confiance, protection des sources."
+        },
+        {
+          "title": "Écriture journalistique",
+          "desc": "Hiérarchisation, angle, structure, clarté — du fait brut au récit publié."
+        },
+        {
+          "title": "Vérification & éthique",
+          "desc": "Fact-checking, OSINT, gestion de l'incertitude et des erreurs."
+        },
+        {
+          "title": "Production audiovisuelle",
+          "desc": "Écriture documentaire, tournage, montage : les bases du récit filmé."
+        }
       ]
     },
     "audiences": {
       "eyebrow": "Publics",
       "title": "Pour qui ?",
       "items": [
-        { "title": "Étudiants en journalisme", "desc": "Écoles et universités : mise en situation professionnelle et préparation au premier emploi." },
-        { "title": "Professionnels des médias", "desc": "Journalistes en poste : perfectionnement, spécialisation, prise de fonction." },
-        { "title": "Équipes de communication", "desc": "Entreprises et organisations : méthodes journalistiques appliquées à leurs contenus." },
-        { "title": "Organisations & ONG", "desc": "Équipes de terrain : collecte d'information, récit documenté, prise de parole." }
+        {
+          "title": "Étudiants en journalisme",
+          "desc": "Écoles et universités : mise en situation professionnelle et préparation au premier emploi."
+        },
+        {
+          "title": "Professionnels des médias",
+          "desc": "Journalistes en poste : perfectionnement, spécialisation, prise de fonction."
+        },
+        {
+          "title": "Équipes de communication",
+          "desc": "Entreprises et organisations : méthodes journalistiques appliquées à leurs contenus."
+        },
+        {
+          "title": "Organisations & ONG",
+          "desc": "Équipes de terrain : collecte d'information, récit documenté, prise de parole."
+        }
       ]
     },
     "approach": {
@@ -613,10 +804,22 @@
       "eyebrow": "Formats",
       "title": "Des formats adaptés à chaque contexte",
       "items": [
-        { "title": "Masterclass", "desc": "Intervention d'une à deux heures : retour d'expérience et échange avec l'auditoire." },
-        { "title": "Atelier", "desc": "Demi-journée ou journée : pratique encadrée sur cas concrets." },
-        { "title": "Cycle de formation", "desc": "Plusieurs sessions échelonnées, avec suivi des progressions." },
-        { "title": "Accompagnement individuel", "desc": "Coaching ciblé pour professionnels et dirigeants." }
+        {
+          "title": "Masterclass",
+          "desc": "Intervention d'une à deux heures : retour d'expérience et échange avec l'auditoire."
+        },
+        {
+          "title": "Atelier",
+          "desc": "Demi-journée ou journée : pratique encadrée sur cas concrets."
+        },
+        {
+          "title": "Cycle de formation",
+          "desc": "Plusieurs sessions échelonnées, avec suivi des progressions."
+        },
+        {
+          "title": "Accompagnement individuel",
+          "desc": "Coaching ciblé pour professionnels et dirigeants."
+        }
       ]
     },
     "experience": {
@@ -633,7 +836,7 @@
   },
   "contact": {
     "meta": {
-      "title": "Contact — Alexandre Morel",
+      "title": "Contact",
       "description": "Collaboration journalistique, production documentaire, conseil en communication ou formation : prenez contact pour échanger sur votre projet."
     },
     "hero": {
@@ -717,10 +920,22 @@
       "eyebrow": "Modalités",
       "title": "Comment ça se passe",
       "items": [
-        { "title": "Réponse", "desc": "Chaque demande reçoit une réponse, généralement sous deux à trois jours ouvrés." },
-        { "title": "Échange", "desc": "Un premier échange — appel ou visio — permet de cadrer le besoin et les possibilités." },
-        { "title": "Confidentialité", "desc": "Les échanges restent confidentiels, y compris sur les projets sensibles." },
-        { "title": "Langues", "desc": "Les échanges se déroulent en français ou en anglais." }
+        {
+          "title": "Réponse",
+          "desc": "Chaque demande reçoit une réponse, généralement sous deux à trois jours ouvrés."
+        },
+        {
+          "title": "Échange",
+          "desc": "Un premier échange — appel ou visio — permet de cadrer le besoin et les possibilités."
+        },
+        {
+          "title": "Confidentialité",
+          "desc": "Les échanges restent confidentiels, y compris sur les projets sensibles."
+        },
+        {
+          "title": "Langues",
+          "desc": "Les échanges se déroulent en français ou en anglais."
+        }
       ]
     }
   }

@@ -101,7 +101,7 @@ export default async function HomePage({
           fill
           priority
           sizes="100vw"
-          className="object-cover"
+          className="hero-kenburns object-cover"
         />
         <div className="hero-overlay absolute inset-0" aria-hidden="true" />
         <div className="hero-overlay-bottom absolute inset-0" aria-hidden="true" />
@@ -193,7 +193,7 @@ export default async function HomePage({
                   className="group flex h-full flex-col bg-ink p-8 transition-colors duration-300 hover:bg-surface md:p-10"
                 >
                   <div className="flex items-baseline justify-between">
-                    <span className="font-serif text-[1.1rem] italic text-graphite">
+                    <span className="font-serif text-[1.25rem] italic text-steel">
                       {item.num}
                     </span>
                     <ArrowRight
@@ -288,7 +288,7 @@ export default async function HomePage({
             ).map((item, i) => (
               <Reveal key={item.key} delay={i * 0.08}>
                 <div className="h-full border-t border-mist/15 pt-6">
-                  <span className="font-serif text-[1.05rem] italic text-rouge">
+                  <span className="font-serif text-[1.5rem] italic leading-none text-rouge">
                     {item.num}
                   </span>
                   <h3 className="mt-3 font-serif text-[1.35rem] text-white">

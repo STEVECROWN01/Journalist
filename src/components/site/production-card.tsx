@@ -17,10 +17,10 @@ export function ProductionCard({
   className = "",
 }: ProductionCardProps) {
   return (
-    <article className={`group ${className}`}>
+    <article className={`group h-full ${className}`}>
       <Link
         href={`/productions/${production.slug}`}
-        className="block"
+        className="flex h-full flex-col"
         aria-label={production.title}
       >
         <div className="relative aspect-[3/2] overflow-hidden rounded-lg border border-mist/10 bg-surface">
@@ -45,11 +45,15 @@ export function ProductionCard({
         <div className="mt-5 flex items-start justify-between gap-4">
           <div>
             <p className="meta">
-              <span className="text-rouge">{categoryLabel}</span>
-              <span className="mx-2 text-graphite" aria-hidden="true">·</span>
-              {production.year}
-              <span className="mx-2 text-graphite" aria-hidden="true">·</span>
-              {production.territory}
+              <span className="whitespace-nowrap">
+                <span className="text-rouge">{categoryLabel}</span>
+                <span className="mx-2 text-graphite" aria-hidden="true">·</span>
+              </span>
+              <span className="whitespace-nowrap">
+                {production.year}
+                <span className="mx-2 text-graphite" aria-hidden="true">·</span>
+              </span>
+              <span className="whitespace-nowrap">{production.territory}</span>
             </p>
             <h3 className="mt-2.5 font-serif text-[1.45rem] leading-snug text-white transition-colors group-hover:text-mist">
               {production.title}

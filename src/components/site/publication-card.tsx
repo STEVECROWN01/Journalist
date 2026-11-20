@@ -48,11 +48,17 @@ export function PublicationCard({
         </Link>
         <div className="flex flex-col justify-center">
           <p className="meta">
-            <span className="text-rouge">{publication.category}</span>
-            <span className="mx-2 text-graphite" aria-hidden="true">·</span>
-            {dateLabel}
-            <span className="mx-2 text-graphite" aria-hidden="true">·</span>
-            {labels.readingTime.replace("{minutes}", String(publication.readingMinutes))}
+            <span className="whitespace-nowrap">
+              <span className="text-rouge">{publication.category}</span>
+              <span className="mx-2 text-graphite" aria-hidden="true">·</span>
+            </span>
+            <span className="whitespace-nowrap">
+              {dateLabel}
+              <span className="mx-2 text-graphite" aria-hidden="true">·</span>
+            </span>
+            <span className="whitespace-nowrap">
+              {labels.readingTime.replace("{minutes}", String(publication.readingMinutes))}
+            </span>
           </p>
           <h3 className="display-3 mt-4 text-white">
             <Link href={`/publications/${publication.slug}`}>{publication.title}</Link>
@@ -77,11 +83,17 @@ export function PublicationCard({
       className={`group border-t border-mist/10 pt-7 transition-colors hover:border-mist/25 ${className}`}
     >
       <p className="meta">
-        <span className="text-rouge">{publication.category}</span>
-        <span className="mx-2 text-graphite" aria-hidden="true">·</span>
-        {dateLabel}
-        <span className="mx-2 text-graphite" aria-hidden="true">·</span>
-        {labels.readingTime.replace("{minutes}", String(publication.readingMinutes))}
+        <span className="whitespace-nowrap">
+          <span className="text-rouge">{publication.category}</span>
+          <span className="mx-2 text-graphite" aria-hidden="true">·</span>
+        </span>
+        <span className="whitespace-nowrap">
+          {dateLabel}
+          <span className="mx-2 text-graphite" aria-hidden="true">·</span>
+        </span>
+        <span className="whitespace-nowrap">
+          {labels.readingTime.replace("{minutes}", String(publication.readingMinutes))}
+        </span>
       </p>
       <h3 className="mt-3 font-serif text-[1.4rem] leading-snug text-white">
         <Link

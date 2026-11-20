@@ -277,6 +277,31 @@
       rgba(28, 28, 28, 0.25) 100%
     );
   }
+
+  /* Zoom lent et majestueux du visuel de hero (motion design éditorial).
+     Neutralisé automatiquement par la règle prefers-reduced-motion globale. */
+  @keyframes hero-kenburns {
+    from {
+      transform: scale(1.02);
+    }
+    to {
+      transform: scale(1.1);
+    }
+  }
+  .hero-kenburns {
+    animation: hero-kenburns 28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  /* Voile supérieur : garantit la lisibilité de l'en-tête fixe
+     quel que soit le clair-obscur de l'image de hero. */
+  .hero-overlay-top {
+    background: linear-gradient(
+      180deg,
+      rgba(7, 7, 7, 0.82) 0%,
+      rgba(7, 7, 7, 0.38) 34%,
+      rgba(7, 7, 7, 0) 64%
+    );
+  }
   .hero-overlay-bottom {
     background: linear-gradient(
       0deg,

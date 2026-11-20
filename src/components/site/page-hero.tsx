@@ -19,8 +19,9 @@ export function PageHero({ eyebrow, title, subtitle, image, imageAlt }: PageHero
         fill
         priority
         sizes="100vw"
-        className="object-cover"
+        className="hero-kenburns object-cover"
       />
+      <div className="hero-overlay-top absolute inset-0" aria-hidden="true" />
       <div className="hero-overlay absolute inset-0" aria-hidden="true" />
       <div className="hero-overlay-bottom absolute inset-0" aria-hidden="true" />
 

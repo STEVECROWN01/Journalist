@@ -59,7 +59,7 @@ export function PublicationsExplorer({ publications }: ExplorerProps) {
   return (
     <div>
       {/* Recherche + catégories */}
-      <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+      <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
         <div className="relative w-full max-w-sm">
           <Search
             size={15}
@@ -133,10 +133,7 @@ export function PublicationsExplorer({ publications }: ExplorerProps) {
               <div className="flex items-center gap-5">
                 <h3 className="font-serif text-[1.6rem] text-white">{year}</h3>
                 <span className="h-px flex-1 bg-mist/10" aria-hidden="true" />
-                <span className="meta">
-                  {items.length}{" "}
-                  {items.length > 1 ? "" : ""}
-                </span>
+                <p className="meta">{t("publications.archives.count", { count: items.length })}</p>
               </div>
               <div className="mt-8 grid gap-10 md:grid-cols-2">
                 {items.map((p, i) => (

@@ -79,7 +79,7 @@ export default async function CommsPage({
           {domainItems.map((item, i) => (
             <Reveal key={item.title} delay={i * 0.05}>
               <div className="h-full bg-ink p-7 transition-colors hover:bg-surface">
-                <span className="font-serif text-[1rem] italic text-rouge">
+                <span className="font-serif text-[1.5rem] italic leading-none text-rouge">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <h3 className="mt-3 font-serif text-[1.2rem] leading-snug text-white">
@@ -161,7 +161,7 @@ export default async function CommsPage({
           {methodSteps.map((step, i) => (
             <Reveal as="li" key={step.title} delay={i * 0.06}>
               <div className="h-full border-t-2 border-rouge/70 pt-5">
-                <p className="font-serif text-[1.05rem] italic text-graphite">
+                <p className="font-serif text-[1.25rem] italic leading-none text-steel">
                   {String(i + 1).padStart(2, "0")}
                 </p>
                 <h3 className="mt-2 font-serif text-[1.15rem] text-white">

@@ -112,9 +112,13 @@ export default async function PublicationDetailPage({
               {publication.title}
             </h1>
             <p className="meta mt-6">
-              {t("publishedOn", { date: dateLabel })}
-              <span className="mx-2 text-graphite" aria-hidden="true">·</span>
-              {t("readingTime", { minutes: publication.readingMinutes })}
+              <span className="whitespace-nowrap">
+                {t("publishedOn", { date: dateLabel })}
+                <span className="mx-2 text-graphite" aria-hidden="true">·</span>
+              </span>
+              <span className="whitespace-nowrap">
+                {t("readingTime", { minutes: publication.readingMinutes })}
+              </span>
             </p>
           </Reveal>
         </header>
