@@ -11,6 +11,9 @@ const nextConfig: NextConfig = {
   devIndicators: false,
   images: {
     formats: ["image/avif", "image/webp"],
+    // Next 16 : la qualité se définit par composant (quality={85} sur les
+    // <Image> éditoriales) — le 75 par défaut moussait les photographies.
+    qualities: [75, 85],
   },
   typescript: {
     ignoreBuildErrors: true,

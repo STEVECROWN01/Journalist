@@ -10,6 +10,7 @@ import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import { useGSAP } from "@gsap/react";
 import { Reveal } from "@/components/site/reveal";
+import { MaskLines } from "@/components/site/motion";
 import { useLenisScrollTrigger } from "./use-lenis-scrolltrigger";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, DrawSVGPlugin, MotionPathPlugin);
@@ -239,7 +240,7 @@ export function HomeDomains({
             id="sec-expertise"
             className="display-2 mx-auto mt-6 max-w-3xl text-balance text-white"
           >
-            {title}
+            <MaskLines delay={0.05}>{title}</MaskLines>
           </h2>
         </Reveal>
       </div>
@@ -290,7 +291,8 @@ export function HomeDomains({
                       height={358}
                       sizes="(min-width: 760px) 13vw, 38vw"
                       className="dt-creator-img"
-                    />
+  quality={85}
+/>
                   </span>
                   <span className="dt-creator-caption">
                     <strong>{domain.title}</strong>

@@ -18,6 +18,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Reveal } from "@/components/site/reveal";
+import { MaskLines } from "@/components/site/motion";
 import { useLenisScrollTrigger } from "./use-lenis-scrolltrigger";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -265,7 +266,8 @@ export function HomeMarquee({
               height={300}
               sizes="(min-width: 760px) 22vw, 48vw"
               className="dt-photo-img"
-            />
+  quality={85}
+/>
             <span className="dt-photo-badge dt-category-badge">
               <Icon aria-hidden="true" />
             </span>
@@ -320,7 +322,7 @@ export function HomeMarquee({
             id="sec-productions"
             className="display-2 mx-auto mt-6 max-w-3xl text-balance text-white"
           >
-            {copy.title}
+            <MaskLines delay={0.05}>{copy.title}</MaskLines>
           </h2>
         </Reveal>
         <Reveal delay={0.12}>

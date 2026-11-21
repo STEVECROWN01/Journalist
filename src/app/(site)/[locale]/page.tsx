@@ -6,6 +6,7 @@ import { ArrowRight } from "lucide-react";
 import { getProductions, getPublications, getSettings } from "@/lib/content";
 import { site, SEO_KEYWORDS } from "@/lib/site";
 import { Reveal } from "@/components/site/reveal";
+import { MaskLines, Parallax } from "@/components/site/motion";
 import { SectionHeading } from "@/components/site/section-heading";
 import { PublicationCard } from "@/components/site/publication-card";
 import { HomeHero } from "@/components/site/home/home-hero";
@@ -242,7 +243,7 @@ export default async function HomePage({
                 id="sec-approach"
                 className="display-2 max-w-2xl text-balance text-white"
               >
-                {t("approach.title")}
+                <MaskLines delay={0.06}>{t("approach.title")}</MaskLines>
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
@@ -355,16 +356,19 @@ export default async function HomePage({
                   className="absolute -right-2 -top-2 size-3 rounded-full bg-or"
                   aria-hidden="true"
                 />
-                <Image
-                  src="/assets/portrait-studio-professionnel.jpg"
-                  alt={fr
-                    ? "Alexandre Morel, journaliste international, en studio"
-                    : "Alexandre Morel, international journalist, in the studio"}
-                  width={520}
-                  height={620}
-                  sizes="(min-width: 1024px) 260px, 240px"
-                  className="relative block aspect-[5/6] w-full rounded-xl object-cover"
-                />
+                <Parallax amplitude={26} scale={1.12} className="relative rounded-xl">
+                  <Image
+                    src="/assets/portrait-studio-professionnel.jpg"
+                    alt={fr
+                      ? "Alexandre Morel, journaliste international, en studio"
+                      : "Alexandre Morel, international journalist, in the studio"}
+                    width={520}
+                    height={620}
+                    sizes="(min-width: 1024px) 260px, 240px"
+                    className="block aspect-[5/6] w-full rounded-xl object-cover"
+  quality={85}
+/>
+                </Parallax>
                 <figcaption className="mt-3 text-[0.66rem] font-medium uppercase tracking-[0.18em] text-steel">
                   {site.name} — {site.city}
                 </figcaption>
@@ -377,7 +381,7 @@ export default async function HomePage({
                 id="sec-collab"
                 className="display-2 max-w-2xl text-balance text-white"
               >
-                {t("collaboration.title")}
+                <MaskLines delay={0.06}>{t("collaboration.title")}</MaskLines>
               </h2>
             </Reveal>
             <Reveal delay={0.1}>

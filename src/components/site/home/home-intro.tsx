@@ -163,7 +163,8 @@ export function HomeIntro({
                 height={1010}
                 sizes="(min-width: 760px) 40vw, 88vw"
                 className="dt-editorial-img"
-              />
+  quality={85}
+/>
             </Link>
           </div>
 
@@ -193,7 +194,8 @@ export function HomeIntro({
                     width={358}
                     height={231}
                     sizes="120px"
-                  />
+  quality={85}
+/>
                 ) : null}
                 <i aria-hidden="true">
                   <ArrowUpRight size={9} />
@@ -215,7 +217,8 @@ export function HomeIntro({
                 width={358}
                 height={231}
                 sizes="140px"
-              />
+  quality={85}
+/>
               <strong>{cards.result.title}</strong>
             </Link>
           ) : null}

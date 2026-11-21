@@ -139,7 +139,8 @@ export function HomeHero({ copy }: { copy: HomeHeroCopy }) {
                         sizes="(min-width: 760px) 22vw, 42vw"
                         priority={index === 1 && copyIndex === 0 && tile < 2}
                         className="dt-mosaic-tile"
-                      />
+  quality={85}
+/>
                     ))}
                   </div>
                 ))}

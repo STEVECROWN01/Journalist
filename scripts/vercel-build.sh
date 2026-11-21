@@ -132,9 +132,28 @@ run_seed() {
   return 1
 }
 
-# ===========================================================================
+# ---------------------------------------------------------------------------
+# Mode repli : la base est indisponible — le site se déploie quand même.
+# Le site public fonctionne sans base (catalogue et articles de démonstration,
+# formulaire et back-office inactifs) ; dès que l'URL est corrigée, le
+# prochain déploiement rebranche tout automatiquement.
+# ---------------------------------------------------------------------------
+fallback_notice() {
+  printf '\n⚠⚠⚠ BASE DE DONNÉES INDISPONIBLE — DÉPLOIEMENT EN MODE REPLI ⚠⚠⚠\n'
+  printf '%s\n' \
+    "Le site sera publié en version de démonstration (contenus statiques)." \
+    "Le formulaire de contact et le back-office resteront inactifs." \
+    "Aucune donnée n'est perdue : dès que DATABASE_URL sera joignable, le" \
+    "prochain déploiement réappliquera migrations et amorçage automatiquement." \
+    "" \
+    "Pour rebrancher la base : voir le diagnostic ci-dessus, corriger la" \
+    "variable dans Vercel > Settings > Environment Variables, puis Redeploy."
+  printf '⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠\n\n'
+}
+
+# ---------------------------------------------------------------------------
 # Déroulé du build
-# ===========================================================================
+# ---------------------------------------------------------------------------
 
 say "Étape 1/4 — Génération du client Prisma"
 prisma generate > /dev/null 2>&1 || fail "« prisma generate » a échoué (dépendances incomplètes ? relancez le déploiement)."
@@ -151,29 +170,37 @@ else
     export DATABASE_URL="$CLEANED"
   fi
 
+  DB_SKIPPED=0
   case "$DATABASE_URL" in
     postgres://*|postgresql://*) ;;
     *)
-      fail "DATABASE_URL ne commence pas par postgres:// ou postgresql:// (valeur reçue : « $(printf '%s' "$DATABASE_URL" | cut -c1-13)… », tronquée par sécurité). Collez l'URL complète fournie par Railway, SANS guillemets ni préfixe « DATABASE_URL= »."
+      printf '\n✖ DATABASE_URL invalide : elle ne commence pas par postgres:// ou postgresql:// (valeur reçue : « %s… », tronquée par sécurité). Collez l URL complète fournie par Railway, SANS guillemets ni préfixe « DATABASE_URL= ».\n' "$(printf '%s' "$DATABASE_URL" | cut -c1-13)"
+      fallback_notice
+      DB_SKIPPED=1
       ;;
   esac
 
   case "$DATABASE_URL" in
     *railway.internal*|*@postgres:*|*@postgresql:*)
-      fail "DATABASE_URL est l'URL INTERNE de Railway (postgres.railway.internal), inaccessible depuis Vercel. Copiez l'URL PUBLIQUE : Railway > PostgreSQL > onglet Variables > DATABASE_URL (hôte du type containers-xxxx.rlwy.net), puis mettez-la à jour dans Vercel et redéployez."
+      printf '\n✖ DATABASE_URL est l URL INTERNE de Railway (postgres.railway.internal), inaccessible depuis Vercel. Copiez l URL PUBLIQUE : Railway > PostgreSQL > onglet Variables > DATABASE_URL (hôte du type containers-xxxx.rlwy.net), puis mettez-la à jour dans Vercel et redéployez.\n'
+      fallback_notice
+      DB_SKIPPED=1
       ;;
   esac
 
-  say "Base détectée : $(printf '%s' "$DATABASE_URL" | sed -e 's|.*@||' -e 's|/.*||')"
+  if [ "$DB_SKIPPED" -eq 0 ]; then
+    say "Base détectée : $(printf '%s' "$DATABASE_URL" | sed -e 's|.*@||' -e 's|/.*||')"
 
-  say "Étape 2/4 — Migrations PostgreSQL (prisma migrate deploy)"
-  if ! run_migrations; then
-    exit 1
-  fi
-
-  say "Étape 3/4 — Amorçage (administrateur, paramètres du site, productions)"
-  if ! run_seed; then
-    fail "échec de l'amorçage de la base — journal et cause ci-dessus."
+    say "Étape 2/4 — Migrations PostgreSQL (prisma migrate deploy)"
+    if ! run_migrations; then
+      fallback_notice
+    else
+      say "Étape 3/4 — Amorçage (administrateur, paramètres du site, productions)"
+      if ! run_seed; then
+        printf '\n✖ Échec de l amorçage de la base — journal ci-dessus.\n'
+        fallback_notice
+      fi
+    fi
   fi
 fi
 

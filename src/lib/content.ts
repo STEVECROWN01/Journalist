@@ -1,5 +1,5 @@
 import { db } from "@/lib/db";
-import { demoProductions, type DemoProduction } from "@/content/demo";
+import { demoProductions, demoPublications, type DemoProduction, type DemoPublication } from "@/content/demo";
 import type { Locale } from "@/i18n/routing";
 import { publicationCategoryLabel } from "@/lib/site";
 
@@ -133,6 +133,24 @@ function mapDemoProduction(p: DemoProduction, locale: Locale): ProductionView {
   return mapProduction(p, locale);
 }
 
+function mapDemoPublication(p: DemoPublication, locale: Locale): PublicationView {
+  return mapPublication(
+    {
+      slug: p.slug,
+      titleFr: p.titleFr,
+      titleEn: p.titleEn,
+      excerptFr: p.excerptFr,
+      excerptEn: p.excerptEn,
+      contentFr: p.contentFr,
+      contentEn: p.contentEn,
+      category: p.category,
+      coverImage: p.coverImage,
+      publishedAt: p.publishedAt,
+    },
+    locale
+  );
+}
+
 /* ============================ Publications ============================ */
 
 export async function getPublications(locale: Locale): Promise<PublicationView[]> {
@@ -143,13 +161,17 @@ export async function getPublications(locale: Locale): Promise<PublicationView[]
     });
     // Sans version anglaise validée, l'article n'apparaît que sur le site
     // français — aucune traduction approximative n'est présentée.
-    return rows
+    const views = rows
       .filter((r) => locale === "fr" || hasEnglishVersion(r))
       .map((r) => mapPublication(r, locale));
+    if (views.length > 0) return views;
   } catch {
-    // Base indisponible : aucune publication n'est affichée (aucun faux contenu)
-    return [];
+    // Base indisponible : bascule sur le repli ci-dessous.
   }
+  // Aucune publication réelle publiée (base vide, non configurée ou
+  // injoignable) : articles de démonstration — ils disparaissent dès la
+  // première publication réelle depuis le back-office.
+  return demoPublications.map((p) => mapDemoPublication(p, locale));
 }
 
 export async function getPublicationBySlug(
@@ -160,12 +182,17 @@ export async function getPublicationBySlug(
     const row = await db.publication.findFirst({
       where: { slug, status: "published" },
     });
-    if (!row) return null;
-    if (locale === "en" && !hasEnglishVersion(row)) return null;
-    return mapPublication(row, locale);
+    if (row) {
+      if (locale === "en" && !hasEnglishVersion(row)) return null;
+      return mapPublication(row, locale);
+    }
   } catch {
-    return null;
+    // Base indisponible : bascule sur le repli ci-dessous.
   }
+  // Publication de démonstration (tant qu'aucune publication réelle
+  // équivalente n'existe en base).
+  const demo = demoPublications.find((p) => p.slug === slug);
+  return demo ? mapDemoPublication(demo, locale) : null;
 }
 
 /** Navigation éditoriale : article précédent (plus ancien) et suivant (plus récent). */

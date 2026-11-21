@@ -479,6 +479,77 @@ body {
   overflow-x: clip;
 }
 
+/* ---------- Révélations au défilement (Reveal / RevealImage) ----------
+   L'état masqué n'est posé qu'après montage du JavaScript : le HTML
+   servi reste intégralement visible sans JS (connexion lente, lecteur
+   d'écran, robots). prefers-reduced-motion : aucun mouvement. */
+.rv-armed {
+  opacity: 0;
+  transform: translateY(26px);
+}
+.rv-armed.rv-in {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--rv-delay, 0s),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--rv-delay, 0s);
+  will-change: opacity, transform;
+}
+.rvi-armed {
+  opacity: 0;
+  transform: scale(0.985);
+}
+.rvi-armed.rvi-in {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+/* ---------- MaskLines : titre révélé ligne à ligne ----------
+   Le masque (overflow: hidden) et le décalage ne s'installent
+   qu'après montage ; sans JS le titre reste intégralement visible. */
+.ml,
+.ml-armed {
+  display: block;
+  /* Le masque : chaque ligne glisse depuis sous son bord bas. Le
+     padding évite de rogner les jambages (g, y, p…) du serif. */
+  overflow: hidden;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+.ml-armed .ml-line {
+  display: block;
+  transform: translateY(114%);
+  opacity: 0.001;
+}
+.ml-armed.ml-in .ml-line {
+  transform: none;
+  opacity: 1;
+  transition:
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1) var(--ml-delay, 0s),
+    opacity 0.55s linear var(--ml-delay, 0s);
+  will-change: transform;
+}
+
+/* ---------- Parallax : dérive verticale des photographies ----------
+   Le conteneur réserve la place (hauteur naturelle de l'image) ;
+   l'image, légèrement agrandie, glisse dedans au défilement sans
+   jamais découvrir de bord vide. */
+.plx {
+  overflow: hidden;
+}
+.plx-inner {
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+.plx-inner img {
+  transform: scale(var(--plx-scale, 1.08));
+  will-change: transform;
+}
+
 .dt-wrap {
   width: min(1152px, calc(100% - 48px));
   margin-inline: auto;
@@ -535,18 +606,17 @@ body {
   object-position: center 30%;
   border-radius: 13px;
   background: var(--color-surface);
-  /* Rendu éditorial : la photographie reste vive et frappe l'œil —
-     la lisibilité du texte repose sur le voile latéral du hero. */
-  filter: brightness(0.98) contrast(1.01);
 }
+/* Adoucissement du bord gauche de la mosaïque : un simple dégradé
+   (remplace un backdrop-filter coûteux sur mobile pendant l'animation
+   3D — le voile .dt-hero-shade assure déjà la lisibilité du texte). */
 .dt-mosaic::after {
   content: "";
   position: absolute;
   inset: 0 auto 0 0;
-  width: 16%;
-  backdrop-filter: blur(8px);
-  -webkit-mask-image: linear-gradient(90deg, #000, transparent);
-  mask-image: linear-gradient(90deg, #000, transparent);
+  width: 22%;
+  background: linear-gradient(90deg, rgba(7, 7, 7, 0.55), transparent);
+  pointer-events: none;
 }
 /* Voile de lisibilité entre la mosaïque et le texte du hero :
    protection ferme sur la colonne de texte à gauche, la mosaïque
@@ -1340,56 +1410,59 @@ body {
   .dt-wrap {
     width: calc(100% - 40px);
   }
-  /* Le hero devient une grille : la bande de mots-clés (piste très
-     large) ne doit pas gonfler la colonne — min-width: 0 sur chaque
-     rangée pour que le contenu reste dans l'écran. */
+  /* La bande de mots-clés (piste très large) ne doit pas gonfler les
+     colonnes — min-width: 0 pour que le contenu reste dans l'écran. */
   .dt-hero-content,
-  .dt-mosaic,
   .dt-hero-band {
     min-width: 0;
   }
-  /* Hero : contenu puis bandeau de mosaïque */
+  /* Hero mobile : la mosaïque devient un FOND plein écran derrière le
+     contenu (visible dès l'arrivée, sans défilement préalable). Le
+     contenu reste en flex-1, la bande de mots-clés clôt la section. */
   .dt-hero {
-    display: grid;
-    grid-template-rows: auto auto auto;
+    display: flex;
+    flex-direction: column;
     height: auto;
     min-height: 100svh;
   }
   .dt-hero-content {
-    grid-row: 1;
-    padding-top: 7rem;
+    flex: 1 1 auto;
+    padding-top: 6.5rem;
+    padding-bottom: 2.5rem;
   }
   .dt-mosaic {
-    grid-row: 2;
-    position: relative;
-    inset: auto;
-    height: 330px;
-    margin: -6px -14% 0 -8%;
+    position: absolute;
+    inset: 0 -14% 0 -14%;
+    height: auto;
     --dt-gap: 10px;
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent),
-      linear-gradient(180deg, transparent, #000 22%, #000 74%, transparent);
-    mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent),
-      linear-gradient(180deg, transparent, #000 22%, #000 74%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent),
+      linear-gradient(180deg, transparent, #000 16%, #000 82%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent),
+      linear-gradient(180deg, transparent, #000 16%, #000 82%, transparent);
   }
   .dt-mosaic-grid {
-    height: 640px;
+    height: 560px;
     width: 100%;
+    transform: rotateX(12deg) rotateY(-14deg) rotateZ(-8deg) translateZ(-110px);
   }
   .dt-mosaic-tile {
     aspect-ratio: 0.94;
     border-radius: 10px;
   }
+  /* Voile renforcé sur mobile : la mosaïque étant derrière le texte
+     intégral, le contraste doit rester garanti sur toute la colonne. */
   .dt-hero-shade {
     background: linear-gradient(
       180deg,
-      rgba(7, 7, 7, 0.6) 0%,
-      rgba(7, 7, 7, 0) 26%,
-      rgba(7, 7, 7, 0) 58%,
-      rgba(28, 28, 28, 0.65) 100%
+      rgba(7, 7, 7, 0.82) 0%,
+      rgba(7, 7, 7, 0.72) 30%,
+      rgba(7, 7, 7, 0.6) 55%,
+      rgba(7, 7, 7, 0.78) 82%,
+      rgba(7, 7, 7, 0.9) 100%
     );
   }
-  .dt-hero-band {
-    grid-row: 3;
+  .dt-hero .display-1 {
+    font-size: clamp(2.15rem, 8.4vw, 2.9rem);
   }
   /* Split éditorial en une colonne */
   .dt-editorial {

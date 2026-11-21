@@ -12,9 +12,11 @@ import { getSettings } from "@/lib/content";
 import "../../globals.css";
 
 /* Typographie éditoriale : Source Serif 4 pour les titres,
-   Source Sans 3 pour les textes fonctionnels (superfamille cohérente). */
+   Source Sans 3 pour les textes fonctionnels (superfamille cohérente).
+   Chargées en polices VARIABLES : un seul fichier par style couvre
+   toutes les graisses (400 à 700) — ~2× moins de poids qu'une
+   liste de graisses statiques. */
 const sourceSerif = Source_Serif_4({
-  weight: ["400", "500", "600"],
   style: ["normal", "italic"],
   subsets: ["latin"],
   variable: "--font-source-serif",
@@ -22,7 +24,6 @@ const sourceSerif = Source_Serif_4({
 });
 
 const sourceSans = Source_Sans_3({
-  weight: ["300", "400", "500", "600"],
   subsets: ["latin"],
   variable: "--font-source-sans",
   display: "swap",

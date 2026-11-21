@@ -38,7 +38,8 @@ export function PageHero({
         priority
         sizes="100vw"
         className="hero-kenburns object-cover"
-      />
+  quality={85}
+/>
       <div className="hero-overlay-top absolute inset-0" aria-hidden="true" />
       <div className="hero-overlay absolute inset-0" aria-hidden="true" />
       <div className="hero-overlay-bottom absolute inset-0" aria-hidden="true" />

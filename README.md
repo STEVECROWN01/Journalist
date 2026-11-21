@@ -5,12 +5,10 @@ présentation du parcours, portfolio de productions documentaires, espace de
 publications bilingue (FR/EN), communication & conseil, formation, contact
 fonctionnel et **back-office propriétaire** de gestion de contenu.
 
-> **Contenus** — l'identité (Alexandre Morel) et les coordonnées seront
-> remplacées par les informations réelles après validation. Les productions
-> forment un catalogue initial ; la rubrique **Articles & Analyses**, elle,
-> est gérée exclusivement depuis le back-office : aucun article n'est
-> pré-rempli, seules les publications réellement rédigées apparaissent
-> en ligne.
+> **Démonstration conceptuelle** — l'identité (Alexandre Morel), les
+> coordonnées, les productions et les publications sont des contenus
+> illustratifs destinés à présenter la plateforme. Ils seront remplacés par
+> les informations réelles après validation.
 
 ## Stack technique
 
@@ -20,8 +18,8 @@ fonctionnel et **back-office propriétaire** de gestion de contenu.
 | Styles | Tailwind CSS 4 + design system éditorial dédié |
 | Composants | shadcn/ui (New York) + Lucide Icons |
 | Internationalisation | next-intl — `/fr/` et `/en/`, URLs localisées |
-| Base de données | Prisma ORM + PostgreSQL (Railway) |
-| Animations | Framer Motion (respect de `prefers-reduced-motion`) |
+| Base de données | Prisma ORM (SQLite en dev, PostgreSQL en production) |
+| Animations | Framer Motion — système de motion éditorial premium (respect de `prefers-reduced-motion`) |
 | SEO | Métadonnées, sitemap.xml, robots.txt, hreflang, Open Graph, Twitter Cards, JSON-LD |
 
 ## Structure du projet
@@ -46,8 +44,18 @@ src/
     sitemap.ts / robots.ts  # SEO dynamique
   components/
     site/                   # Composants publics (header, footer, hero…)
+      motion.tsx            # Bibliothèque de motion premium :
+                            #   Reveal (directionnel + flou), MaskLines (titres
+                            #   masqués), WordReveal (citations mot à mot),
+                            #   Parallax / ParallaxImage (scroll lié),
+                            #   ClipReveal (rideau d'image), Counter (statistiques),
+                            #   Marquee (bandeau défilant), Magnetic (CTA aimantés),
+                            #   ScrollProgress, ScrollHint, StaggerGroup/Item,
+                            #   LineGrow / GrowV (filets animés), FadeInImage
+      hero-stage.tsx        # Hero d'accueil : parallaxe, zoom d'installation,
+                            #   révélation masquée ligne à ligne
     admin/                  # Composants back-office
-  content/demo.ts           # Catalogue initial des productions (repli statique)
+  content/demo.ts           # Contenu de démonstration (repli statique)
   i18n/                     # Configuration next-intl
   lib/                      # Base, auth, contenu, médias, config
   messages/                 # Traductions fr.json / en.json (354 clés)
@@ -64,8 +72,8 @@ bun install        # ou npm install
 # 2. Variables d'environnement
 cp .env.example .env
 
-# 3. Base de données : migrations + compte admin et catalogue productions
-bunx prisma migrate deploy
+# 3. Base de données (SQLite) + contenu de démonstration
+bun run db:push
 bun run db:seed
 
 # 4. Serveur de développement
@@ -88,94 +96,29 @@ toute mise en production.**
 Le déploiement fonctionne immédiatement (détection Next.js automatique) :
 
 1. Importez le dépôt dans Vercel.
-2. Ajoutez les variables d'environnement du `.env.example` dans les réglages
-   du projet (voir ci-dessous).
+2. (Optionnel mais recommandé) Ajoutez les variables d'environnement du
+   `.env.example` dans les réglages du projet.
 
-### Base de données PostgreSQL (Railway)
+### Deux modes de fonctionnement
 
-Le projet est configuré pour **PostgreSQL** (fournisseur Railway). La chaîne
-de build (`scripts/vercel-build.sh`, exécutée automatiquement par Vercel via
-la clé `vercel-build` du `package.json`) :
-
-1. applique les migrations Prisma (`prisma migrate deploy`) ;
-2. amorce la base de manière idempotente — compte administrateur,
-   paramètres du site, catalogue des productions (`bun prisma/seed.ts`) ;
-3. compile l'application (`next build`).
-
-**Mise en place :**
-
-1. Sur [Railway](https://railway.app), créez un projet puis une base
-   **PostgreSQL** ; copiez la variable `DATABASE_URL` (URL publique
-   `postgresql://…`, onglet *Variables* du service).
-2. Dans Vercel > Settings > Environment Variables, définissez :
-
-   | Variable | Rôle |
-   | --- | --- |
-   | `DATABASE_URL` | URL PostgreSQL publique Railway |
-   | `ADMIN_EMAIL` | identifiant de connexion au back-office |
-   | `ADMIN_PASSWORD` | mot de passe administrateur |
-   | `ADMIN_SESSION_SECRET` | clé de signature des sessions (valeur longue et aléatoire) |
-   | `NEXT_PUBLIC_SITE_URL` | URL publique du site (métadonnées, sitemap) |
-
-3. Redéployez : les tables sont créées et amorcées automatiquement pendant
-   le build. Aucune commande manuelle n'est nécessaire.
-
-**Remarques :**
-
-- Modifier `ADMIN_PASSWORD` dans Vercel puis redéployer resynchronise le mot
-  de passe du compte administrateur (les variables restent la source de vérité).
-- Sans `DATABASE_URL` (p. ex. déploiement de prévisualisation), le build
-  continue en mode repli statique : le site public s'affiche (les productions
-  reposent sur le catalogue statique ; la rubrique Articles & Analyses reste
-  vide jusqu'à la première publication réelle), le formulaire de contact et le
-  back-office signalent que la base n'est pas configurée.
-- Le back-office est accessible exclusivement par son URL (`/admin`),
-  volontairement non référencé (robots.txt + noindex) et sans lien public.
-
-### Dépannage des déploiements
-
-**Où lire le journal d'un échec :** Vercel > onglet *Deployments* > cliquez
-le déploiement en rouge > *Building* > le journal affiche chaque étape
-(« Étape 1/4 » … « Étape 4/4 ») et, en cas d'erreur, un encadré en français
-qui désigne la cause exacte et la correction à appliquer. Aucun mot de passe
-n'y est jamais imprimé.
-
-**Réglages Vercel à ne pas surcharger** (*Settings > General*) : laissez
-*Build Command* et *Output Directory* sur « Override : None ». La chaîne de
-build officielle est pilotée par la clé `vercel-build` du `package.json` —
-une commande personnalisée saisie dans l'interface la contourne et casse les
-migrations.
-
-**Échecs courants et corrections :**
-
-| Symptôme (journal) | Cause | Correction |
-| --- | --- | --- |
-| `P1001` — base injoignable | URL interne Railway, service en pause ou essai épuisé | Copier l'URL **publique** (`containers-xxxx.rlwy.net`) depuis Railway > PostgreSQL > *Variables*, service actif |
-| `P1000` — authentification refusée | URL modifiée à la main | Recopier `DATABASE_URL` telle quelle depuis Railway |
-| `P3005`/`P3006` — tables existantes | Base déjà remplie hors migrations | Railway > *Data* > SQL : `DROP SCHEMA public CASCADE; CREATE SCHEMA public;` puis redéployer |
-| Guillemets détectés | Valeur collée depuis `.env` avec `"…"` | Corrigé automatiquement par le script (valeur nettoyée puis journalisée) |
-
-**Générer `ADMIN_SESSION_SECRET` :** cette clé ne s'obtient auprès de
-personne — c'est simplement une longue chaîne aléatoire que vous créez
-vous-même (elle signe les sessions du back-office). N'importe laquelle de
-ces méthodes convient :
-
-```sh
-openssl rand -hex 32        # 64 caractères
-openssl rand -base64 48     # variante
-```
-
-Collez le résultat dans Vercel > *Settings > Environment Variables* >
-`ADMIN_SESSION_SECRET`, sans guillemets. Si la variable est absente, une clé
-de démonstration est utilisée (sessions fonctionnelles mais non sécurisées) ;
-la changer déconnecte les sessions existantes, c'est sans autre effet.
+- **Sans base de données** : le site public s'affiche intégralement avec le
+  contenu de démonstration intégré (mode repli statique). Le formulaire de
+  contact et le back-office signalent que la base n'est pas configurée.
+- **Avec base de données** (recommandé) : toutes les fonctions sont actives.
+  Créez une base PostgreSQL serverless gratuite (Neon, Supabase…), puis :
+  1. Dans `prisma/schema.prisma`, remplacez `provider = "sqlite"` par
+     `provider = "postgresql"` ;
+  2. Définissez `DATABASE_URL` dans Vercel ;
+  3. Exécutez `bun run db:push && bun run db:seed` localement contre cette
+     base (ou depuis un environnement de build) ;
+  4. Redéployez.
 
 ## Guide du back-office
 
 | Rubrique | Actions |
 | --- | --- |
 | Tableau de bord | Compteurs, derniers messages, dernières activités |
-| Publications | Créer, modifier (FR/EN), publier/dépublier, catégoriser (analyses, reportages, décryptages), couverture, date, supprimer |
+| Publications | Créer, modifier (FR/EN), publier/dépublier, à la une, supprimer |
 | Productions | Créer, modifier (FR/EN), catégoriser, ordonner, lien vidéo, supprimer |
 | Messages | Consulter, marquer lu/non lu, répondre, supprimer |
 | Paramètres | Nom, ville, e-mail, téléphone, réseaux sociaux (affichés sur le site) |
@@ -188,10 +131,8 @@ statiques sont revalidées à chaque enregistrement).
 - [ ] Remplacer l'identité de démonstration par les informations réelles
       (traductions `src/messages/fr.json` et `en.json`).
 - [ ] Mettre à jour les coordonnées dans **Paramètres** du back-office.
-- [ ] Rédiger les premiers articles depuis **Publications** du back-office
-      (catégories : analyses, reportages, décryptages ; version anglaise
-      facultative — sans elle, l'article n'apparaît que sur le site français).
-- [ ] Remplacer ou ajuster les productions du catalogue initial.
+- [ ] Remplacer les publications et productions de démonstration par les
+      réalisations réelles (suppression ou dépublication des contenus démo).
 - [ ] Intégrer les vraies photographies dans `public/assets/` (et le registre
       `src/lib/media.ts` si de nouveaux fichiers sont ajoutés).
 - [ ] Régénérer l'image Open Graph (`public/assets/og-image.jpg`).

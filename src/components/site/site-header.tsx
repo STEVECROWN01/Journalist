@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Link, usePathname, useRouter } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { useReducedMotion, AnimatePresence, motion } from "framer-motion";
 import {
@@ -61,7 +61,6 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
   const t = useTranslations("common");
   const locale = useLocale();
   const pathname = usePathname();
-  const router = useRouter();
   const reduce = useReducedMotion();
 
   const [scrolled, setScrolled] = useState(false);
@@ -108,10 +107,11 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
     setMenuOpen(false);
   }, [pathname]);
 
-  const switchLocale = (next: string) => {
-    setMenuOpen(false);
-    router.replace(pathname, { locale: next });
-  };
+  /* Changement de langue : lien natif (next-intl Link + prop locale).
+     C'est une véritable ancre <a href="/en/…"> : la navigation fonctionne
+     même avant l'hydratation React (connexion lente), au doigt comme à la
+     souris, dans un nouvel onglet, et précharge la page cible. */
+  const otherLocale = locale === "fr" ? "en" : "fr";
 
   const closeMenu = () => {
     setMenuOpen(false);
@@ -208,9 +208,9 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
 
         {/* Commandes de droite : langue + menu (hors de la bande) */}
         <div className="mt-[0.625rem] flex items-center gap-2">
-          <button
-            type="button"
-            onClick={() => switchLocale(locale === "fr" ? "en" : "fr")}
+          <Link
+            href={pathname}
+            locale={otherLocale}
             aria-label={t("language.switch")}
             title={t("language.switch")}
             className={`${squareBase} ${
@@ -222,7 +222,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
             <span className="text-[0.78rem] font-semibold uppercase tracking-[0.06em]">
               {locale}
             </span>
-          </button>
+          </Link>
 
           <button
             ref={hamburgerRef}
@@ -274,9 +274,10 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
               </motion.div>
 
               <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => switchLocale(locale === "fr" ? "en" : "fr")}
+                <Link
+                  href={pathname}
+                  locale={otherLocale}
+                  onClick={() => setMenuOpen(false)}
                   aria-label={t("language.switch")}
                   title={t("language.switch")}
                   className={`${squareBase} border-mist/25 text-mist`}
@@ -284,7 +285,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
                   <span className="text-[0.78rem] font-semibold uppercase tracking-[0.06em]">
                     {locale}
                   </span>
-                </button>
+                </Link>
                 <motion.button
                   ref={closeRef}
                   type="button"
