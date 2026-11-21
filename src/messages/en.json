@@ -11,7 +11,8 @@
       "training": "Training & Knowledge Transfer",
       "productions": "Productions",
       "publications": "Publications",
-      "contact": "Contact"
+      "contact": "Contact",
+      "primary": "Main navigation"
     },
     "cta": {
       "short": "Get in touch",
@@ -39,7 +40,8 @@
     "language": {
       "label": "Language",
       "fr": "Français",
-      "en": "English"
+      "en": "English",
+      "switch": "Switch to French"
     },
     "share": {
       "title": "Share",
@@ -50,6 +52,13 @@
       "title": "Page not found",
       "text": "The page you are looking for does not exist or has been moved.",
       "back": "Back to home"
+    },
+    "menu": {
+      "open": "Open the menu",
+      "close": "Close the menu",
+      "services": "Services",
+      "otherLinks": "Other links",
+      "dialog": "Navigation menu"
     }
   },
   "home": {
