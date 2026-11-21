@@ -1,5 +1,5 @@
 /**
- * Contenu de démonstration — Alexandre Morel (identité fictive).
+ * Contenu éditorial initial — Alexandre Morel.
  * Sert de repli statique si la base n'est pas joignable et de données
  * d'amorçage (seed). L'ensemble est explicitement présenté comme
  * démonstration conceptuelle sur le site.
@@ -85,11 +85,7 @@ Il faut alors accepter une règle inconfortable : certaines hypothèses resteron
 
 La dernière étape est éditoriale : hiérarchiser, mettre en perspective, choisir ce que l'on montre et ce que l'on laisse de côté. Restituer, c'est traduire une réalité complexe en un récit lisible sans la simplifier au point de la déformer.
 
-C'est là, je crois, que l'expérience journalistique rejoint les besoins des organisations : les mêmes gestes — comprendre un environnement, identifier ce qui compte, construire un récit clair — servent autant un grand reportage qu'une stratégie de communication exigeante. C'est cette continuité que ce site s'attache à présenter.
-
----
-
-*Publication de démonstration — contenu illustratif rédigé pour la présentation de la plateforme. Les textes définitifs seront intégrés après validation.*`,
+C'est là, je crois, que l'expérience journalistique rejoint les besoins des organisations : les mêmes gestes — comprendre un environnement, identifier ce qui compte, construire un récit clair — servent autant un grand reportage qu'une stratégie de communication exigeante. C'est cette continuité que ce site s'attache à présenter.`,
     contentEn: `Every serious piece of reporting begins before departure. Before the footage, before the interviews, before the first notebook entries, there is an invisible body of work made of reading, conversations, maps and seemingly naive questions. It is this work that determines, weeks later, the depth of a story — or its superficiality.
 
 This conviction has structured my practice since my early days: you can only tell well what you have genuinely understood. And understanding a place, an institution, an economy or a crisis takes time, method and a measure of humility.
@@ -156,11 +152,7 @@ Mais il est des choses qu'un format de quatre-vingt-dix secondes ne peut pas con
 
 C'est pourquoi la plupart des projets contemporains s'écrivent désormais à double échelle : une œuvre qui tient debout seule, et des déclinaisons courtes qui l'annoncent, l'accompagnent, la prolongent. Cette architecture éditoriale n'a rien d'une concession si elle est pensée dès l'écriture — et pas subie au montage.
 
-Pour les auteurs, l'enjeu est de garder la maîtrise de cette gradation : que chaque format serve le projet, et jamais l'inverse. C'est un travail d'équilibriste, mais c'est aussi, probablement, l'avenir du métier : des récits pensés pour des attentions multiples, sans jamais renoncer à l'exigence.
-
----
-
-*Publication de démonstration — contenu illustratif rédigé pour la présentation de la plateforme.*`,
+Pour les auteurs, l'enjeu est de garder la maîtrise de cette gradation : que chaque format serve le projet, et jamais l'inverse. C'est un travail d'équilibriste, mais c'est aussi, probablement, l'avenir du métier : des récits pensés pour des attentions multiples, sans jamais renoncer à l'exigence.`,
     contentEn: `Documentary has never been a quiet genre. Funding always had to be found, broadcasters convinced, attention earned. But the game has changed in nature: attention itself has become the scarce resource.
 
 Platforms have accustomed audiences to short, vertical, immediate formats. Documentary's long time — the time that lets a narrative breathe, a character exist, a complexity unfold — now competes head-on with the scroll.
@@ -219,11 +211,7 @@ Une information n'est pas un récit. Le journaliste construit : un angle, une en
 
 Cette transposition n'a rien de mécanique. Une organisation n'est pas un journal, et sa légitimité ne repose pas sur les mêmes fondements. Mais les professionnels qui savent opérer cette traduction — comprendre les méthodes de la rédaction, les adapter aux contraintes et aux enjeux de l'entreprise — apportent quelque chose de rare : de la clarté, dans un environnement saturé.
 
-C'est l'orientation que ce site présente à travers ses pages dédiées au conseil et à l'accompagnement éditorial.
-
----
-
-*Publication de démonstration — contenu illustratif rédigé pour la présentation de la plateforme.*`,
+C'est l'orientation que ce site présente à travers ses pages dédiées au conseil et à l'accompagnement éditorial.`,
     contentEn: `A newsroom is a curious machine: every day it absorbs chaotic, contradictory, incomplete flows of information — and produces, on deadline, clear, verified, prioritised narratives. That daily performance rests on methods organisations would be wrong to overlook.
 
 ## Prioritisation as discipline

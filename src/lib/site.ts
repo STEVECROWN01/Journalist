@@ -1,6 +1,5 @@
 /**
- * Configuration centrale du site.
- * Identité de démonstration (fictive) — à personnaliser après validation.
+ * Configuration centrale du site — Alexandre Morel.
  */
 export const site = {
   name: "Alexandre Morel",

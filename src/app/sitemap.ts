@@ -13,6 +13,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/": { fr: "/", en: "/" },
     "/a-propos": { fr: "/a-propos", en: "/about" },
     "/journalisme": { fr: "/journalisme", en: "/journalism" },
+    "/documentaire": { fr: "/documentaire", en: "/documentary" },
     "/productions": { fr: "/productions", en: "/productions" },
     "/publications": { fr: "/publications", en: "/publications" },
     "/communication-conseil": {

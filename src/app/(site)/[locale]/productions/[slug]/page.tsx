@@ -5,7 +5,6 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Reveal } from "@/components/site/reveal";
-import { DemoBadge } from "@/components/site/demo-badge";
 import { ProductionCard } from "@/components/site/production-card";
 import { CtaSection } from "@/components/site/cta-section";
 import { getProductionBySlug, getProductions } from "@/lib/content";
@@ -99,7 +98,6 @@ export default async function ProductionDetailPage({
               <p className="eyebrow !text-rouge">
                 {t(`portfolio.filters.${production.category}`)}
               </p>
-              <DemoBadge />
             </div>
             <h1 className="display-1 mt-6 max-w-3xl text-balance text-white">
               {production.title}
@@ -183,10 +181,6 @@ export default async function ProductionDetailPage({
                   .split(/\n\n+/)
                   .map((para, i) => <p key={i}>{para}</p>)}
               </div>
-              <p className="mt-10 flex items-center gap-3 text-[0.8rem] italic text-steel">
-                <DemoBadge />
-                {t("detail.demoNote")}
-              </p>
             </Reveal>
           </div>
         </div>

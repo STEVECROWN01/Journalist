@@ -2,7 +2,6 @@ import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { ArrowUpRight } from "lucide-react";
 import type { ProductionView } from "@/lib/content";
-import { DemoBadge } from "./demo-badge";
 
 interface ProductionCardProps {
   production: ProductionView;
@@ -37,9 +36,6 @@ export function ProductionCard({
             className="absolute inset-0 bg-gradient-to-t from-ink-deep/50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
             aria-hidden="true"
           />
-          <span className="absolute right-3 top-3" aria-hidden="true">
-            <DemoBadge className="opacity-90" />
-          </span>
         </div>
 
         <div className="mt-5 flex items-start justify-between gap-4">

@@ -3,18 +3,18 @@
     "brand": "Alexandre Morel",
     "skipToContent": "Aller au contenu principal",
     "nav": {
-      "home": "Accueil",
       "about": "À propos",
-      "expertise": "Expertises",
+      "journalismShort": "Journalisme",
       "journalism": "Journalisme international",
+      "documentary": "Documentaire",
       "comms": "Communication & Conseil",
       "training": "Formation & Transmission",
-      "productions": "Productions",
-      "publications": "Publications",
+      "productions": "Production",
+      "publications": "Publication",
       "contact": "Contact"
     },
     "cta": {
-      "short": "Me contacter",
+      "header": "Parlons de votre projet",
       "primary": "Discutons de votre projet"
     },
     "actions": {
@@ -24,14 +24,10 @@
       "allPublications": "Toutes les publications",
       "back": "Retour"
     },
-    "demo": {
-      "badge": "Démonstration",
-      "notice": "Site de démonstration conceptuelle — identité et contenus illustratifs, personnalisables après validation."
-    },
     "footer": {
-      "baseline": "Journaliste international, réalisateur de documentaires et professionnel de la communication stratégique.",
+      "baseline": "Journalisme international · Productions documentaires · Collaborations éditoriales",
+      "tagline": "Un espace professionnel consacré aux réalités internationales, aux récits et à la compréhension des contextes.",
       "navigate": "Navigation",
-      "expertises": "Expertises",
       "contactTitle": "Contact",
       "rights": "Tous droits réservés.",
       "ownerSpace": "Espace propriétaire"
@@ -56,7 +52,7 @@
       "open": "Ouvrir le menu",
       "close": "Fermer le menu",
       "label": "Menu de navigation",
-      "services": "Expertises & œuvres",
+      "primary": "Domaines d'intervention",
       "otherLinks": "Autres liens",
       "socials": "Réseaux sociaux"
     }
@@ -64,441 +60,201 @@
   "home": {
     "meta": {
       "title": "Alexandre Morel — Journaliste international, documentaire & communication",
-      "description": "Journaliste international, réalisateur de documentaires et professionnel de la communication : plus de vingt ans d'expertise au croisement du reportage, de la production éditoriale et de l'analyse des environnements internationaux."
+      "description": "Journaliste international : reportage, production documentaire et collaborations éditoriales. J'accompagne les médias, les producteurs et les organisations dans des projets qui exigent une compréhension approfondie du terrain et des contextes."
     },
     "hero": {
-      "eyebrow": "Journaliste international — Paris",
-      "title1": "Comprendre le terrain.",
-      "title2": "Donner du sens aux réalités.",
-      "title3": "Construire des récits qui comptent.",
-      "subtitle": "Journaliste international, réalisateur de documentaires et professionnel de la communication, Alexandre Morel développe depuis plus de vingt ans une expertise au croisement du reportage, de la production éditoriale et de l'analyse des environnements internationaux.",
-      "complement": "Des terrains complexes aux enjeux des organisations : une approche qui associe connaissance du terrain, exigence journalistique et maîtrise du récit.",
-      "ctaPrimary": "Découvrir mon parcours",
-      "ctaSecondary": "Entrer en contact",
-      "scroll": "Défiler"
+      "eyebrow": "Journalisme international · Reportage · Documentaire",
+      "title1": "Journaliste international.",
+      "title2": "Des réalités du terrain aux récits",
+      "title3": "qui éclairent le monde.",
+      "subtitle": "J'explore les réalités internationales à travers le reportage, la production documentaire et le travail éditorial.",
+      "complement": "J'accompagne les médias, les producteurs et les organisations dans la réalisation de projets qui nécessitent une compréhension approfondie du terrain, des contextes locaux et des enjeux humains.",
+      "approach": "Mon approche associe expérience internationale, écoute, adaptation et exigence éditoriale pour transformer des réalités complexes en récits accessibles, documentés et humains.",
+      "ctaPrimary": "Découvrir mes productions",
+      "ctaSecondary": "Parlons de votre projet",
+      "scroll": "Défiler",
+      "reassurance": [
+        "Journalisme international",
+        "Production documentaire",
+        "Collaborations éditoriales"
+      ]
     },
     "intro": {
-      "eyebrow": "Positionnement",
-      "title": "Une expérience internationale. Une compréhension concrète des réalités.",
-      "p1": "Couvrir l'actualité internationale exige bien davantage que de recueillir des informations. Il faut comprendre les contextes, identifier les acteurs, établir des relations de confiance, s'adapter aux environnements et restituer les réalités avec précision.",
-      "p2": "Au fil de ses expériences, Alexandre Morel a développé une approche du travail journalistique fondée sur l'observation, l'écoute, l'adaptation et l'exigence éditoriale.",
-      "p3": "Cette expérience constitue aujourd'hui le socle d'une expertise qui dépasse le seul cadre du reportage : elle nourrit la production documentaire, la communication des organisations et la transmission des méthodes du métier."
+      "eyebrow": "Introduction",
+      "title": "Comprendre le terrain avant de raconter l'histoire.",
+      "p1": "Un événement ne se résume jamais à ce qui est immédiatement visible.",
+      "p2": "Il existe un contexte, des personnes, des trajectoires et des réalités qui donnent à l'information toute sa profondeur.",
+      "p3": "Mon travail consiste à aller à la rencontre de ces réalités, à comprendre ce qui les façonne et à construire des récits qui permettent au public d'en saisir les enjeux.",
+      "p4": "Cette approche s'appuie sur l'expérience internationale, l'écoute et une attention constante à la justesse de l'information."
+    },
+    "approach": {
+      "eyebrow": "Approche journalistique",
+      "title": "L'information prend tout son sens lorsqu'elle est replacée dans son contexte.",
+      "p1": "Travailler dans différents environnements internationaux demande une capacité d'adaptation, mais aussi une véritable compréhension des cultures, des modes de vie et des relations humaines.",
+      "p2": "Au fil de mon parcours, j'ai appris à écouter avant d'interpréter, à construire des relations de confiance et à travailler avec discrétion dans des environnements exigeants.",
+      "p3": "Ces expériences nourrissent ma manière de traiter les sujets : comprendre les réalités rencontrées, recueillir les perspectives pertinentes et restituer l'essentiel avec rigueur."
     },
     "expertise": {
-      "eyebrow": "Domaines d'expertise",
-      "title": "Une expertise au croisement de plusieurs disciplines",
+      "eyebrow": "Domaines d'intervention",
+      "title": "Des sujets complexes. Des récits accessibles.",
       "items": {
         "journalism": {
           "title": "Journalisme international",
-          "desc": "Reportage, investigation, couverture de l'actualité internationale, collecte et traitement de l'information dans des environnements complexes."
+          "desc": "Reportages, enquêtes de terrain et contenus éditoriaux pour documenter les réalités internationales, comprendre leurs enjeux et transmettre une information contextualisée.",
+          "cta": "Découvrir mon travail journalistique"
         },
         "documentary": {
           "title": "Production documentaire",
-          "desc": "Conception, réalisation et production de contenus audiovisuels qui rendent accessibles des réalités humaines, politiques, économiques et sociales."
+          "desc": "Conception et réalisation de récits documentaires qui donnent une place aux personnes, aux contextes et aux histoires humaines.",
+          "cta": "Explorer les productions"
         },
         "comms": {
-          "title": "Communication stratégique",
-          "desc": "Production de contenus et accompagnement éditorial pour les organisations qui souhaitent communiquer avec pertinence, profondeur et cohérence."
+          "title": "Communication et conseil éditorial",
+          "desc": "Accompagnement de projets éditoriaux et de communication qui nécessitent une compréhension approfondie des enjeux, une approche narrative et une attention particulière aux publics.",
+          "cta": "Échanger sur votre projet"
         },
         "training": {
           "title": "Formation et transmission",
-          "desc": "Partage d'expérience, accompagnement des professionnels des médias et transmission des méthodes de travail journalistique."
+          "desc": "Partage d'expérience et accompagnement autour des pratiques journalistiques, du travail éditorial et de la compréhension des contextes internationaux.",
+          "cta": "Découvrir les possibilités d'intervention"
         }
       }
-    },
-    "journey": {
-      "eyebrow": "Parcours",
-      "title": "Un parcours façonné par l'international",
-      "intro": "De la rédaction au tournage, du reportage au conseil : une trajectoire continue, guidée par une même exigence — comprendre avant de raconter.",
-      "items": [
-        {
-          "period": "Formation",
-          "title": "Les fondations",
-          "desc": "Formation journalistique exigeante et premières collaborations en rédaction : apprentissage du métier par le terrain."
-        },
-        {
-          "period": "Terrains",
-          "title": "Le reportage international",
-          "desc": "Couverture de l'actualité internationale, correspondances et reportages dans des environnements politiques et économiques complexes."
-        },
-        {
-          "period": "Écrans",
-          "title": "La production documentaire",
-          "desc": "Passage progressif à la conception et à la réalisation : porter des récits de fond, du sourcing à la diffusion."
-        },
-        {
-          "period": "Aujourd'hui",
-          "title": "Le conseil et la transmission",
-          "desc": "Mise de l'expertise éditoriale au service des organisations, et transmission des méthodes du métier aux professionnels de demain."
-        }
-      ]
     },
     "productions": {
-      "eyebrow": "Sélection",
-      "title": "Des histoires documentées. Des réalités mises en perspective.",
-      "intro": "Chaque production est le résultat d'un travail de terrain, d'une compréhension du contexte et d'une démarche éditoriale exigeante. Une sélection de reportages, de documentaires et de travaux réalisés au fil du parcours."
-    },
-    "approach": {
-      "eyebrow": "Approche & vision",
-      "title": "Trois convictions, une même exigence",
-      "quote": "« La crédibilité d'un récit se construit sur le terrain : dans ce que l'on vérifie, dans la manière dont on écoute, dans l'honnêteté de la restitution. »",
-      "items": {
-        "listen": {
-          "title": "Écouter et comprendre",
-          "desc": "Le travail commence par l'observation et l'écoute : des acteurs, des contextes, des signaux faibles. Comprendre avant de juger."
-        },
-        "verify": {
-          "title": "Documenter avec rigueur",
-          "desc": "Vérification, recoupement, hiérarchisation : la méthode journalistique appliquée à chaque projet, du reportage au conseil."
-        },
-        "narrate": {
-          "title": "Construire des récits clairs",
-          "desc": "Transformer la complexité en clarté sans la déformer : des récits justes, documentés et accessibles."
-        }
-      }
+      "eyebrow": "Productions sélectionnées",
+      "title": "Des histoires qui méritent d'être racontées.",
+      "intro1": "Chaque production part d'une réalité à comprendre.",
+      "intro2": "Une rencontre, un événement, un contexte ou une question qui mérite d'être explorée au-delà de l'évidence.",
+      "intro3": "À travers cette sélection, découvrez quelques travaux qui illustrent mon approche du terrain, ma manière de construire un récit et l'attention portée aux personnes qui en sont le cœur.",
+      "cta": "Explorer toutes les productions"
     },
     "publications": {
       "eyebrow": "Publications",
-      "title": "Analyses et réflexions",
-      "intro": "Méthodes, analyses et regards sur les mutations du métier : un espace éditorial indépendant, pensé pour la lecture."
+      "title": "Donner du recul à l'actualité.",
+      "intro1": "Certaines questions demandent plus qu'une réaction immédiate.",
+      "intro2": "Elles nécessitent du recul, une lecture attentive des faits et une compréhension des contextes.",
+      "intro3": "À travers mes publications et analyses, j'explore les réalités internationales et les sujets qui méritent d'être approfondis.",
+      "cta": "Lire les publications"
     },
     "collaboration": {
       "eyebrow": "Collaborations",
-      "title": "Construisons des collaborations pertinentes",
-      "intro": "Vous représentez un média, une entreprise, une organisation ou une structure de production ? Vous recherchez une expertise journalistique, éditoriale ou une approche de communication ancrée dans la compréhension des réalités du terrain ? Échangeons sur vos objectifs.",
-      "items": {
-        "media": {
-          "title": "Médias & rédactions",
-          "desc": "Reportages, couvertes internationales, analyses et collaborations éditoriales ponctuelles ou récurrentes."
-        },
-        "producers": {
-          "title": "Producteurs & chaînes",
-          "desc": "Développement documentaire, réalisation, journalisme de terrain pour des projets exigeants."
-        },
-        "organizations": {
-          "title": "Entreprises & organisations",
-          "desc": "Communication stratégique, production de contenus, accompagnement éditorial et formation."
-        },
-        "institutions": {
-          "title": "Institutions & ONG",
-          "desc": "Compréhension des environnements complexes, récits documentés, prises de parole structurées."
-        }
-      }
-    },
-    "cta": {
-      "title": "Discutons de votre projet.",
-      "text": "Une collaboration éditoriale, une production audiovisuelle, un projet de communication ou une demande de formation : échangeons sur vos objectifs.",
-      "button": "Prendre contact"
+      "title": "Vous avez un sujet à documenter ou une histoire à raconter ?",
+      "p1": "Je collabore avec les médias, les producteurs et les organisations qui souhaitent développer des projets journalistiques, documentaires ou éditoriaux.",
+      "p2": "Chaque collaboration commence par une compréhension précise du sujet, des objectifs et des contraintes du projet.",
+      "p3": "Présentez-moi votre idée. Nous pourrons en discuter et étudier ensemble les possibilités de collaboration.",
+      "ctaPrimary": "Présenter votre projet",
+      "ctaSecondary": "Me contacter"
     }
   },
   "about": {
     "meta": {
       "title": "À propos",
-      "description": "Un parcours façonné par le terrain et l'international : journalisme, documentaire, communication stratégique et formation. Biographie, expériences et vision professionnelle."
+      "description": "Une expérience internationale au service de récits justes et documentés : parcours, vision professionnelle et collaborations éditoriales d'Alexandre Morel."
     },
     "hero": {
       "eyebrow": "À propos",
-      "title": "Un parcours façonné par le terrain et l'international.",
-      "subtitle": "De la salle de rédaction au tournage documentaire, du reportage au conseil : une même exigence a guidé chaque étape — comprendre le monde pour mieux le raconter."
+      "title": "Une expérience internationale au service de récits justes et documentés.",
+      "p1": "Mon parcours s'est construit au contact de cultures, de contextes et d'environnements professionnels différents.",
+      "p2": "Ces expériences ont façonné ma manière de travailler : observer, écouter, comprendre et restituer les réalités rencontrées avec rigueur.",
+      "p3": "Elles nourrissent aujourd'hui mon approche du journalisme, de la production documentaire et des collaborations éditoriales."
     },
-    "bio": {
-      "eyebrow": "Biographie",
-      "title": "Présentation professionnelle",
-      "p1": "Alexandre Morel est journaliste international, réalisateur de documentaires et professionnel de la communication. Son parcours s'est construit sur les terrains de l'actualité internationale, au contact de réalités politiques, économiques et humaines exigeantes.",
-      "p2": "Formé au journalisme dans une école reconnue, il a débuté en rédaction avant de se consacrer au reportage international. Les correspondances et les couvertures de terrain lui ont appris ce qu'aucun enseignement ne remplace : lire un contexte, établir des relations de confiance, travailler avec méthode dans l'incertitude.",
-      "p3": "Cette expérience l'a naturellement conduit vers la production documentaire — porter à l'écran des récits de fond, construits dans la durée. Puis vers la communication stratégique, où les organisations trouvent dans les méthodes journalistiques une valeur rare : de la clarté, dans un environnement saturé.",
-      "p4": "Aujourd'hui, ces quatre dimensions — reportage, documentaire, conseil, formation — forment un ensemble cohérent : une même manière d'aborder l'information, au service de ceux qui ont besoin de comprendre et de raconter.",
-      "note": "Biographie de démonstration — le récit détaillé et vérifié du parcours sera intégré après validation."
-    },
-    "career": {
-      "eyebrow": "Parcours international",
-      "title": "Une trajectoire continue",
-      "items": [
-        {
-          "period": "Formation & débuts",
-          "title": "Apprendre le métier",
-          "desc": "Formation journalistique, stages et premières collaborations : les fondations d'une pratique exigeante."
-        },
-        {
-          "period": "Années de rédaction",
-          "title": "Le métier au quotidien",
-          "desc": "Travail de rédaction, hiérarchisation de l'information, spécialisation progressive sur l'international."
-        },
-        {
-          "period": "Correspondances",
-          "title": "L'international à plein temps",
-          "desc": "Reportages et couvertures internationales : immersion dans des environnements complexes, construction d'un réseau de sources."
-        },
-        {
-          "period": "Documentaire",
-          "title": "Le passage à l'écran",
-          "desc": "Conception et réalisation de films : prolonger le travail de terrain dans des récits de longue haleine."
-        },
-        {
-          "period": "Conseil & formation",
-          "title": "L'expertise partagée",
-          "desc": "Accompagnement des organisations et transmission des méthodes du métier aux professionnels et aux étudiants."
-        }
-      ]
-    },
-    "experience": {
-      "eyebrow": "Expériences",
-      "title": "Expériences professionnelles",
-      "note": "Rubrique de démonstration — les expériences détaillées et vérifiables seront intégrées après validation.",
-      "items": [
-        {
-          "role": "Correspondant international",
-          "org": "Rédactions et médias internationaux",
-          "period": "Plusieurs années",
-          "desc": "Couverture de l'actualité internationale, reportages de terrain, analyses de contexte."
-        },
-        {
-          "role": "Réalisateur documentaire",
-          "org": "Productions audiovisuelles indépendantes",
-          "period": "En continu",
-          "desc": "Conception, écriture et réalisation de documentaires et de formats longs."
-        },
-        {
-          "role": "Conseil éditorial & communication",
-          "org": "Entreprises et organisations",
-          "period": "Orientation récente",
-          "desc": "Accompagnement des organisations : stratégie de contenu, production, prise de parole."
-        },
-        {
-          "role": "Formateur & intervenant",
-          "org": "Écoles de journalisme et rédactions",
-          "period": "En parallèle",
-          "desc": "Ateliers, masterclasses et transmission des méthodes du métier."
-        }
-      ]
-    },
-    "specializations": {
-      "eyebrow": "Spécialisations",
-      "title": "Domaines de spécialisation",
-      "items": [
-        {
-          "title": "Actualité internationale",
-          "desc": "Géopolitique, relations internationales, mutations économiques et sociales."
-        },
-        {
-          "title": "Reportage de terrain",
-          "desc": "Immersion, sourcing, collecte et vérification de l'information."
-        },
-        {
-          "title": "Récit documentaire",
-          "desc": "Écriture et réalisation de récits audiovisuels de fond."
-        },
-        {
-          "title": "Communication des organisations",
-          "desc": "Stratégie éditoriale, contenus, accompagnement des prises de parole."
-        }
-      ]
-    },
-    "skills": {
-      "eyebrow": "Compétences",
-      "title": "Savoir-faire",
-      "groups": {
-        "journalism": {
-          "title": "Journalisme",
-          "items": [
-            "Investigation et sourcing",
-            "Interview et relation aux sources",
-            "Vérification et fact-checking",
-            "Analyse de contexte",
-            "Écriture journalistique"
-          ]
-        },
-        "audiovisual": {
-          "title": "Audiovisuel",
-          "items": [
-            "Conception et écriture documentaire",
-            "Réalisation et direction de tournage",
-            "Conduite d'interview filmée",
-            "Structuration narrative",
-            "Suivi de post-production"
-          ]
-        },
-        "advisory": {
-          "title": "Conseil",
-          "items": [
-            "Audit éditorial",
-            "Stratégie de contenu",
-            "Hiérarchisation des messages",
-            "Accompagnement des porte-parole",
-            "Formation des équipes"
-          ]
-        }
-      }
+    "journey": {
+      "eyebrow": "Parcours",
+      "title": "Des expériences qui façonnent un regard.",
+      "p1": "Travailler dans différents pays implique de comprendre des environnements qui ne fonctionnent pas toujours selon les mêmes codes.",
+      "p2": "Il faut apprendre à écouter, à s'adapter aux modes de vie, à respecter les cultures et à construire des relations professionnelles solides.",
+      "p3": "Ces expériences m'ont appris à considérer chaque situation dans son contexte, à prendre le temps de comprendre les personnes et à mesurer l'importance de la confiance dans le travail de terrain.",
+      "p4": "Elles constituent aujourd'hui un socle essentiel de mon approche professionnelle."
     },
     "vision": {
       "eyebrow": "Vision",
-      "title": "Une philosophie professionnelle",
-      "p1": "L'information n'est pas une matière première neutre : elle se construit, se vérifie, se hiérarchise. La responsabilité du journaliste — et plus largement de celui qui produit du récit — est de traiter cette matière avec honnêteté.",
-      "p2": "Cette conviction traverse l'ensemble de la pratique professionnelle : du reportage au conseil, la même exigence s'applique. Comprendre avant d'affirmer. Documenter avant de publier. Écouter avant de conclure.",
-      "values": [
-        "Précision",
-        "Honnêteté",
-        "Clarté",
-        "Utilité"
-      ]
+      "title": "Raconter sans simplifier. Comprendre sans préjuger.",
+      "p1": "Je considère le journalisme comme un travail de compréhension autant que de transmission.",
+      "p2": "Il ne s'agit pas seulement de relater les faits, mais de leur donner un contexte, de faire entendre les perspectives pertinentes et de permettre au public de mieux saisir les enjeux.",
+      "p3": "Cette exigence guide mon travail, du terrain à la construction éditoriale."
     },
-    "languages": {
-      "eyebrow": "Langues & environnement",
-      "title": "Un environnement résolument international",
-      "p1": "Basé à Paris, le travail s'exerce dans un environnement international permanent : collaborations multilingues, déplacements, coordination d'équipes et de sources sur plusieurs fuseaux horaires.",
-      "items": [
-        {
-          "name": "Français",
-          "level": "Langue native"
-        },
-        {
-          "name": "Anglais",
-          "level": "Niveau professionnel — travail courant"
-        },
-        {
-          "name": "Espagnol",
-          "level": "Niveau intermédiaire — terrain"
-        }
-      ]
-    },
-    "cta": {
-      "title": "Travaillons ensemble.",
-      "text": "Découvrez les domaines d'expertise ou prenez directement contact pour échanger sur votre projet.",
-      "button": "Prendre contact"
+    "beyond": {
+      "eyebrow": "Au-delà du journalisme",
+      "title": "Une expérience qui peut nourrir d'autres projets.",
+      "p1": "L'expérience du terrain et le travail éditorial peuvent également contribuer à des projets de communication, de conseil et de transmission.",
+      "p2": "Comprendre un contexte, identifier les enjeux d'un message et construire une narration adaptée sont autant de dimensions qui peuvent enrichir une collaboration.",
+      "p3": "Mon approche commence toujours par l'écoute du besoin et la compréhension des objectifs.",
+      "cta": "Échanger sur votre projet"
     }
   },
   "journalism": {
     "meta": {
       "title": "Journalisme international",
-      "description": "Reportage, investigation et analyse des contextes internationaux : une pratique journalistique fondée sur le terrain, la vérification et la compréhension des acteurs."
+      "description": "Reportages, enquêtes de terrain et contenus éditoriaux : comprendre les réalités internationales et les raconter avec justesse, du terrain au récit final."
     },
     "hero": {
       "eyebrow": "Journalisme international",
-      "title": "L'information traitée comme une exigence.",
-      "subtitle": "Comprendre les contextes, identifier les acteurs, vérifier les faits et restituer les réalités avec précision : le journalisme international tel qu'il devrait s'exercer — avec méthode et humilité."
+      "title": "Comprendre les réalités internationales. Les raconter avec justesse.",
+      "p1": "Le journalisme international exige une attention particulière aux contextes, aux personnes et aux dynamiques qui façonnent les événements.",
+      "p2": "Mon travail consiste à documenter ces réalités, à recueillir les perspectives pertinentes et à construire des récits qui rendent les enjeux accessibles au public.",
+      "cta": "Découvrir les productions journalistiques"
     },
-    "positioning": {
-      "eyebrow": "Positionnement",
-      "title": "Un journaliste de terrain et d'analyse",
-      "p1": "Le journalisme international ne se résume pas à la mécanique de l'actualité. Il exige une compréhension des histoires, des intérêts et des langages qui structurent chaque situation. C'est cette compréhension qui fait la différence entre une information reprise et une information comprise.",
-      "p2": "La pratique s'appuie sur trois piliers : la présence sur le terrain, la rigueur de la collecte et l'honnêteté de la restitution. Chaque sujet est traité comme un système — acteurs, contextes, conséquences — et non comme une succession d'anecdotes."
+    "approach": {
+      "eyebrow": "Approche",
+      "title": "Aller sur le terrain pour comprendre ce qui se joue.",
+      "p1": "Une information ne peut être pleinement comprise sans tenir compte de son environnement.",
+      "p2": "Le travail journalistique commence par l'observation, l'écoute et la compréhension des situations rencontrées.",
+      "p3": "Cette démarche permet de replacer les faits dans leur contexte, de mieux saisir les enjeux et de construire un récit fidèle à la réalité documentée."
     },
-    "coverage": {
-      "eyebrow": "Domaines de couverture",
-      "title": "Des terrains, des thèmes, des contextes",
-      "items": [
-        {
-          "title": "Géopolitique & relations internationales",
-          "desc": "Dynamiques de puissance, conflits, diplomatie et recompositions régionales."
-        },
-        {
-          "title": "Économie & flux transfrontaliers",
-          "desc": "Commerce, investissements, corridors économiques et leurs réalités humaines."
-        },
-        {
-          "title": "Sociétés & mutations urbaines",
-          "desc": "Villes en transformation, générations, cultures et modes de vie."
-        },
-        {
-          "title": "Environnements complexes",
-          "desc": "Zones sensibles, contextes de sécurité, travail avec précaution et méthode."
-        },
-        {
-          "title": "Médias & démocratie",
-          "desc": "Écosystèmes d'information, désinformation, liberté de la presse."
-        },
-        {
-          "title": "Culture & idées",
-          "desc": "Création, débats et trajectoires intellectuelles des mondes couverts."
-        }
-      ]
+    "collab": {
+      "eyebrow": "Collaborations",
+      "title": "Un sujet à documenter ?",
+      "p1": "Vous préparez un reportage, une enquête ou un projet éditorial ?",
+      "p2": "Vous recherchez un journaliste capable de comprendre un contexte international et de contribuer à la construction d'un récit documenté ?",
+      "p3": "Présentez-moi votre projet et ses objectifs.",
+      "cta": "Présenter votre sujet"
+    }
+  },
+  "documentary": {
+    "meta": {
+      "title": "Documentaire",
+      "description": "Conception et réalisation de récits documentaires : donner une place aux personnes, aux contextes et aux histoires humaines."
     },
-    "reporting": {
-      "eyebrow": "Reportage & investigation",
-      "title": "Le terrain comme preuve",
-      "p1": "Un reportage se juge à ce qu'il montre et à ce qu'il établit. La priorité est donnée aux situations filmées, aux témoignages recueillis dans des conditions de confiance et aux faits vérifiés — jamais à l'illustration d'un propos tenu à l'avance.",
-      "p2": "L'investigation, elle, commence par le sourcing : cartographier les acteurs, croiser les documents, sécuriser les sources. Elle progresse par étapes vérifiables et assume ses limites quand les preuves manquent.",
-      "practices": [
-        "Immersion et observation prolongée",
-        "Recoupement systématique des faits",
-        "Protection et anonymisation des sources",
-        "Documentation des preuves",
-        "Distinction assumée entre l'établi, le probable et l'incertain"
-      ]
+    "hero": {
+      "eyebrow": "Documentaire",
+      "title": "Donner une place aux histoires humaines.",
+      "p1": "Le documentaire offre le temps nécessaire pour comprendre une réalité, rencontrer les personnes qui la vivent et en explorer les différentes dimensions.",
+      "p2": "Mon approche consiste à construire des récits qui associent compréhension du terrain, attention aux personnes et exigence narrative.",
+      "cta": "Explorer les productions"
     },
-    "research": {
-      "eyebrow": "Recherche & collecte",
-      "title": "Une méthode de collecte structurée",
-      "p1": "La collecte d'information obéit à un protocole simple et exigeant : partir des sources ouvertes, confirmer par les sources humaines, documenter chaque étape. Les données publiques — registres, statistiques, imagerie, archives — sont exploitées avec recul et contextualisation.",
-      "p2": "Dans les environnements où l'information est un enjeu de pouvoir, la prudence méthodologique n'est pas une option : elle conditionne la sécurité des sources comme la fiabilité du travail livré.",
-      "practices": [
-        "Recherche en sources ouvertes (OSINT)",
-        "Cartographie des acteurs et des intérêts",
-        "Entretiens semi-directifs approfondis",
-        "Vérification documentaire",
-        "Chaîne de conservation des preuves"
-      ]
+    "approach": {
+      "eyebrow": "Approche documentaire",
+      "title": "Comprendre une histoire avant de la raconter.",
+      "p1": "Chaque projet documentaire possède son contexte, ses interlocuteurs et ses enjeux.",
+      "p2": "Le travail commence par une compréhension approfondie du sujet, puis se poursuit par la collecte des éléments nécessaires à la construction du récit.",
+      "p3": "L'objectif est de donner une forme à cette matière sans perdre de vue la réalité du sujet ni la responsabilité envers les personnes rencontrées."
     },
-    "analysis": {
-      "eyebrow": "Analyse",
-      "title": "Comprendre les contextes internationaux",
-      "p1": "L'analyse est le prolongement naturel du reportage : mettre en perspective, relier les échelles, identifier ce qui structure une situation au-delà de son actualité immédiate. C'est un travail de lecture — historique, économique, politique — au service de la clarté.",
-      "p2": "Cette capacité d'analyse sert autant les rédactions que les organisations : comprendre un environnement, c'est pouvoir décider et communiquer avec justesse."
-    },
-    "method": {
-      "eyebrow": "Méthodologie",
-      "title": "Une approche éditoriale en cinq temps",
-      "steps": [
-        {
-          "title": "Comprendre",
-          "desc": "Lecture du contexte, cartographie des acteurs, identification des zones d'ombre."
-        },
-        {
-          "title": "Préparer",
-          "desc": "Sourcing, hypothèses de travail, logistique et sécurité du reportage."
-        },
-        {
-          "title": "Recueillir",
-          "desc": "Terrain, entretiens, observation, collecte documentaire."
-        },
-        {
-          "title": "Vérifier",
-          "desc": "Recoupement des faits, hiérarchisation de ce qui est établi."
-        },
-        {
-          "title": "Restituer",
-          "desc": "Écriture, mise en perspective, publication — et suivi des suites."
-        }
-      ]
-    },
-    "work": {
-      "eyebrow": "Sélection de travaux",
-      "title": "Aller plus loin",
-      "text": "Les réalisations audiovisuelles et les publications présentées sur ce site prolongent cette pratique : même méthode, même exigence, formats différents.",
-      "productionsCta": "Voir les productions",
-      "publicationsCta": "Lire les publications"
-    },
-    "cta": {
-      "title": "Une actualité à couvrir ? Un sujet à traiter ?",
-      "text": "Rédactions, médias et producteurs : échangeons sur vos besoins éditoriaux et vos projets de couverture.",
-      "button": "Proposer une collaboration"
+    "portfolio": {
+      "eyebrow": "Portfolio",
+      "title": "Des productions, des regards, des réalités.",
+      "p1": "Découvrez une sélection de productions documentaires et de projets éditoriaux.",
+      "p2": "Chaque projet présente son sujet, son contexte et la démarche adoptée pour en raconter l'histoire.",
+      "cta": "Découvrir les productions"
     }
   },
   "productions": {
     "meta": {
-      "title": "Productions documentaires & audiovisuelles",
-      "description": "Reportages, documentaires, entretiens et films de communication : un portfolio éditorial fondé sur le travail de terrain et la maîtrise du récit audiovisuel."
+      "title": "Production",
+      "description": "De l'idée au récit : construire des productions éditoriales et documentaires qui donnent du sens, adaptées à leur contexte et à leur public."
     },
     "hero": {
-      "eyebrow": "Productions",
-      "title": "Des récits documentés, du terrain à l'écran.",
-      "subtitle": "Reportages, documentaires, entretiens et contenus de communication : une même approche — comprendre en profondeur, filmer avec justesse, raconter clairement."
+      "eyebrow": "Production",
+      "title": "De l'idée au récit : construire des productions qui donnent du sens.",
+      "p1": "Un projet éditorial exige une compréhension précise du sujet, une approche narrative cohérente et une attention particulière à la manière dont l'histoire sera racontée.",
+      "p2": "Mon travail consiste à accompagner la construction de récits documentés, adaptés à leur contexte et à leur public.",
+      "cta": "Présenter votre projet"
     },
     "approach": {
-      "eyebrow": "Approche audiovisuelle",
-      "title": "Filmer, c'est d'abord comprendre",
-      "p1": "Une production audiovisuelle de qualité commence bien avant la première image. Elle démarre par un travail de recherche et de rencontres, qui détermine l'angle, les protagonistes et la structure du récit.",
-      "p2": "Sur le tournage, la priorité est donnée aux situations réelles et à la lumière naturelle. En post-production, au montage qui respecte le temps des personnes filmées. Le résultat : des œuvres qui informent, émeuvent et durent."
+      "eyebrow": "Approche",
+      "title": "Une production commence par une bonne compréhension du sujet.",
+      "p1": "Avant de construire un récit, il est essentiel d'en comprendre les enjeux, les personnes concernées et les objectifs éditoriaux.",
+      "p2": "Cette démarche permet de définir une approche adaptée, de structurer les informations essentielles et de construire une production cohérente.",
+      "cta": "Échanger sur votre projet"
     },
     "portfolio": {
       "eyebrow": "Portfolio",
@@ -520,62 +276,34 @@
       "context": "Contexte",
       "description": "Présentation",
       "video": "Voir la vidéo",
-      "demoNote": "Fiche de démonstration — les productions réelles, crédits et liens de diffusion seront intégrés après validation.",
       "prev": "Réalisation précédente",
       "next": "Réalisation suivante",
       "otherWork": "Autres réalisations"
     },
-    "method": {
-      "eyebrow": "Méthodologie",
-      "title": "De l'idée à la diffusion",
-      "steps": [
-        {
-          "title": "Écriture & développement",
-          "desc": "Recherche, angle, note d'intention, structure narrative et budget."
-        },
-        {
-          "title": "Préparation",
-          "desc": "Repérages, casting de protagonistes, autorisations, logistique et sécurité."
-        },
-        {
-          "title": "Tournage",
-          "desc": "Direction d'équipe, direction photo, son — avec adaptation permanente au terrain."
-        },
-        {
-          "title": "Post-production",
-          "desc": "Montage, écriture sonore, étalonnage, diffusion et déclinaisons."
-        }
-      ]
-    },
-    "skills": {
-      "eyebrow": "Compétences",
-      "title": "Compétences audiovisuelles",
-      "items": [
-        "Conception et écriture documentaire",
-        "Réalisation et direction d'équipe",
-        "Direction photo en lumière naturelle",
-        "Conduite d'interviews filmées",
-        "Structuration narrative multi-formats",
-        "Déclinaison plateforme (long, court, vertical)",
-        "Suivi de post-production",
-        "Documentation et droits"
-      ]
-    },
     "cta": {
-      "title": "Un projet documentaire à réaliser ?",
-      "text": "Producteurs, chaînes, marques et organisations : parlons de votre projet, de son ambition et de ses contraintes.",
-      "button": "Proposer une production"
+      "title": "Vous avez un sujet à documenter ou une histoire à raconter ?",
+      "text": "Présentez-moi votre idée. Nous pourrons en discuter et étudier ensemble les possibilités de collaboration.",
+      "button": "Présenter votre projet"
     }
   },
   "publications": {
     "meta": {
-      "title": "Publications & analyses",
-      "description": "Méthodes, analyses et réflexions sur le journalisme international, le documentaire et la communication : un espace éditorial indépendant."
+      "title": "Publications",
+      "description": "Analyses et publications : prendre le temps de comprendre les réalités internationales, leurs contextes et les questions qui méritent d'être approfondies."
     },
     "hero": {
-      "eyebrow": "Publications & analyses",
-      "title": "Un espace éditorial, pensé pour la lecture.",
-      "subtitle": "Méthodes de travail, analyses de contexte et réflexions sur les mutations du métier : des textes qui prennent le temps d'argumenter."
+      "eyebrow": "Publications",
+      "title": "Prendre le temps de comprendre.",
+      "p1": "L'actualité est souvent immédiate. La compréhension, elle, demande parfois davantage de recul.",
+      "p2": "À travers mes publications et analyses, je m'intéresse aux réalités internationales, aux contextes qui les façonnent et aux questions qui méritent d'être approfondies.",
+      "cta": "Lire les publications"
+    },
+    "section": {
+      "eyebrow": "Publications",
+      "title": "Des faits, des contextes et des perspectives.",
+      "p1": "Chaque publication part d'un sujet précis.",
+      "p2": "Elle en explore les enjeux, les acteurs et les évolutions pour apporter au lecteur des éléments de compréhension.",
+      "p3": "L'objectif est de proposer un éclairage documenté, sans simplifier artificiellement la complexité des situations."
     },
     "featured": {
       "label": "Publication à la une"
@@ -585,367 +313,146 @@
       "empty": "Aucune publication pour le moment."
     },
     "categories": {
-      "label": "Catégories",
+      "label": "Filtrer par catégorie",
       "all": "Toutes"
     },
     "search": {
-      "label": "Recherche",
-      "placeholder": "Rechercher un titre, un sujet…",
-      "noResults": "Aucun résultat pour cette recherche."
+      "label": "Rechercher une publication",
+      "placeholder": "Rechercher par titre, sujet ou mot-clé…",
+      "noResults": "Aucune publication ne correspond à votre recherche."
     },
     "archives": {
       "title": "Archives",
-      "count": "{count, plural, =1 {1 article} other {# articles}}"
+      "count": "{count, plural, =0{Aucune publication} one{# publication} other{# publications}}"
     },
     "readingTime": "{minutes} min de lecture",
     "publishedOn": "Publié le {date}",
     "detail": {
-      "back": "Toutes les publications",
+      "back": "Retour aux publications",
       "related": "À lire également",
-      "shareTitle": "Partager cette publication"
+      "shareTitle": "Partager cet article"
     },
     "cta": {
-      "title": "Une idée d'article ? Un texte à commander ?",
-      "text": "Les rédactions et organisations peuvent commander analyses et tribunes sur les sujets couverts par ce site.",
-      "button": "Proposer une collaboration"
+      "title": "Vous avez un sujet à documenter ou une histoire à raconter ?",
+      "text": "Présentez-moi votre idée. Nous pourrons en discuter et étudier ensemble les possibilités de collaboration.",
+      "button": "Présenter votre projet"
     }
   },
   "comms": {
     "meta": {
       "title": "Communication & Conseil",
-      "description": "L'intelligence éditoriale au service de la communication des organisations : conseil éditorial, stratégie de contenu, production et formation."
+      "description": "Comprendre les enjeux, construire des messages qui font sens : un accompagnement éditorial nourri par l'expérience journalistique et internationale."
     },
     "hero": {
-      "eyebrow": "Communication & conseil",
-      "title": "L'intelligence éditoriale au service des organisations.",
-      "subtitle": "Les méthodes du journalisme — hiérarchiser, vérifier, raconter — appliquées aux enjeux de communication des entreprises, des institutions et des ONG."
+      "eyebrow": "Communication & Conseil",
+      "title": "Comprendre les enjeux. Construire des messages qui font sens.",
+      "p1": "Un message efficace doit être clair, cohérent et adapté à son contexte.",
+      "p2": "Mon expérience journalistique et internationale nourrit une approche de la communication attentive à la compréhension des enjeux, à la qualité des messages et à la relation avec les publics.",
+      "cta": "Échanger sur votre besoin"
     },
-    "value": {
-      "eyebrow": "Positionnement",
-      "title": "Une proposition de valeur issue du terrain",
-      "p1": "L'expérience journalistique apporte une compréhension particulière des enjeux de communication : savoir écouter, identifier ce qui compte, comprendre les publics et transformer des informations complexes en messages clairs.",
-      "p2": "Là où la communication institutionnelle s'enferme souvent dans ses propres codes, l'approche éditoriale repart du réel : ce que l'organisation fait, ce que ses publics vivent, ce qui mérite d'être raconté — et ce qui ne le mérite pas.",
-      "p3": "L'ambition : concevoir des contenus et des approches de communication qui associent profondeur éditoriale, pertinence stratégique et compréhension du terrain."
-    },
-    "domains": {
-      "eyebrow": "Domaines d'intervention",
-      "title": "Six terrains d'intervention",
-      "items": [
-        {
-          "title": "Conseil éditorial",
-          "desc": "Définir ce que l'organisation a à dire — et la meilleure manière de le dire."
-        },
-        {
-          "title": "Stratégie de contenu",
-          "desc": "Lignes éditoriales, hiérarchisation des messages, calendriers et formats."
-        },
-        {
-          "title": "Production de contenus",
-          "desc": "Films, reportages, portraits, articles : des contenus documentés et crédibles."
-        },
-        {
-          "title": "Prises de parole",
-          "desc": "Préparation des dirigeants, discours, interventions publiques."
-        },
-        {
-          "title": "Veille & environnements",
-          "desc": "Compréhension des marchés difficiles et des contextes d'implantation."
-        },
-        {
-          "title": "Formation des équipes",
-          "desc": "Transmission des méthodes journalistiques aux équipes internes."
-        }
-      ],
-      "note": "Périmètre indicatif — les prestations définitives seront confirmées lors de la personnalisation du site."
-    },
-    "editorial": {
-      "eyebrow": "Conseil éditorial",
-      "title": "Décider de ce qui mérite d'être dit",
-      "p1": "Le conseil éditorial commence par un diagnostic : quels sont vos messages réels, lesquels résonnent, lesquels restent inaudibles ? L'approche journalistique — hiérarchiser, documenter, choisir un angle — remet la décision éditoriale au cœur de la communication.",
-      "p2": "Ce travail se traduit par des livrables concrets : charte éditoriale, cartographie des messages, lignes de contenu, argumentaires structurés."
-    },
-    "strategy": {
-      "eyebrow": "Stratégie",
-      "title": "Une communication qui repart du réel",
-      "p1": "La stratégie de communication proposée repose sur un principe simple : la crédibilité se construit sur des faits vérifiables et des récits justes. Plutôt que d'empiler des messages, il s'agit de construire un récit cohérent — celui que l'organisation peut assumer.",
-      "p2": "Concrètement : audit des contenus existants, définition des priorités, choix des formats, mesure de la réception. Une démarche sobre, pilotée par la clarté."
-    },
-    "support": {
-      "eyebrow": "Accompagnement",
-      "title": "Une expertise au long cours",
-      "p1": "L'accompagnement s'adapte à la maturité de chaque organisation : ponctuel pour un projet précis, régulier pour une transformation durable.",
-      "formats": [
-        "Audit éditorial et stratégique",
-        "Ateliers avec les équipes",
-        "Accompagnement continu",
-        "Production exécutive de contenus"
-      ]
-    },
-    "method": {
-      "eyebrow": "Méthode",
-      "title": "Une approche en quatre temps",
-      "steps": [
-        {
-          "title": "Écouter",
-          "desc": "Entretiens, immersion, compréhension de l'organisation et de ses publics."
-        },
-        {
-          "title": "Diagnostiquer",
-          "desc": "Audit des contenus et des messages, identification des écarts."
-        },
-        {
-          "title": "Construire",
-          "desc": "Stratégie, lignes éditoriales, contenus pilotes."
-        },
-        {
-          "title": "Transmettre",
-          "desc": "Formation des équipes et montée en autonomie."
-        }
-      ]
-    },
-    "audiences": {
-      "eyebrow": "Interlocuteurs",
-      "title": "Pour quelles organisations ?",
-      "items": [
-        {
-          "title": "Entreprises",
-          "desc": "Celles qui veulent une communication documentée, crédible et claire."
-        },
-        {
-          "title": "Institutions & organisations internationales",
-          "desc": "Celles qui doivent expliquer des réalités complexes à des publics exigeants."
-        },
-        {
-          "title": "ONG & fondations",
-          "desc": "Celles qui portent des causes et ont besoin de récits justes et documentés."
-        },
-        {
-          "title": "Médias & producteurs",
-          "desc": "Ceux qui cherchent une expertise éditoriale et de terrain."
-        },
-        {
-          "title": "Agences & cabinets",
-          "desc": "Ceux qui veulent renforcer une offre avec un regard journalistique."
-        }
-      ]
-    },
-    "cta": {
-      "title": "Donnez de la profondeur à votre communication.",
-      "text": "Échangeons sur vos enjeux, vos publics et vos contenus. Premier rendez-vous sans engagement.",
-      "button": "Demander un échange"
+    "approach": {
+      "eyebrow": "Approche",
+      "title": "La clarté commence par la compréhension.",
+      "p1": "Avant de construire un message, il est essentiel de comprendre la situation, les objectifs et les publics auxquels il s'adresse.",
+      "p2": "Cette démarche permet de définir une approche éditoriale adaptée, de structurer les informations essentielles et de construire une communication plus cohérente.",
+      "cta": "Présenter votre projet"
     }
   },
   "training": {
     "meta": {
       "title": "Formation & Transmission",
-      "description": "Ateliers, masterclasses et accompagnement : transmettre les méthodes du journalisme international aux étudiants, aux professionnels et aux équipes."
+      "description": "Transmettre une expérience, faire progresser les pratiques : interventions, formations et accompagnements adaptés aux objectifs et aux publics."
     },
     "hero": {
-      "eyebrow": "Formation & transmission",
-      "title": "Transmettre une exigence.",
-      "subtitle": "Le métier s'apprend sur le terrain — mais il se transmet aussi, par la méthode, l'exemple et la pratique encadrée. Une pédagogie d'expérience, issue de vingt ans de pratique professionnelle."
+      "eyebrow": "Formation & Transmission",
+      "title": "Transmettre une expérience. Faire progresser les pratiques.",
+      "p1": "La transmission permet de partager des méthodes, des repères et des enseignements issus de l'expérience.",
+      "p2": "Mon approche privilégie les échanges, les exemples concrets et l'adaptation aux besoins des participants.",
+      "cta": "Échanger sur une intervention"
     },
-    "philosophy": {
-      "eyebrow": "Philosophie pédagogique",
-      "title": "Apprendre en faisant, progresser en comprenant",
-      "p1": "La transmission n'est pas un transfert de savoir, mais un accompagnement : mettre les participants en situation, sécuriser leurs essais, débriequer leurs erreurs. Les ateliers reposent sur des cas réels et des exercices de terrain, jamais sur la seule théorie.",
-      "p2": "L'objectif n'est pas de former à des recettes, mais de construire des réflexes : vérifier avant d'affirmer, écouter avant de questionner, hiérarchiser avant d'écrire."
-    },
-    "domains": {
-      "eyebrow": "Domaines de formation",
-      "title": "Ce qui s'enseigne",
-      "items": [
-        {
-          "title": "Fondamentaux du métier",
-          "desc": "Le cycle de l'information, la déontologie, la relation aux sources."
-        },
-        {
-          "title": "Reportage & terrain",
-          "desc": "Préparation, sécurité, immersion, collecte en conditions réelles."
-        },
-        {
-          "title": "Interview & sourcing",
-          "desc": "Conduite d'entretien, construction de la confiance, protection des sources."
-        },
-        {
-          "title": "Écriture journalistique",
-          "desc": "Hiérarchisation, angle, structure, clarté — du fait brut au récit publié."
-        },
-        {
-          "title": "Vérification & éthique",
-          "desc": "Fact-checking, OSINT, gestion de l'incertitude et des erreurs."
-        },
-        {
-          "title": "Production audiovisuelle",
-          "desc": "Écriture documentaire, tournage, montage : les bases du récit filmé."
-        }
-      ]
-    },
-    "audiences": {
-      "eyebrow": "Publics",
-      "title": "Pour qui ?",
-      "items": [
-        {
-          "title": "Étudiants en journalisme",
-          "desc": "Écoles et universités : mise en situation professionnelle et préparation au premier emploi."
-        },
-        {
-          "title": "Professionnels des médias",
-          "desc": "Journalistes en poste : perfectionnement, spécialisation, prise de fonction."
-        },
-        {
-          "title": "Équipes de communication",
-          "desc": "Entreprises et organisations : méthodes journalistiques appliquées à leurs contenus."
-        },
-        {
-          "title": "Organisations & ONG",
-          "desc": "Équipes de terrain : collecte d'information, récit documenté, prise de parole."
-        }
-      ]
-    },
-    "approach": {
-      "eyebrow": "Approche & méthodologie",
-      "title": "Une pédagogie par la pratique",
-      "p1": "Chaque intervention alterne apports méthodologiques courts et mises en situation longues : simulations d'interview, exercices de vérification, ateliers d'écriture, débats critiques. Les productions des participants sont analysées et débrieffées collectivement.",
-      "p2": "Les contenus s'adaptent au contexte : actualité, niveau du groupe, contraintes de l'organisation."
-    },
-    "formats": {
-      "eyebrow": "Formats",
-      "title": "Des formats adaptés à chaque contexte",
-      "items": [
-        {
-          "title": "Masterclass",
-          "desc": "Intervention d'une à deux heures : retour d'expérience et échange avec l'auditoire."
-        },
-        {
-          "title": "Atelier",
-          "desc": "Demi-journée ou journée : pratique encadrée sur cas concrets."
-        },
-        {
-          "title": "Cycle de formation",
-          "desc": "Plusieurs sessions échelonnées, avec suivi des progressions."
-        },
-        {
-          "title": "Accompagnement individuel",
-          "desc": "Coaching ciblé pour professionnels et dirigeants."
-        }
-      ]
-    },
-    "experience": {
-      "eyebrow": "Expérience & références",
-      "title": "Une expérience de transmission",
-      "p1": "La transmission s'exerce en parallèle de la pratique professionnelle : interventions en écoles de journalisme, ateliers en rédaction, accompagnements d'équipes. L'enseignement reste ainsi constamment nourri par le terrain.",
-      "note": "Les références détaillées et vérifiables (interventions, établissements, années) seront intégrées après validation, afin de ne présenter que des éléments confirmés."
-    },
-    "cta": {
-      "title": "Échanger sur un projet de formation.",
-      "text": "Écoles, rédactions, organisations : décrivez vos besoins, nous construirons le format adapté.",
-      "button": "Proposer une intervention"
+    "interventions": {
+      "eyebrow": "Interventions",
+      "title": "Une intervention adaptée à vos objectifs.",
+      "p1": "Vous souhaitez organiser une formation, un accompagnement ou une intervention professionnelle ?",
+      "p2": "Présentez-moi votre public, vos objectifs et les sujets que vous souhaitez aborder.",
+      "p3": "Nous pourrons étudier ensemble la forme la plus pertinente.",
+      "cta": "Présenter votre besoin"
     }
   },
   "contact": {
     "meta": {
       "title": "Contact",
-      "description": "Collaboration journalistique, production documentaire, conseil en communication ou formation : prenez contact pour échanger sur votre projet."
+      "description": "Reportage, production documentaire, collaboration éditoriale ou intervention : présentez votre projet, son contexte et vos objectifs."
     },
     "hero": {
       "eyebrow": "Contact",
       "title": "Parlons de votre prochain projet.",
-      "subtitle": "Pour une collaboration éditoriale, une production audiovisuelle, un projet de communication ou une demande professionnelle, vous pouvez prendre contact directement."
-    },
-    "reasons": {
-      "eyebrow": "Motifs de collaboration",
-      "title": "Vous représentez…",
-      "items": {
-        "collaboration-journalistique": {
-          "title": "Un média, une rédaction",
-          "desc": "Reportage, couverture internationale, analyse : proposons le bon format."
-        },
-        "production-documentaire": {
-          "title": "Une structure de production",
-          "desc": "Développement, écriture, réalisation : construisons le projet."
-        },
-        "conseil-communication": {
-          "title": "Une entreprise, une organisation",
-          "desc": "Conseil éditorial, stratégie de contenu, accompagnement."
-        },
-        "formation": {
-          "title": "Un organisme de formation",
-          "desc": "Masterclass, atelier, cycle : un format adapté à vos publics."
-        },
-        "autre": {
-          "title": "Une autre demande",
-          "desc": "Toute proposition professionnelle bienvenue."
-        }
-      }
+      "p1": "Vous préparez un reportage, une production documentaire, une collaboration éditoriale ou une intervention professionnelle ?",
+      "p2": "Présentez-moi votre projet, son contexte et les objectifs que vous souhaitez atteindre.",
+      "p3": "Je prendrai le temps d'en comprendre les contours afin d'étudier avec vous les possibilités de collaboration.",
+      "cta": "Envoyer une demande"
     },
     "form": {
-      "title": "Formulaire de contact",
+      "eyebrow": "Formulaire",
+      "title": "Présentez votre projet.",
       "name": "Nom",
-      "namePlaceholder": "Votre nom et prénom",
+      "namePlaceholder": "Votre nom",
       "organization": "Organisation",
-      "organizationPlaceholder": "Entreprise, média, institution (facultatif)",
-      "email": "Adresse e-mail",
-      "emailPlaceholder": "vous@exemple.com",
-      "subject": "Objet de la demande",
-      "subjectPlaceholder": "Sélectionnez un objet",
-      "message": "Message",
-      "messagePlaceholder": "Décrivez votre projet, vos objectifs et vos délais…",
-      "submit": "Envoyer la demande",
+      "organizationPlaceholder": "Média, structure de production, organisation…",
+      "email": "Adresse électronique",
+      "emailPlaceholder": "prenom.nom@exemple.com",
+      "subject": "Nature de la demande",
+      "subjectPlaceholder": "Sélectionnez la nature de votre demande",
+      "message": "Votre message",
+      "messagePlaceholder": "Présentez votre projet, son contexte et vos objectifs…",
+      "submit": "Envoyer mon message",
       "sending": "Envoi en cours…",
-      "successTitle": "Message enregistré",
-      "successText": "Votre demande a bien été transmise. Une réponse vous parviendra dans les meilleurs délais.",
-      "successDemo": "Démonstration : le message est enregistré dans le back-office du site.",
+      "successTitle": "Merci pour votre message.",
+      "successText": "Votre demande a bien été transmise.",
       "sendAnother": "Envoyer un autre message",
       "errors": {
         "generic": "Une erreur est survenue lors de l'envoi. Merci de réessayer.",
-        "dbUnavailable": "Le stockage des messages n'est pas encore configuré sur cet environnement. Merci de réessoyer ultérieurement.",
+        "dbUnavailable": "Le service est momentanément indisponible. Merci de réessayer plus tard.",
         "nameRequired": "Merci d'indiquer votre nom.",
-        "emailRequired": "Merci d'indiquer votre adresse e-mail.",
-        "emailInvalid": "Cette adresse e-mail semble invalide.",
-        "subjectRequired": "Merci de sélectionner un objet.",
+        "emailRequired": "Merci d'indiquer votre adresse électronique.",
+        "emailInvalid": "Cette adresse électronique semble invalide.",
+        "subjectRequired": "Merci de sélectionner la nature de votre demande.",
         "messageRequired": "Merci d'écrire votre message.",
-        "messageTooShort": "Votre message est un peu court (10 caractères minimum).",
-        "tooMany": "Trop de messages envoyés depuis cette adresse. Merci de réessayer dans une heure."
+        "messageTooShort": "Votre message est un peu court : quelques éléments de contexte aideront à le traiter.",
+        "tooMany": "Trop de messages envoyés. Merci de patienter avant un nouvel envoi."
+      }
+    },
+    "reasons": {
+      "items": {
+        "collaboration-journalistique": {
+          "title": "Collaboration journalistique"
+        },
+        "production-documentaire": {
+          "title": "Production documentaire"
+        },
+        "conseil-communication": {
+          "title": "Communication & conseil"
+        },
+        "formation": {
+          "title": "Formation & transmission"
+        },
+        "autre": {
+          "title": "Autre demande"
+        }
       }
     },
     "details": {
-      "eyebrow": "Coordonnées",
-      "title": "Coordonnées professionnelles",
-      "email": "E-mail",
-      "phone": "Téléphone",
-      "city": "Basé à",
-      "note": "Coordonnées de démonstration — elles seront remplacées par les informations réelles après validation."
+      "title": "Coordonnées"
     },
     "socials": {
-      "eyebrow": "Réseaux professionnels",
-      "title": "Suivre et connecter",
+      "title": "Réseaux professionnels",
       "linkedin": "LinkedIn",
       "twitter": "X (Twitter)",
-      "vimeo": "Vimeo",
-      "note": "Profils de démonstration — les liens définitifs seront intégrés après validation."
+      "vimeo": "Vimeo"
     },
-    "modalities": {
-      "eyebrow": "Modalités",
-      "title": "Comment ça se passe",
-      "items": [
-        {
-          "title": "Réponse",
-          "desc": "Chaque demande reçoit une réponse, généralement sous deux à trois jours ouvrés."
-        },
-        {
-          "title": "Échange",
-          "desc": "Un premier échange — appel ou visio — permet de cadrer le besoin et les possibilités."
-        },
-        {
-          "title": "Confidentialité",
-          "desc": "Les échanges restent confidentiels, y compris sur les projets sensibles."
-        },
-        {
-          "title": "Langues",
-          "desc": "Les échanges se déroulent en français ou en anglais."
-        }
-      ]
+    "direct": {
+      "eyebrow": "Écrire directement",
+      "title": "Un échange direct"
     }
   }
 }

@@ -1,70 +1,56 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { Linkedin, Twitter, Video, MapPin } from "lucide-react";
+import { ArrowUpRight, Linkedin, Twitter, Video, MapPin } from "lucide-react";
 import { getSettings } from "@/lib/content";
-import { DemoBadge } from "./demo-badge";
 
-/** Pied de page éditorial, noir profond, avec mentions de démonstration. */
+/** Pied de page éditorial, noir profond : identité, navigation, contact. */
 export async function SiteFooter() {
   const t = await getTranslations("common");
   const settings = await getSettings();
   const year = new Date().getFullYear();
 
+  /* Navigation : Journalisme · Documentaire · Publication · Production ·
+     À propos · Contact */
   const navLinks = [
-    { key: "home", href: "/" },
-    { key: "about", href: "/a-propos" },
-    { key: "productions", href: "/productions" },
+    { key: "journalismShort", href: "/journalisme" },
+    { key: "documentary", href: "/documentaire" },
     { key: "publications", href: "/publications" },
+    { key: "productions", href: "/productions" },
+    { key: "about", href: "/a-propos" },
     { key: "contact", href: "/contact" },
-  ] as const;
-
-  const expertiseLinks = [
-    { key: "journalism", href: "/journalisme" },
-    { key: "comms", href: "/communication-conseil" },
-    { key: "training", href: "/formation" },
   ] as const;
 
   return (
     <footer className="border-t border-mist/10 bg-ink-deep">
       <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1.2fr]">
           {/* Identité */}
           <div>
             <p className="font-serif text-[1.5rem] text-white">
               Alexandre&nbsp;Morel<span className="text-rouge">.</span>
             </p>
-            <p className="mt-4 max-w-xs text-[0.92rem] leading-relaxed text-steel">
+            <p className="mt-4 max-w-sm font-serif text-[1.02rem] leading-snug text-mist">
               {t("footer.baseline")}
             </p>
-            <div className="mt-6">
-              <DemoBadge />
-            </div>
+            <p className="mt-4 max-w-sm text-[0.9rem] leading-relaxed text-steel">
+              {t("footer.tagline")}
+            </p>
+            <Link href="/contact" className="btn-accent mt-7">
+              {t("cta.header")}
+              <ArrowUpRight size={14} aria-hidden="true" />
+            </Link>
           </div>
 
           {/* Navigation */}
           <nav aria-label={t("footer.navigate")}>
             <p className="meta">{t("footer.navigate")}</p>
-            <ul className="mt-5 space-y-3">
+            <ul className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-1">
               {navLinks.map((l) => (
                 <li key={l.key}>
                   <Link
                     href={l.href}
                     className="link-editorial text-[0.92rem]"
                   >
-                    {t(`nav.${l.key}`)}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          {/* Expertises */}
-          <nav aria-label={t("footer.expertises")}>
-            <p className="meta">{t("footer.expertises")}</p>
-            <ul className="mt-5 space-y-3">
-              {expertiseLinks.map((l) => (
-                <li key={l.key}>
-                  <Link href={l.href} className="link-editorial text-[0.92rem]">
                     {t(`nav.${l.key}`)}
                   </Link>
                 </li>
@@ -131,7 +117,6 @@ export async function SiteFooter() {
           <p>
             © {year} {settings.ownerName} — {t("footer.rights")}
           </p>
-          <p className="max-w-xl">{t("demo.notice")}</p>
           <a
             href="/admin"
             className="uppercase tracking-[0.12em] text-steel transition-colors hover:text-silver"

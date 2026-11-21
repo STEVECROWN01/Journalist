@@ -69,7 +69,6 @@ export function ContactForm() {
         <p className="mx-auto mt-3 max-w-md text-[0.95rem] leading-relaxed text-silver">
           {t("successText")}
         </p>
-        <p className="mt-3 text-[0.8rem] text-steel">{t("successDemo")}</p>
         <button
           type="button"
           onClick={() => window.location.reload()}

@@ -5,12 +5,10 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { getProductions, getPublications } from "@/lib/content";
 import { site } from "@/lib/site";
-import { Reveal, RevealImage } from "@/components/site/reveal";
+import { Reveal } from "@/components/site/reveal";
 import { SectionHeading } from "@/components/site/section-heading";
-import { CtaSection } from "@/components/site/cta-section";
 import { ProductionCard } from "@/components/site/production-card";
 import { PublicationCard } from "@/components/site/publication-card";
-import { DemoBadge } from "@/components/site/demo-badge";
 
 export async function generateMetadata({
   params,
@@ -42,8 +40,9 @@ export default async function HomePage({
   ]);
   const featured = publications.find((p) => p.featured) ?? publications[0];
   const recent = publications.filter((p) => p.slug !== featured?.slug).slice(0, 2);
+  const reassurance = t.raw("hero.reassurance") as string[];
 
-  /* Données structurées : personne + site (informations de démonstration) */
+  /* Données structurées : personne + site */
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -67,20 +66,13 @@ export default async function HomePage({
     ],
   };
 
+  /* Domaines d'intervention (4 cartes) */
   const expertiseItems = [
     { key: "journalism", href: "/journalisme", num: "01" },
-    { key: "documentary", href: "/productions", num: "02" },
+    { key: "documentary", href: "/documentaire", num: "02" },
     { key: "comms", href: "/communication-conseil", num: "03" },
     { key: "training", href: "/formation", num: "04" },
   ] as const;
-
-  const collaborationItems = ["media", "producers", "organizations", "institutions"] as const;
-
-  const journeyItems = t.raw("journey.items") as Array<{
-    period: string;
-    title: string;
-    desc: string;
-  }>;
 
   return (
     <>
@@ -92,7 +84,7 @@ export default async function HomePage({
       {/* ============ 01 — HERO ÉDITORIAL ============ */}
       {/* Hauteur = écran exact (100svh) : entièrement visible sans
           défilement, du mobile au 4K — voir .hero-full dans globals.css */}
-      <section className="hero-full relative flex items-center overflow-hidden bg-ink-deep">
+      <section className="hero-full relative flex flex-col overflow-hidden bg-ink-deep">
         <Image
           src="/assets/journaliste-reportage-microphone.jpg"
           alt={
@@ -106,9 +98,10 @@ export default async function HomePage({
           className="hero-kenburns object-cover"
         />
         <div className="hero-overlay absolute inset-0" aria-hidden="true" />
+        <div className="hero-overlay-top absolute inset-0" aria-hidden="true" />
         <div className="hero-overlay-bottom absolute inset-0" aria-hidden="true" />
 
-        <div className="hero-pad relative mx-auto flex w-full max-w-6xl flex-col justify-center px-6 py-16 sm:py-20 lg:py-24">
+        <div className="hero-pad relative mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center px-6 py-14 sm:py-16 lg:py-20">
           <Reveal>
             <p className="eyebrow hero-eyebrow-row">{t("hero.eyebrow")}</p>
           </Reveal>
@@ -116,8 +109,7 @@ export default async function HomePage({
             <h1 className="display-1 hero-title hero-block mt-6 max-w-4xl text-white md:mt-7">
               {t("hero.title1")}
               <br />
-              {t("hero.title2")}
-              <br />
+              {t("hero.title2")}{" "}
               <em className="text-mist">{t("hero.title3")}</em>
             </h1>
           </Reveal>
@@ -125,13 +117,14 @@ export default async function HomePage({
             <p className="hero-subtitle hero-block mt-7 max-w-2xl text-[1.02rem] leading-[1.8] text-mist/85 md:mt-9">
               {t("hero.subtitle")}
             </p>
-            <p className="hero-complement mt-4 max-w-xl text-[0.92rem] leading-[1.75] text-steel">
-              {t("hero.complement")}
-            </p>
+            <div className="hero-complement mt-4 max-w-xl space-y-3 text-[0.92rem] leading-[1.75] text-silver/90">
+              <p>{t("hero.complement")}</p>
+              <p className="hero-complement-p2">{t("hero.approach")}</p>
+            </div>
           </Reveal>
           <Reveal delay={0.24}>
             <div className="hero-ctas mt-8 flex flex-wrap items-center gap-4 md:mt-10">
-              <Link href="/a-propos" className="btn-primary">
+              <Link href="/productions" className="btn-primary">
                 {t("hero.ctaPrimary")}
                 <ArrowRight size={15} aria-hidden="true" />
               </Link>
@@ -142,18 +135,37 @@ export default async function HomePage({
           </Reveal>
         </div>
 
-        <div
-          className="hero-scroll absolute bottom-6 left-1/2 hidden -translate-x-1/2 items-center gap-2 text-steel md:flex"
-          aria-hidden="true"
-        >
-          <span className="text-[0.65rem] uppercase tracking-[0.2em]">
-            {t("hero.scroll")}
-          </span>
-          <ChevronDown size={14} className="animate-bounce" />
+        {/* Bandeau de réassurance + indicateur de défilement */}
+        <div className="relative z-10 border-t border-white/[0.08] bg-ink-deep/30 backdrop-blur-sm">
+          <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-6 px-6 py-4">
+            <ul className="flex flex-wrap items-center gap-x-5 gap-y-1.5">
+              {reassurance.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-center gap-2.5 text-[0.62rem] font-medium uppercase tracking-[0.18em] text-steel"
+                >
+                  <span
+                    className="size-[3px] rounded-full bg-rouge"
+                    aria-hidden="true"
+                  />
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <div
+              className="hero-scroll hidden shrink-0 items-center gap-2 text-steel md:flex"
+              aria-hidden="true"
+            >
+              <span className="text-[0.65rem] uppercase tracking-[0.2em]">
+                {t("hero.scroll")}
+              </span>
+              <ChevronDown size={14} className="animate-bounce" />
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* ============ 02 — INTRODUCTION & POSITIONNEMENT ============ */}
+      {/* ============ 02 — INTRODUCTION ============ */}
       <section aria-labelledby="sec-intro" className="border-t border-mist/10">
         <div className="mx-auto grid max-w-6xl gap-10 px-6 py-24 md:py-32 lg:grid-cols-[1fr_2.2fr]">
           <div className="lg:sticky lg:top-28 lg:self-start">
@@ -169,10 +181,11 @@ export default async function HomePage({
             </Reveal>
             <Reveal delay={0.1}>
               <div className="mt-8 max-w-2xl space-y-5 text-[1rem] leading-[1.85] text-silver/90">
-                <p>{t("intro.p1")}</p>
+                <p className="lede">{t("intro.p1")}</p>
                 <p>{t("intro.p2")}</p>
+                <p>{t("intro.p3")}</p>
                 <p className="border-l-2 border-rouge pl-6 text-white">
-                  {t("intro.p3")}
+                  {t("intro.p4")}
                 </p>
               </div>
             </Reveal>
@@ -180,8 +193,38 @@ export default async function HomePage({
         </div>
       </section>
 
-      {/* ============ 03 — DOMAINES D'EXPERTISE ============ */}
-      <section aria-labelledby="sec-expertise" className="border-t border-mist/10 bg-surface/40">
+      {/* ============ 03 — APPROCHE JOURNALISTIQUE ============ */}
+      <section
+        aria-labelledby="sec-approach"
+        className="border-t border-mist/10 bg-surface/40"
+      >
+        <div className="mx-auto grid max-w-6xl gap-10 px-6 py-24 md:py-32 lg:grid-cols-[1fr_2.2fr]">
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <Reveal>
+              <p className="eyebrow">{t("approach.eyebrow")}</p>
+            </Reveal>
+          </div>
+          <div>
+            <Reveal>
+              <h2 id="sec-approach" className="display-2 max-w-2xl text-balance text-white">
+                {t("approach.title")}
+              </h2>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="mt-8 max-w-2xl space-y-5 text-[1rem] leading-[1.85] text-silver/90">
+                <p className="lede">{t("approach.p1")}</p>
+                <p>{t("approach.p2")}</p>
+              </div>
+              <p className="mt-8 max-w-xl border-l-2 border-rouge pl-6 font-serif text-[1.25rem] leading-[1.6] text-white">
+                {t("approach.p3")}
+              </p>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ 04 — DOMAINES D'INTERVENTION ============ */}
+      <section aria-labelledby="sec-expertise" className="border-t border-mist/10">
         <div className="mx-auto max-w-6xl px-6 py-24 md:py-32">
           <SectionHeading
             eyebrow={t("expertise.eyebrow")}
@@ -207,9 +250,12 @@ export default async function HomePage({
                   <h3 className="mt-6 font-serif text-[1.5rem] leading-snug text-white">
                     {t(`expertise.items.${item.key}.title`)}
                   </h3>
-                  <p className="mt-3 text-[0.92rem] leading-relaxed text-steel">
+                  <p className="mt-3 flex-1 text-[0.92rem] leading-relaxed text-steel">
                     {t(`expertise.items.${item.key}.desc`)}
                   </p>
+                  <span className="link-editorial mt-6 text-[0.78rem] font-medium uppercase tracking-[0.14em]">
+                    {t(`expertise.items.${item.key}.cta`)}
+                  </span>
                 </Link>
               </Reveal>
             ))}
@@ -217,49 +263,23 @@ export default async function HomePage({
         </div>
       </section>
 
-      {/* ============ 04 — SYNTHÈSE DU PARCOURS ============ */}
-      <section aria-labelledby="sec-journey" className="border-t border-mist/10">
+      {/* ============ 05 — PRODUCTIONS SÉLECTIONNÉES ============ */}
+      <section
+        aria-labelledby="sec-productions"
+        className="border-t border-mist/10 bg-surface/40"
+      >
         <div className="mx-auto max-w-6xl px-6 py-24 md:py-32">
           <SectionHeading
-            eyebrow={t("journey.eyebrow")}
-            title={t("journey.title")}
-            intro={t("journey.intro")}
+            eyebrow={t("productions.eyebrow")}
+            title={t("productions.title")}
+            intro={t("productions.intro1")}
           />
-          <ol className="mt-14 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
-            {journeyItems.map((item, i) => (
-              <Reveal as="li" key={item.title} delay={i * 0.08} className="border-t-2 border-rouge/70 pt-6">
-                <p className="meta">{item.period}</p>
-                <h3 className="mt-3 font-serif text-[1.3rem] text-white">
-                  {item.title}
-                </h3>
-                <p className="mt-3 text-[0.9rem] leading-relaxed text-steel">
-                  {item.desc}
-                </p>
-              </Reveal>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      {/* ============ 05 — PRODUCTIONS SÉLECTIONNÉES ============ */}
-      <section aria-labelledby="sec-productions" className="border-t border-mist/10 bg-surface/40">
-        <div className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <SectionHeading
-              eyebrow={t("productions.eyebrow")}
-              title={t("productions.title")}
-              intro={t("productions.intro")}
-            />
-            <Reveal>
-              <Link
-                href="/productions"
-                className="link-editorial shrink-0 text-[0.8rem] font-medium uppercase tracking-[0.14em]"
-              >
-                {tC("actions.allProductions")}
-                <ArrowRight size={14} aria-hidden="true" />
-              </Link>
-            </Reveal>
-          </div>
+          <Reveal delay={0.08}>
+            <div className="mt-6 max-w-2xl space-y-4 text-[0.98rem] leading-[1.8] text-steel">
+              <p>{t("productions.intro2")}</p>
+              <p>{t("productions.intro3")}</p>
+            </div>
+          </Reveal>
           <div className="mt-14 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
             {productions.slice(0, 3).map((p, i) => (
               <Reveal key={p.slug} delay={i * 0.07} className="min-w-0">
@@ -270,74 +290,29 @@ export default async function HomePage({
               </Reveal>
             ))}
           </div>
+          <Reveal className="mt-14 flex justify-center">
+            <Link href="/productions" className="btn-outline">
+              {t("productions.cta")}
+              <ArrowRight size={15} aria-hidden="true" />
+            </Link>
+          </Reveal>
         </div>
       </section>
 
-      {/* ============ 06 — APPROCHE & VISION ============ */}
-      <section aria-labelledby="sec-approach" className="border-t border-mist/10">
+      {/* ============ 06 — PUBLICATIONS ============ */}
+      <section aria-labelledby="sec-publications" className="border-t border-mist/10">
         <div className="mx-auto max-w-6xl px-6 py-24 md:py-32">
           <SectionHeading
-            eyebrow={t("approach.eyebrow")}
-            title={t("approach.title")}
+            eyebrow={t("publications.eyebrow")}
+            title={t("publications.title")}
+            intro={t("publications.intro1")}
           />
-          <div className="mt-14 grid gap-10 md:grid-cols-3">
-            {(
-              [
-                { key: "listen", num: "01" },
-                { key: "verify", num: "02" },
-                { key: "narrate", num: "03" },
-              ] as const
-            ).map((item, i) => (
-              <Reveal key={item.key} delay={i * 0.08}>
-                <div className="h-full border-t border-mist/15 pt-6">
-                  <span className="font-serif text-[1.5rem] italic leading-none text-rouge">
-                    {item.num}
-                  </span>
-                  <h3 className="mt-3 font-serif text-[1.35rem] text-white">
-                    {t(`approach.items.${item.key}.title`)}
-                  </h3>
-                  <p className="mt-3 text-[0.92rem] leading-relaxed text-steel">
-                    {t(`approach.items.${item.key}.desc`)}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-          <RevealImage className="mt-20">
-            <figure className="mx-auto max-w-3xl text-center">
-              <span
-                className="font-serif text-[3.5rem] leading-none text-rouge"
-                aria-hidden="true"
-              >
-                “
-              </span>
-              <blockquote className="-mt-4 font-serif text-[1.5rem] leading-[1.5] text-mist md:text-[1.75rem]">
-                {t("approach.quote")}
-              </blockquote>
-            </figure>
-          </RevealImage>
-        </div>
-      </section>
-
-      {/* ============ 07 — PUBLICATIONS RÉCENTES ============ */}
-      <section aria-labelledby="sec-publications" className="border-t border-mist/10 bg-surface/40">
-        <div className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <SectionHeading
-              eyebrow={t("publications.eyebrow")}
-              title={t("publications.title")}
-              intro={t("publications.intro")}
-            />
-            <Reveal>
-              <Link
-                href="/publications"
-                className="link-editorial shrink-0 text-[0.8rem] font-medium uppercase tracking-[0.14em]"
-              >
-                {tC("actions.allPublications")}
-                <ArrowRight size={14} aria-hidden="true" />
-              </Link>
-            </Reveal>
-          </div>
+          <Reveal delay={0.08}>
+            <div className="mt-6 max-w-2xl space-y-4 text-[0.98rem] leading-[1.8] text-steel">
+              <p>{t("publications.intro2")}</p>
+              <p>{t("publications.intro3")}</p>
+            </div>
+          </Reveal>
 
           {featured ? (
             <Reveal className="mt-14">
@@ -367,46 +342,54 @@ export default async function HomePage({
               ))}
             </div>
           ) : null}
-        </div>
-      </section>
 
-      {/* ============ 08 — POSSIBILITÉS DE COLLABORATION ============ */}
-      <section aria-labelledby="sec-collab" className="border-t border-mist/10">
-        <div className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-          <SectionHeading
-            eyebrow={t("collaboration.eyebrow")}
-            title={t("collaboration.title")}
-            intro={t("collaboration.intro")}
-          />
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {collaborationItems.map((key, i) => (
-              <Reveal key={key} delay={i * 0.06}>
-                <div className="card-editorial h-full p-7">
-                  <h3 className="font-serif text-[1.2rem] leading-snug text-white">
-                    {t(`collaboration.items.${key}.title`)}
-                  </h3>
-                  <p className="mt-3 text-[0.88rem] leading-relaxed text-steel">
-                    {t(`collaboration.items.${key}.desc`)}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-          <Reveal className="mt-8">
-            <div className="flex justify-end">
-              <DemoBadge />
-            </div>
+          <Reveal className="mt-14 flex justify-center">
+            <Link href="/publications" className="btn-outline">
+              {t("publications.cta")}
+              <ArrowRight size={15} aria-hidden="true" />
+            </Link>
           </Reveal>
         </div>
       </section>
 
-      {/* ============ 09 — APPEL À L'ACTION FINAL ============ */}
-      <CtaSection
-        title={t("cta.title")}
-        text={t("cta.text")}
-        buttonLabel={t("cta.button")}
-        buttonHref="/contact"
-      />
+      {/* ============ 07 — COLLABORATIONS ============ */}
+      <section
+        aria-labelledby="sec-collab"
+        className="border-t border-mist/10 bg-ink-deep"
+      >
+        <div className="mx-auto grid max-w-6xl gap-10 px-6 py-24 md:py-32 lg:grid-cols-[1fr_2.2fr]">
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <Reveal>
+              <p className="eyebrow">{t("collaboration.eyebrow")}</p>
+            </Reveal>
+          </div>
+          <div>
+            <Reveal>
+              <h2 id="sec-collab" className="display-2 max-w-2xl text-balance text-white">
+                {t("collaboration.title")}
+              </h2>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="mt-8 max-w-2xl space-y-5 text-[1rem] leading-[1.85] text-silver/90">
+                <p>{t("collaboration.p1")}</p>
+                <p>{t("collaboration.p2")}</p>
+                <p className="border-l-2 border-rouge pl-6 text-white">
+                  {t("collaboration.p3")}
+                </p>
+              </div>
+              <div className="mt-10 flex flex-wrap items-center gap-4">
+                <Link href="/contact" className="btn-accent">
+                  {t("collaboration.ctaPrimary")}
+                  <ArrowRight size={15} aria-hidden="true" />
+                </Link>
+                <a href={`mailto:${site.email}`} className="btn-outline">
+                  {t("collaboration.ctaSecondary")}
+                </a>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

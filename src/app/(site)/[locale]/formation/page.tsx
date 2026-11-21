@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
+import { ArrowRight } from "lucide-react";
+import { Link } from "@/i18n/navigation";
 import { Reveal } from "@/components/site/reveal";
 import { PageHero } from "@/components/site/page-hero";
-import { EditorialSection } from "@/components/site/editorial-section";
-import { CtaSection } from "@/components/site/cta-section";
-import { DemoBadge } from "@/components/site/demo-badge";
 
 export async function generateMetadata({
   params,
@@ -25,155 +24,52 @@ export default async function TrainingPage({
   setRequestLocale(locale);
   const t = await getTranslations("training");
 
-  const domainItems = t.raw("domains.items") as Array<{
-    title: string;
-    desc: string;
-  }>;
-  const audienceItems = t.raw("audiences.items") as Array<{
-    title: string;
-    desc: string;
-  }>;
-  const formatItems = t.raw("formats.items") as Array<{
-    title: string;
-    desc: string;
-  }>;
-
   return (
     <>
       <PageHero
         eyebrow={t("hero.eyebrow")}
         title={t("hero.title")}
-        subtitle={t("hero.subtitle")}
+        paragraphs={[t("hero.p1"), t("hero.p2")]}
         image="/assets/formation-masterclass-journalisme.jpg"
         imageAlt={
           locale === "fr"
-            ? "Masterclass de journalisme devant un amphithéâtre d'étudiants"
-            : "Journalism masterclass in front of a lecture hall of students"
+            ? "Masterclass de journalisme devant un public de professionnels"
+            : "Journalism masterclass in front of an audience of professionals"
         }
+        ctaLabel={t("hero.cta")}
+        ctaHref="/contact"
       />
 
-      {/* Philosophie pédagogique */}
-      <EditorialSection
-        eyebrow={t("philosophy.eyebrow")}
-        title={t("philosophy.title")}
-        titleId="sec-philosophy"
-      >
-        <div className="max-w-2xl space-y-5 text-[1rem] leading-[1.85] text-silver/90">
-          <p>{t("philosophy.p1")}</p>
-          <p className="border-l-2 border-rouge pl-6 text-white">
-            {t("philosophy.p2")}
-          </p>
-        </div>
-      </EditorialSection>
-
-      {/* Domaines de formation */}
-      <EditorialSection
-        eyebrow={t("domains.eyebrow")}
-        title={t("domains.title")}
-        titleId="sec-domains"
-        tinted
-      >
-        <div className="grid gap-px overflow-hidden rounded-lg border border-mist/10 bg-mist/10 sm:grid-cols-2 lg:grid-cols-3">
-          {domainItems.map((item, i) => (
-            <Reveal key={item.title} delay={i * 0.05}>
-              <div className="h-full bg-ink p-7 transition-colors hover:bg-surface">
-                <span className="font-serif text-[1.5rem] italic leading-none text-rouge">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className="mt-3 font-serif text-[1.2rem] leading-snug text-white">
-                  {item.title}
-                </h3>
-                <p className="mt-2.5 text-[0.88rem] leading-relaxed text-steel">
-                  {item.desc}
-                </p>
-              </div>
+      {/* Interventions */}
+      <section aria-labelledby="sec-interventions" className="border-t border-mist/10">
+        <div className="mx-auto grid max-w-6xl gap-10 px-6 py-24 md:py-32 lg:grid-cols-[1fr_2.2fr]">
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <Reveal>
+              <p className="eyebrow">{t("interventions.eyebrow")}</p>
             </Reveal>
-          ))}
-        </div>
-      </EditorialSection>
-
-      {/* Publics concernés */}
-      <EditorialSection
-        eyebrow={t("audiences.eyebrow")}
-        title={t("audiences.title")}
-        titleId="sec-audiences"
-      >
-        <div className="grid gap-6 sm:grid-cols-2">
-          {audienceItems.map((item, i) => (
-            <Reveal key={item.title} delay={i * 0.05}>
-              <div className="card-editorial h-full p-7">
-                <h3 className="font-serif text-[1.2rem] leading-snug text-white">
-                  {item.title}
-                </h3>
-                <p className="mt-3 text-[0.9rem] leading-relaxed text-steel">
-                  {item.desc}
-                </p>
-              </div>
+          </div>
+          <div>
+            <Reveal>
+              <h2 id="sec-interventions" className="display-2 max-w-2xl text-balance text-white">
+                {t("interventions.title")}
+              </h2>
             </Reveal>
-          ))}
-        </div>
-      </EditorialSection>
-
-      {/* Approche et méthodologie */}
-      <EditorialSection
-        eyebrow={t("approach.eyebrow")}
-        title={t("approach.title")}
-        titleId="sec-approach"
-        tinted
-      >
-        <div className="max-w-2xl space-y-5 text-[1rem] leading-[1.85] text-silver/90">
-          <p>{t("approach.p1")}</p>
-          <p>{t("approach.p2")}</p>
-        </div>
-      </EditorialSection>
-
-      {/* Formats d'intervention */}
-      <EditorialSection
-        eyebrow={t("formats.eyebrow")}
-        title={t("formats.title")}
-        titleId="sec-formats"
-      >
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {formatItems.map((item, i) => (
-            <Reveal key={item.title} delay={i * 0.06}>
-              <div className="h-full border-t border-mist/15 pt-6">
-                <span className="font-serif text-[1.25rem] italic leading-none text-rouge">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className="mt-2 font-serif text-[1.2rem] text-white">
-                  {item.title}
-                </h3>
-                <p className="mt-2 text-[0.87rem] leading-relaxed text-steel">
-                  {item.desc}
-                </p>
+            <Reveal delay={0.1}>
+              <div className="mt-8 max-w-2xl space-y-5 text-[1rem] leading-[1.85] text-silver/90">
+                <p className="lede">{t("interventions.p1")}</p>
+                <p>{t("interventions.p2")}</p>
               </div>
+              <p className="mt-8 max-w-xl border-l-2 border-rouge pl-6 font-serif text-[1.25rem] leading-[1.6] text-white">
+                {t("interventions.p3")}
+              </p>
+              <Link href="/contact" className="btn-accent mt-10">
+                {t("interventions.cta")}
+                <ArrowRight size={15} aria-hidden="true" />
+              </Link>
             </Reveal>
-          ))}
+          </div>
         </div>
-      </EditorialSection>
-
-      {/* Expérience et références vérifiées */}
-      <EditorialSection
-        eyebrow={t("experience.eyebrow")}
-        title={t("experience.title")}
-        titleId="sec-experience"
-        tinted
-      >
-        <p className="max-w-2xl text-[1rem] leading-[1.85] text-silver/90">
-          {t("experience.p1")}
-        </p>
-        <p className="mt-8 flex items-center gap-3 text-[0.8rem] italic text-steel">
-          <DemoBadge />
-          {t("experience.note")}
-        </p>
-      </EditorialSection>
-
-      <CtaSection
-        title={t("cta.title")}
-        text={t("cta.text")}
-        buttonLabel={t("cta.button")}
-        buttonHref="/contact"
-      />
+      </section>
     </>
   );
 }

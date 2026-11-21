@@ -7,7 +7,6 @@ import { useReducedMotion, AnimatePresence, motion } from "framer-motion";
 import {
   Menu,
   X,
-  ChevronDown,
   ArrowRight,
   ArrowUpRight,
   Linkedin,
@@ -16,25 +15,24 @@ import {
 } from "lucide-react";
 import { getLenis } from "@/lib/lenis-store";
 
-/* Liens de la bande de navigation (desktop) — « Accueil » retiré :
-   le wordmark assure le retour à l'accueil. */
+/* Bande de navigation (desktop) — exactement quatre menus :
+   Journalisme · Documentaire · Publication · Production.
+   Pas de menu « Accueil » : le wordmark assure le retour à l'accueil. */
 const NAV_LINKS = [
-  { key: "about", href: "/a-propos" },
-  { key: "productions", href: "/productions" },
+  { key: "journalismShort", href: "/journalisme" },
+  { key: "documentary", href: "/documentaire" },
   { key: "publications", href: "/publications" },
+  { key: "productions", href: "/productions" },
 ] as const;
 
-const EXPERTISE_LINKS = [
+/* Colonne gauche du menu plein écran — domaines d'intervention,
+   sans titre de colonne */
+const MENU_PRIMARY = [
   { key: "journalism", href: "/journalisme" },
+  { key: "productions", href: "/productions" },
+  { key: "publications", href: "/publications" },
   { key: "comms", href: "/communication-conseil" },
   { key: "training", href: "/formation" },
-] as const;
-
-/* Colonne gauche du menu plein écran : expertises + œuvres */
-const MENU_SERVICES = [
-  ...EXPERTISE_LINKS,
-  { key: "productions", href: "/productions" },
-  { key: "publications", href: "/publications" },
 ] as const;
 
 /* Colonne droite du menu plein écran */
@@ -68,7 +66,6 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
 
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [expertiseOpen, setExpertiseOpen] = useState(false);
 
   const hamburgerRef = useRef<HTMLButtonElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
@@ -109,7 +106,6 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
 
   useEffect(() => {
     setMenuOpen(false);
-    setExpertiseOpen(false);
   }, [pathname]);
 
   const switchLocale = (next: string) => {
@@ -164,7 +160,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
         {/* Bande de navigation flottante — transparente en haut,
             effet de verre après défilement (desktop) */}
         <nav
-          aria-label={t("nav.expertise")}
+          aria-label={t("menu.label")}
           className={`mt-2 hidden h-12 items-center gap-1 rounded-xl border px-2 transition-all duration-500 lg:flex ${
             scrolled
               ? "border-mist/10 bg-ink/55 shadow-[0_10px_36px_rgba(0,0,0,0.28)] backdrop-blur-xl"
@@ -191,81 +187,13 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
             </Link>
           ))}
 
-          {/* Expertises — menu déroulant */}
-          <div
-            className="relative"
-            onMouseEnter={() => setExpertiseOpen(true)}
-            onMouseLeave={() => setExpertiseOpen(false)}
-          >
-            <button
-              type="button"
-              aria-haspopup="true"
-              aria-expanded={expertiseOpen}
-              onClick={() => setExpertiseOpen((v) => !v)}
-              onFocus={() => setExpertiseOpen(true)}
-              onKeyDown={(e) => e.key === "Escape" && setExpertiseOpen(false)}
-              className={`${linkBase} flex items-center gap-1.5 ${
-                EXPERTISE_LINKS.some((l) => isActive(pathname, l.href))
-                  ? "text-white"
-                  : "text-silver hover:bg-white/[0.06] hover:text-white"
-              }`}
-            >
-              {t("nav.expertise")}
-              <ChevronDown
-                size={13}
-                className={`transition-transform duration-300 ${expertiseOpen ? "rotate-180" : ""}`}
-                aria-hidden="true"
-              />
-              {EXPERTISE_LINKS.some((l) => isActive(pathname, l.href)) && (
-                <span
-                  className="ml-0.5 inline-block size-[3px] rounded-full bg-rouge align-[2px]"
-                  aria-hidden="true"
-                />
-              )}
-            </button>
-
-            <div
-              className={`absolute left-1/2 top-full w-72 -translate-x-1/2 pt-3 transition-all duration-300 ${
-                expertiseOpen
-                  ? "visible translate-y-0 opacity-100"
-                  : "invisible translate-y-2 opacity-0"
-              }`}
-            >
-              <div className="overflow-hidden rounded-xl border border-mist/10 bg-ink/90 shadow-2xl shadow-black/50 backdrop-blur-xl">
-                {EXPERTISE_LINKS.map((item) => (
-                  <Link
-                    key={item.key}
-                    href={item.href}
-                    onClick={() => setExpertiseOpen(false)}
-                    className="group flex items-start gap-3 border-b border-mist/5 px-5 py-3.5 transition-colors duration-300 last:border-0 hover:bg-white/[0.04]"
-                  >
-                    <ArrowRight
-                      size={14}
-                      className="mt-1 shrink-0 text-rouge opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                      aria-hidden="true"
-                    />
-                    <span
-                      className={`text-[0.85rem] font-medium leading-snug ${
-                        isActive(pathname, item.href)
-                          ? "text-white"
-                          : "text-silver group-hover:text-white"
-                      }`}
-                    >
-                      {t(`nav.${item.key}`)}
-                    </span>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* CTA — rétabli dans la bande */}
+          {/* CTA — mène à la page Contact */}
           <span className="mx-1 h-5 w-px bg-mist/10" aria-hidden="true" />
           <Link
             href="/contact"
             className="group ml-0.5 inline-flex h-9 items-center gap-2 rounded-full bg-white px-4 text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-ink transition-all duration-300 hover:bg-mist"
           >
-            {t("cta.short")}
+            {t("cta.header")}
             <ArrowUpRight
               size={13}
               className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
@@ -368,22 +296,15 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
               </div>
             </div>
 
-            {/* Colonnes : services (gauche) / autres liens + réseaux (droite) */}
+            {/* Colonnes : domaines (gauche, sans titre) /
+                autres liens + réseaux (droite) */}
             <div
               data-lenis-prevent
               className="mx-auto grid w-full max-w-[1400px] flex-1 grid-cols-1 content-start gap-14 overflow-y-auto px-5 pb-16 pt-10 sm:px-8 md:content-center lg:grid-cols-[1.35fr_1fr] lg:gap-12 lg:px-10 lg:pb-10 lg:pt-0"
             >
-              <nav aria-label={t("menu.services")}>
-                <motion.p
-                  className="eyebrow"
-                  initial={reduce ? false : { opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1, duration: 0.45, ease }}
-                >
-                  {t("menu.services")}
-                </motion.p>
-                <ul className="mt-8 space-y-1.5 md:space-y-2.5">
-                  {MENU_SERVICES.map((item, i) => (
+              <nav aria-label={t("menu.primary")}>
+                <ul className="space-y-1.5 md:space-y-2.5">
+                  {MENU_PRIMARY.map((item, i) => (
                     <motion.li
                       key={item.key}
                       initial={reduce ? false : { opacity: 0, y: 26 }}

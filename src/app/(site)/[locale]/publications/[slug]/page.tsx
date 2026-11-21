@@ -6,7 +6,6 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Reveal } from "@/components/site/reveal";
-import { DemoBadge } from "@/components/site/demo-badge";
 import { PublicationCard } from "@/components/site/publication-card";
 import { CtaSection } from "@/components/site/cta-section";
 import { ShareButtons } from "@/components/site/share-buttons";
@@ -106,7 +105,6 @@ export default async function PublicationDetailPage({
             </Link>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <p className="eyebrow !text-rouge">{publication.category}</p>
-              <DemoBadge />
             </div>
             <h1 className="display-2 mt-6 text-balance text-white">
               {publication.title}

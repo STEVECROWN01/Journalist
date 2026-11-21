@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { Instrument_Serif, DM_Sans } from "next/font/google";
+import { Source_Serif_4, Source_Sans_3 } from "next/font/google";
 import { routing } from "@/i18n/routing";
 import { site } from "@/lib/site";
 import { SiteHeader } from "@/components/site/site-header";
@@ -11,17 +11,20 @@ import { SmoothScroll } from "@/components/site/smooth-scroll";
 import { getSettings } from "@/lib/content";
 import "../../globals.css";
 
-const instrumentSerif = Instrument_Serif({
-  weight: "400",
+/* Typographie éditoriale : Source Serif 4 pour les titres,
+   Source Sans 3 pour les textes fonctionnels (superfamille cohérente). */
+const sourceSerif = Source_Serif_4({
+  weight: ["400", "500", "600"],
   style: ["normal", "italic"],
   subsets: ["latin"],
-  variable: "--font-instrument-serif",
+  variable: "--font-source-serif",
   display: "swap",
 });
 
-const dmSans = DM_Sans({
+const sourceSans = Source_Sans_3({
+  weight: ["300", "400", "500", "600"],
   subsets: ["latin"],
-  variable: "--font-dm-sans",
+  variable: "--font-source-sans",
   display: "swap",
 });
 
@@ -94,7 +97,7 @@ export default async function SiteLayout({
   const settings = await getSettings();
 
   return (
-    <html lang={locale} className={`${instrumentSerif.variable} ${dmSans.variable}`}>
+    <html lang={locale} className={`${sourceSerif.variable} ${sourceSans.variable}`}>
       <body className="flex min-h-screen flex-col bg-background font-sans text-foreground antialiased">
         <NextIntlClientProvider>
           <SmoothScroll />
