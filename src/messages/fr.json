@@ -79,6 +79,10 @@
         "Collaborations éditoriales"
       ]
     },
+    "gallery": {
+      "pause": "Suspendre",
+      "resume": "Reprendre"
+    },
     "intro": {
       "eyebrow": "Introduction",
       "title": "Comprendre le terrain avant de raconter l'histoire.",

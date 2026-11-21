@@ -79,6 +79,10 @@
         "Editorial collaborations"
       ]
     },
+    "gallery": {
+      "pause": "Pause",
+      "resume": "Resume"
+    },
     "intro": {
       "eyebrow": "Introduction",
       "title": "Understanding the field before telling the story.",
