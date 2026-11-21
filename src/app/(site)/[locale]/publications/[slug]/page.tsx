@@ -3,19 +3,16 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Reveal } from "@/components/site/reveal";
-import { PublicationCard } from "@/components/site/publication-card";
 import { CtaSection } from "@/components/site/cta-section";
 import { ShareButtons } from "@/components/site/share-buttons";
-import { getPublicationBySlug, getRelatedPublications } from "@/lib/content";
-import { demoPublications } from "@/content/demo";
+import {
+  getAdjacentPublications,
+  getPublicationBySlug,
+} from "@/lib/content";
 import { site } from "@/lib/site";
-
-export function generateStaticParams() {
-  return demoPublications.map((p) => ({ slug: p.slug }));
-}
 
 export async function generateMetadata({
   params,
@@ -25,21 +22,28 @@ export async function generateMetadata({
   const { locale, slug } = await params;
   const publication = await getPublicationBySlug(slug, locale as "fr" | "en");
   if (!publication) return {};
+
+  /* L'alternative anglaise n'est annoncée que si une version validée existe. */
+  const languages: Record<string, string> = {
+    fr: `${site.siteUrl}/fr/publications/${slug}`,
+  };
+  if (publication.hasEn) {
+    languages.en = `${site.siteUrl}/en/publications/${slug}`;
+  }
+
   return {
     title: publication.title,
     description: publication.excerpt,
     alternates: {
       canonical: `${site.siteUrl}/${locale}/publications/${slug}`,
-      languages: {
-        fr: `${site.siteUrl}/fr/publications/${slug}`,
-        en: `${site.siteUrl}/en/publications/${slug}`,
-      },
+      languages,
     },
     openGraph: {
       type: "article",
       title: publication.title,
       description: publication.excerpt,
       publishedTime: publication.publishedAt,
+      authors: [site.name],
       images: publication.coverImage ? [{ url: publication.coverImage }] : undefined,
     },
   };
@@ -53,11 +57,10 @@ export default async function PublicationDetailPage({
   const { locale, slug } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("publications");
-  const tC = await getTranslations("common");
 
-  const [publication, related] = await Promise.all([
+  const [publication, adjacent] = await Promise.all([
     getPublicationBySlug(slug, locale as "fr" | "en"),
-    getRelatedPublications(slug, locale as "fr" | "en", 2),
+    getAdjacentPublications(slug, locale as "fr" | "en"),
   ]);
 
   if (!publication) notFound();
@@ -75,15 +78,11 @@ export default async function PublicationDetailPage({
     datePublished: publication.publishedAt,
     inLanguage: locale,
     author: { "@type": "Person", name: site.name },
+    publisher: { "@type": "Person", name: site.name },
     image: publication.coverImage
       ? `${site.siteUrl}${publication.coverImage}`
       : undefined,
     mainEntityOfPage: `${site.siteUrl}/${locale}/publications/${slug}`,
-  };
-
-  const labels = {
-    readMore: tC("actions.readMore"),
-    readingTime: t.raw("readingTime") as string,
   };
 
   return (
@@ -94,6 +93,7 @@ export default async function PublicationDetailPage({
       />
 
       <article className="pt-28">
+        {/* ===== En-tête éditorial ===== */}
         <header className="mx-auto max-w-3xl px-6">
           <Reveal>
             <Link
@@ -103,15 +103,17 @@ export default async function PublicationDetailPage({
               <ArrowLeft size={14} aria-hidden="true" />
               {t("detail.back")}
             </Link>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <p className="eyebrow !text-or">{publication.category}</p>
-            </div>
+            <p className="eyebrow mt-8 !text-or">{publication.categoryLabel}</p>
             <h1 className="display-2 mt-6 text-balance text-white">
               {publication.title}
             </h1>
             <p className="meta mt-6">
               <span className="whitespace-nowrap">
-                {t("publishedOn", { date: dateLabel })}
+                {t("detail.by")} {site.name}
+                <span className="mx-2 text-graphite" aria-hidden="true">·</span>
+              </span>{" "}
+              <span className="whitespace-nowrap">
+                {dateLabel}
                 <span className="mx-2 text-graphite" aria-hidden="true">·</span>
               </span>{" "}
               <span className="whitespace-nowrap">
@@ -121,7 +123,7 @@ export default async function PublicationDetailPage({
           </Reveal>
         </header>
 
-        {/* Image facultative */}
+        {/* Image de couverture, si elle apporte une valeur éditoriale */}
         {publication.coverImage ? (
           <Reveal className="mx-auto mt-12 max-w-4xl px-6">
             <div className="relative aspect-[16/9] overflow-hidden rounded-lg border border-mist/10">
@@ -137,7 +139,7 @@ export default async function PublicationDetailPage({
           </Reveal>
         ) : null}
 
-        {/* Corps de l'article */}
+        {/* ===== Corps de l'article ===== */}
         <Reveal className="mx-auto mt-14 max-w-3xl px-6">
           <p className="border-l-2 border-or pl-6 font-serif text-[1.3rem] leading-[1.6] text-mist">
             {publication.excerpt}
@@ -147,7 +149,7 @@ export default async function PublicationDetailPage({
           </div>
         </Reveal>
 
-        {/* Partage */}
+        {/* ===== Partage ===== */}
         <div className="mx-auto mt-14 max-w-3xl px-6">
           <div className="border-t border-mist/10 pt-8">
             <ShareButtons
@@ -157,34 +159,71 @@ export default async function PublicationDetailPage({
           </div>
         </div>
 
-        {/* Articles associés */}
-        {related.length > 0 ? (
-          <section
-            aria-labelledby="sec-related"
-            className="mt-20 border-t border-mist/10 bg-surface/40"
-          >
-            <div className="mx-auto max-w-6xl px-6 py-20">
-              <Reveal>
-                <h2 id="sec-related" className="display-3 text-white">
-                  {t("detail.related")}
-                </h2>
-              </Reveal>
-              <div className="mt-10 grid gap-10 md:grid-cols-2">
-                {related.map((p, i) => (
-                  <Reveal key={p.slug} delay={i * 0.06}>
-                    <PublicationCard publication={p} labels={labels} />
-                  </Reveal>
-                ))}
-              </div>
+        {/* ===== Navigation éditoriale ===== */}
+        <nav
+          aria-label={t("detail.navLabel")}
+          className="mt-16 border-t border-mist/10 bg-surface/40"
+        >
+          <div className="mx-auto max-w-4xl px-6 py-14">
+            <div className="grid gap-8 sm:grid-cols-2">
+              {adjacent.prev ? (
+                <Link
+                  href={`/publications/${adjacent.prev.slug}`}
+                  className="group border-t border-mist/15 pt-5 transition-colors hover:border-or/60"
+                >
+                  <span className="meta !text-steel">
+                    <ArrowLeft
+                      size={12}
+                      className="mr-2 inline align-[-2px]"
+                      aria-hidden="true"
+                    />
+                    {t("detail.previous")}
+                  </span>
+                  <span className="mt-3 block font-serif text-[1.2rem] leading-snug text-mist transition-colors group-hover:text-white">
+                    {adjacent.prev.title}
+                  </span>
+                </Link>
+              ) : (
+                <span aria-hidden="true" />
+              )}
+              {adjacent.next ? (
+                <Link
+                  href={`/publications/${adjacent.next.slug}`}
+                  className="group border-t border-mist/15 pt-5 text-right transition-colors hover:border-or/60 sm:text-right"
+                >
+                  <span className="meta !text-steel">
+                    {t("detail.next")}
+                    <ArrowRight
+                      size={12}
+                      className="ml-2 inline align-[-2px]"
+                      aria-hidden="true"
+                    />
+                  </span>
+                  <span className="mt-3 block font-serif text-[1.2rem] leading-snug text-mist transition-colors group-hover:text-white">
+                    {adjacent.next.title}
+                  </span>
+                </Link>
+              ) : (
+                <span aria-hidden="true" />
+              )}
             </div>
-          </section>
-        ) : null}
+
+            <Reveal className="mt-12 flex justify-center">
+              <Link href="/publications" className="btn-outline">
+                {t("detail.moreCta")}
+                <ArrowRight size={15} aria-hidden="true" />
+              </Link>
+            </Reveal>
+          </div>
+        </nav>
       </article>
 
+      {/* ===== Contact ===== */}
       <CtaSection
-        title={t("cta.title")}
-        text={t("cta.text")}
-        buttonLabel={t("cta.button")}
+        eyebrow={t("contact.eyebrow")}
+        title={t("contact.title")}
+        text={t("contact.text")}
+        buttonLabel={t("contact.button")}
         buttonHref="/contact"
       />
     </>

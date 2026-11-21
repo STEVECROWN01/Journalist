@@ -11,7 +11,8 @@
       "training": "Training & Knowledge Transfer",
       "productions": "Productions",
       "publications": "Publications",
-      "contact": "Contact"
+      "contact": "Contact",
+      "articlesAnalyses": "Articles & Analyses"
     },
     "cta": {
       "header": "Let's talk about your project",
@@ -30,7 +31,11 @@
       "rights": "All rights reserved.",
       "ownerSpace": "Owner area",
       "colExpertises": "Expertise",
-      "colProfessional": "Professional"
+      "colProfessional": "Professional",
+      "exploreTitle": "Explore the publications",
+      "exploreText": "Find the articles, analyses and journalistic features devoted to international realities.",
+      "collabTitle": "Collaborate",
+      "collabText": "Preparing a report, a documentary production or an editorial project? Tell me about your project."
     },
     "language": {
       "label": "Language",
@@ -207,6 +212,12 @@
       "p2": "Are you looking for a journalist able to understand an international context and to help build a documented story?",
       "p3": "Tell me about your project and its objectives.",
       "cta": "Present your subject"
+    },
+    "editorialCta": {
+      "eyebrow": "Articles & Analyses",
+      "title": "Going further on the issues.",
+      "text": "Find my articles and analyses devoted to international realities: publications to understand events, examine the issues and discover the stories behind the news.",
+      "button": "Discover the articles & analyses"
     }
   },
   "documentary": {
@@ -234,6 +245,12 @@
       "p1": "Discover a selection of documentary productions and editorial projects.",
       "p2": "Each project presents its subject, its context and the approach adopted to tell its story.",
       "cta": "Discover the productions"
+    },
+    "editorialCta": {
+      "eyebrow": "Articles & Analyses",
+      "title": "Stories that extend the gaze.",
+      "text": "Some documentary stories continue in writing. Explore the publications connected to the subjects covered in my documentaries and reports.",
+      "button": "Explore the publications"
     }
   },
   "productions": {
@@ -287,54 +304,64 @@
   },
   "publications": {
     "meta": {
-      "title": "Publications",
-      "description": "Analyses and publications: taking the time to understand international realities, the contexts that shape them and the questions that deserve deeper examination."
+      "title": "Articles & Analyses",
+      "description": "Articles, analyses, reports and deep dives to understand international news, its contexts and the stories that deserve to be told."
     },
     "hero": {
-      "eyebrow": "Publications",
+      "eyebrow": "Articles · Analyses · International Journalism",
+      "title": "Understanding the news beyond the events.",
+      "p1": "International events only take on their full meaning through the contexts that shape them.",
+      "p2": "Through my articles, analyses and journalistic features, I explore international realities, the dynamics that run through them and the human stories that deserve to be told.",
+      "p3": "My goal: to bring elements of understanding, put the news into perspective and offer a documented take on the issues shaping our world.",
+      "cta": "Explore the publications"
+    },
+    "intro": {
+      "eyebrow": "The approach",
       "title": "Taking the time to understand.",
-      "p1": "The news is often immediate. Understanding, however, sometimes requires more perspective.",
-      "p2": "Through my publications and analyses, I focus on international realities, on the contexts that shape them and on the questions that deserve deeper examination.",
-      "cta": "Read the publications"
+      "p1": "Information travels fast. Understanding sometimes requires more distance.",
+      "p2": "Some questions call for going beyond the immediate event, placing the facts back in their context and taking different perspectives into account.",
+      "p3": "My publications are part of that approach.",
+      "p4": "Each article is an opportunity to explore a subject, shed light on its stakes and give readers elements to better understand international realities."
     },
-    "section": {
-      "eyebrow": "Publications",
-      "title": "Facts, contexts and perspectives.",
-      "p1": "Every publication starts from a specific subject.",
-      "p2": "It explores its stakes, its actors and its evolutions to bring the reader elements of understanding.",
-      "p3": "The aim is to offer a documented perspective, without artificially simplifying the complexity of the situations."
+    "listing": {
+      "eyebrow": "Articles & Analyses",
+      "title": "Subjects to explore. Perspectives to discover.",
+      "p1": "Find here my articles, analyses and journalistic features devoted to international realities.",
+      "p2": "Publications to understand events, examine the issues and discover the stories hidden behind the news.",
+      "empty": "No publications available yet. New analyses and reports are on the way."
     },
-    "featured": {
-      "label": "Featured publication"
+    "collaboration": {
+      "eyebrow": "Collaboration",
+      "title": "A subject deserves a closer look?",
+      "p1": "You represent a media outlet, an editorial team or an organisation and wish to develop an editorial project?",
+      "p2": "I am available to discuss subjects to document, analyses to produce or journalistic collaborations.",
+      "p3": "Tell me about your project and its goals.",
+      "cta": "Let's talk about your project"
     },
-    "latest": {
-      "title": "Latest publications",
-      "empty": "No publication for the moment."
-    },
-    "categories": {
+    "filters": {
       "label": "Filter by category",
-      "all": "All"
+      "all": "All articles"
     },
     "search": {
       "label": "Search a publication",
       "placeholder": "Search by title, subject or keyword…",
       "noResults": "No publication matches your search."
     },
-    "archives": {
-      "title": "Archives",
-      "count": "{count, plural, =0{No publication} one{# publication} other{# publications}}"
-    },
+    "readArticle": "Read the article",
     "readingTime": "{minutes} min read",
-    "publishedOn": "Published on {date}",
     "detail": {
       "back": "Back to publications",
-      "related": "Also worth reading",
-      "shareTitle": "Share this article"
+      "by": "By",
+      "previous": "Previous article",
+      "next": "Next article",
+      "navLabel": "Article navigation",
+      "moreCta": "Discover more publications"
     },
-    "cta": {
-      "title": "Do you have a subject to document or a story to tell?",
-      "text": "Tell me about your idea. We can discuss it and explore the possibilities of working together.",
-      "button": "Present your project"
+    "contact": {
+      "eyebrow": "Contact",
+      "title": "Want to explore this subject further?",
+      "text": "Are you working on a similar question or looking to develop an editorial project around this subject? I would be glad to discuss it with you.",
+      "button": "Contact me"
     }
   },
   "comms": {

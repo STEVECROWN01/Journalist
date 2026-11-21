@@ -43,25 +43,34 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
-  /* Pages dynamiques : publications et productions */
+  /* Pages dynamiques : publications et productions.
+     Une URL anglaise n'est proposée que si une version validée existe. */
   const [publications, productions] = await Promise.all([
     getPublications("fr"),
     getProductions("fr"),
   ]);
 
   for (const p of publications) {
-    for (const locale of locales) {
+    const languages: Record<string, string> = {
+      fr: `${site.siteUrl}/fr/publications/${p.slug}`,
+    };
+    if (p.hasEn) {
+      languages.en = `${site.siteUrl}/en/publications/${p.slug}`;
+    }
+    entries.push({
+      url: `${site.siteUrl}/fr/publications/${p.slug}`,
+      lastModified: new Date(p.publishedAt),
+      changeFrequency: "yearly",
+      priority: 0.6,
+      alternates: { languages },
+    });
+    if (p.hasEn) {
       entries.push({
-        url: `${site.siteUrl}/${locale}/publications/${p.slug}`,
+        url: `${site.siteUrl}/en/publications/${p.slug}`,
         lastModified: new Date(p.publishedAt),
         changeFrequency: "yearly",
         priority: 0.6,
-        alternates: {
-          languages: {
-            fr: `${site.siteUrl}/fr/publications/${p.slug}`,
-            en: `${site.siteUrl}/en/publications/${p.slug}`,
-          },
-        },
+        alternates: { languages },
       });
     }
   }

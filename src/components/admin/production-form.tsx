@@ -126,7 +126,7 @@ export function ProductionForm({ data }: { data?: ProductionFormData }) {
           </TabsTrigger>
         </TabsList>
 
-        <TabsContent value="fr" className="mt-5 space-y-5">
+        <TabsContent value="fr" forceMount className="mt-5 space-y-5 data-[state=inactive]:hidden">
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
               <label className="mb-2 block text-[0.85rem] font-medium text-mist">
@@ -167,7 +167,7 @@ export function ProductionForm({ data }: { data?: ProductionFormData }) {
           </div>
         </TabsContent>
 
-        <TabsContent value="en" className="mt-5 space-y-5">
+        <TabsContent value="en" forceMount className="mt-5 space-y-5 data-[state=inactive]:hidden">
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
               <label className="mb-2 block text-[0.85rem] font-medium text-mist">

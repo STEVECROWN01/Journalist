@@ -7,8 +7,9 @@ export default function NewPublicationPage() {
     <div className="max-w-4xl">
       <h1 className="font-serif text-[2rem] text-white">Nouvelle publication</h1>
       <p className="mt-1 text-[0.9rem] text-steel">
-        Rédigez l'article en français puis en anglais (l'anglais reprend le
-        français si laissé vide).
+        Rédigez l&apos;article en français, puis en anglais si une version
+        validée existe. Sans version anglaise, l&apos;article n&apos;apparaît
+        que sur le site français.
       </p>
       <div className="mt-10">
         <PublicationForm />

@@ -28,9 +28,9 @@ export async function SiteFooter() {
     { key: "training", href: "/formation" },
   ] as const;
 
-  /* Colonne « Professionnel » : publications, productions, à propos, contact */
+  /* Colonne « Professionnel » : rubrique éditoriale, productions, à propos, contact */
   const professionalLinks = [
-    { key: "publications", href: "/publications" },
+    { key: "articlesAnalyses", href: "/publications" },
     { key: "productions", href: "/productions" },
     { key: "about", href: "/a-propos" },
     { key: "contact", href: "/contact" },
@@ -178,6 +178,41 @@ export async function SiteFooter() {
                   ))}
                 </ul>
               </nav>
+            </div>
+          </div>
+        </Reveal>
+
+        {/* Complément éditorial : publications + collaboration */}
+        <Reveal>
+          <div className="grid gap-10 border-t border-mist/10 py-10 sm:grid-cols-2 lg:gap-20">
+            <div>
+              <p className="font-serif text-[1.3rem] font-semibold text-white sm:text-[1.75rem]">
+                {t("footer.exploreTitle")}
+              </p>
+              <p className="mt-4 max-w-sm text-[0.9rem] leading-relaxed text-silver">
+                {t("footer.exploreText")}
+              </p>
+              <Link
+                href="/publications"
+                className="footer-link mt-5 inline-flex items-center gap-2 text-[0.94rem] font-medium text-white sm:text-[1.05rem]"
+              >
+                <span className="text-or" aria-hidden="true">→</span>
+                {t("nav.articlesAnalyses")}
+              </Link>
+            </div>
+            <div>
+              <p className="font-serif text-[1.3rem] font-semibold text-white sm:text-[1.75rem]">
+                {t("footer.collabTitle")}
+              </p>
+              <p className="mt-4 max-w-sm text-[0.9rem] leading-relaxed text-silver">
+                {t("footer.collabText")}
+              </p>
+              <Link
+                href="/contact"
+                className="btn-accent mt-5 !min-h-10 !px-5 !text-[0.72rem]"
+              >
+                {t("cta.header")}
+              </Link>
             </div>
           </div>
         </Reveal>

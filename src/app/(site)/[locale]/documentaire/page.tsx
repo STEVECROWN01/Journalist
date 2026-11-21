@@ -5,6 +5,7 @@ import { Link } from "@/i18n/navigation";
 import { Reveal } from "@/components/site/reveal";
 import { PageHero } from "@/components/site/page-hero";
 import { ProductionCard } from "@/components/site/production-card";
+import { CtaSection } from "@/components/site/cta-section";
 import { getProductions } from "@/lib/content";
 
 export async function generateMetadata({
@@ -112,6 +113,15 @@ export default async function DocumentaryPage({
           </Reveal>
         </div>
       </section>
+
+      {/* Publications liées aux sujets documentaires */}
+      <CtaSection
+        eyebrow={t("editorialCta.eyebrow")}
+        title={t("editorialCta.title")}
+        text={t("editorialCta.text")}
+        buttonLabel={t("editorialCta.button")}
+        buttonHref="/publications"
+      />
     </>
   );
 }

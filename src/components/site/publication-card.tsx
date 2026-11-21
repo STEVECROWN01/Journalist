@@ -49,7 +49,7 @@ export function PublicationCard({
         <div className="flex flex-col justify-center">
           <p className="meta">
             <span className="whitespace-nowrap">
-              <span className="text-or">{publication.category}</span>
+              <span className="text-or">{publication.categoryLabel}</span>
               <span className="mx-2 text-graphite" aria-hidden="true">·</span>
             </span>{" "}
             <span className="whitespace-nowrap">
@@ -84,7 +84,7 @@ export function PublicationCard({
     >
       <p className="meta">
         <span className="whitespace-nowrap">
-          <span className="text-or">{publication.category}</span>
+          <span className="text-or">{publication.categoryLabel}</span>
           <span className="mx-2 text-graphite" aria-hidden="true">·</span>
         </span>{" "}
         <span className="whitespace-nowrap">

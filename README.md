@@ -5,10 +5,12 @@ présentation du parcours, portfolio de productions documentaires, espace de
 publications bilingue (FR/EN), communication & conseil, formation, contact
 fonctionnel et **back-office propriétaire** de gestion de contenu.
 
-> **Démonstration conceptuelle** — l'identité (Alexandre Morel), les
-> coordonnées, les productions et les publications sont des contenus
-> illustratifs destinés à présenter la plateforme. Ils seront remplacés par
-> les informations réelles après validation.
+> **Contenus** — l'identité (Alexandre Morel) et les coordonnées seront
+> remplacées par les informations réelles après validation. Les productions
+> forment un catalogue initial ; la rubrique **Articles & Analyses**, elle,
+> est gérée exclusivement depuis le back-office : aucun article n'est
+> pré-rempli, seules les publications réellement rédigées apparaissent
+> en ligne.
 
 ## Stack technique
 
@@ -45,7 +47,7 @@ src/
   components/
     site/                   # Composants publics (header, footer, hero…)
     admin/                  # Composants back-office
-  content/demo.ts           # Contenu de démonstration (repli statique)
+  content/demo.ts           # Catalogue initial des productions (repli statique)
   i18n/                     # Configuration next-intl
   lib/                      # Base, auth, contenu, médias, config
   messages/                 # Traductions fr.json / en.json (354 clés)
@@ -62,7 +64,7 @@ bun install        # ou npm install
 # 2. Variables d'environnement
 cp .env.example .env
 
-# 3. Base de données (SQLite) + contenu de démonstration
+# 3. Base de données (SQLite) + compte admin et catalogue productions
 bun run db:push
 bun run db:seed
 
@@ -91,9 +93,10 @@ Le déploiement fonctionne immédiatement (détection Next.js automatique) :
 
 ### Deux modes de fonctionnement
 
-- **Sans base de données** : le site public s'affiche intégralement avec le
-  contenu de démonstration intégré (mode repli statique). Le formulaire de
-  contact et le back-office signalent que la base n'est pas configurée.
+- **Sans base de données** : le site public s'affiche intégralement (les
+  productions reposent sur le catalogue statique ; la rubrique Articles &
+  Analyses reste vide jusqu'à la première publication réelle). Le formulaire
+  de contact et le back-office signalent que la base n'est pas configurée.
 - **Avec base de données** (recommandé) : toutes les fonctions sont actives.
   Créez une base PostgreSQL serverless gratuite (Neon, Supabase…), puis :
   1. Dans `prisma/schema.prisma`, remplacez `provider = "sqlite"` par
@@ -108,7 +111,7 @@ Le déploiement fonctionne immédiatement (détection Next.js automatique) :
 | Rubrique | Actions |
 | --- | --- |
 | Tableau de bord | Compteurs, derniers messages, dernières activités |
-| Publications | Créer, modifier (FR/EN), publier/dépublier, à la une, supprimer |
+| Publications | Créer, modifier (FR/EN), publier/dépublier, catégoriser (analyses, reportages, décryptages), couverture, date, supprimer |
 | Productions | Créer, modifier (FR/EN), catégoriser, ordonner, lien vidéo, supprimer |
 | Messages | Consulter, marquer lu/non lu, répondre, supprimer |
 | Paramètres | Nom, ville, e-mail, téléphone, réseaux sociaux (affichés sur le site) |
@@ -121,8 +124,10 @@ statiques sont revalidées à chaque enregistrement).
 - [ ] Remplacer l'identité de démonstration par les informations réelles
       (traductions `src/messages/fr.json` et `en.json`).
 - [ ] Mettre à jour les coordonnées dans **Paramètres** du back-office.
-- [ ] Remplacer les publications et productions de démonstration par les
-      réalisations réelles (suppression ou dépublication des contenus démo).
+- [ ] Rédiger les premiers articles depuis **Publications** du back-office
+      (catégories : analyses, reportages, décryptages ; version anglaise
+      facultative — sans elle, l'article n'apparaît que sur le site français).
+- [ ] Remplacer ou ajuster les productions du catalogue initial.
 - [ ] Intégrer les vraies photographies dans `public/assets/` (et le registre
       `src/lib/media.ts` si de nouveaux fichiers sont ajoutés).
 - [ ] Régénérer l'image Open Graph (`public/assets/og-image.jpg`).

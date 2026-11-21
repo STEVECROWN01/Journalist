@@ -21,25 +21,24 @@ model AdminUser {
   updatedAt    DateTime @updatedAt
 }
 
-/// Publications éditoriales (bilingues FR/EN, statut brouillon/publié)
+/// Publications éditoriales (bilingues FR/EN, statut brouillon/publié).
+/// Les champs EN sont facultatifs : sans version anglaise validée,
+/// l'article n'apparaît que sur le site français.
 model Publication {
-  id             String    @id @default(cuid())
-  slug           String    @unique
-  titleFr        String
-  titleEn        String
-  excerptFr      String
-  excerptEn      String
-  contentFr      String
-  contentEn      String
-  categoryFr     String
-  categoryEn     String
-  coverImage     String?
-  readingMinutes Int       @default(5)
-  featured       Boolean   @default(false)
-  status         String    @default("draft")
-  publishedAt    DateTime?
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  titleFr     String
+  titleEn     String?
+  excerptFr   String
+  excerptEn   String?
+  contentFr   String
+  contentEn   String?
+  category    String // analyse | reportage | decryptage
+  coverImage  String?
+  status      String    @default("draft")
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
 
 /// Productions audiovisuelles et documentaires (bilingues FR/EN)

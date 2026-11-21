@@ -11,7 +11,8 @@
       "training": "Formation & Transmission",
       "productions": "Production",
       "publications": "Publication",
-      "contact": "Contact"
+      "contact": "Contact",
+      "articlesAnalyses": "Articles & Analyses"
     },
     "cta": {
       "header": "Parlons de votre projet",
@@ -30,7 +31,11 @@
       "rights": "Tous droits réservés.",
       "ownerSpace": "Espace propriétaire",
       "colExpertises": "Expertises",
-      "colProfessional": "Professionnel"
+      "colProfessional": "Professionnel",
+      "exploreTitle": "Explorer les publications",
+      "exploreText": "Retrouvez les articles, analyses et récits journalistiques consacrés aux réalités internationales.",
+      "collabTitle": "Collaborer",
+      "collabText": "Vous préparez un reportage, une production documentaire ou un projet éditorial ? Présentez-moi votre projet."
     },
     "language": {
       "label": "Langue",
@@ -207,6 +212,12 @@
       "p2": "Vous recherchez un journaliste capable de comprendre un contexte international et de contribuer à la construction d'un récit documenté ?",
       "p3": "Présentez-moi votre projet et ses objectifs.",
       "cta": "Présenter votre sujet"
+    },
+    "editorialCta": {
+      "eyebrow": "Articles & Analyses",
+      "title": "Aller plus loin sur les sujets.",
+      "text": "Retrouvez mes articles et analyses consacrés aux réalités internationales : des publications pour comprendre les événements, approfondir les enjeux et découvrir les histoires derrière l'actualité.",
+      "button": "Découvrir les articles et analyses"
     }
   },
   "documentary": {
@@ -234,6 +245,12 @@
       "p1": "Découvrez une sélection de productions documentaires et de projets éditoriaux.",
       "p2": "Chaque projet présente son sujet, son contexte et la démarche adoptée pour en raconter l'histoire.",
       "cta": "Découvrir les productions"
+    },
+    "editorialCta": {
+      "eyebrow": "Articles & Analyses",
+      "title": "Des récits qui prolongent le regard.",
+      "text": "Certaines histoires documentaires se prolongent par l'écrit. Explorez les publications liées aux sujets abordés dans mes documentaires et reportages.",
+      "button": "Explorer les publications"
     }
   },
   "productions": {
@@ -287,54 +304,64 @@
   },
   "publications": {
     "meta": {
-      "title": "Publications",
-      "description": "Analyses et publications : prendre le temps de comprendre les réalités internationales, leurs contextes et les questions qui méritent d'être approfondies."
+      "title": "Articles & Analyses",
+      "description": "Articles, analyses, reportages et décryptages pour comprendre l'actualité internationale, ses contextes et les histoires qui méritent d'être racontées."
     },
     "hero": {
-      "eyebrow": "Publications",
+      "eyebrow": "Articles · Analyses · Journalisme international",
+      "title": "Comprendre l'actualité au-delà des événements.",
+      "p1": "Les événements internationaux ne prennent pleinement leur sens qu'à travers les contextes qui les façonnent.",
+      "p2": "À travers mes articles, analyses et récits journalistiques, j'explore les réalités internationales, les dynamiques qui les traversent et les histoires humaines qui méritent d'être racontées.",
+      "p3": "Mon objectif : apporter des éléments de compréhension, donner du recul sur l'actualité et proposer un regard documenté sur les sujets qui façonnent notre monde.",
+      "cta": "Explorer les publications"
+    },
+    "intro": {
+      "eyebrow": "La démarche",
       "title": "Prendre le temps de comprendre.",
-      "p1": "L'actualité est souvent immédiate. La compréhension, elle, demande parfois davantage de recul.",
-      "p2": "À travers mes publications et analyses, je m'intéresse aux réalités internationales, aux contextes qui les façonnent et aux questions qui méritent d'être approfondies.",
-      "cta": "Lire les publications"
+      "p1": "L'information circule rapidement. La compréhension demande parfois davantage de recul.",
+      "p2": "Certaines questions nécessitent de dépasser l'événement immédiat, de replacer les faits dans leur contexte et de prendre en compte les différentes perspectives.",
+      "p3": "C'est dans cette démarche que s'inscrivent mes publications.",
+      "p4": "Chaque article est une occasion d'explorer un sujet, de mettre en lumière ses enjeux et d'apporter au lecteur des éléments pour mieux comprendre les réalités internationales."
     },
-    "section": {
-      "eyebrow": "Publications",
-      "title": "Des faits, des contextes et des perspectives.",
-      "p1": "Chaque publication part d'un sujet précis.",
-      "p2": "Elle en explore les enjeux, les acteurs et les évolutions pour apporter au lecteur des éléments de compréhension.",
-      "p3": "L'objectif est de proposer un éclairage documenté, sans simplifier artificiellement la complexité des situations."
+    "listing": {
+      "eyebrow": "Articles & Analyses",
+      "title": "Des sujets à explorer. Des perspectives à découvrir.",
+      "p1": "Retrouvez ici mes articles, analyses et récits journalistiques consacrés aux réalités internationales.",
+      "p2": "Des publications pour comprendre les événements, approfondir les enjeux et découvrir les histoires qui se cachent derrière l'actualité.",
+      "empty": "Aucune publication disponible pour le moment. De nouvelles analyses et de nouveaux reportages sont en préparation."
     },
-    "featured": {
-      "label": "Publication à la une"
+    "collaboration": {
+      "eyebrow": "Collaboration",
+      "title": "Un sujet mérite d'être approfondi ?",
+      "p1": "Vous représentez un média, une rédaction ou une organisation et souhaitez développer un projet éditorial ?",
+      "p2": "Je suis disponible pour échanger autour de sujets à documenter, d'analyses à produire ou de collaborations journalistiques.",
+      "p3": "Présentez-moi votre projet et ses objectifs.",
+      "cta": "Parlons de votre projet"
     },
-    "latest": {
-      "title": "Dernières publications",
-      "empty": "Aucune publication pour le moment."
-    },
-    "categories": {
+    "filters": {
       "label": "Filtrer par catégorie",
-      "all": "Toutes"
+      "all": "Tous les articles"
     },
     "search": {
       "label": "Rechercher une publication",
       "placeholder": "Rechercher par titre, sujet ou mot-clé…",
       "noResults": "Aucune publication ne correspond à votre recherche."
     },
-    "archives": {
-      "title": "Archives",
-      "count": "{count, plural, =0{Aucune publication} one{# publication} other{# publications}}"
-    },
+    "readArticle": "Lire l'article",
     "readingTime": "{minutes} min de lecture",
-    "publishedOn": "Publié le {date}",
     "detail": {
       "back": "Retour aux publications",
-      "related": "À lire également",
-      "shareTitle": "Partager cet article"
+      "by": "Par",
+      "previous": "Article précédent",
+      "next": "Article suivant",
+      "navLabel": "Navigation entre les articles",
+      "moreCta": "Découvrir d'autres publications"
     },
-    "cta": {
-      "title": "Vous avez un sujet à documenter ou une histoire à raconter ?",
-      "text": "Présentez-moi votre idée. Nous pourrons en discuter et étudier ensemble les possibilités de collaboration.",
-      "button": "Présenter votre projet"
+    "contact": {
+      "eyebrow": "Contact",
+      "title": "Vous souhaitez approfondir ce sujet ?",
+      "text": "Vous travaillez sur une question similaire ou souhaitez développer un projet éditorial autour de ce sujet ? Je serais heureux d'échanger avec vous.",
+      "button": "Me contacter"
     }
   },
   "comms": {

@@ -46,8 +46,8 @@ export default async function HomePage({
     getPublications(locale as "fr" | "en"),
     getSettings(),
   ]);
-  const featured = publications.find((p) => p.featured) ?? publications[0];
-  const recent = publications.filter((p) => p.slug !== featured?.slug).slice(0, 2);
+  const featured = publications[0] ?? null;
+  const recent = publications.slice(1, 3);
 
   /* Données structurées : personne + site */
   const jsonLd = {
@@ -155,7 +155,7 @@ export default async function HomePage({
           kind: "note",
           key: `pub-${p.slug}`,
           href: `/publications/${p.slug}`,
-          kicker: p.category,
+          kicker: p.categoryLabel,
           title: p.title,
           meta: readingTime.replace("{minutes}", String(p.readingMinutes)),
           cta: tC("actions.readMore"),
@@ -210,7 +210,7 @@ export default async function HomePage({
               ? {
                   src: featured.coverImage,
                   title: featured.title,
-                  meta: featured.category,
+                  meta: featured.categoryLabel,
                   href: `/publications/${featured.slug}`,
                 }
               : null,

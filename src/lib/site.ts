@@ -71,3 +71,44 @@ export const PRODUCTION_CATEGORIES = [
   "communication",
 ] as const;
 export type ProductionCategory = (typeof PRODUCTION_CATEGORIES)[number];
+
+/** Catégories éditoriales des publications — valeurs stockées en base */
+export const PUBLICATION_CATEGORIES = [
+  "analyse",
+  "reportage",
+  "decryptage",
+] as const;
+export type PublicationCategory = (typeof PUBLICATION_CATEGORIES)[number];
+
+/** Libellés localisés des catégories éditoriales (singulier / pluriel) */
+export const PUBLICATION_CATEGORY_LABELS: Record<
+  PublicationCategory,
+  { fr: { one: string; other: string }; en: { one: string; other: string } }
+> = {
+  analyse: {
+    fr: { one: "Analyse", other: "Analyses" },
+    en: { one: "Analysis", other: "Analyses" },
+  },
+  reportage: {
+    fr: { one: "Reportage", other: "Reportages" },
+    en: { one: "Report", other: "Reports" },
+  },
+  decryptage: {
+    fr: { one: "Décryptage", other: "Décryptages" },
+    en: { one: "Explainer", other: "Explainers" },
+  },
+};
+
+export function isPublicationCategory(v: string): v is PublicationCategory {
+  return (PUBLICATION_CATEGORIES as readonly string[]).includes(v);
+}
+
+/** Libellé localisé d'une catégorie éditoriale (chaîne vide si inconnue) */
+export function publicationCategoryLabel(
+  key: string,
+  locale: "fr" | "en",
+  plural = false
+): string {
+  if (!isPublicationCategory(key)) return "";
+  return PUBLICATION_CATEGORY_LABELS[key][locale][plural ? "other" : "one"];
+}

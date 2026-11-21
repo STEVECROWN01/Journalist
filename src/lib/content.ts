@@ -1,11 +1,7 @@
 import { db } from "@/lib/db";
-import {
-  demoPublications,
-  demoProductions,
-  type DemoPublication,
-  type DemoProduction,
-} from "@/content/demo";
+import { demoProductions, type DemoProduction } from "@/content/demo";
 import type { Locale } from "@/i18n/routing";
+import { publicationCategoryLabel } from "@/lib/site";
 
 /* ============================ Vues publiques ============================ */
 
@@ -14,11 +10,12 @@ export interface PublicationView {
   title: string;
   excerpt: string;
   content: string;
-  category: string;
+  categoryKey: string;
+  categoryLabel: string;
   coverImage: string | null;
   readingMinutes: number;
-  featured: boolean;
   publishedAt: string; // YYYY-MM-DD
+  hasEn: boolean;
 }
 
 export interface ProductionView {
@@ -52,47 +49,49 @@ function isoDate(d: Date | string | null | undefined): string {
   return d.toISOString();
 }
 
+/** Temps de lecture estimé (≈ 200 mots/minute, minimum 1 minute). */
+function estimateReadingMinutes(content: string): number {
+  const words = content.trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / 200));
+}
+
+/** Une version anglaise n'est proposée que si elle est rédigée et validée. */
+function hasEnglishVersion(r: {
+  titleEn: string | null;
+  contentEn: string | null;
+}): boolean {
+  return !!(r.titleEn?.trim() && r.contentEn?.trim());
+}
+
 function mapPublication(
-  p:
-    | {
-        slug: string;
-        titleFr: string;
-        titleEn: string;
-        excerptFr: string;
-        excerptEn: string;
-        contentFr: string;
-        contentEn: string;
-        categoryFr: string;
-        categoryEn: string;
-        coverImage: string | null;
-        readingMinutes: number;
-        featured: boolean;
-        publishedAt: Date | string | null;
-      },
+  p: {
+    slug: string;
+    titleFr: string;
+    titleEn: string | null;
+    excerptFr: string;
+    excerptEn: string | null;
+    contentFr: string;
+    contentEn: string | null;
+    category: string;
+    coverImage: string | null;
+    publishedAt: Date | string | null;
+  },
   locale: Locale
 ): PublicationView {
   const fr = locale === "fr";
+  const content = fr ? p.contentFr : p.contentEn || p.contentFr;
   return {
     slug: p.slug,
-    title: fr ? p.titleFr : p.titleEn,
-    excerpt: fr ? p.excerptFr : p.excerptEn,
-    content: fr ? p.contentFr : p.contentEn,
-    category: fr ? p.categoryFr : p.categoryEn,
+    title: fr ? p.titleFr : p.titleEn || p.titleFr,
+    excerpt: fr ? p.excerptFr : p.excerptEn || p.excerptFr,
+    content,
+    categoryKey: p.category,
+    categoryLabel: publicationCategoryLabel(p.category, fr ? "fr" : "en"),
     coverImage: p.coverImage,
-    readingMinutes: p.readingMinutes,
-    featured: p.featured,
+    readingMinutes: estimateReadingMinutes(content),
     publishedAt: isoDate(p.publishedAt).slice(0, 10),
+    hasEn: hasEnglishVersion(p),
   };
-}
-
-function mapDemoPublication(p: DemoPublication, locale: Locale): PublicationView {
-  return mapPublication(
-    {
-      ...p,
-      publishedAt: p.publishedAt,
-    },
-    locale
-  );
 }
 
 function mapProduction(
@@ -140,13 +139,16 @@ export async function getPublications(locale: Locale): Promise<PublicationView[]
   try {
     const rows = await db.publication.findMany({
       where: { status: "published" },
-      orderBy: [{ featured: "desc" }, { publishedAt: "desc" }],
+      orderBy: [{ publishedAt: "desc" }, { createdAt: "desc" }],
     });
-    if (rows.length > 0) return rows.map((r) => mapPublication(r, locale));
-    return [];
+    // Sans version anglaise validée, l'article n'apparaît que sur le site
+    // français — aucune traduction approximative n'est présentée.
+    return rows
+      .filter((r) => locale === "fr" || hasEnglishVersion(r))
+      .map((r) => mapPublication(r, locale));
   } catch {
-    // Base indisponible (ex. déploiement sans DATABASE_URL) : repli statique
-    return demoPublications.map((p) => mapDemoPublication(p, locale));
+    // Base indisponible : aucune publication n'est affichée (aucun faux contenu)
+    return [];
   }
 }
 
@@ -158,12 +160,26 @@ export async function getPublicationBySlug(
     const row = await db.publication.findFirst({
       where: { slug, status: "published" },
     });
-    if (row) return mapPublication(row, locale);
-    return null;
+    if (!row) return null;
+    if (locale === "en" && !hasEnglishVersion(row)) return null;
+    return mapPublication(row, locale);
   } catch {
-    const demo = demoPublications.find((p) => p.slug === slug);
-    return demo ? mapDemoPublication(demo, locale) : null;
+    return null;
   }
+}
+
+/** Navigation éditoriale : article précédent (plus ancien) et suivant (plus récent). */
+export async function getAdjacentPublications(
+  slug: string,
+  locale: Locale
+): Promise<{ prev: PublicationView | null; next: PublicationView | null }> {
+  const all = await getPublications(locale);
+  const index = all.findIndex((p) => p.slug === slug);
+  if (index === -1) return { prev: null, next: null };
+  return {
+    prev: index < all.length - 1 ? all[index + 1] : null,
+    next: index > 0 ? all[index - 1] : null,
+  };
 }
 
 /* ============================ Productions ============================ */
@@ -227,16 +243,4 @@ export async function getSettings(): Promise<SettingsView> {
   }
 }
 
-/* ============================ Articles associés ============================ */
-
-export async function getRelatedPublications(
-  slug: string,
-  locale: Locale,
-  limit = 2
-): Promise<PublicationView[]> {
-  const all = await getPublications(locale);
-  const current = all.find((p) => p.slug === slug);
-  const others = all.filter((p) => p.slug !== slug);
-  const sameCategory = others.filter((p) => p.category === current?.category);
-  return [...sameCategory, ...others.filter((p) => !sameCategory.includes(p))].slice(0, limit);
-}
+/* ============================ Paramètres ============================ */

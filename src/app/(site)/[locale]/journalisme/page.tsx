@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Reveal } from "@/components/site/reveal";
 import { PageHero } from "@/components/site/page-hero";
+import { CtaSection } from "@/components/site/cta-section";
 
 export async function generateMetadata({
   params,
@@ -100,6 +101,15 @@ export default async function JournalismPage({
           </div>
         </div>
       </section>
+
+      {/* Articles & analyses liés au journalisme international */}
+      <CtaSection
+        eyebrow={t("editorialCta.eyebrow")}
+        title={t("editorialCta.title")}
+        text={t("editorialCta.text")}
+        buttonLabel={t("editorialCta.button")}
+        buttonHref="/publications"
+      />
     </>
   );
 }

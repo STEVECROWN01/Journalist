@@ -32,11 +32,8 @@ export default async function EditPublicationPage({
             excerptEn: publication.excerptEn,
             contentFr: publication.contentFr,
             contentEn: publication.contentEn,
-            categoryFr: publication.categoryFr,
-            categoryEn: publication.categoryEn,
+            category: publication.category,
             coverImage: publication.coverImage,
-            readingMinutes: publication.readingMinutes,
-            featured: publication.featured,
             status: publication.status,
             publishedAt: publication.publishedAt?.toISOString(),
           }}

@@ -6,6 +6,10 @@ import { Loader2, Save } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { savePublication, type ActionState } from "@/app/(admin)/admin/actions";
 import { mediaAssets } from "@/lib/media";
+import {
+  PUBLICATION_CATEGORIES,
+  publicationCategoryLabel,
+} from "@/lib/site";
 
 const initial: ActionState = { status: "idle" };
 
@@ -13,16 +17,13 @@ interface PublicationFormData {
   id?: string;
   slug?: string;
   titleFr?: string;
-  titleEn?: string;
+  titleEn?: string | null;
   excerptFr?: string;
-  excerptEn?: string;
+  excerptEn?: string | null;
   contentFr?: string;
-  contentEn?: string;
-  categoryFr?: string;
-  categoryEn?: string;
+  contentEn?: string | null;
+  category?: string;
   coverImage?: string | null;
-  readingMinutes?: number;
-  featured?: boolean;
   status?: string;
   publishedAt?: string;
 }
@@ -48,37 +49,18 @@ export function PublicationForm({ data }: { data?: PublicationFormData }) {
           </TabsTrigger>
         </TabsList>
 
-        <TabsContent value="fr" className="mt-5 space-y-5">
+        {/* Les panneaux restent montés (forceMount) pour que les champs
+            d'un onglet inactif soient toujours soumis avec le formulaire */}
+        <TabsContent value="fr" forceMount className="mt-5 space-y-5 data-[state=inactive]:hidden">
           <div>
             <label className="mb-2 block text-[0.85rem] font-medium text-mist">
               Titre (français) <span className="text-or">*</span>
             </label>
             <input name="titleFr" defaultValue={data?.titleFr} required className={inputClass} />
           </div>
-          <div className="grid gap-5 sm:grid-cols-2">
-            <div>
-              <label className="mb-2 block text-[0.85rem] font-medium text-mist">
-                Catégorie (français)
-              </label>
-              <input name="categoryFr" defaultValue={data?.categoryFr ?? "Analyse"} className={inputClass} />
-            </div>
-            <div>
-              <label className="mb-2 block text-[0.85rem] font-medium text-mist">
-                Temps de lecture (minutes)
-              </label>
-              <input
-                name="readingMinutes"
-                type="number"
-                min={1}
-                max={90}
-                defaultValue={data?.readingMinutes ?? 5}
-                className={inputClass}
-              />
-            </div>
-          </div>
           <div>
             <label className="mb-2 block text-[0.85rem] font-medium text-mist">
-              Résumé (français)
+              Résumé (français) — servi en chapô et description SEO
             </label>
             <textarea name="excerptFr" rows={3} defaultValue={data?.excerptFr} className={inputClass} />
           </div>
@@ -94,38 +76,39 @@ export function PublicationForm({ data }: { data?: PublicationFormData }) {
               className={`${inputClass} font-mono text-[0.82rem] leading-relaxed`}
             />
             <p className="mt-2 text-[0.75rem] text-graphite">
-              Markdown : ## sous-titre, **gras**, *italique*, &gt; citation, --- séparateur.
+              Markdown : ## intertitre, **gras**, *italique*, &gt; citation, --- séparateur.
+              Le temps de lecture est calculé automatiquement.
             </p>
           </div>
         </TabsContent>
 
-        <TabsContent value="en" className="mt-5 space-y-5">
-          <div>
-            <label className="mb-2 block text-[0.85rem] font-medium text-mist">
-              Title (English) — vide = français repris
-            </label>
-            <input name="titleEn" defaultValue={data?.titleEn} className={inputClass} />
+        <TabsContent value="en" forceMount className="mt-5 space-y-5 data-[state=inactive]:hidden">
+          <div className="rounded-lg border border-mist/15 bg-surface/50 px-4 py-3 text-[0.8rem] leading-relaxed text-steel">
+            La version anglaise n&apos;est publiée que si le titre et le contenu
+            sont renseignés. Sans version anglaise validée, l&apos;article
+            apparaît uniquement sur le site français — aucune traduction
+            approximative n&apos;est affichée.
           </div>
           <div>
             <label className="mb-2 block text-[0.85rem] font-medium text-mist">
-              Category (English)
+              Title (English)
             </label>
-            <input name="categoryEn" defaultValue={data?.categoryEn ?? "Analysis"} className={inputClass} />
+            <input name="titleEn" defaultValue={data?.titleEn ?? ""} className={inputClass} />
           </div>
           <div>
             <label className="mb-2 block text-[0.85rem] font-medium text-mist">
               Excerpt (English)
             </label>
-            <textarea name="excerptEn" rows={3} defaultValue={data?.excerptEn} className={inputClass} />
+            <textarea name="excerptEn" rows={3} defaultValue={data?.excerptEn ?? ""} className={inputClass} />
           </div>
           <div>
             <label className="mb-2 block text-[0.85rem] font-medium text-mist">
-              Content (English, markdown) — vide = français repris
+              Content (English, markdown)
             </label>
             <textarea
               name="contentEn"
               rows={16}
-              defaultValue={data?.contentEn}
+              defaultValue={data?.contentEn ?? ""}
               className={`${inputClass} font-mono text-[0.82rem] leading-relaxed`}
             />
           </div>
@@ -136,9 +119,23 @@ export function PublicationForm({ data }: { data?: PublicationFormData }) {
       <div className="grid gap-5 rounded-xl border border-mist/10 bg-surface p-6 sm:grid-cols-2">
         <div>
           <label className="mb-2 block text-[0.85rem] font-medium text-mist">
-            Slug (URL) — vide = généré depuis le titre
+            Catégorie <span className="text-or">*</span>
           </label>
-          <input name="slug" defaultValue={data?.slug} className={inputClass} placeholder="mon-article" />
+          <select
+            name="category"
+            defaultValue={data?.category ?? "analyse"}
+            className={inputClass}
+          >
+            {PUBLICATION_CATEGORIES.map((c) => (
+              <option key={c} value={c}>
+                {publicationCategoryLabel(c, "fr")}
+              </option>
+            ))}
+          </select>
+          <p className="mt-2 text-[0.75rem] text-graphite">
+            Analyses, reportages ou décryptages — le libellé anglais est géré
+            automatiquement.
+          </p>
         </div>
         <div>
           <label className="mb-2 block text-[0.85rem] font-medium text-mist">
@@ -154,6 +151,12 @@ export function PublicationForm({ data }: { data?: PublicationFormData }) {
             }
             className={inputClass}
           />
+        </div>
+        <div className="sm:col-span-2">
+          <label className="mb-2 block text-[0.85rem] font-medium text-mist">
+            Slug (URL) — vide = généré depuis le titre
+          </label>
+          <input name="slug" defaultValue={data?.slug} className={inputClass} placeholder="mon-article" />
         </div>
         <div className="sm:col-span-2">
           <label className="mb-2 block text-[0.85rem] font-medium text-mist">
@@ -175,15 +178,6 @@ export function PublicationForm({ data }: { data?: PublicationFormData }) {
             Les images sont fournies par la banque visuelle du site.
           </p>
         </div>
-        <label className="flex items-center gap-3 text-[0.9rem] text-mist">
-          <input
-            type="checkbox"
-            name="featured"
-            defaultChecked={data?.featured}
-            className="size-4 accent-or"
-          />
-          Publication à la une (une seule à la fois)
-        </label>
       </div>
 
       {state.status === "error" && state.message ? (

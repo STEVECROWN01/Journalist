@@ -1,12 +1,12 @@
 import { db } from "@/lib/db";
-import { demoPublications, demoProductions } from "@/content/demo";
+import { demoProductions } from "@/content/demo";
 import { hashPassword } from "@/lib/auth";
 
 /**
- * Amorçage de la base : compte administrateur, paramètres du site,
- * publications et productions de démonstration.
- * Identifiants administrateur définis par ADMIN_EMAIL / ADMIN_PASSWORD
- * (valeurs de démonstration par défaut).
+ * Amorçage de la base : compte administrateur, paramètres du site et
+ * catalogue des productions. Les publications sont créées depuis le
+ * back-office — aucun article fictif n'est amorcé.
+ * Identifiants administrateur définis par ADMIN_EMAIL / ADMIN_PASSWORD.
  */
 async function main() {
   console.log("→ Amorçage de la base…");
@@ -46,32 +46,6 @@ async function main() {
     console.log("  ✓ Paramètres du site créés");
   } else {
     console.log("  • Paramètres déjà présents");
-  }
-
-  /* Publications de démonstration */
-  for (const p of demoPublications) {
-    const existing = await db.publication.findUnique({ where: { slug: p.slug } });
-    if (!existing) {
-      await db.publication.create({
-        data: {
-          slug: p.slug,
-          titleFr: p.titleFr,
-          titleEn: p.titleEn,
-          excerptFr: p.excerptFr,
-          excerptEn: p.excerptEn,
-          contentFr: p.contentFr,
-          contentEn: p.contentEn,
-          categoryFr: p.categoryFr,
-          categoryEn: p.categoryEn,
-          coverImage: p.coverImage,
-          readingMinutes: p.readingMinutes,
-          featured: p.featured,
-          status: "published",
-          publishedAt: new Date(p.publishedAt),
-        },
-      });
-      console.log(`  ✓ Publication : ${p.slug}`);
-    }
   }
 
   /* Productions de démonstration */

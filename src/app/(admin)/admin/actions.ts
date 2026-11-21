@@ -10,7 +10,10 @@ import {
   clearSessionCookie,
   verifyPassword,
 } from "@/lib/auth";
-import { PRODUCTION_CATEGORIES } from "@/lib/site";
+import {
+  isPublicationCategory,
+  PRODUCTION_CATEGORIES,
+} from "@/lib/site";
 import { isValidMedia } from "@/lib/media";
 
 /* ============================ Utilitaires ============================ */
@@ -92,14 +95,19 @@ export async function loginAction(
     return { status: "error", message: "Identifiants incomplets." };
   }
 
-  const user = await db.adminUser.findUnique({ where: { email } });
+  const user = await db.adminUser.findUnique({ where: { email } }).catch(() => null);
   const ok = user ? verifyPassword(password, user.passwordHash) : false;
 
   if (!user || !ok) {
     if (!entry || entry.reset < now)
       loginAttempts.set(ip, { count: 1, reset: now + 10 * 60 * 1000 });
     else entry.count += 1;
-    return { status: "error", message: "E-mail ou mot de passe incorrect." };
+    return {
+      status: "error",
+      message: user === null && email
+        ? "Service momentanément indisponible. Réessayez ultérieurement."
+        : "E-mail ou mot de passe incorrect.",
+    };
   }
 
   loginAttempts.delete(ip);
@@ -127,14 +135,8 @@ export async function savePublication(
   const excerptEn = clean(formData.get("excerptEn"), 600);
   const contentFr = clean(formData.get("contentFr"), 40000);
   const contentEn = clean(formData.get("contentEn"), 40000);
-  const categoryFr = clean(formData.get("categoryFr"), 60) || "Analyse";
-  const categoryEn = clean(formData.get("categoryEn"), 60) || "Analysis";
+  const category = clean(formData.get("category"), 40);
   const cover = clean(formData.get("coverImage"), 300);
-  const readingMinutes = Math.min(
-    90,
-    Math.max(1, parseInt(clean(formData.get("readingMinutes"), 4) || "5", 10))
-  );
-  const featured = formData.get("featured") === "on";
   const status = formData.get("status") === "published" ? "published" : "draft";
   const publishedAtRaw = clean(formData.get("publishedAt"), 30);
   const publishedAt = publishedAtRaw ? new Date(publishedAtRaw) : new Date();
@@ -145,39 +147,46 @@ export async function savePublication(
       message: "Le titre et le contenu français sont obligatoires.",
     };
   }
+  if (!isPublicationCategory(category)) {
+    return {
+      status: "error",
+      message: `Catégorie invalide (analyses, reportages ou décryptages).`,
+    };
+  }
+
+  /* La version anglaise n'est enregistrée que si elle est rédigée :
+     sans elle, l'article reste visible uniquement sur le site français. */
+  const enComplete = !!(titleEn && contentEn);
 
   const slugBase = clean(formData.get("slug"), 90) || slugify(titleFr);
-  const slug = await uniqueSlug(slugBase, "publication", id || undefined);
-
-  const data = {
-    slug,
-    titleFr,
-    titleEn: titleEn || titleFr,
-    excerptFr,
-    excerptEn,
-    contentFr,
-    contentEn: contentEn || contentFr,
-    categoryFr,
-    categoryEn,
-    coverImage: isValidMedia(cover) ? cover : null,
-    readingMinutes,
-    featured,
-    status,
-    publishedAt,
-  };
 
   try {
-    if (featured) {
-      // Une seule publication à la une à la fois
-      await db.publication.updateMany({ data: { featured: false } });
-    }
+    const slug = await uniqueSlug(slugBase, "publication", id || undefined);
+    const data = {
+      slug,
+      titleFr,
+      titleEn: enComplete ? titleEn : null,
+      excerptFr,
+      excerptEn: excerptEn || null,
+      contentFr,
+      contentEn: enComplete ? contentEn : null,
+      category,
+      coverImage: isValidMedia(cover) ? cover : null,
+      status,
+      publishedAt,
+    };
+
     if (id) {
       await db.publication.update({ where: { id }, data });
     } else {
       await db.publication.create({ data });
     }
   } catch {
-    return { status: "error", message: "Enregistrement impossible (slug déjà utilisé ?)." };
+    return {
+      status: "error",
+      message:
+        "Enregistrement impossible. Vérifiez la connexion à la base de données et l'unicité du slug.",
+    };
   }
 
   refreshSite();
@@ -198,15 +207,19 @@ export async function togglePublicationStatus(formData: FormData): Promise<void>
   await requireAdmin();
   const id = clean(formData.get("id"), 40);
   if (!id) redirect("/admin/publications");
-  const pub = await db.publication.findUnique({ where: { id } });
-  if (pub) {
-    await db.publication.update({
-      where: { id },
-      data: {
-        status: pub.status === "published" ? "draft" : "published",
-        publishedAt: pub.publishedAt ?? new Date(),
-      },
-    });
+  try {
+    const pub = await db.publication.findUnique({ where: { id } });
+    if (pub) {
+      await db.publication.update({
+        where: { id },
+        data: {
+          status: pub.status === "published" ? "draft" : "published",
+          publishedAt: pub.publishedAt ?? new Date(),
+        },
+      });
+    }
+  } catch {
+    // base indisponible : aucune modification
   }
   refreshSite();
   redirect("/admin/publications");

@@ -7,7 +7,6 @@ import { useReducedMotion, AnimatePresence, motion } from "framer-motion";
 import {
   Menu,
   X,
-  ArrowRight,
   ArrowUpRight,
   Linkedin,
   Twitter,
@@ -35,10 +34,11 @@ const MENU_PRIMARY = [
   { key: "training", href: "/formation" },
 ] as const;
 
-/* Colonne droite du menu plein écran */
+/* Colonne droite du menu plein écran — autres liens + rubrique éditoriale */
 const MENU_OTHERS = [
   { key: "about", href: "/a-propos" },
   { key: "contact", href: "/contact" },
+  { key: "articlesAnalyses", href: "/publications" },
 ] as const;
 
 export interface HeaderSocials {
@@ -128,8 +128,12 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
   const squareBase =
     "inline-flex size-11 shrink-0 items-center justify-center rounded-xl border transition-all duration-300 hover:border-mist/40 hover:bg-mist/15 hover:text-white";
 
+  /* Liens de la bande : soulignement fin qui s'étend depuis le centre
+     (style du site de référence) — aucun fond au survol */
   const linkBase =
-    "rounded-lg px-3 py-2 text-[0.76rem] font-medium uppercase tracking-[0.1em] transition-colors duration-300";
+    "relative rounded-lg px-3 py-2 text-[0.76rem] font-medium uppercase tracking-[0.1em] transition-colors duration-300 " +
+    "after:absolute after:bottom-0 after:left-1/2 after:h-px after:w-0 after:bg-white after:transition-all after:duration-300 " +
+    "hover:after:left-3 hover:after:w-[calc(100%-1.5rem)]";
 
   const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -174,7 +178,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
               className={`${linkBase} ${
                 isActive(pathname, item.href)
                   ? "text-white"
-                  : "text-silver hover:bg-white/[0.06] hover:text-white"
+                  : "text-silver hover:text-white"
               }`}
             >
               {t(`nav.${item.key}`)}
@@ -324,7 +328,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
                           {String(i + 1).padStart(2, "0")}
                         </span>
                         <span
-                          className={`font-serif text-[1.65rem] leading-tight transition-colors duration-300 md:text-[2.05rem] ${
+                          className={`relative font-serif text-[1.65rem] leading-tight transition-colors duration-300 after:absolute after:bottom-0 after:left-1/2 after:h-px after:w-0 after:bg-white after:transition-all after:duration-300 group-hover:after:left-0 group-hover:after:w-full md:text-[2.05rem] ${
                             isActive(pathname, item.href)
                               ? "text-white"
                               : "text-mist group-hover:text-white"
@@ -343,7 +347,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
                 </ul>
               </nav>
 
-              <aside className="lg:border-l lg:border-mist/10 lg:pl-12">
+              <aside className="lg:pl-12">
                 <motion.p
                   className="eyebrow"
                   initial={reduce ? false : { opacity: 0, y: 12 }}
@@ -367,22 +371,17 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
                       <Link
                         href={item.href}
                         onClick={closeMenu}
-                        className="group inline-flex items-center gap-3 py-2 text-[1.02rem] font-medium transition-colors duration-300"
+                        className="group py-2"
                       >
                         <span
-                          className={
+                          className={`relative text-[1.02rem] font-medium transition-colors duration-300 after:absolute after:bottom-0 after:left-1/2 after:h-px after:w-0 after:bg-white after:transition-all after:duration-300 group-hover:after:left-0 group-hover:after:w-full ${
                             isActive(pathname, item.href)
                               ? "text-white"
                               : "text-mist group-hover:text-white"
-                          }
+                          }`}
                         >
                           {t(`nav.${item.key}`)}
                         </span>
-                        <ArrowRight
-                          size={14}
-                          className="-translate-x-1 text-or opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
-                          aria-hidden="true"
-                        />
                       </Link>
                     </motion.li>
                   ))}

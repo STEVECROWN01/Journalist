@@ -4,7 +4,9 @@ import { Reveal } from "./reveal";
 interface CtaSectionProps {
   eyebrow?: string;
   title: string;
-  text: string;
+  text?: string;
+  /** Paragraphes alternatifs (remplacent `text` s'ils sont fournis) */
+  paragraphs?: string[];
   buttonLabel: string;
   buttonHref: string;
 }
@@ -14,9 +16,11 @@ export function CtaSection({
   eyebrow,
   title,
   text,
+  paragraphs,
   buttonLabel,
   buttonHref,
 }: CtaSectionProps) {
+  const lines = paragraphs ?? (text ? [text] : []);
   return (
     <section className="border-t border-mist/10 bg-ink-deep">
       <div className="mx-auto max-w-6xl px-6 py-24 md:py-32">
@@ -25,7 +29,15 @@ export function CtaSection({
           <h2 className="display-2 mt-6 max-w-3xl text-balance text-white">
             {title}
           </h2>
-          <p className="lede mt-6 max-w-2xl">{text}</p>
+          {lines.length > 0 ? (
+            <div className="mt-6 max-w-2xl space-y-4">
+              {lines.map((line, i) => (
+                <p key={i} className={i === 0 ? "lede" : "text-[1rem] leading-[1.85] text-silver/90"}>
+                  {line}
+                </p>
+              ))}
+            </div>
+          ) : null}
           <Link href={buttonHref} className="btn-accent mt-10">
             {buttonLabel}
             <svg

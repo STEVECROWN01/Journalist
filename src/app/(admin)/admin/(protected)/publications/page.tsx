@@ -1,11 +1,12 @@
 import Link from "next/link";
-import { Pencil, Trash2, Plus, Star } from "lucide-react";
+import { Pencil, Trash2, Plus } from "lucide-react";
 import { db } from "@/lib/db";
 import {
   deletePublication,
   togglePublicationStatus,
 } from "@/app/(admin)/admin/actions";
 import { ConfirmButton } from "@/components/admin/confirm-button";
+import { publicationCategoryLabel } from "@/lib/site";
 
 export const metadata = { title: "Publications" };
 export const dynamic = "force-dynamic";
@@ -19,7 +20,7 @@ export default async function AdminPublicationsPage({
   let publications: Awaited<ReturnType<typeof db.publication.findMany>> = [];
   try {
     publications = await db.publication.findMany({
-      orderBy: [{ featured: "desc" }, { publishedAt: "desc" }],
+      orderBy: [{ publishedAt: "desc" }, { createdAt: "desc" }],
     });
   } catch {
     // base indisponible
@@ -32,7 +33,7 @@ export default async function AdminPublicationsPage({
           <h1 className="font-serif text-[2rem] text-white">Publications</h1>
           <p className="mt-1 text-[0.9rem] text-steel">
             {publications.length} publication{publications.length > 1 ? "s" : ""} —
-            articles et analyses bilingues.
+            articles, analyses et reportages.
           </p>
         </div>
         <Link href="/admin/publications/new" className="btn-accent !min-h-10 !px-4 !text-[0.72rem]">
@@ -64,6 +65,7 @@ export default async function AdminPublicationsPage({
                 <th className="px-5 py-4 font-medium">Titre</th>
                 <th className="px-5 py-4 font-medium">Catégorie</th>
                 <th className="px-5 py-4 font-medium">Date</th>
+                <th className="px-5 py-4 font-medium">Langues</th>
                 <th className="px-5 py-4 font-medium">Statut</th>
                 <th className="px-5 py-4 text-right font-medium">Actions</th>
               </tr>
@@ -74,22 +76,32 @@ export default async function AdminPublicationsPage({
                   <td className="max-w-[280px] px-5 py-4">
                     <Link
                       href={`/admin/publications/${p.id}`}
-                      className="flex items-center gap-2 truncate text-white hover:text-mist"
+                      className="block truncate text-white hover:text-mist"
                     >
-                      {p.featured ? (
-                        <Star size={13} className="shrink-0 fill-sand text-sand" aria-label="À la une" />
-                      ) : null}
-                      <span className="truncate">{p.titleFr}</span>
+                      {p.titleFr}
                     </Link>
                     <span className="mt-0.5 block truncate text-[0.75rem] text-graphite">
                       /{p.slug}
                     </span>
                   </td>
-                  <td className="px-5 py-4 text-silver">{p.categoryFr}</td>
+                  <td className="px-5 py-4 text-silver">
+                    {publicationCategoryLabel(p.category, "fr")}
+                  </td>
                   <td className="px-5 py-4 text-steel">
-                    {new Date(p.publishedAt).toLocaleDateString("fr-FR")}
-                    <span className="block text-[0.72rem] text-graphite">
-                      {p.readingMinutes} min
+                    {p.publishedAt
+                      ? new Date(p.publishedAt).toLocaleDateString("fr-FR")
+                      : "—"}
+                  </td>
+                  <td className="px-5 py-4">
+                    <span className="inline-flex items-center gap-1.5 text-[0.72rem] font-semibold uppercase tracking-wide">
+                      <span className="rounded bg-mist/10 px-1.5 py-0.5 text-mist">FR</span>
+                      {p.titleEn && p.contentEn ? (
+                        <span className="rounded bg-vert/15 px-1.5 py-0.5 text-vert">EN</span>
+                      ) : (
+                        <span className="rounded bg-mist/5 px-1.5 py-0.5 text-graphite" title="Sans version anglaise, l'article n'apparaît que sur le site français">
+                          EN —
+                        </span>
+                      )}
                     </span>
                   </td>
                   <td className="px-5 py-4">
