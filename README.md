@@ -20,7 +20,7 @@ fonctionnel et **back-office propriétaire** de gestion de contenu.
 | Styles | Tailwind CSS 4 + design system éditorial dédié |
 | Composants | shadcn/ui (New York) + Lucide Icons |
 | Internationalisation | next-intl — `/fr/` et `/en/`, URLs localisées |
-| Base de données | Prisma ORM (SQLite en dev, PostgreSQL en production) |
+| Base de données | Prisma ORM + PostgreSQL (Railway) |
 | Animations | Framer Motion (respect de `prefers-reduced-motion`) |
 | SEO | Métadonnées, sitemap.xml, robots.txt, hreflang, Open Graph, Twitter Cards, JSON-LD |
 
@@ -64,8 +64,8 @@ bun install        # ou npm install
 # 2. Variables d'environnement
 cp .env.example .env
 
-# 3. Base de données (SQLite) + compte admin et catalogue productions
-bun run db:push
+# 3. Base de données : migrations + compte admin et catalogue productions
+bunx prisma migrate deploy
 bun run db:seed
 
 # 4. Serveur de développement
@@ -88,23 +88,49 @@ toute mise en production.**
 Le déploiement fonctionne immédiatement (détection Next.js automatique) :
 
 1. Importez le dépôt dans Vercel.
-2. (Optionnel mais recommandé) Ajoutez les variables d'environnement du
-   `.env.example` dans les réglages du projet.
+2. Ajoutez les variables d'environnement du `.env.example` dans les réglages
+   du projet (voir ci-dessous).
 
-### Deux modes de fonctionnement
+### Base de données PostgreSQL (Railway)
 
-- **Sans base de données** : le site public s'affiche intégralement (les
-  productions reposent sur le catalogue statique ; la rubrique Articles &
-  Analyses reste vide jusqu'à la première publication réelle). Le formulaire
-  de contact et le back-office signalent que la base n'est pas configurée.
-- **Avec base de données** (recommandé) : toutes les fonctions sont actives.
-  Créez une base PostgreSQL serverless gratuite (Neon, Supabase…), puis :
-  1. Dans `prisma/schema.prisma`, remplacez `provider = "sqlite"` par
-     `provider = "postgresql"` ;
-  2. Définissez `DATABASE_URL` dans Vercel ;
-  3. Exécutez `bun run db:push && bun run db:seed` localement contre cette
-     base (ou depuis un environnement de build) ;
-  4. Redéployez.
+Le projet est configuré pour **PostgreSQL** (fournisseur Railway). La chaîne
+de build (`scripts/vercel-build.sh`, exécutée automatiquement par Vercel via
+la clé `vercel-build` du `package.json`) :
+
+1. applique les migrations Prisma (`prisma migrate deploy`) ;
+2. amorce la base de manière idempotente — compte administrateur,
+   paramètres du site, catalogue des productions (`bun prisma/seed.ts`) ;
+3. compile l'application (`next build`).
+
+**Mise en place :**
+
+1. Sur [Railway](https://railway.app), créez un projet puis une base
+   **PostgreSQL** ; copiez la variable `DATABASE_URL` (URL publique
+   `postgresql://…`, onglet *Variables* du service).
+2. Dans Vercel > Settings > Environment Variables, définissez :
+
+   | Variable | Rôle |
+   | --- | --- |
+   | `DATABASE_URL` | URL PostgreSQL publique Railway |
+   | `ADMIN_EMAIL` | identifiant de connexion au back-office |
+   | `ADMIN_PASSWORD` | mot de passe administrateur |
+   | `ADMIN_SESSION_SECRET` | clé de signature des sessions (valeur longue et aléatoire) |
+   | `NEXT_PUBLIC_SITE_URL` | URL publique du site (métadonnées, sitemap) |
+
+3. Redéployez : les tables sont créées et amorcées automatiquement pendant
+   le build. Aucune commande manuelle n'est nécessaire.
+
+**Remarques :**
+
+- Modifier `ADMIN_PASSWORD` dans Vercel puis redéployer resynchronise le mot
+  de passe du compte administrateur (les variables restent la source de vérité).
+- Sans `DATABASE_URL` (p. ex. déploiement de prévisualisation), le build
+  continue en mode repli statique : le site public s'affiche (les productions
+  reposent sur le catalogue statique ; la rubrique Articles & Analyses reste
+  vide jusqu'à la première publication réelle), le formulaire de contact et le
+  back-office signalent que la base n'est pas configurée.
+- Le back-office est accessible exclusivement par son URL (`/admin`),
+  volontairement non référencé (robots.txt + noindex) et sans lien public.
 
 ## Guide du back-office
 

@@ -27,9 +27,8 @@
     },
     "footer": {
       "baseline": "International journalism · Documentary productions · Editorial collaborations",
-      "tagline": "A professional space devoted to international realities, to storytelling and to the understanding of contexts.",
       "rights": "All rights reserved.",
-      "ownerSpace": "Owner area",
+      "legal": "Legal notice",
       "colExpertises": "Expertise",
       "colProfessional": "Professional",
       "exploreTitle": "Explore the publications",
@@ -479,6 +478,66 @@
     "direct": {
       "eyebrow": "Write directly",
       "title": "A direct exchange"
+    }
+  },
+  "legal": {
+    "meta": {
+      "title": "Legal notices",
+      "description": "Legal notices: site publisher, hosting provider, director of publication, intellectual property, personal data (GDPR), cookies and governing law."
+    },
+    "hero": {
+      "eyebrow": "Legal information",
+      "title": "Legal notices",
+      "intro": "The information below identifies the site publisher and its hosting provider, and sets out the terms of use of the content as well as the processing of personal data.",
+      "updated": "Last updated: November 2026"
+    },
+    "publisher": {
+      "eyebrow": "Publisher",
+      "title": "Site publisher",
+      "p1": "This website is the professional showcase of its owner, an independent journalist: international journalism, documentary productions, communications & consulting and training.",
+      "name": "Name",
+      "activity": "Activity",
+      "activityValue": "Independent journalist — print media and audiovisual production",
+      "email": "Email",
+      "phone": "Phone",
+      "city": "Address"
+    },
+    "host": {
+      "eyebrow": "Hosting",
+      "title": "Website hosting",
+      "p1": "The website is hosted by Vercel Inc., a web application hosting platform headquartered in the United States.",
+      "hostName": "Host",
+      "hostNameValue": "Vercel Inc.",
+      "hostSite": "Website"
+    },
+    "publication": {
+      "eyebrow": "Publication",
+      "title": "Director of publication",
+      "p1": "The direction of the publication of the website is ensured by the site publisher, identified in the “Publisher” section above."
+    },
+    "ip": {
+      "eyebrow": "Intellectual property",
+      "title": "Intellectual property",
+      "p1": "All content presented on this website — texts, articles, analyses, photographs, videos, visual identity and graphic elements — is protected by intellectual property law.",
+      "p2": "Any reproduction, representation, modification or distribution, in whole or in part, on any medium whatsoever, is prohibited without the prior written authorisation of the publisher. Any brands or organisations mentioned belong to their respective owners."
+    },
+    "privacy": {
+      "eyebrow": "Personal data",
+      "title": "Personal data (GDPR)",
+      "p1": "The information entered in the contact form (name, organisation, email, subject and message) is used exclusively to respond to the requests received. It is not sold, rented or passed on to third parties.",
+      "p2": "In accordance with the General Data Protection Regulation (GDPR), you have a right of access, rectification, erasure, restriction and objection with regard to your personal data.",
+      "p3": "To exercise these rights, send your request to the contact email address indicated in the “Publisher” section. Each request is processed within a maximum of one month."
+    },
+    "cookies": {
+      "eyebrow": "Cookies",
+      "title": "Cookies",
+      "p1": "The website uses no advertising cookies or third-party trackers. Only technical cookies strictly necessary for the operation of the website and the security of access may be stored.",
+      "p2": "No browsing data is used for statistical or commercial purposes."
+    },
+    "law": {
+      "eyebrow": "Governing law",
+      "title": "Governing law",
+      "p1": "This website is governed by French law. In the event of a dispute relating to its use, and failing an amicable resolution, the French courts shall have sole jurisdiction."
     }
   }
 }

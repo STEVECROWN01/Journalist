@@ -1,13 +1,13 @@
 // Schéma de données de la plateforme éditoriale
-// SQLite en développement/démonstration — basculer sur PostgreSQL
-// (provider "postgresql" + DATABASE_URL) pour la production Vercel.
+// PostgreSQL (Railway) — la variable DATABASE_URL doit contenir l'URL
+// publique fournie par Railway (postgresql://…).
 
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -82,7 +82,7 @@ model ContactMessage {
 model SiteSettings {
   id        String   @id @default("main")
   ownerName String   @default("Alexandre Morel")
-  baseCity  String   @default("Paris")
+  baseCity  String   @default("Paris, France")
   email     String   @default("contact@alexandre-morel.example")
   phone     String   @default("+33 (0)1 00 00 00 00")
   linkedin  String   @default("https://www.linkedin.com/in/alexandre-morel")

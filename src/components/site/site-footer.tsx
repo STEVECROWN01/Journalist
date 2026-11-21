@@ -82,50 +82,42 @@ export async function SiteFooter() {
       <div className="relative mx-auto max-w-6xl px-6 pb-2.5 pt-12 sm:pt-[50px]">
         <Reveal>
           <div className="grid gap-12 pb-10 lg:grid-cols-[minmax(0,440px)_minmax(0,1fr)] lg:gap-4">
-            {/* Identité : nom, réseaux, signature, contact */}
+            {/* Identité : nom, signature, réseaux, coordonnées */}
             <div>
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
-                <p className="font-serif text-[1.55rem] leading-none text-white">
-                  Alexandre&nbsp;Morel<span className="text-or">.</span>
-                </p>
-                <div className="flex items-center gap-2.5 pb-2.5">
-                  {socials.map(({ key, href, label, Icon, hover }) => (
-                    <a
-                      key={key}
-                      href={href}
-                      target={key === "email" ? undefined : "_blank"}
-                      rel={key === "email" ? undefined : "noopener noreferrer"}
-                      aria-label={label}
-                      className={`${iconClass} ${hover}`}
-                    >
-                      <Icon
-                        size={14}
-                        aria-hidden="true"
-                        className="sm:hidden"
-                      />
-                      <Icon
-                        size={15}
-                        aria-hidden="true"
-                        className="hidden sm:block"
-                      />
-                    </a>
-                  ))}
-                </div>
-              </div>
+              <p className="font-serif text-[1.55rem] leading-none text-white">
+                Alexandre&nbsp;Morel<span className="text-or">.</span>
+              </p>
 
               <p className="mt-5 max-w-[294px] text-sm leading-relaxed text-silver">
                 {t("footer.baseline")}
               </p>
-              <p className="mt-3 max-w-[330px] text-[0.82rem] leading-relaxed text-steel">
-                {t("footer.tagline")}
-              </p>
+
+              {/* Réseaux — cercles blancs, couleur propre à chaque réseau au survol */}
+              <div className="mt-5 flex flex-wrap items-center gap-2.5">
+                {socials.map(({ key, href, label, Icon, hover }) => (
+                  <a
+                    key={key}
+                    href={href}
+                    target={key === "email" ? undefined : "_blank"}
+                    rel={key === "email" ? undefined : "noopener noreferrer"}
+                    aria-label={label}
+                    className={`${iconClass} ${hover}`}
+                  >
+                    <Icon
+                      size={14}
+                      aria-hidden="true"
+                      className="sm:hidden"
+                    />
+                    <Icon
+                      size={15}
+                      aria-hidden="true"
+                      className="hidden sm:block"
+                    />
+                  </a>
+                ))}
+              </div>
 
               <ul className="mt-6 space-y-2 text-[0.85rem] text-steel">
-                <li>
-                  <a href={`mailto:${settings.email}`} className="footer-link break-all text-mist">
-                    {settings.email}
-                  </a>
-                </li>
                 <li>
                   <a
                     href={`tel:${settings.phone.replace(/[^+\d]/g, "")}`}
@@ -220,17 +212,17 @@ export async function SiteFooter() {
         {/* Filet dégradé qui s'estompe aux extrémités */}
         <div aria-hidden="true" className="footer-separator footer-separator-half" />
 
-        {/* Barre inférieure : © + espace propriétaire */}
+        {/* Barre inférieure : © + mentions légales */}
         <div className="flex items-center justify-between gap-3 py-4 text-[0.8rem] sm:text-[0.92rem]">
           <p className="whitespace-nowrap text-mist">
             © {year} {settings.ownerName} — {t("footer.rights")}
           </p>
-          <a
-            href="/admin"
-            className="footer-link whitespace-nowrap uppercase tracking-[0.12em] text-white"
+          <Link
+            href="/mentions-legales"
+            className="footer-link whitespace-nowrap text-mist"
           >
-            {t("footer.ownerSpace")}
-          </a>
+            {t("footer.legal")}
+          </Link>
         </div>
       </div>
     </footer>

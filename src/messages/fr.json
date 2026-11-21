@@ -27,9 +27,8 @@
     },
     "footer": {
       "baseline": "Journalisme international · Productions documentaires · Collaborations éditoriales",
-      "tagline": "Un espace professionnel consacré aux réalités internationales, aux récits et à la compréhension des contextes.",
       "rights": "Tous droits réservés.",
-      "ownerSpace": "Espace propriétaire",
+      "legal": "Mentions légales",
       "colExpertises": "Expertises",
       "colProfessional": "Professionnel",
       "exploreTitle": "Explorer les publications",
@@ -479,6 +478,66 @@
     "direct": {
       "eyebrow": "Écrire directement",
       "title": "Un échange direct"
+    }
+  },
+  "legal": {
+    "meta": {
+      "title": "Mentions légales",
+      "description": "Mentions légales du site : éditeur, hébergement, directeur de la publication, propriété intellectuelle, données personnelles (RGPD), cookies et droit applicable."
+    },
+    "hero": {
+      "eyebrow": "Informations juridiques",
+      "title": "Mentions légales",
+      "intro": "Les informations ci-dessous identifient l'éditeur du site et son hébergeur, et précisent les conditions d'utilisation des contenus ainsi que le traitement des données personnelles.",
+      "updated": "Dernière mise à jour : novembre 2026"
+    },
+    "publisher": {
+      "eyebrow": "Éditeur",
+      "title": "Éditeur du site",
+      "p1": "Le présent site est la vitrine professionnelle de son propriétaire, journaliste indépendant : journalisme international, productions documentaires, communication & conseil et formation.",
+      "name": "Nom",
+      "activity": "Activité",
+      "activityValue": "Journaliste indépendant — presse écrite et production audiovisuelle",
+      "email": "Courriel",
+      "phone": "Téléphone",
+      "city": "Adresse"
+    },
+    "host": {
+      "eyebrow": "Hébergement",
+      "title": "Hébergement du site",
+      "p1": "Le site est hébergé par Vercel Inc., plateforme d'hébergement d'applications web, dont le siège est situé aux États-Unis.",
+      "hostName": "Hébergeur",
+      "hostNameValue": "Vercel Inc.",
+      "hostSite": "Site web"
+    },
+    "publication": {
+      "eyebrow": "Publication",
+      "title": "Directeur de la publication",
+      "p1": "La direction de la publication du site est assurée par l'éditeur du site, identifié dans la rubrique « Éditeur » ci-dessus."
+    },
+    "ip": {
+      "eyebrow": "Propriété intellectuelle",
+      "title": "Propriété intellectuelle",
+      "p1": "L'ensemble des contenus présentés sur ce site — textes, articles, analyses, photographies, vidéos, identité visuelle et éléments graphiques — est protégé par le droit de la propriété intellectuelle.",
+      "p2": "Toute reproduction, représentation, modification ou diffusion, totale ou partielle, sur quelque support que ce soit, est interdite sans l'autorisation écrite préalable de l'éditeur. Les marques et organismes éventuellement cités appartiennent à leurs propriétaires respectifs."
+    },
+    "privacy": {
+      "eyebrow": "Données personnelles",
+      "title": "Données personnelles (RGPD)",
+      "p1": "Les informations saisies dans le formulaire de contact (nom, organisation, courriel, sujet et message) sont utilisées exclusivement pour répondre aux demandes reçues. Elles ne font l'objet d'aucune cession, location ou transmission à des tiers.",
+      "p2": "Conformément au Règlement général sur la protection des données (RGPD) et à la loi Informatique et Libertés, vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation et d'opposition sur les données vous concernant.",
+      "p3": "Pour exercer ces droits, adressez votre demande au courriel de contact indiqué dans la rubrique « Éditeur ». Chaque demande est traitée dans un délai maximum d'un mois."
+    },
+    "cookies": {
+      "eyebrow": "Cookies",
+      "title": "Cookies",
+      "p1": "Le site n'utilise aucun cookie publicitaire ni traceur tiers. Seuls des cookies techniques strictement nécessaires au fonctionnement du site et à la sécurité des accès peuvent être déposés.",
+      "p2": "Aucune donnée de navigation n'est exploitée à des fins statistiques ou commerciales."
+    },
+    "law": {
+      "eyebrow": "Droit applicable",
+      "title": "Droit applicable",
+      "p1": "Le présent site est soumis au droit français. En cas de litige relatif à son utilisation, et à défaut de résolution amiable, les tribunaux français seront seuls compétents."
     }
   }
 }

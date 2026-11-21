@@ -1,6 +1,6 @@
 import { db } from "@/lib/db";
 import { demoProductions } from "@/content/demo";
-import { hashPassword } from "@/lib/auth";
+import { hashPassword, verifyPassword } from "@/lib/auth";
 
 /**
  * Amorçage de la base : compte administrateur, paramètres du site et
@@ -14,6 +14,12 @@ async function main() {
   /* Compte administrateur */
   const email = process.env.ADMIN_EMAIL ?? "admin@alexandre-morel.example";
   const password = process.env.ADMIN_PASSWORD ?? "Demo-2026!";
+  if (process.env.VERCEL && !process.env.ADMIN_PASSWORD) {
+    console.warn(
+      "  ⚠ ADMIN_PASSWORD absente des variables d'environnement Vercel — " +
+        "le mot de passe de démonstration est utilisé. Définissez-la dans les réglages du projet."
+    );
+  }
   const existingAdmin = await db.adminUser.findUnique({ where: { email } });
   if (!existingAdmin) {
     await db.adminUser.create({
@@ -24,6 +30,14 @@ async function main() {
       },
     });
     console.log(`  ✓ Administrateur créé : ${email}`);
+  } else if (!verifyPassword(password, existingAdmin.passwordHash)) {
+    // Le mot de passe défini dans l'environnement a changé : on resynchronise
+    // le compte (les variables d'environnement restent la source de vérité).
+    await db.adminUser.update({
+      where: { email },
+      data: { passwordHash: hashPassword(password) },
+    });
+    console.log(`  ✓ Mot de passe administrateur resynchronisé : ${email}`);
   } else {
     console.log("  • Administrateur déjà présent");
   }
@@ -35,7 +49,7 @@ async function main() {
       data: {
         id: "main",
         ownerName: "Alexandre Morel",
-        baseCity: "Paris",
+        baseCity: "Paris, France",
         email: "contact@alexandre-morel.example",
         phone: "+33 (0)1 00 00 00 00",
         linkedin: "https://www.linkedin.com/in/alexandre-morel",

@@ -22,6 +22,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     "/formation": { fr: "/formation", en: "/training" },
     "/contact": { fr: "/contact", en: "/contact" },
+    "/mentions-legales": { fr: "/mentions-legales", en: "/legal-notices" },
   };
 
   const entries: MetadataRoute.Sitemap = [];

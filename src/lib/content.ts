@@ -217,7 +217,7 @@ export async function getProductionBySlug(
 
 const defaultSettings: SettingsView = {
   ownerName: "Alexandre Morel",
-  baseCity: "Paris",
+  baseCity: "Paris, France",
   email: "contact@alexandre-morel.example",
   phone: "+33 (0)1 00 00 00 00",
   linkedin: "https://www.linkedin.com/in/alexandre-morel",
