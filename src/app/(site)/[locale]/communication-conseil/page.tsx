@@ -58,7 +58,7 @@ export default async function CommsPage({
               <div className="mt-8 max-w-2xl space-y-5 text-[1rem] leading-[1.85] text-silver/90">
                 <p className="lede">{t("approach.p1")}</p>
               </div>
-              <p className="mt-8 max-w-xl border-l-2 border-rouge pl-6 font-serif text-[1.25rem] leading-[1.6] text-white">
+              <p className="mt-8 max-w-xl border-l-2 border-or pl-6 font-serif text-[1.25rem] leading-[1.6] text-white">
                 {t("approach.p2")}
               </p>
               <Link href="/contact" className="btn-accent mt-10">

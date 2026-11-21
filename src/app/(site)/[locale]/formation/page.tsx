@@ -59,7 +59,7 @@ export default async function TrainingPage({
                 <p className="lede">{t("interventions.p1")}</p>
                 <p>{t("interventions.p2")}</p>
               </div>
-              <p className="mt-8 max-w-xl border-l-2 border-rouge pl-6 font-serif text-[1.25rem] leading-[1.6] text-white">
+              <p className="mt-8 max-w-xl border-l-2 border-or pl-6 font-serif text-[1.25rem] leading-[1.6] text-white">
                 {t("interventions.p3")}
               </p>
               <Link href="/contact" className="btn-accent mt-10">

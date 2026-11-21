@@ -102,7 +102,7 @@ export function ContactForm() {
       <div className="grid gap-6 sm:grid-cols-2">
         <div>
           <label htmlFor="contact-name" className="mb-2 block text-[0.85rem] font-medium text-mist">
-            {t("name")} <span className="text-rouge" aria-hidden="true">*</span>
+            {t("name")} <span className="text-or" aria-hidden="true">*</span>
           </label>
           <input
             id="contact-name"
@@ -115,12 +115,12 @@ export function ContactForm() {
             aria-describedby={errors.name ? "err-name" : undefined}
             className={`h-12 w-full rounded-lg border bg-surface/60 px-4 text-[0.95rem] text-white placeholder:text-graphite focus:outline-none focus:ring-2 ${
               errors.name
-                ? "border-rouge focus:ring-rouge/40"
-                : "border-mist/20 focus:border-mist/50 focus:ring-rouge/30"
+                ? "border-destructive focus:ring-destructive/40"
+                : "border-mist/20 focus:border-mist/50 focus:ring-or/30"
             }`}
           />
           {errors.name ? (
-            <p id="err-name" className="mt-2 text-[0.8rem] text-rouge">
+            <p id="err-name" className="mt-2 text-[0.8rem] text-destructive">
               {errors.name}
             </p>
           ) : null}
@@ -136,14 +136,14 @@ export function ContactForm() {
             type="text"
             autoComplete="organization"
             placeholder={t("organizationPlaceholder")}
-            className="h-12 w-full rounded-lg border border-mist/20 bg-surface/60 px-4 text-[0.95rem] text-white placeholder:text-graphite focus:border-mist/50 focus:outline-none focus:ring-2 focus:ring-rouge/30"
+            className="h-12 w-full rounded-lg border border-mist/20 bg-surface/60 px-4 text-[0.95rem] text-white placeholder:text-graphite focus:border-mist/50 focus:outline-none focus:ring-2 focus:ring-or/30"
           />
         </div>
       </div>
 
       <div>
         <label htmlFor="contact-email" className="mb-2 block text-[0.85rem] font-medium text-mist">
-          {t("email")} <span className="text-rouge" aria-hidden="true">*</span>
+          {t("email")} <span className="text-or" aria-hidden="true">*</span>
         </label>
         <input
           id="contact-email"
@@ -156,12 +156,12 @@ export function ContactForm() {
           aria-describedby={errors.email ? "err-email" : undefined}
           className={`h-12 w-full rounded-lg border bg-surface/60 px-4 text-[0.95rem] text-white placeholder:text-graphite focus:outline-none focus:ring-2 ${
             errors.email
-              ? "border-rouge focus:ring-rouge/40"
-              : "border-mist/20 focus:border-mist/50 focus:ring-rouge/30"
+              ? "border-destructive focus:ring-destructive/40"
+              : "border-mist/20 focus:border-mist/50 focus:ring-or/30"
           }`}
         />
         {errors.email ? (
-          <p id="err-email" className="mt-2 text-[0.8rem] text-rouge">
+          <p id="err-email" className="mt-2 text-[0.8rem] text-destructive">
             {errors.email}
           </p>
         ) : null}
@@ -169,7 +169,7 @@ export function ContactForm() {
 
       <div>
         <label htmlFor="contact-subject" className="mb-2 block text-[0.85rem] font-medium text-mist">
-          {t("subject")} <span className="text-rouge" aria-hidden="true">*</span>
+          {t("subject")} <span className="text-or" aria-hidden="true">*</span>
         </label>
         <select
           id="contact-subject"
@@ -180,8 +180,8 @@ export function ContactForm() {
           aria-describedby={errors.subject ? "err-subject" : undefined}
           className={`h-12 w-full appearance-none rounded-lg border bg-surface/60 px-4 text-[0.95rem] text-white focus:outline-none focus:ring-2 ${
             errors.subject
-              ? "border-rouge focus:ring-rouge/40"
-              : "border-mist/20 focus:border-mist/50 focus:ring-rouge/30"
+              ? "border-destructive focus:ring-destructive/40"
+              : "border-mist/20 focus:border-mist/50 focus:ring-or/30"
           }`}
         >
           <option value="" disabled>
@@ -194,7 +194,7 @@ export function ContactForm() {
           ))}
         </select>
         {errors.subject ? (
-          <p id="err-subject" className="mt-2 text-[0.8rem] text-rouge">
+          <p id="err-subject" className="mt-2 text-[0.8rem] text-destructive">
             {errors.subject}
           </p>
         ) : null}
@@ -202,7 +202,7 @@ export function ContactForm() {
 
       <div>
         <label htmlFor="contact-message" className="mb-2 block text-[0.85rem] font-medium text-mist">
-          {t("message")} <span className="text-rouge" aria-hidden="true">*</span>
+          {t("message")} <span className="text-or" aria-hidden="true">*</span>
         </label>
         <textarea
           id="contact-message"
@@ -214,12 +214,12 @@ export function ContactForm() {
           aria-describedby={errors.message ? "err-message" : undefined}
           className={`w-full resize-y rounded-lg border bg-surface/60 px-4 py-3 text-[0.95rem] leading-relaxed text-white placeholder:text-graphite focus:outline-none focus:ring-2 ${
             errors.message
-              ? "border-rouge focus:ring-rouge/40"
-              : "border-mist/20 focus:border-mist/50 focus:ring-rouge/30"
+              ? "border-destructive focus:ring-destructive/40"
+              : "border-mist/20 focus:border-mist/50 focus:ring-or/30"
           }`}
         />
         {errors.message ? (
-          <p id="err-message" className="mt-2 text-[0.8rem] text-rouge">
+          <p id="err-message" className="mt-2 text-[0.8rem] text-destructive">
             {errors.message}
           </p>
         ) : null}
@@ -227,14 +227,14 @@ export function ContactForm() {
 
       {/* Erreur serveur */}
       {state.status === "error" ? (
-        <p className="rounded-lg border border-rouge/40 bg-rouge/10 px-4 py-3 text-[0.88rem] text-mist" role="alert">
+        <p className="rounded-lg border border-destructive/40 bg-destructive/10 px-4 py-3 text-[0.88rem] text-mist" role="alert">
           {t(`errors.${state.code ?? "generic"}`)}
         </p>
       ) : null}
 
       <div className="flex items-center justify-between gap-4">
         <p className="text-[0.75rem] leading-relaxed text-graphite">
-          <span className="text-rouge" aria-hidden="true">*</span>{" "}
+          <span className="text-or" aria-hidden="true">*</span>{" "}
           {locale === "fr" ? "Champs obligatoires" : "Required fields"}
         </p>
         <button type="submit" disabled={pending} className="btn-accent">

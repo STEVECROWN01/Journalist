@@ -167,6 +167,7 @@ export function HomeMarquee({
           position: 0,
           rendered: 0,
           resumeAt: 0,
+          hovered: false,
         }));
       const measure = () => {
         tracks.forEach((track) => {
@@ -193,7 +194,15 @@ export function HomeMarquee({
             track.rendered = track.lane.scrollLeft;
             track.resumeAt = time + 0.8;
           }
-          if (time < track.resumeAt || inspecting || !track.period) continue;
+          /* Survol du pointeur : la voie s'interrompt pour laisser le
+             temps de lire ou de cliquer ; elle reprend au retrait. */
+          if (
+            time < track.resumeAt ||
+            track.hovered ||
+            inspecting ||
+            !track.period
+          )
+            continue;
           track.position = gsap.utils.wrap(
             0,
             track.period,
@@ -204,6 +213,19 @@ export function HomeMarquee({
         }
       };
       measure();
+      /* Pause au survol d'une voie, reprise au retrait du curseur. */
+      const setHover = (event: PointerEvent, value: boolean) => {
+        const track = tracks.find((t) => t.lane === event.currentTarget);
+        if (!track) return;
+        track.hovered = value;
+        if (!value) track.resumeAt = 0;
+      };
+      const onEnter = (event: PointerEvent) => setHover(event, true);
+      const onLeave = (event: PointerEvent) => setHover(event, false);
+      tracks.forEach((track) => {
+        track.lane.addEventListener("pointerenter", onEnter);
+        track.lane.addEventListener("pointerleave", onLeave);
+      });
       const resize = new ResizeObserver(measure);
       tracks.forEach((track) => resize.observe(track.group));
       const view = new IntersectionObserver(([entry]) => {
@@ -212,6 +234,10 @@ export function HomeMarquee({
       });
       view.observe(strip);
       return () => {
+        tracks.forEach((track) => {
+          track.lane.removeEventListener("pointerenter", onEnter);
+          track.lane.removeEventListener("pointerleave", onLeave);
+        });
         resize.disconnect();
         view.disconnect();
         gsap.ticker.remove(tick);

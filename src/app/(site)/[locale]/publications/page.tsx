@@ -72,7 +72,7 @@ export default async function PublicationsPage({
 
           {featured ? (
             <Reveal className="mt-14">
-              <p className="eyebrow !text-rouge">{t("featured.label")}</p>
+              <p className="eyebrow !text-or">{t("featured.label")}</p>
               <div className="mt-8">
                 <PublicationCard publication={featured} featured labels={labels} />
               </div>

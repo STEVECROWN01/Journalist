@@ -234,7 +234,7 @@ export function HomeIntro({
           <p className="lede dt-editorial-text">{copy.p1}</p>
           <p className="dt-editorial-text">{copy.p2}</p>
           <p className="dt-editorial-text">{copy.p3}</p>
-          <p className="dt-editorial-text border-l-2 border-rouge pl-6 text-white">
+          <p className="dt-editorial-text border-l-2 border-or pl-6 text-white">
             {copy.p4}
           </p>
         </div>

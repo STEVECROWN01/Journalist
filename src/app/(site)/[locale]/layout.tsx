@@ -4,7 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Source_Serif_4, Source_Sans_3 } from "next/font/google";
 import { routing } from "@/i18n/routing";
-import { site } from "@/lib/site";
+import { site, SEO_KEYWORDS } from "@/lib/site";
 import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
 import { SmoothScroll } from "@/components/site/smooth-scroll";
@@ -47,6 +47,10 @@ export async function generateMetadata({
       template: `%s — ${site.name}`,
     },
     description: t("description"),
+    keywords: SEO_KEYWORDS[locale === "en" ? "en" : "fr"],
+    authors: [{ name: site.name, url: `${site.siteUrl}/${locale}` }],
+    creator: site.name,
+    applicationName: site.name,
     alternates: {
       canonical: `${site.siteUrl}/${locale}`,
       languages: {

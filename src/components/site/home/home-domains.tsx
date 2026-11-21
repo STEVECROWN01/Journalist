@@ -76,13 +76,16 @@ export function HomeDomains({
 
           /* Une séquence réversible : la ligne se trace, les plaques
              arrivent le long de leur courbe, puis photographie et
-             cartouche s'ouvrent. Rien ne tourne en boucle au repos. */
+             cartouche s'ouvrent. Rien ne tourne en boucle au repos.
+             Le déclenchement est précoce : la composition est entièrement
+             révélée pendant que la section occupe l'écran, jamais après
+             l'avoir presque dépassée. */
           const peopleTimeline = gsap.timeline({
             defaults: { ease: "power2.out" },
             scrollTrigger: {
               trigger: root.current,
-              start: "clamp(top 72%)",
-              end: "clamp(bottom 92%)",
+              start: "clamp(top 85%)",
+              end: "clamp(center 55%)",
               scrub: 0.6,
               invalidateOnRefresh: true,
             },
@@ -309,7 +312,7 @@ export function HomeDomains({
           <Reveal key={domain.key} delay={i * 0.06}>
             <Link
               href={domain.href}
-              className="group flex h-full flex-col border-t border-mist/15 pt-6 transition-colors duration-300 hover:border-rouge/60"
+              className="group flex h-full flex-col border-t border-mist/15 pt-6 transition-colors duration-300 hover:border-or/60"
             >
               <span className="font-serif text-[1.1rem] italic text-steel">
                 {domain.num}

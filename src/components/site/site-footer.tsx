@@ -1,125 +1,198 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { ArrowUpRight, Linkedin, Twitter, Video, MapPin } from "lucide-react";
+import {
+  Linkedin,
+  Mail,
+  MapPin,
+  Twitter,
+  Video,
+} from "lucide-react";
 import { getSettings } from "@/lib/content";
+import { Reveal } from "./reveal";
 
-/** Pied de page éditorial, noir profond : identité, navigation, contact. */
+/**
+ * Pied de page — présentation calquée sur le site de référence :
+ * identité + réseaux à gauche, deux colonnes de navigation à droite,
+ * filet dégradé centré, barre inférieure © + lien. Noir profond.
+ */
 export async function SiteFooter() {
   const t = await getTranslations("common");
   const settings = await getSettings();
   const year = new Date().getFullYear();
 
-  /* Navigation : Journalisme · Documentaire · Publication · Production ·
-     À propos · Contact */
-  const navLinks = [
-    { key: "journalismShort", href: "/journalisme" },
+  /* Colonne « Expertises » : les quatre domaines d'intervention */
+  const expertiseLinks = [
+    { key: "journalism", href: "/journalisme" },
     { key: "documentary", href: "/documentaire" },
+    { key: "comms", href: "/communication-conseil" },
+    { key: "training", href: "/formation" },
+  ] as const;
+
+  /* Colonne « Professionnel » : publications, productions, à propos, contact */
+  const professionalLinks = [
     { key: "publications", href: "/publications" },
     { key: "productions", href: "/productions" },
     { key: "about", href: "/a-propos" },
     { key: "contact", href: "/contact" },
   ] as const;
 
+  /* Réseaux — cercles blancs, couleur propre à chaque réseau au survol */
+  const socials = [
+    {
+      key: "email",
+      href: `mailto:${settings.email}`,
+      label: "Email",
+      Icon: Mail,
+      hover: "hover:bg-ink hover:text-white",
+    },
+    {
+      key: "linkedin",
+      href: settings.linkedin,
+      label: "LinkedIn",
+      Icon: Linkedin,
+      hover: "hover:bg-[#0A66C2] hover:text-white",
+    },
+    {
+      key: "twitter",
+      href: settings.twitter,
+      label: "X (Twitter)",
+      Icon: Twitter,
+      hover: "hover:bg-black hover:text-white",
+    },
+    {
+      key: "vimeo",
+      href: settings.vimeo,
+      label: "Vimeo",
+      Icon: Video,
+      hover: "hover:bg-[#1ab7ea] hover:text-white",
+    },
+  ];
+
+  const iconClass =
+    "flex h-8 w-8 items-center justify-center rounded-full bg-white text-ink transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-4 sm:h-9 sm:w-9";
+
   return (
-    <footer className="border-t border-mist/10 bg-ink-deep">
-      <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1.2fr]">
-          {/* Identité */}
-          <div>
-            <p className="font-serif text-[1.5rem] text-white">
-              Alexandre&nbsp;Morel<span className="text-rouge">.</span>
-            </p>
-            <p className="mt-4 max-w-sm font-serif text-[1.02rem] leading-snug text-mist">
-              {t("footer.baseline")}
-            </p>
-            <p className="mt-4 max-w-sm text-[0.9rem] leading-relaxed text-steel">
-              {t("footer.tagline")}
-            </p>
-            <Link href="/contact" className="btn-accent mt-7">
-              {t("cta.header")}
-              <ArrowUpRight size={14} aria-hidden="true" />
-            </Link>
-          </div>
+    <footer className="relative mt-auto overflow-hidden bg-ink-deep text-white">
+      {/* Liseré lumineux supérieur, comme sur le site de référence */}
+      <div
+        aria-hidden="true"
+        className="footer-glow pointer-events-none absolute inset-x-0 top-0 h-12 sm:h-14"
+      />
 
-          {/* Navigation */}
-          <nav aria-label={t("footer.navigate")}>
-            <p className="meta">{t("footer.navigate")}</p>
-            <ul className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-1">
-              {navLinks.map((l) => (
-                <li key={l.key}>
-                  <Link
-                    href={l.href}
-                    className="link-editorial text-[0.92rem]"
-                  >
-                    {t(`nav.${l.key}`)}
-                  </Link>
+      <div className="relative mx-auto max-w-6xl px-6 pb-2.5 pt-12 sm:pt-[50px]">
+        <Reveal>
+          <div className="grid gap-12 pb-10 lg:grid-cols-[minmax(0,440px)_minmax(0,1fr)] lg:gap-4">
+            {/* Identité : nom, réseaux, signature, contact */}
+            <div>
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
+                <p className="font-serif text-[1.55rem] leading-none text-white">
+                  Alexandre&nbsp;Morel<span className="text-or">.</span>
+                </p>
+                <div className="flex items-center gap-2.5 pb-2.5">
+                  {socials.map(({ key, href, label, Icon, hover }) => (
+                    <a
+                      key={key}
+                      href={href}
+                      target={key === "email" ? undefined : "_blank"}
+                      rel={key === "email" ? undefined : "noopener noreferrer"}
+                      aria-label={label}
+                      className={`${iconClass} ${hover}`}
+                    >
+                      <Icon
+                        size={14}
+                        aria-hidden="true"
+                        className="sm:hidden"
+                      />
+                      <Icon
+                        size={15}
+                        aria-hidden="true"
+                        className="hidden sm:block"
+                      />
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <p className="mt-5 max-w-[294px] text-sm leading-relaxed text-silver">
+                {t("footer.baseline")}
+              </p>
+              <p className="mt-3 max-w-[330px] text-[0.82rem] leading-relaxed text-steel">
+                {t("footer.tagline")}
+              </p>
+
+              <ul className="mt-6 space-y-2 text-[0.85rem] text-steel">
+                <li>
+                  <a href={`mailto:${settings.email}`} className="footer-link break-all text-mist">
+                    {settings.email}
+                  </a>
                 </li>
-              ))}
-            </ul>
-          </nav>
+                <li>
+                  <a
+                    href={`tel:${settings.phone.replace(/[^+\d]/g, "")}`}
+                    className="footer-link text-mist"
+                  >
+                    {settings.phone}
+                  </a>
+                </li>
+                <li className="flex items-center gap-2">
+                  <MapPin size={13} className="shrink-0" aria-hidden="true" />
+                  {settings.baseCity}
+                </li>
+              </ul>
+            </div>
 
-          {/* Contact */}
-          <div>
-            <p className="meta">{t("footer.contactTitle")}</p>
-            <ul className="mt-5 space-y-3 text-[0.92rem] text-steel">
-              <li>
-                <a
-                  href={`mailto:${settings.email}`}
-                  className="link-editorial break-all"
-                >
-                  {settings.email}
-                </a>
-              </li>
-              <li>
-                <a href={`tel:${settings.phone.replace(/[^+\d]/g, "")}`} className="link-editorial">
-                  {settings.phone}
-                </a>
-              </li>
-              <li className="flex items-center gap-2">
-                <MapPin size={14} className="text-steel" aria-hidden="true" />
-                {settings.baseCity}
-              </li>
-            </ul>
-            <div className="mt-6 flex items-center gap-3">
-              <a
-                href={settings.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                className="flex size-10 items-center justify-center rounded-full border border-mist/15 text-silver transition-colors hover:border-mist/40 hover:text-white"
-              >
-                <Linkedin size={16} aria-hidden="true" />
-              </a>
-              <a
-                href={settings.twitter}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="X (Twitter)"
-                className="flex size-10 items-center justify-center rounded-full border border-mist/15 text-silver transition-colors hover:border-mist/40 hover:text-white"
-              >
-                <Twitter size={16} aria-hidden="true" />
-              </a>
-              <a
-                href={settings.vimeo}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Vimeo"
-                className="flex size-10 items-center justify-center rounded-full border border-mist/15 text-silver transition-colors hover:border-mist/40 hover:text-white"
-              >
-                <Video size={16} aria-hidden="true" />
-              </a>
+            {/* Deux colonnes de navigation, comme sur le site de référence */}
+            <div className="grid grid-cols-2 gap-6 sm:gap-10 lg:gap-20">
+              <nav aria-label={t("footer.colExpertises")}>
+                <p className="font-serif text-[1.3rem] font-semibold text-white sm:text-[1.75rem]">
+                  {t("footer.colExpertises")}
+                </p>
+                <ul className="mt-6">
+                  {expertiseLinks.map((l) => (
+                    <li key={l.key} className="mb-1.5">
+                      <Link
+                        href={l.href}
+                        className="footer-link text-[0.94rem] leading-6 text-white sm:text-[1.05rem]"
+                      >
+                        {t(`nav.${l.key}`)}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+
+              <nav aria-label={t("footer.colProfessional")}>
+                <p className="font-serif text-[1.3rem] font-semibold text-white sm:text-[1.75rem]">
+                  {t("footer.colProfessional")}
+                </p>
+                <ul className="mt-6">
+                  {professionalLinks.map((l) => (
+                    <li key={l.key} className="mb-1.5">
+                      <Link
+                        href={l.href}
+                        className="footer-link text-[0.94rem] leading-6 text-white sm:text-[1.05rem]"
+                      >
+                        {t(`nav.${l.key}`)}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
             </div>
           </div>
-        </div>
+        </Reveal>
 
-        {/* Barre inférieure */}
-        <div className="mt-14 flex flex-col gap-3 border-t border-mist/8 pt-7 text-[0.78rem] text-graphite md:flex-row md:items-center md:justify-between">
-          <p>
+        {/* Filet dégradé qui s'estompe aux extrémités */}
+        <div aria-hidden="true" className="footer-separator footer-separator-half" />
+
+        {/* Barre inférieure : © + espace propriétaire */}
+        <div className="flex items-center justify-between gap-3 py-4 text-[0.8rem] sm:text-[0.92rem]">
+          <p className="whitespace-nowrap text-mist">
             © {year} {settings.ownerName} — {t("footer.rights")}
           </p>
           <a
             href="/admin"
-            className="uppercase tracking-[0.12em] text-steel transition-colors hover:text-silver"
+            className="footer-link whitespace-nowrap uppercase tracking-[0.12em] text-white"
           >
             {t("footer.ownerSpace")}
           </a>

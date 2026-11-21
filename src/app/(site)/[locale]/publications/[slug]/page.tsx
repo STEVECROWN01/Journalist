@@ -104,7 +104,7 @@ export default async function PublicationDetailPage({
               {t("detail.back")}
             </Link>
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <p className="eyebrow !text-rouge">{publication.category}</p>
+              <p className="eyebrow !text-or">{publication.category}</p>
             </div>
             <h1 className="display-2 mt-6 text-balance text-white">
               {publication.title}
@@ -139,7 +139,7 @@ export default async function PublicationDetailPage({
 
         {/* Corps de l'article */}
         <Reveal className="mx-auto mt-14 max-w-3xl px-6">
-          <p className="border-l-2 border-rouge pl-6 font-serif text-[1.3rem] leading-[1.6] text-mist">
+          <p className="border-l-2 border-or pl-6 font-serif text-[1.3rem] leading-[1.6] text-mist">
             {publication.excerpt}
           </p>
           <div className="prose-editorial mt-12">

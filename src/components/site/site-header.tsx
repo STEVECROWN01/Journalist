@@ -154,7 +154,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
               : "border-x border-b border-transparent"
           }`}
         >
-          Alexandre&nbsp;Morel<span className="text-rouge">.</span>
+          Alexandre&nbsp;Morel<span className="text-or">.</span>
         </Link>
 
         {/* Bande de navigation flottante — transparente en haut,
@@ -180,7 +180,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
               {t(`nav.${item.key}`)}
               {isActive(pathname, item.href) && (
                 <span
-                  className="ml-1.5 inline-block size-[3px] rounded-full bg-rouge align-[2px]"
+                  className="ml-1.5 inline-block size-[3px] rounded-full bg-or align-[2px]"
                   aria-hidden="true"
                 />
               )}
@@ -265,7 +265,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
                   aria-label={t("brand")}
                   className="font-serif text-[1.3rem] leading-none tracking-tight text-white transition-opacity duration-300 hover:opacity-80"
                 >
-                  Alexandre&nbsp;Morel<span className="text-rouge">.</span>
+                  Alexandre&nbsp;Morel<span className="text-or">.</span>
                 </Link>
               </motion.div>
 
@@ -320,7 +320,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
                         onClick={closeMenu}
                         className="group flex items-baseline gap-4 py-1"
                       >
-                        <span className="w-7 shrink-0 font-serif text-[0.95rem] italic text-graphite transition-colors duration-300 group-hover:text-rouge">
+                        <span className="w-7 shrink-0 font-serif text-[0.95rem] italic text-graphite transition-colors duration-300 group-hover:text-or">
                           {String(i + 1).padStart(2, "0")}
                         </span>
                         <span
@@ -334,7 +334,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
                         </span>
                         <ArrowUpRight
                           size={19}
-                          className="ml-1 hidden shrink-0 -translate-x-1.5 self-center text-rouge opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 sm:block"
+                          className="ml-1 hidden shrink-0 -translate-x-1.5 self-center text-or opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 sm:block"
                           aria-hidden="true"
                         />
                       </Link>
@@ -380,7 +380,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
                         </span>
                         <ArrowRight
                           size={14}
-                          className="-translate-x-1 text-rouge opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
+                          className="-translate-x-1 text-or opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
                           aria-hidden="true"
                         />
                       </Link>

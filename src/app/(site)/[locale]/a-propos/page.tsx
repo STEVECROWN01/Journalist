@@ -61,7 +61,7 @@ export default async function AboutPage({
                 <p className="lede">{t("journey.p1")}</p>
                 <p>{t("journey.p2")}</p>
                 <p>{t("journey.p3")}</p>
-                <p className="border-l-2 border-rouge pl-6 text-white">
+                <p className="border-l-2 border-or pl-6 text-white">
                   {t("journey.p4")}
                 </p>
               </div>
@@ -92,7 +92,7 @@ export default async function AboutPage({
                 <p className="lede">{t("vision.p1")}</p>
                 <p>{t("vision.p2")}</p>
               </div>
-              <p className="mt-8 max-w-xl border-l-2 border-rouge pl-6 font-serif text-[1.25rem] leading-[1.6] text-white">
+              <p className="mt-8 max-w-xl border-l-2 border-or pl-6 font-serif text-[1.25rem] leading-[1.6] text-white">
                 {t("vision.p3")}
               </p>
             </Reveal>

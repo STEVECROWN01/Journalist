@@ -64,7 +64,7 @@ export default async function DocumentaryPage({
                 <p className="lede">{t("approach.p1")}</p>
                 <p>{t("approach.p2")}</p>
               </div>
-              <p className="mt-8 max-w-xl border-l-2 border-rouge pl-6 font-serif text-[1.25rem] leading-[1.6] text-white">
+              <p className="mt-8 max-w-xl border-l-2 border-or pl-6 font-serif text-[1.25rem] leading-[1.6] text-white">
                 {t("approach.p3")}
               </p>
             </Reveal>

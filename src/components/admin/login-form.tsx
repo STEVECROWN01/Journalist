@@ -21,7 +21,7 @@ export function LoginForm() {
           type="email"
           required
           autoComplete="email"
-          className="h-12 w-full rounded-lg border border-mist/20 bg-surface/60 px-4 text-[0.95rem] text-white placeholder:text-graphite focus:border-mist/50 focus:outline-none focus:ring-2 focus:ring-rouge/30"
+          className="h-12 w-full rounded-lg border border-mist/20 bg-surface/60 px-4 text-[0.95rem] text-white placeholder:text-graphite focus:border-mist/50 focus:outline-none focus:ring-2 focus:ring-or/30"
         />
       </div>
       <div>
@@ -34,12 +34,12 @@ export function LoginForm() {
           type="password"
           required
           autoComplete="current-password"
-          className="h-12 w-full rounded-lg border border-mist/20 bg-surface/60 px-4 text-[0.95rem] text-white placeholder:text-graphite focus:border-mist/50 focus:outline-none focus:ring-2 focus:ring-rouge/30"
+          className="h-12 w-full rounded-lg border border-mist/20 bg-surface/60 px-4 text-[0.95rem] text-white placeholder:text-graphite focus:border-mist/50 focus:outline-none focus:ring-2 focus:ring-or/30"
         />
       </div>
 
       {state.status === "error" && state.message ? (
-        <p className="rounded-lg border border-rouge/40 bg-rouge/10 px-4 py-3 text-[0.88rem] text-mist" role="alert">
+        <p className="rounded-lg border border-destructive/40 bg-destructive/10 px-4 py-3 text-[0.88rem] text-mist" role="alert">
           {state.message}
         </p>
       ) : null}

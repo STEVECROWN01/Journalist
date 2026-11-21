@@ -111,7 +111,7 @@ export default async function AdminDashboard() {
             className="group rounded-xl border border-mist/10 bg-surface p-6 transition-colors hover:border-mist/30"
           >
             <div className="flex items-center justify-between">
-              <card.Icon size={18} className="text-rouge" aria-hidden="true" />
+              <card.Icon size={18} className="text-or" aria-hidden="true" />
               <ArrowRight
                 size={14}
                 className="text-graphite opacity-0 transition-opacity group-hover:opacity-100"
@@ -163,7 +163,7 @@ export default async function AdminDashboard() {
                   </div>
                   <div className="shrink-0 text-right">
                     {!m.read ? (
-                      <span className="rounded-full bg-rouge/15 px-2 py-0.5 text-[0.65rem] font-semibold uppercase tracking-wide text-rouge">
+                      <span className="rounded-full bg-or/15 px-2 py-0.5 text-[0.65rem] font-semibold uppercase tracking-wide text-or">
                         Nouveau
                       </span>
                     ) : null}

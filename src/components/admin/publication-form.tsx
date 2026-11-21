@@ -28,7 +28,7 @@ interface PublicationFormData {
 }
 
 const inputClass =
-  "w-full rounded-lg border border-mist/20 bg-ink/60 px-4 py-2.5 text-[0.92rem] text-white placeholder:text-graphite focus:border-mist/50 focus:outline-none focus:ring-2 focus:ring-rouge/30";
+  "w-full rounded-lg border border-mist/20 bg-ink/60 px-4 py-2.5 text-[0.92rem] text-white placeholder:text-graphite focus:border-mist/50 focus:outline-none focus:ring-2 focus:ring-or/30";
 
 export function PublicationForm({ data }: { data?: PublicationFormData }) {
   const [state, action, pending] = useActionState(savePublication, initial);
@@ -40,10 +40,10 @@ export function PublicationForm({ data }: { data?: PublicationFormData }) {
       {/* Onglets FR / EN */}
       <Tabs defaultValue="fr">
         <TabsList className="bg-surface-2">
-          <TabsTrigger value="fr" className="data-[state=active]:bg-rouge data-[state=active]:text-white">
+          <TabsTrigger value="fr" className="data-[state=active]:bg-or data-[state=active]:text-white">
             Français
           </TabsTrigger>
-          <TabsTrigger value="en" className="data-[state=active]:bg-rouge data-[state=active]:text-white">
+          <TabsTrigger value="en" className="data-[state=active]:bg-or data-[state=active]:text-white">
             English
           </TabsTrigger>
         </TabsList>
@@ -51,7 +51,7 @@ export function PublicationForm({ data }: { data?: PublicationFormData }) {
         <TabsContent value="fr" className="mt-5 space-y-5">
           <div>
             <label className="mb-2 block text-[0.85rem] font-medium text-mist">
-              Titre (français) <span className="text-rouge">*</span>
+              Titre (français) <span className="text-or">*</span>
             </label>
             <input name="titleFr" defaultValue={data?.titleFr} required className={inputClass} />
           </div>
@@ -84,7 +84,7 @@ export function PublicationForm({ data }: { data?: PublicationFormData }) {
           </div>
           <div>
             <label className="mb-2 block text-[0.85rem] font-medium text-mist">
-              Contenu (français, markdown simple) <span className="text-rouge">*</span>
+              Contenu (français, markdown simple) <span className="text-or">*</span>
             </label>
             <textarea
               name="contentFr"
@@ -180,14 +180,14 @@ export function PublicationForm({ data }: { data?: PublicationFormData }) {
             type="checkbox"
             name="featured"
             defaultChecked={data?.featured}
-            className="size-4 accent-[#ea384c]"
+            className="size-4 accent-or"
           />
           Publication à la une (une seule à la fois)
         </label>
       </div>
 
       {state.status === "error" && state.message ? (
-        <p className="rounded-lg border border-rouge/40 bg-rouge/10 px-4 py-3 text-[0.88rem] text-mist" role="alert">
+        <p className="rounded-lg border border-destructive/40 bg-destructive/10 px-4 py-3 text-[0.88rem] text-mist" role="alert">
           {state.message}
         </p>
       ) : null}

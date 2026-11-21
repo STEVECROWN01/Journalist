@@ -95,7 +95,7 @@ export default async function ProductionDetailPage({
               {t("portfolio.title")}
             </Link>
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <p className="eyebrow !text-rouge">
+              <p className="eyebrow !text-or">
                 {t(`portfolio.filters.${production.category}`)}
               </p>
             </div>
@@ -197,7 +197,7 @@ export default async function ProductionDetailPage({
             >
               <ArrowLeft
                 size={18}
-                className="shrink-0 text-steel transition-colors group-hover:text-rouge"
+                className="shrink-0 text-steel transition-colors group-hover:text-or"
                 aria-hidden="true"
               />
               <span>
@@ -223,7 +223,7 @@ export default async function ProductionDetailPage({
               </span>
               <ArrowRight
                 size={18}
-                className="shrink-0 text-steel transition-colors group-hover:text-rouge"
+                className="shrink-0 text-steel transition-colors group-hover:text-or"
                 aria-hidden="true"
               />
             </Link>

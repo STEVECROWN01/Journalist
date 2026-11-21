@@ -17,6 +17,42 @@ export const site = {
   ogImage: "/assets/og-image.jpg",
 };
 
+/**
+ * Mots-clés de référencement du site — source unique.
+ * Utilisés dans les métadonnées (meta keywords, JSON-LD `knowsAbout`)
+ * et présentés dans la bande défilante au bas du hero de l'accueil.
+ */
+export const SEO_KEYWORDS: Record<"fr" | "en", string[]> = {
+  fr: [
+    "Journaliste international",
+    "Reportage de terrain",
+    "Grand reporter",
+    "Documentaire",
+    "Réalisateur de documentaires",
+    "Production audiovisuelle",
+    "Journalisme d'investigation",
+    "Interviews exclusives",
+    "Analyse géopolitique",
+    "Communication & Conseil",
+    "Formation au journalisme",
+    "Journaliste à Paris",
+  ],
+  en: [
+    "International journalist",
+    "Field reporting",
+    "Foreign correspondent",
+    "Documentary",
+    "Documentary filmmaker",
+    "Audiovisual production",
+    "Investigative journalism",
+    "Exclusive interviews",
+    "Geopolitical analysis",
+    "Communications & Consulting",
+    "Journalism training",
+    "Journalist in Paris",
+  ],
+};
+
 /** Clés de sujet du formulaire de contact */
 export const CONTACT_SUBJECTS = [
   "collaboration-journalistique",

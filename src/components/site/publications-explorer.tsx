@@ -72,7 +72,7 @@ export function PublicationsExplorer({ publications }: ExplorerProps) {
             onChange={(e) => setQuery(e.target.value)}
             placeholder={t("publications.search.placeholder")}
             aria-label={t("publications.search.label")}
-            className="h-11 w-full rounded-full border border-mist/20 bg-surface/60 pl-11 pr-10 text-[0.9rem] text-white placeholder:text-steel focus:border-mist/50 focus:outline-none focus:ring-2 focus:ring-rouge/40"
+            className="h-11 w-full rounded-full border border-mist/20 bg-surface/60 pl-11 pr-10 text-[0.9rem] text-white placeholder:text-steel focus:border-mist/50 focus:outline-none focus:ring-2 focus:ring-or/40"
           />
           {query ? (
             <button
@@ -97,7 +97,7 @@ export function PublicationsExplorer({ publications }: ExplorerProps) {
             aria-pressed={category === "all"}
             className={`rounded-full border px-4 py-2 text-[0.72rem] font-medium uppercase tracking-[0.12em] transition-all duration-300 ${
               category === "all"
-                ? "border-rouge bg-rouge text-white"
+                ? "border-or bg-or text-white"
                 : "border-mist/20 text-silver hover:border-mist/50 hover:text-white"
             }`}
           >
@@ -111,7 +111,7 @@ export function PublicationsExplorer({ publications }: ExplorerProps) {
               aria-pressed={category === cat}
               className={`rounded-full border px-4 py-2 text-[0.72rem] font-medium uppercase tracking-[0.12em] transition-all duration-300 ${
                 category === cat
-                  ? "border-rouge bg-rouge text-white"
+                  ? "border-or bg-or text-white"
                   : "border-mist/20 text-silver hover:border-mist/50 hover:text-white"
               }`}
             >

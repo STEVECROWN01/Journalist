@@ -42,7 +42,7 @@ export function ProductionCard({
           <div>
             <p className="meta">
               <span className="whitespace-nowrap">
-                <span className="text-rouge">{categoryLabel}</span>
+                <span className="text-or">{categoryLabel}</span>
                 <span className="mx-2 text-graphite" aria-hidden="true">·</span>
               </span>{" "}
               <span className="whitespace-nowrap">
@@ -56,7 +56,7 @@ export function ProductionCard({
             </h3>
             <p className="mt-1.5 text-[0.85rem] text-steel">{production.role}</p>
           </div>
-          <span className="mt-2 flex size-9 shrink-0 items-center justify-center rounded-full border border-mist/15 text-silver transition-all duration-300 group-hover:border-rouge group-hover:bg-rouge group-hover:text-white">
+          <span className="mt-2 flex size-9 shrink-0 items-center justify-center rounded-full border border-mist/15 text-silver transition-all duration-300 group-hover:border-or group-hover:bg-or group-hover:text-white">
             <ArrowUpRight size={15} aria-hidden="true" />
           </span>
         </div>

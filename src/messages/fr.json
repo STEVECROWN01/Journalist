@@ -27,10 +27,10 @@
     "footer": {
       "baseline": "Journalisme international · Productions documentaires · Collaborations éditoriales",
       "tagline": "Un espace professionnel consacré aux réalités internationales, aux récits et à la compréhension des contextes.",
-      "navigate": "Navigation",
-      "contactTitle": "Contact",
       "rights": "Tous droits réservés.",
-      "ownerSpace": "Espace propriétaire"
+      "ownerSpace": "Espace propriétaire",
+      "colExpertises": "Expertises",
+      "colProfessional": "Professionnel"
     },
     "language": {
       "label": "Langue",
@@ -72,12 +72,7 @@
       "approach": "Mon approche associe expérience internationale, écoute, adaptation et exigence éditoriale pour transformer des réalités complexes en récits accessibles, documentés et humains.",
       "ctaPrimary": "Découvrir mes productions",
       "ctaSecondary": "Parlons de votre projet",
-      "scroll": "Défiler",
-      "reassurance": [
-        "Journalisme international",
-        "Production documentaire",
-        "Collaborations éditoriales"
-      ]
+      "keywordsLabel": "Mots-clés du site"
     },
     "gallery": {
       "pause": "Suspendre",

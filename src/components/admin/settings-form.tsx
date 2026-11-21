@@ -7,7 +7,7 @@ import { saveSettings, type ActionState } from "@/app/(admin)/admin/actions";
 const initial: ActionState = { status: "idle" };
 
 const inputClass =
-  "w-full rounded-lg border border-mist/20 bg-ink/60 px-4 py-2.5 text-[0.92rem] text-white placeholder:text-graphite focus:border-mist/50 focus:outline-none focus:ring-2 focus:ring-rouge/30";
+  "w-full rounded-lg border border-mist/20 bg-ink/60 px-4 py-2.5 text-[0.92rem] text-white placeholder:text-graphite focus:border-mist/50 focus:outline-none focus:ring-2 focus:ring-or/30";
 
 interface SettingsData {
   ownerName: string;
@@ -56,7 +56,7 @@ export function SettingsForm({ data }: { data: SettingsData }) {
       </p>
 
       {state.status === "error" && state.message ? (
-        <p className="rounded-lg border border-rouge/40 bg-rouge/10 px-4 py-3 text-[0.88rem] text-mist" role="alert">
+        <p className="rounded-lg border border-destructive/40 bg-destructive/10 px-4 py-3 text-[0.88rem] text-mist" role="alert">
           {state.message}
         </p>
       ) : null}

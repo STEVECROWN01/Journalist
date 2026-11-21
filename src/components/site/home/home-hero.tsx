@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -22,8 +22,9 @@ export interface HomeHeroCopy {
   approach: string;
   ctaPrimary: string;
   ctaSecondary: string;
-  scroll: string;
-  reassurance: string[];
+  /** Mots-clés de référencement du site (bande défilante) */
+  keywords: string[];
+  keywordsLabel: string;
 }
 
 /* Mosaïque du hero : douze visuels réels du site (reportages, tournages,
@@ -189,31 +190,26 @@ export function HomeHero({ copy }: { copy: HomeHeroCopy }) {
         </Reveal>
       </div>
 
-      {/* Bandeau de réassurance + indicateur de défilement — inchangé */}
-      <div className="dt-hero-band relative z-10 border-t border-white/[0.08] bg-ink-deep/40 backdrop-blur-sm">
-        <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-6 px-6 py-4">
-          <ul className="flex flex-wrap items-center gap-x-5 gap-y-1.5">
-            {copy.reassurance.map((item) => (
-              <li
-                key={item}
-                className="flex items-center gap-2.5 text-[0.62rem] font-medium uppercase tracking-[0.18em] text-steel"
+      {/* Bande de mots-clés de référencement — défilement continu
+          de la droite vers la gauche, points de séparation dorés */}
+      <div className="dt-hero-band relative z-10 overflow-clip border-t border-white/[0.08] bg-ink-deep/40 backdrop-blur-sm">
+        <div className="dt-keywords">
+          <div className="dt-keywords-track">
+            {[0, 1].map((setIndex) => (
+              <ul
+                key={setIndex}
+                className="dt-keywords-set"
+                aria-label={copy.keywordsLabel}
+                aria-hidden={setIndex === 1 ? true : undefined}
               >
-                <span
-                  className="size-[3px] rounded-full bg-rouge"
-                  aria-hidden="true"
-                />
-                {item}
-              </li>
+                {copy.keywords.map((keyword) => (
+                  <li key={keyword}>
+                    {keyword}
+                    <i className="dt-keywords-dot" aria-hidden="true" />
+                  </li>
+                ))}
+              </ul>
             ))}
-          </ul>
-          <div
-            className="hero-scroll hidden shrink-0 items-center gap-2 text-steel md:flex"
-            aria-hidden="true"
-          >
-            <span className="text-[0.65rem] uppercase tracking-[0.2em]">
-              {copy.scroll}
-            </span>
-            <ChevronDown size={14} className="animate-bounce" />
           </div>
         </div>
       </div>

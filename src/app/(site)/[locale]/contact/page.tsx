@@ -75,13 +75,13 @@ export default async function ContactPage({
                 </h3>
                 <ul className="mt-5 space-y-4 text-[0.92rem]">
                   <li className="flex items-start gap-3">
-                    <Mail size={15} className="mt-1 shrink-0 text-rouge" aria-hidden="true" />
+                    <Mail size={15} className="mt-1 shrink-0 text-or" aria-hidden="true" />
                     <a href={`mailto:${settings.email}`} className="link-editorial break-all">
                       {settings.email}
                     </a>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Phone size={15} className="mt-1 shrink-0 text-rouge" aria-hidden="true" />
+                    <Phone size={15} className="mt-1 shrink-0 text-or" aria-hidden="true" />
                     <a
                       href={`tel:${settings.phone.replace(/[^+\d]/g, "")}`}
                       className="link-editorial"
@@ -90,7 +90,7 @@ export default async function ContactPage({
                     </a>
                   </li>
                   <li className="flex items-start gap-3">
-                    <MapPin size={15} className="mt-1 shrink-0 text-rouge" aria-hidden="true" />
+                    <MapPin size={15} className="mt-1 shrink-0 text-or" aria-hidden="true" />
                     <span className="text-silver">{settings.baseCity}</span>
                   </li>
                 </ul>
@@ -112,7 +112,7 @@ export default async function ContactPage({
                         className="group flex items-center justify-between rounded-lg border border-mist/10 px-4 py-3 text-[0.9rem] text-silver transition-colors hover:border-mist/30 hover:text-white"
                       >
                         <span className="flex items-center gap-3">
-                          <Icon size={15} className="text-rouge" aria-hidden="true" />
+                          <Icon size={15} className="text-or" aria-hidden="true" />
                           {name}
                         </span>
                         <ExternalLink

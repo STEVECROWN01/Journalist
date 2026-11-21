@@ -48,7 +48,7 @@ export default async function AdminMessagesPage() {
               className={`rounded-xl border p-6 transition-colors ${
                 m.read
                   ? "border-mist/10 bg-surface/40 opacity-75"
-                  : "border-rouge/25 bg-surface"
+                  : "border-or/25 bg-surface"
               }`}
             >
               <div className="flex flex-wrap items-start justify-between gap-4">
@@ -70,7 +70,7 @@ export default async function AdminMessagesPage() {
                 </div>
                 <div className="text-right">
                   {!m.read ? (
-                    <span className="rounded-full bg-rouge/15 px-2.5 py-0.5 text-[0.65rem] font-semibold uppercase tracking-wide text-rouge">
+                    <span className="rounded-full bg-or/15 px-2.5 py-0.5 text-[0.65rem] font-semibold uppercase tracking-wide text-or">
                       Non lu
                     </span>
                   ) : null}
@@ -124,7 +124,7 @@ export default async function AdminMessagesPage() {
                 >
                   <input type="hidden" name="id" value={m.id} />
                   <ConfirmButton
-                    className="flex items-center gap-2 rounded-lg border border-rouge/30 px-3 py-1.5 text-[0.75rem] text-rouge transition-colors hover:bg-rouge/10"
+                    className="flex items-center gap-2 rounded-lg border border-or/30 px-3 py-1.5 text-[0.75rem] text-or transition-colors hover:bg-or/10"
                     confirmText="Supprimer ce message ?"
                   >
                     <Trash2 size={13} aria-hidden="true" /> Supprimer

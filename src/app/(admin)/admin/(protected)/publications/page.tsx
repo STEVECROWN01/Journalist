@@ -47,7 +47,7 @@ export default async function AdminPublicationsPage({
         </p>
       ) : null}
       {sp.deleted ? (
-        <p className="mt-6 rounded-lg border border-rouge/30 bg-rouge/10 px-4 py-3 text-[0.88rem] text-mist">
+        <p className="mt-6 rounded-lg border border-or/30 bg-or/10 px-4 py-3 text-[0.88rem] text-mist">
           Publication supprimée.
         </p>
       ) : null}
@@ -132,7 +132,7 @@ export default async function AdminPublicationsPage({
                       <form action={deletePublication}>
                         <input type="hidden" name="id" value={p.id} />
                         <ConfirmButton
-                          className="flex size-9 items-center justify-center rounded-lg border border-rouge/30 text-rouge hover:bg-rouge/10"
+                          className="flex size-9 items-center justify-center rounded-lg border border-or/30 text-or hover:bg-or/10"
                           ariaLabel={`Supprimer ${p.titleFr}`}
                           confirmText={`Supprimer définitivement « ${p.titleFr} » ?`}
                         >

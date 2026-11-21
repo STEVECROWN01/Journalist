@@ -13,7 +13,7 @@ export default async function AdminLoginPage() {
     <main className="flex min-h-screen items-center justify-center px-6">
       <div className="w-full max-w-sm">
         <p className="font-serif text-[1.6rem] text-white">
-          Alexandre&nbsp;Morel<span className="text-rouge">.</span>
+          Alexandre&nbsp;Morel<span className="text-or">.</span>
         </p>
         <p className="mt-1 text-[0.8rem] uppercase tracking-[0.18em] text-steel">
           Espace propriétaire

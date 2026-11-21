@@ -32,7 +32,7 @@ interface ProductionFormData {
 }
 
 const inputClass =
-  "w-full rounded-lg border border-mist/20 bg-ink/60 px-4 py-2.5 text-[0.92rem] text-white placeholder:text-graphite focus:border-mist/50 focus:outline-none focus:ring-2 focus:ring-rouge/30";
+  "w-full rounded-lg border border-mist/20 bg-ink/60 px-4 py-2.5 text-[0.92rem] text-white placeholder:text-graphite focus:border-mist/50 focus:outline-none focus:ring-2 focus:ring-or/30";
 
 const CATEGORY_LABELS: Record<string, string> = {
   reportage: "Reportage",
@@ -52,7 +52,7 @@ export function ProductionForm({ data }: { data?: ProductionFormData }) {
       <div className="grid gap-5 rounded-xl border border-mist/10 bg-surface p-6 sm:grid-cols-3">
         <div>
           <label className="mb-2 block text-[0.85rem] font-medium text-mist">
-            Catégorie <span className="text-rouge">*</span>
+            Catégorie <span className="text-or">*</span>
           </label>
           <select name="category" defaultValue={data?.category ?? "documentaire"} className={inputClass}>
             {PRODUCTION_CATEGORIES.map((c) => (
@@ -118,10 +118,10 @@ export function ProductionForm({ data }: { data?: ProductionFormData }) {
       {/* Onglets FR / EN */}
       <Tabs defaultValue="fr">
         <TabsList className="bg-surface-2">
-          <TabsTrigger value="fr" className="data-[state=active]:bg-rouge data-[state=active]:text-white">
+          <TabsTrigger value="fr" className="data-[state=active]:bg-or data-[state=active]:text-white">
             Français
           </TabsTrigger>
-          <TabsTrigger value="en" className="data-[state=active]:bg-rouge data-[state=active]:text-white">
+          <TabsTrigger value="en" className="data-[state=active]:bg-or data-[state=active]:text-white">
             English
           </TabsTrigger>
         </TabsList>
@@ -130,7 +130,7 @@ export function ProductionForm({ data }: { data?: ProductionFormData }) {
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
               <label className="mb-2 block text-[0.85rem] font-medium text-mist">
-                Titre (français) <span className="text-rouge">*</span>
+                Titre (français) <span className="text-or">*</span>
               </label>
               <input name="titleFr" defaultValue={data?.titleFr} required className={inputClass} />
             </div>
@@ -155,7 +155,7 @@ export function ProductionForm({ data }: { data?: ProductionFormData }) {
           </div>
           <div>
             <label className="mb-2 block text-[0.85rem] font-medium text-mist">
-              Présentation (français) <span className="text-rouge">*</span>
+              Présentation (français) <span className="text-or">*</span>
             </label>
             <textarea
               name="descriptionFr"
@@ -217,7 +217,7 @@ export function ProductionForm({ data }: { data?: ProductionFormData }) {
       </div>
 
       {state.status === "error" && state.message ? (
-        <p className="rounded-lg border border-rouge/40 bg-rouge/10 px-4 py-3 text-[0.88rem] text-mist" role="alert">
+        <p className="rounded-lg border border-destructive/40 bg-destructive/10 px-4 py-3 text-[0.88rem] text-mist" role="alert">
           {state.message}
         </p>
       ) : null}

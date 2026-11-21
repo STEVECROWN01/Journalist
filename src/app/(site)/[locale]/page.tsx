@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { ArrowRight } from "lucide-react";
-import { getProductions, getPublications } from "@/lib/content";
-import { site } from "@/lib/site";
+import { getProductions, getPublications, getSettings } from "@/lib/content";
+import { site, SEO_KEYWORDS } from "@/lib/site";
 import { Reveal } from "@/components/site/reveal";
 import { SectionHeading } from "@/components/site/section-heading";
 import { PublicationCard } from "@/components/site/publication-card";
@@ -40,9 +41,10 @@ export default async function HomePage({
     getTranslations("productions"),
     getTranslations("publications"),
   ]);
-  const [productions, publications] = await Promise.all([
+  const [productions, publications, settings] = await Promise.all([
     getProductions(locale as "fr" | "en"),
     getPublications(locale as "fr" | "en"),
+    getSettings(),
   ]);
   const featured = publications.find((p) => p.featured) ?? publications[0];
   const recent = publications.filter((p) => p.slug !== featured?.slug).slice(0, 2);
@@ -54,12 +56,15 @@ export default async function HomePage({
       {
         "@type": "Person",
         name: site.name,
+        alternateName: site.shortName,
         url: `${site.siteUrl}/${locale}`,
         jobTitle: fr
           ? "Journaliste international et réalisateur de documentaires"
           : "International journalist and documentary filmmaker",
         address: { "@type": "PostalAddress", addressLocality: "Paris", addressCountry: "FR" },
         knowsLanguage: ["fr", "en", "es"],
+        knowsAbout: SEO_KEYWORDS[fr ? "fr" : "en"],
+        sameAs: [settings.linkedin, settings.twitter, settings.vimeo],
       },
       {
         "@type": "WebSite",
@@ -176,8 +181,8 @@ export default async function HomePage({
           approach: t("hero.approach"),
           ctaPrimary: t("hero.ctaPrimary"),
           ctaSecondary: t("hero.ctaSecondary"),
-          scroll: t("hero.scroll"),
-          reassurance: t.raw("hero.reassurance") as string[],
+          keywords: SEO_KEYWORDS[fr ? "fr" : "en"],
+          keywordsLabel: t("hero.keywordsLabel"),
         }}
       />
 
@@ -245,7 +250,7 @@ export default async function HomePage({
                 <p className="lede">{t("approach.p1")}</p>
                 <p>{t("approach.p2")}</p>
               </div>
-              <p className="mt-8 max-w-xl border-l-2 border-rouge pl-6 font-serif text-[1.25rem] leading-[1.6] text-white">
+              <p className="mt-8 max-w-xl border-l-2 border-or pl-6 font-serif text-[1.25rem] leading-[1.6] text-white">
                 {t("approach.p3")}
               </p>
             </Reveal>
@@ -339,6 +344,32 @@ export default async function HomePage({
             <Reveal>
               <p className="eyebrow">{t("collaboration.eyebrow")}</p>
             </Reveal>
+            {/* Portrait du journaliste — présentation en plaque du design */}
+            <Reveal delay={0.12}>
+              <figure className="group relative mt-10 max-w-[260px]">
+                <span
+                  className="absolute -inset-2.5 -rotate-3 rounded-2xl bg-surface-2/60 transition-transform duration-500 group-hover:rotate-0"
+                  aria-hidden="true"
+                />
+                <span
+                  className="absolute -right-2 -top-2 size-3 rounded-full bg-or"
+                  aria-hidden="true"
+                />
+                <Image
+                  src="/assets/portrait-studio-professionnel.jpg"
+                  alt={fr
+                    ? "Alexandre Morel, journaliste international, en studio"
+                    : "Alexandre Morel, international journalist, in the studio"}
+                  width={520}
+                  height={620}
+                  sizes="(min-width: 1024px) 260px, 240px"
+                  className="relative block aspect-[5/6] w-full rounded-xl object-cover"
+                />
+                <figcaption className="mt-3 text-[0.66rem] font-medium uppercase tracking-[0.18em] text-steel">
+                  {site.name} — {site.city}
+                </figcaption>
+              </figure>
+            </Reveal>
           </div>
           <div>
             <Reveal>
@@ -353,7 +384,7 @@ export default async function HomePage({
               <div className="mt-8 max-w-2xl space-y-5 text-[1rem] leading-[1.85] text-silver/90">
                 <p>{t("collaboration.p1")}</p>
                 <p>{t("collaboration.p2")}</p>
-                <p className="border-l-2 border-rouge pl-6 text-white">
+                <p className="border-l-2 border-or pl-6 text-white">
                   {t("collaboration.p3")}
                 </p>
               </div>

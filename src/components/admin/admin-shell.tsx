@@ -49,15 +49,15 @@ export function AdminShell({
           onClick={() => setOpen(false)}
           className={`flex items-center gap-3 rounded-lg px-4 py-3 text-[0.9rem] transition-colors ${
             isActive(item)
-              ? "bg-rouge/10 text-white"
+              ? "bg-or/10 text-white"
               : "text-silver hover:bg-surface-2 hover:text-white"
           }`}
           aria-current={isActive(item) ? "page" : undefined}
         >
-          <item.Icon size={17} className={isActive(item) ? "text-rouge" : ""} aria-hidden="true" />
+          <item.Icon size={17} className={isActive(item) ? "text-or" : ""} aria-hidden="true" />
           {item.label}
           {item.href === "/admin/messages" && unreadCount > 0 ? (
-            <span className="ml-auto rounded-full bg-rouge px-2 py-0.5 text-[0.68rem] font-semibold text-white">
+            <span className="ml-auto rounded-full bg-or px-2 py-0.5 text-[0.68rem] font-semibold text-white">
               {unreadCount}
             </span>
           ) : null}
@@ -72,7 +72,7 @@ export function AdminShell({
       <aside className="sticky top-0 hidden h-screen w-64 flex-col border-r border-mist/10 bg-ink-deep p-5 lg:flex">
         <Link href="/admin" className="block px-2 pb-6 pt-2">
           <p className="font-serif text-[1.3rem] text-white">
-            Alexandre&nbsp;Morel<span className="text-rouge">.</span>
+            Alexandre&nbsp;Morel<span className="text-or">.</span>
           </p>
           <p className="mt-0.5 text-[0.68rem] uppercase tracking-[0.16em] text-steel">
             Back-office
@@ -104,7 +104,7 @@ export function AdminShell({
       {/* Barre mobile */}
       <div className="fixed inset-x-0 top-0 z-40 flex h-16 items-center justify-between border-b border-mist/10 bg-ink/95 px-4 backdrop-blur lg:hidden">
         <Link href="/admin" className="font-serif text-[1.15rem] text-white">
-          A.&nbsp;Morel<span className="text-rouge">.</span>
+          A.&nbsp;Morel<span className="text-or">.</span>
         </Link>
         <button
           type="button"
@@ -126,7 +126,7 @@ export function AdminShell({
           <div className="absolute left-0 top-0 flex h-full w-72 flex-col border-r border-mist/10 bg-ink-deep p-5">
             <div className="flex items-center justify-between pb-6 pt-2">
               <p className="font-serif text-[1.2rem] text-white">
-                A.&nbsp;Morel<span className="text-rouge">.</span>
+                A.&nbsp;Morel<span className="text-or">.</span>
               </p>
               <button
                 type="button"

@@ -54,7 +54,8 @@
   --color-steel: #8c8c8c;        /* gris atténué */
   --color-graphite: #525252;     /* gris discret */
   --color-sand: #c9baac;         /* beige chaud (accent secondaire) */
-  --color-rouge: #ea384c;        /* rouge accent */
+  --color-or: #d4af37;           /* or accent (remplace le rouge) */
+  --color-or-bright: #e6c96a;    /* or clair — survol des boutons */
   --color-vert: #039855;         /* vert statut (réservé back-office) */
 }
 
@@ -78,15 +79,15 @@
   --destructive: #ea384c;
   --border: #e4e4e424;
   --input: #e4e4e42e;
-  --ring: #ea384c66;
+  --ring: #d4af3766;
   --sidebar: #161616;
   --sidebar-foreground: #ffffff;
-  --sidebar-primary: #ea384c;
+  --sidebar-primary: #d4af37;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #2f2f2f;
   --sidebar-accent-foreground: #ffffff;
   --sidebar-border: #e4e4e424;
-  --sidebar-ring: #ea384c66;
+  --sidebar-ring: #d4af3766;
 }
 
 @layer base {
@@ -110,8 +111,8 @@
   }
 
   ::selection {
-    background: #ea384c;
-    color: #ffffff;
+    background: #d4af37;
+    color: #1c1c1c;
   }
 
   /* Barre de défilement sobre */
@@ -155,7 +156,7 @@
     display: inline-block;
     width: 1.75rem;
     height: 1px;
-    background: #ea384c;
+    background: #d4af37;
     margin-right: 0.75rem;
     vertical-align: middle;
   }
@@ -189,7 +190,7 @@
     bottom: -3px;
     width: 100%;
     height: 1px;
-    background: #ea384c;
+    background: #d4af37;
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
@@ -199,15 +200,71 @@
     transform-origin: left;
   }
 
-  /* ---------- Boutons ---------- */
+  /* ---------- Boutons — remplissage montant au survol (site de référence) ----------
+     Au survol, un voile couleur remonte depuis le bas du bouton, le bouton
+     se soulève légèrement et sa bordure s'adoucit (beige sable). */
+  .btn-primary,
+  .btn-outline,
+  .btn-accent {
+    @apply relative isolate overflow-hidden;
+    transition:
+      transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.3s,
+      border-color 0.3s,
+      color 0.3s;
+  }
+  .btn-primary::before,
+  .btn-outline::before,
+  .btn-accent::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    transform: translateY(101%);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .btn-primary:hover,
+  .btn-outline:hover,
+  .btn-accent:hover {
+    transform: translateY(-2px);
+  }
+  .btn-primary:hover::before,
+  .btn-primary:focus-visible::before,
+  .btn-outline:hover::before,
+  .btn-outline:focus-visible::before,
+  .btn-accent:hover::before,
+  .btn-accent:focus-visible::before {
+    transform: translateY(0);
+  }
+  .btn-primary > *,
+  .btn-outline > *,
+  .btn-accent > * {
+    position: relative;
+    z-index: 1;
+  }
   .btn-primary {
-    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-white px-6 py-2.5 text-[0.8rem] font-medium uppercase tracking-[0.14em] text-ink transition-all duration-300 hover:bg-mist focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rouge disabled:pointer-events-none disabled:opacity-50;
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-mist bg-white px-6 py-2.5 text-[0.8rem] font-medium uppercase tracking-[0.14em] text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-or disabled:pointer-events-none disabled:opacity-50;
+  }
+  .btn-primary::before {
+    background: var(--color-mist);
+  }
+  .btn-primary:hover {
+    border-color: var(--color-sand);
   }
   .btn-outline {
-    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-mist/25 bg-transparent px-6 py-2.5 text-[0.8rem] font-medium uppercase tracking-[0.14em] text-mist transition-all duration-300 hover:border-mist/60 hover:bg-mist/5 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rouge disabled:pointer-events-none disabled:opacity-50;
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-mist/25 bg-transparent px-6 py-2.5 text-[0.8rem] font-medium uppercase tracking-[0.14em] text-mist focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-or disabled:pointer-events-none disabled:opacity-50;
+  }
+  .btn-outline::before {
+    background: var(--color-mist);
+  }
+  .btn-outline:hover {
+    @apply border-mist text-ink;
   }
   .btn-accent {
-    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-rouge px-6 py-2.5 text-[0.8rem] font-medium uppercase tracking-[0.14em] text-white transition-all duration-300 hover:bg-[#f04b5d] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rouge disabled:pointer-events-none disabled:opacity-50;
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-transparent bg-or px-6 py-2.5 text-[0.8rem] font-medium uppercase tracking-[0.14em] text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-or disabled:pointer-events-none disabled:opacity-50;
+  }
+  .btn-accent::before {
+    background: var(--color-or-bright);
   }
 
   /* ---------- Surfaces ---------- */
@@ -238,7 +295,7 @@
     @apply font-serif text-[1.05em] text-white;
   }
   .prose-editorial blockquote {
-    @apply border-l-2 border-rouge pl-6 font-serif text-[1.35rem] leading-[1.5] text-white my-10;
+    @apply border-l-2 border-or pl-6 font-serif text-[1.35rem] leading-[1.5] text-white my-10;
   }
   .prose-editorial ul {
     @apply list-disc space-y-2 pl-6;
@@ -247,7 +304,7 @@
     @apply list-decimal space-y-2 pl-6;
   }
   .prose-editorial a {
-    @apply text-white underline decoration-rouge/60 underline-offset-4 hover:decoration-rouge;
+    @apply text-white underline decoration-or/60 underline-offset-4 hover:decoration-or;
   }
   .prose-editorial hr {
     @apply my-10 border-0 border-t border-mist/15;
@@ -266,9 +323,9 @@
   .hero-overlay {
     background: linear-gradient(
       90deg,
-      rgba(7, 7, 7, 0.92) 0%,
-      rgba(7, 7, 7, 0.72) 45%,
-      rgba(28, 28, 28, 0.4) 100%
+      rgba(7, 7, 7, 0.84) 0%,
+      rgba(7, 7, 7, 0.56) 45%,
+      rgba(28, 28, 28, 0.26) 100%
     );
   }
 
@@ -291,16 +348,16 @@
   .hero-overlay-top {
     background: linear-gradient(
       180deg,
-      rgba(7, 7, 7, 0.82) 0%,
-      rgba(7, 7, 7, 0.38) 34%,
+      rgba(7, 7, 7, 0.68) 0%,
+      rgba(7, 7, 7, 0.28) 34%,
       rgba(7, 7, 7, 0) 64%
     );
   }
   .hero-overlay-bottom {
     background: linear-gradient(
       0deg,
-      rgba(28, 28, 28, 1) 0%,
-      rgba(28, 28, 28, 0.4) 60%,
+      rgba(28, 28, 28, 0.92) 0%,
+      rgba(28, 28, 28, 0.34) 60%,
       rgba(28, 28, 28, 0) 100%
     );
   }
@@ -478,9 +535,9 @@ body {
   object-position: center 30%;
   border-radius: 13px;
   background: var(--color-surface);
-  /* Rendu éditorial légèrement assombri : profondeur et lisibilité
-     du texte du hero sur les visuels les plus lumineux. */
-  filter: brightness(0.88) contrast(1.02);
+  /* Rendu éditorial : la photographie reste vive et frappe l'œil —
+     la lisibilité du texte repose sur le voile latéral du hero. */
+  filter: brightness(0.98) contrast(1.01);
 }
 .dt-mosaic::after {
   content: "";
@@ -492,8 +549,8 @@ body {
   mask-image: linear-gradient(90deg, #000, transparent);
 }
 /* Voile de lisibilité entre la mosaïque et le texte du hero :
-   protection forte sur toute la zone de texte, la mosaïque reste
-   pleinement vive au-delà de 92 % de la largeur. */
+   protection ferme sur la colonne de texte à gauche, la mosaïque
+   reste vive et bien visible dès 60 % de la largeur. */
 .dt-hero-shade {
   position: absolute;
   inset: 0;
@@ -501,12 +558,12 @@ body {
   pointer-events: none;
   background: linear-gradient(
     90deg,
-    rgba(7, 7, 7, 0.97) 0%,
-    rgba(7, 7, 7, 0.9) 38%,
-    rgba(7, 7, 7, 0.8) 56%,
-    rgba(7, 7, 7, 0.66) 72%,
-    rgba(7, 7, 7, 0.32) 88%,
-    rgba(7, 7, 7, 0.06) 96%,
+    rgba(7, 7, 7, 0.94) 0%,
+    rgba(7, 7, 7, 0.84) 34%,
+    rgba(7, 7, 7, 0.68) 52%,
+    rgba(7, 7, 7, 0.5) 68%,
+    rgba(7, 7, 7, 0.2) 84%,
+    rgba(7, 7, 7, 0.04) 94%,
     rgba(7, 7, 7, 0) 100%
   );
 }
@@ -590,7 +647,7 @@ body {
 }
 .dt-editorial-line path {
   fill: none;
-  stroke: var(--color-rouge);
+  stroke: var(--color-or);
   stroke-width: 0.32;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -652,8 +709,8 @@ body {
   right: -10px;
   top: 2px;
   border-radius: 50%;
-  color: #fff;
-  background: var(--color-rouge);
+  color: var(--color-ink);
+  background: var(--color-or);
 }
 .dt-mini-image svg {
   width: 9px;
@@ -828,7 +885,7 @@ body {
   height: 10px;
 }
 .dt-creator:hover .dt-creator-caption strong {
-  color: var(--color-rouge);
+  color: var(--color-or);
 }
 .dt-particle-arrival {
   position: absolute;
@@ -852,7 +909,7 @@ body {
 .particle-1 .dt-particle {
   width: 15px;
   height: 15px;
-  background: var(--color-rouge);
+  background: var(--color-or);
 }
 .particle-2 {
   left: 62%;
@@ -906,6 +963,49 @@ body {
   --dt-gallery-card: clamp(230px, 22vw, 300px);
   padding: 20px 0;
   overflow: clip;
+  /* Sur mobile, la galerie occupe toute la largeur avec un léger fondu
+     aux bords pour que les cartes ne s'interrompent pas brutalement. */
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 36px,
+    #000 calc(100% - 36px),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 36px,
+    #000 calc(100% - 36px),
+    transparent 100%
+  );
+}
+/* Sur écran large, les voies respectent la largeur du contenu de la
+   section (marges et max-width) : les cartes s'estompent en fondu
+   aux frontières du conteneur au lieu de courir jusqu'au bord de
+   l'écran. */
+@media (min-width: 760px) {
+  .dt-gallery {
+    width: min(1152px, calc(100% - 48px));
+    margin-inline: auto;
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent 0,
+      #000 96px,
+      #000 calc(100% - 96px),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      90deg,
+      transparent 0,
+      #000 96px,
+      #000 calc(100% - 96px),
+      transparent 100%
+    );
+  }
+  .dt-gallery-tilt {
+    margin-inline: -14px;
+  }
 }
 .dt-gallery-tilt {
   display: grid;
@@ -980,8 +1080,8 @@ body {
   right: 12px;
   width: 35px;
   height: 35px;
-  background: var(--color-rouge);
-  color: #fff;
+  background: var(--color-or);
+  color: var(--color-ink);
 }
 .dt-play-badge svg {
   width: 14px;
@@ -1039,7 +1139,7 @@ body {
   transition: border-color 0.3s, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .dt-note-card:hover {
-  border-color: rgba(234, 56, 76, 0.45);
+  border-color: rgba(212, 175, 55, 0.45);
   transform: translateY(-3px);
 }
 .dt-note-kicker {
@@ -1053,7 +1153,7 @@ body {
   color: var(--color-steel);
 }
 .dt-note-kicker svg {
-  color: var(--color-rouge);
+  color: var(--color-or);
 }
 .dt-note-card strong {
   margin-top: 0.9rem;
@@ -1086,7 +1186,7 @@ body {
   color: var(--color-silver);
 }
 .dt-note-card:hover .dt-note-cta {
-  color: var(--color-rouge);
+  color: var(--color-or);
 }
 .dt-gallery-footer {
   display: flex;
@@ -1116,6 +1216,117 @@ body {
   height: 13px;
 }
 
+/* ---------- 01b · Hero : bande de mots-clés défilante ---------- */
+/* Les mots-clés de référencement du site défilent en continu de la
+   droite vers la gauche, séparés par de gros points dorés. Les bords
+   de la bande s'estompent en fondu pour une lecture continue. */
+.dt-keywords {
+  overflow: clip;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 72px,
+    #000 calc(100% - 72px),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 72px,
+    #000 calc(100% - 72px),
+    transparent 100%
+  );
+}
+.dt-keywords-track {
+  display: flex;
+  width: max-content;
+  animation: dt-keywords-scroll 56s linear infinite;
+}
+.dt-keywords-set {
+  display: flex;
+  align-items: center;
+  flex: none;
+  padding-block: 0.95rem;
+}
+.dt-keywords-set li {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.5rem, 2.8vw, 2.4rem);
+  padding-right: clamp(1.5rem, 2.8vw, 2.4rem);
+  white-space: nowrap;
+  font-size: 0.66rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--color-silver);
+}
+.dt-keywords-dot {
+  display: block;
+  width: 10px;
+  height: 10px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--color-or);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-or) 20%, transparent);
+}
+@keyframes dt-keywords-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dt-keywords-track {
+    animation: none;
+  }
+}
+
+/* ---------- Pied de page — présentation du site de référence ---------- */
+/* Liseré lumineux discret en haut du footer, comme sur le site de
+   référence. */
+.footer-glow {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent);
+}
+/* Soulignement qui s'étire depuis le centre au survol (référence). */
+.footer-link {
+  position: relative;
+  display: inline-block;
+}
+.footer-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  height: 1px;
+  width: 0;
+  background: var(--color-mist);
+  transition: all 0.3s;
+}
+.footer-link:hover::after,
+.footer-link:focus-visible::after {
+  left: 0;
+  width: 100%;
+}
+/* Filet dégradé qui s'estompe aux extrémités (référence). */
+.footer-separator {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    #e4e4e400 0%,
+    #e4e4e40f 12%,
+    #e4e4e457 50%,
+    #e4e4e40f 88%,
+    #e4e4e400 100%
+  );
+}
+.footer-separator-half {
+  width: 50%;
+  margin-inline: auto;
+}
+
 /* ---------- Adaptations responsive ---------- */
 @media (max-width: 1000px) {
   .dt-editorial {
@@ -1128,6 +1339,14 @@ body {
 @media (max-width: 759px) {
   .dt-wrap {
     width: calc(100% - 40px);
+  }
+  /* Le hero devient une grille : la bande de mots-clés (piste très
+     large) ne doit pas gonfler la colonne — min-width: 0 sur chaque
+     rangée pour que le contenu reste dans l'écran. */
+  .dt-hero-content,
+  .dt-mosaic,
+  .dt-hero-band {
+    min-width: 0;
   }
   /* Hero : contenu puis bandeau de mosaïque */
   .dt-hero {
@@ -1256,6 +1475,8 @@ body {
     --dt-gallery-gap: 12px;
     --dt-gallery-card: clamp(196px, 52vw, 260px);
     padding: 17px 0;
+    width: auto;
+    margin-inline: 0;
   }
   .dt-gallery-tilt {
     gap: 5px;

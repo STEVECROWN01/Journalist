@@ -59,7 +59,7 @@ export function PortfolioGrid({ productions }: { productions: ProductionView[] }
               aria-pressed={active}
               className={`rounded-full border px-4 py-2 text-[0.75rem] font-medium uppercase tracking-[0.12em] transition-all duration-300 ${
                 active
-                  ? "border-rouge bg-rouge text-white"
+                  ? "border-or bg-or text-white"
                   : "border-mist/20 text-silver hover:border-mist/50 hover:text-white"
               } ${count === 0 && !active ? "opacity-40" : ""}`}
             >
