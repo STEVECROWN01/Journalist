@@ -137,7 +137,7 @@ export function PublicationsExplorer({ publications }: ExplorerProps) {
               </div>
               <div className="mt-8 grid gap-10 md:grid-cols-2">
                 {items.map((p, i) => (
-                  <Reveal key={p.slug} delay={i * 0.05}>
+                  <Reveal key={p.slug} delay={i * 0.05} className="min-w-0">
                     <PublicationCard publication={p} labels={labels} />
                   </Reveal>
                 ))}

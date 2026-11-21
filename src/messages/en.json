@@ -11,11 +11,10 @@
       "training": "Training & Knowledge Transfer",
       "productions": "Productions",
       "publications": "Publications",
-      "contact": "Contact",
-      "primary": "Main navigation"
+      "contact": "Contact"
     },
     "cta": {
-      "short": "Get in touch",
+      "short": "Contact me",
       "primary": "Let's discuss your project"
     },
     "actions": {
@@ -56,9 +55,10 @@
     "menu": {
       "open": "Open the menu",
       "close": "Close the menu",
-      "services": "Services",
+      "label": "Navigation menu",
+      "services": "Expertise & work",
       "otherLinks": "Other links",
-      "dialog": "Navigation menu"
+      "socials": "Social media"
     }
   },
   "home": {
@@ -74,7 +74,7 @@
       "subtitle": "International journalist, documentary filmmaker and communications professional, Alexandre Morel has spent over twenty years developing an expertise at the intersection of reporting, editorial production and the analysis of international environments.",
       "complement": "From complex terrains to organisational challenges: an approach combining ground knowledge, journalistic rigour and mastery of the narrative.",
       "ctaPrimary": "Discover my background",
-      "ctaSecondary": "Explore my work",
+      "ctaSecondary": "Get in touch",
       "scroll": "Scroll"
     },
     "intro": {

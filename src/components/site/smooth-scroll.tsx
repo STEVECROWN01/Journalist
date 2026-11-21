@@ -1,35 +1,29 @@
 "use client";
 
+import { useEffect } from "react";
 import Lenis from "lenis";
-import { type ReactNode, useEffect } from "react";
+import { getLenis, setLenis } from "@/lib/lenis-store";
 
 /**
- * Défilement fluide à inertie (momentum) sur l'ensemble du site.
- * Désactivé automatiquement si l'utilisateur préfère réduire les animations.
+ * Défilement fluide à inertie (type Lenis) sur tout le site public.
+ * — Molette : lissage avec vélocité et inertie, comme le site de référence.
+ * — Tactile : comportement natif conservé (l'OS fournit déjà l'inertie).
+ * — prefers-reduced-motion : désactivé, retour au défilement natif.
  */
-
-let lenisInstance: Lenis | null = null;
-
-/** Fige le défilement (menu plein écran ouvert, modale…). */
-export function stopSmoothScroll(): void {
-  lenisInstance?.stop();
-}
-
-/** Relance le défilement fluide. */
-export function startSmoothScroll(): void {
-  lenisInstance?.start();
-}
-
-export function SmoothScroll({ children }: { children: ReactNode }) {
+export function SmoothScroll() {
   useEffect(() => {
+    if (typeof window === "undefined") return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const lenis = new Lenis({
-      lerp: 0.1,
+      duration: 1.15,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
       wheelMultiplier: 1,
-      gestureOrientation: "vertical",
+      touchMultiplier: 1.4,
+      infinite: false,
     });
-    lenisInstance = lenis;
+    setLenis(lenis);
 
     let raf = 0;
     const loop = (time: number) => {
@@ -38,12 +32,16 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
     };
     raf = requestAnimationFrame(loop);
 
+    // Si le menu était ouvert au moment d'un rendu client, ne pas laisser
+    // le défilement reprendre derrière le panneau.
+    if (document.body.style.overflow === "hidden") lenis.stop();
+
     return () => {
       cancelAnimationFrame(raf);
       lenis.destroy();
-      lenisInstance = null;
+      if (getLenis() === lenis) setLenis(null);
     };
   }, []);
 
-  return <>{children}</>;
+  return null;
 }

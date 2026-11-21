@@ -11,8 +11,7 @@
       "training": "Formation & Transmission",
       "productions": "Productions",
       "publications": "Publications",
-      "contact": "Contact",
-      "primary": "Navigation principale"
+      "contact": "Contact"
     },
     "cta": {
       "short": "Me contacter",
@@ -56,9 +55,10 @@
     "menu": {
       "open": "Ouvrir le menu",
       "close": "Fermer le menu",
-      "services": "Services",
+      "label": "Menu de navigation",
+      "services": "Expertises & œuvres",
       "otherLinks": "Autres liens",
-      "dialog": "Menu de navigation"
+      "socials": "Réseaux sociaux"
     }
   },
   "home": {
@@ -74,7 +74,7 @@
       "subtitle": "Journaliste international, réalisateur de documentaires et professionnel de la communication, Alexandre Morel développe depuis plus de vingt ans une expertise au croisement du reportage, de la production éditoriale et de l'analyse des environnements internationaux.",
       "complement": "Des terrains complexes aux enjeux des organisations : une approche qui associe connaissance du terrain, exigence journalistique et maîtrise du récit.",
       "ctaPrimary": "Découvrir mon parcours",
-      "ctaSecondary": "Explorer mes réalisations",
+      "ctaSecondary": "Entrer en contact",
       "scroll": "Défiler"
     },
     "intro": {

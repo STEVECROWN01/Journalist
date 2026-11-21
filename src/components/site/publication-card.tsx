@@ -51,11 +51,11 @@ export function PublicationCard({
             <span className="whitespace-nowrap">
               <span className="text-rouge">{publication.category}</span>
               <span className="mx-2 text-graphite" aria-hidden="true">·</span>
-            </span>
+            </span>{" "}
             <span className="whitespace-nowrap">
               {dateLabel}
               <span className="mx-2 text-graphite" aria-hidden="true">·</span>
-            </span>
+            </span>{" "}
             <span className="whitespace-nowrap">
               {labels.readingTime.replace("{minutes}", String(publication.readingMinutes))}
             </span>
@@ -86,11 +86,11 @@ export function PublicationCard({
         <span className="whitespace-nowrap">
           <span className="text-rouge">{publication.category}</span>
           <span className="mx-2 text-graphite" aria-hidden="true">·</span>
-        </span>
+        </span>{" "}
         <span className="whitespace-nowrap">
           {dateLabel}
           <span className="mx-2 text-graphite" aria-hidden="true">·</span>
-        </span>
+        </span>{" "}
         <span className="whitespace-nowrap">
           {labels.readingTime.replace("{minutes}", String(publication.readingMinutes))}
         </span>

@@ -95,25 +95,8 @@
   }
 
   html {
-    scroll-behavior: smooth;
     /* Les ancres passent sous l'en-tête fixe */
     scroll-padding-top: 5.5rem;
-  }
-
-  /* Défilement fluide à inertie (Lenis) — le comportement natif
-     « smooth » est neutralisé pendant l'activation. */
-  html.lenis,
-  html.lenis body {
-    height: auto;
-  }
-  .lenis.lenis-smooth {
-    scroll-behavior: auto !important;
-  }
-  .lenis.lenis-smooth [data-lenis-prevent] {
-    overscroll-behavior: contain;
-  }
-  .lenis.lenis-stopped {
-    overflow: hidden;
   }
 
   body {
@@ -335,5 +318,89 @@
     pointer-events: none;
     opacity: 0.05;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+/* ============================================================
+   LENIS — défilement fluide à inertie
+   (styles requis par la bibliothèque, hors @layer pour primer)
+   ============================================================ */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ============================================================
+   HERO — hauteur d'écran exacte et adaptation aux écrans courts
+   Le hero occupe précisément le viewport (100svh quand disponible)
+   et reste entièrement visible sans défilement, du mobile au 4K.
+   ============================================================ */
+.hero-full {
+  height: 100vh;
+}
+@supports (height: 100svh) {
+  .hero-full {
+    height: 100svh;
+  }
+}
+
+/* Écrans peu hauts (ordinateurs portables) : on allège le contenu */
+@media (max-height: 820px) {
+  .hero-complement {
+    display: none;
+  }
+}
+/* Mobiles : le complément est masqué (le sous-titre suffit) afin que
+   le contenu centré ne remonte jamais sous l'en-tête fixe. */
+@media (max-width: 639px) {
+  .hero-complement {
+    display: none;
+  }
+}
+@media (max-height: 760px) {
+  .hero-scroll {
+    display: none !important;
+  }
+  .hero-title {
+    font-size: clamp(2rem, 7vw, 3.4rem);
+  }
+  .hero-block {
+    margin-top: 1.25rem;
+  }
+  .hero-subtitle {
+    line-height: 1.62;
+  }
+  .hero-ctas {
+    margin-top: 1.75rem;
+  }
+  .hero-pad {
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
+  }
+}
+/* Très petits heights (mobiles en paysage) : essentiel uniquement */
+@media (max-height: 600px) {
+  .hero-eyebrow-row,
+  .hero-subtitle {
+    display: none;
+  }
+  .hero-title {
+    font-size: clamp(1.6rem, 5vw, 2.4rem);
+  }
+  .hero-ctas {
+    margin-top: 1.25rem;
+  }
+  .hero-pad {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
   }
 }

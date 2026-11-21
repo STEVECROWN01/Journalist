@@ -48,11 +48,11 @@ export function ProductionCard({
               <span className="whitespace-nowrap">
                 <span className="text-rouge">{categoryLabel}</span>
                 <span className="mx-2 text-graphite" aria-hidden="true">·</span>
-              </span>
+              </span>{" "}
               <span className="whitespace-nowrap">
                 {production.year}
                 <span className="mx-2 text-graphite" aria-hidden="true">·</span>
-              </span>
+              </span>{" "}
               <span className="whitespace-nowrap">{production.territory}</span>
             </p>
             <h3 className="mt-2.5 font-serif text-[1.45rem] leading-snug text-white transition-colors group-hover:text-mist">

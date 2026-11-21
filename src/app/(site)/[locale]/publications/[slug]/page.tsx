@@ -115,7 +115,7 @@ export default async function PublicationDetailPage({
               <span className="whitespace-nowrap">
                 {t("publishedOn", { date: dateLabel })}
                 <span className="mx-2 text-graphite" aria-hidden="true">·</span>
-              </span>
+              </span>{" "}
               <span className="whitespace-nowrap">
                 {t("readingTime", { minutes: publication.readingMinutes })}
               </span>

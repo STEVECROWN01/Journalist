@@ -74,7 +74,7 @@ export function PortfolioGrid({ productions }: { productions: ProductionView[] }
       {filtered.length > 0 ? (
         <div className="mt-12 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
           {filtered.map((p, i) => (
-            <Reveal key={p.slug} delay={(i % 3) * 0.07} className="h-full">
+            <Reveal key={p.slug} delay={(i % 3) * 0.07} className="h-full min-w-0">
               <ProductionCard
                 production={p}
                 categoryLabel={categoryLabel(p.category)}

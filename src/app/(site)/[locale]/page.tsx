@@ -90,7 +90,9 @@ export default async function HomePage({
       />
 
       {/* ============ 01 — HERO ÉDITORIAL ============ */}
-      <section className="relative flex min-h-[100svh] items-end overflow-hidden bg-ink-deep">
+      {/* Hauteur = écran exact (100svh) : entièrement visible sans
+          défilement, du mobile au 4K — voir .hero-full dans globals.css */}
+      <section className="hero-full relative flex items-center overflow-hidden bg-ink-deep">
         <Image
           src="/assets/journaliste-reportage-microphone.jpg"
           alt={
@@ -106,12 +108,12 @@ export default async function HomePage({
         <div className="hero-overlay absolute inset-0" aria-hidden="true" />
         <div className="hero-overlay-bottom absolute inset-0" aria-hidden="true" />
 
-        <div className="relative mx-auto w-full max-w-6xl px-6 pb-24 pt-44 md:pb-32">
+        <div className="hero-pad relative mx-auto flex w-full max-w-6xl flex-col justify-center px-6 py-16 sm:py-20 lg:py-24">
           <Reveal>
-            <p className="eyebrow">{t("hero.eyebrow")}</p>
+            <p className="eyebrow hero-eyebrow-row">{t("hero.eyebrow")}</p>
           </Reveal>
           <Reveal delay={0.08}>
-            <h1 className="display-1 mt-7 max-w-4xl text-white">
+            <h1 className="display-1 hero-title hero-block mt-6 max-w-4xl text-white md:mt-7">
               {t("hero.title1")}
               <br />
               {t("hero.title2")}
@@ -120,20 +122,20 @@ export default async function HomePage({
             </h1>
           </Reveal>
           <Reveal delay={0.16}>
-            <p className="mt-9 max-w-2xl text-[1.02rem] leading-[1.8] text-mist/85">
+            <p className="hero-subtitle hero-block mt-7 max-w-2xl text-[1.02rem] leading-[1.8] text-mist/85 md:mt-9">
               {t("hero.subtitle")}
             </p>
-            <p className="mt-4 max-w-xl text-[0.92rem] leading-[1.75] text-steel">
+            <p className="hero-complement mt-4 max-w-xl text-[0.92rem] leading-[1.75] text-steel">
               {t("hero.complement")}
             </p>
           </Reveal>
           <Reveal delay={0.24}>
-            <div className="mt-10 flex flex-wrap items-center gap-4">
+            <div className="hero-ctas mt-8 flex flex-wrap items-center gap-4 md:mt-10">
               <Link href="/a-propos" className="btn-primary">
                 {t("hero.ctaPrimary")}
                 <ArrowRight size={15} aria-hidden="true" />
               </Link>
-              <Link href="/productions" className="btn-outline">
+              <Link href="/contact" className="btn-outline">
                 {t("hero.ctaSecondary")}
               </Link>
             </div>
@@ -141,7 +143,7 @@ export default async function HomePage({
         </div>
 
         <div
-          className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 items-center gap-2 text-steel md:flex"
+          className="hero-scroll absolute bottom-6 left-1/2 hidden -translate-x-1/2 items-center gap-2 text-steel md:flex"
           aria-hidden="true"
         >
           <span className="text-[0.65rem] uppercase tracking-[0.2em]">
@@ -260,7 +262,7 @@ export default async function HomePage({
           </div>
           <div className="mt-14 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
             {productions.slice(0, 3).map((p, i) => (
-              <Reveal key={p.slug} delay={i * 0.07}>
+              <Reveal key={p.slug} delay={i * 0.07} className="min-w-0">
                 <ProductionCard
                   production={p}
                   categoryLabel={tP(`portfolio.filters.${p.category}`)}
@@ -353,7 +355,7 @@ export default async function HomePage({
           {recent.length > 0 ? (
             <div className="mt-10 grid gap-10 md:grid-cols-2">
               {recent.map((p) => (
-                <Reveal key={p.slug}>
+                <Reveal key={p.slug} className="min-w-0">
                   <PublicationCard
                     publication={p}
                     labels={{

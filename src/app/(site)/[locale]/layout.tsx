@@ -5,10 +5,10 @@ import { notFound } from "next/navigation";
 import { Instrument_Serif, DM_Sans } from "next/font/google";
 import { routing } from "@/i18n/routing";
 import { site } from "@/lib/site";
-import { getSettings } from "@/lib/content";
 import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
 import { SmoothScroll } from "@/components/site/smooth-scroll";
+import { getSettings } from "@/lib/content";
 import "../../globals.css";
 
 const instrumentSerif = Instrument_Serif({
@@ -97,19 +97,18 @@ export default async function SiteLayout({
     <html lang={locale} className={`${instrumentSerif.variable} ${dmSans.variable}`}>
       <body className="flex min-h-screen flex-col bg-background font-sans text-foreground antialiased">
         <NextIntlClientProvider>
-          <SmoothScroll>
-            <SiteHeader
-              social={{
-                linkedin: settings.linkedin,
-                twitter: settings.twitter,
-                vimeo: settings.vimeo,
-              }}
-            />
-            <main id="main-content" className="flex-1">
-              {children}
-            </main>
-            <SiteFooter />
-          </SmoothScroll>
+          <SmoothScroll />
+          <SiteHeader
+            socials={{
+              linkedin: settings.linkedin,
+              twitter: settings.twitter,
+              vimeo: settings.vimeo,
+            }}
+          />
+          <main id="main-content" className="flex-1">
+            {children}
+          </main>
+          <SiteFooter />
         </NextIntlClientProvider>
       </body>
     </html>
