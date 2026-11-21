@@ -8,12 +8,32 @@ import { hashPassword, verifyPassword } from "@/lib/auth";
  * back-office — aucun article fictif n'est amorcé.
  * Identifiants administrateur définis par ADMIN_EMAIL / ADMIN_PASSWORD.
  */
+
+/**
+ * Retire les guillemets et espaces parasites autour d'une variable collée
+ * depuis un fichier .env : les guillemets font partie de la syntaxe .env,
+ * pas de la valeur. Collés tels quels dans le tableau de bord Vercel, ils
+ * seraient pris littéralement pour des caractères du mot de passe.
+ */
+function cleanEnv(value: string | undefined): string | undefined {
+  if (!value) return value;
+  const v = value.trim();
+  if (
+    v.length >= 2 &&
+    ((v.startsWith('"') && v.endsWith('"')) ||
+      (v.startsWith("'") && v.endsWith("'")))
+  ) {
+    return v.slice(1, -1);
+  }
+  return v;
+}
+
 async function main() {
   console.log("→ Amorçage de la base…");
 
   /* Compte administrateur */
-  const email = process.env.ADMIN_EMAIL ?? "admin@alexandre-morel.example";
-  const password = process.env.ADMIN_PASSWORD ?? "Demo-2026!";
+  const email = cleanEnv(process.env.ADMIN_EMAIL) ?? "admin@alexandre-morel.example";
+  const password = cleanEnv(process.env.ADMIN_PASSWORD) ?? "Demo-2026!";
   if (process.env.VERCEL && !process.env.ADMIN_PASSWORD) {
     console.warn(
       "  ⚠ ADMIN_PASSWORD absente des variables d'environnement Vercel — " +

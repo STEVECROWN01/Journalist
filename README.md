@@ -132,6 +132,44 @@ la clé `vercel-build` du `package.json`) :
 - Le back-office est accessible exclusivement par son URL (`/admin`),
   volontairement non référencé (robots.txt + noindex) et sans lien public.
 
+### Dépannage des déploiements
+
+**Où lire le journal d'un échec :** Vercel > onglet *Deployments* > cliquez
+le déploiement en rouge > *Building* > le journal affiche chaque étape
+(« Étape 1/4 » … « Étape 4/4 ») et, en cas d'erreur, un encadré en français
+qui désigne la cause exacte et la correction à appliquer. Aucun mot de passe
+n'y est jamais imprimé.
+
+**Réglages Vercel à ne pas surcharger** (*Settings > General*) : laissez
+*Build Command* et *Output Directory* sur « Override : None ». La chaîne de
+build officielle est pilotée par la clé `vercel-build` du `package.json` —
+une commande personnalisée saisie dans l'interface la contourne et casse les
+migrations.
+
+**Échecs courants et corrections :**
+
+| Symptôme (journal) | Cause | Correction |
+| --- | --- | --- |
+| `P1001` — base injoignable | URL interne Railway, service en pause ou essai épuisé | Copier l'URL **publique** (`containers-xxxx.rlwy.net`) depuis Railway > PostgreSQL > *Variables*, service actif |
+| `P1000` — authentification refusée | URL modifiée à la main | Recopier `DATABASE_URL` telle quelle depuis Railway |
+| `P3005`/`P3006` — tables existantes | Base déjà remplie hors migrations | Railway > *Data* > SQL : `DROP SCHEMA public CASCADE; CREATE SCHEMA public;` puis redéployer |
+| Guillemets détectés | Valeur collée depuis `.env` avec `"…"` | Corrigé automatiquement par le script (valeur nettoyée puis journalisée) |
+
+**Générer `ADMIN_SESSION_SECRET` :** cette clé ne s'obtient auprès de
+personne — c'est simplement une longue chaîne aléatoire que vous créez
+vous-même (elle signe les sessions du back-office). N'importe laquelle de
+ces méthodes convient :
+
+```sh
+openssl rand -hex 32        # 64 caractères
+openssl rand -base64 48     # variante
+```
+
+Collez le résultat dans Vercel > *Settings > Environment Variables* >
+`ADMIN_SESSION_SECRET`, sans guillemets. Si la variable est absente, une clé
+de démonstration est utilisée (sessions fonctionnelles mais non sécurisées) ;
+la changer déconnecte les sessions existantes, c'est sans autre effet.
+
 ## Guide du back-office
 
 | Rubrique | Actions |
