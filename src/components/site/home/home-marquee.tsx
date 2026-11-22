@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import {
@@ -10,8 +10,6 @@ import {
   FileText,
   Megaphone,
   Mic,
-  Pause,
-  Play,
   Users,
 } from "lucide-react";
 import gsap from "gsap";
@@ -30,8 +28,6 @@ export interface HomeMarqueeCopy {
   intro2: string;
   intro3: string;
   cta: string;
-  pause: string;
-  resume: string;
   readMore: string;
 }
 
@@ -78,7 +74,6 @@ export function HomeMarquee({
 }) {
   const root = useRef<HTMLElement>(null);
   const gallery = useRef<HTMLDivElement>(null);
-  const [motionPaused, setMotionPaused] = useState(false);
 
   useLenisScrollTrigger();
 
@@ -185,8 +180,7 @@ export function HomeMarquee({
         });
       };
       const tick = (time: number, elapsed: number) => {
-        if (document.hidden || root.current?.dataset.motionPaused === "true")
-          return;
+        if (document.hidden) return;
         const inspecting =
           !!strip.querySelector(":focus-visible") || strip.matches(":active");
         for (const track of tracks) {
@@ -266,7 +260,7 @@ export function HomeMarquee({
               height={300}
               sizes="(min-width: 760px) 22vw, 48vw"
               className="dt-photo-img"
-  quality={85}
+  quality={95}
 />
             <span className="dt-photo-badge dt-category-badge">
               <Icon aria-hidden="true" />
@@ -311,7 +305,6 @@ export function HomeMarquee({
       ref={root}
       aria-labelledby="sec-productions"
       className="dt-library"
-      data-motion-paused={motionPaused}
     >
       <div className="dt-library-heading dt-wrap">
         <Reveal>
@@ -362,23 +355,6 @@ export function HomeMarquee({
             </div>
           ))}
         </div>
-      </div>
-
-      <div className="dt-gallery-footer dt-wrap">
-        <button
-          className="dt-motion-toggle"
-          type="button"
-          aria-label={motionPaused ? copy.resume : copy.pause}
-          aria-pressed={motionPaused}
-          onClick={() => setMotionPaused((value) => !value)}
-        >
-          {motionPaused ? (
-            <Play aria-hidden="true" />
-          ) : (
-            <Pause aria-hidden="true" />
-          )}
-          <span>{motionPaused ? copy.resume : copy.pause}</span>
-        </button>
       </div>
 
       <div className="dt-wrap mt-12 flex justify-center">

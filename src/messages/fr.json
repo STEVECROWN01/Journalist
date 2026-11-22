@@ -6,11 +6,11 @@
       "about": "À propos",
       "journalismShort": "Journalisme",
       "journalism": "Journalisme international",
-      "documentary": "Documentaire",
+      "documentary": "Documentaires",
       "comms": "Communication & Conseil",
       "training": "Formation & Transmission",
-      "productions": "Production",
-      "publications": "Publication",
+      "productions": "Productions",
+      "publications": "Publications",
       "contact": "Contact",
       "articlesAnalyses": "Articles & Analyses"
     },
@@ -67,7 +67,7 @@
       "description": "Journaliste international : reportage, production documentaire et collaborations éditoriales. J'accompagne les médias, les producteurs et les organisations dans des projets qui exigent une compréhension approfondie du terrain et des contextes."
     },
     "hero": {
-      "eyebrow": "Journalisme international · Reportage · Documentaire",
+      "eyebrow": "20 ans d'expérience",
       "title1": "Journaliste international.",
       "title2": "Des réalités du terrain aux récits",
       "title3": "qui éclairent le monde.",
@@ -78,12 +78,9 @@
       "ctaSecondary": "Parlons de votre projet",
       "keywordsLabel": "Mots-clés du site"
     },
-    "gallery": {
-      "pause": "Suspendre",
-      "resume": "Reprendre"
-    },
+    "gallery": {},
     "intro": {
-      "eyebrow": "Introduction",
+      "eyebrow": "À propos",
       "title": "Comprendre le terrain avant de raconter l'histoire.",
       "p1": "Un événement ne se résume jamais à ce qui est immédiatement visible.",
       "p2": "Il existe un contexte, des personnes, des trajectoires et des réalités qui donnent à l'information toute sa profondeur.",

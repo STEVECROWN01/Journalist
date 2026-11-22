@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, type CSSProperties } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
@@ -154,7 +154,8 @@ export function HomeDomains({
                   },
                   {
                     opacity: 1,
-                    rotation: domains[index].tilt,
+                    /* Netteté : la plaque termine droite */
+                    rotation: 0,
                     duration: 0.85,
                   },
                   inner ? 0 : 0.2
@@ -274,10 +275,7 @@ export function HomeDomains({
                 className="dt-creator"
                 aria-label={domain.cta}
               >
-                <span
-                  className="dt-creator-plate"
-                  style={{ "--tilt": domain.tilt + "deg" } as CSSProperties}
-                >
+                <span className="dt-creator-plate">
                   <span
                     className={`dt-creator-backplate ${domain.plate}`}
                     aria-hidden="true"
@@ -291,7 +289,7 @@ export function HomeDomains({
                       height={358}
                       sizes="(min-width: 760px) 13vw, 38vw"
                       className="dt-creator-img"
-  quality={85}
+  quality={95}
 />
                   </span>
                   <span className="dt-creator-caption">

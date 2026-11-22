@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { Source_Serif_4, Source_Sans_3 } from "next/font/google";
+import { Sora, Inter } from "next/font/google";
 import { routing } from "@/i18n/routing";
 import { site, SEO_KEYWORDS } from "@/lib/site";
 import { SiteHeader } from "@/components/site/site-header";
@@ -11,21 +11,20 @@ import { SmoothScroll } from "@/components/site/smooth-scroll";
 import { getSettings } from "@/lib/content";
 import "../../globals.css";
 
-/* Typographie éditoriale : Source Serif 4 pour les titres,
-   Source Sans 3 pour les textes fonctionnels (superfamille cohérente).
-   Chargées en polices VARIABLES : un seul fichier par style couvre
-   toutes les graisses (400 à 700) — ~2× moins de poids qu'une
-   liste de graisses statiques. */
-const sourceSerif = Source_Serif_4({
-  style: ["normal", "italic"],
+/* Typographie exacte du site de référence : Sora pour les titres
+   (600–800), Inter pour le corps et les éléments fonctionnels (400–500).
+   Polices VARIABLES : un seul fichier par famille couvre toutes les
+   graisses — chargement optimal, aucune requête supplémentaire. */
+const sora = Sora({
   subsets: ["latin"],
-  variable: "--font-source-serif",
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-sora",
   display: "swap",
 });
 
-const sourceSans = Source_Sans_3({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-source-sans",
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -102,7 +101,7 @@ export default async function SiteLayout({
   const settings = await getSettings();
 
   return (
-    <html lang={locale} className={`${sourceSerif.variable} ${sourceSans.variable}`}>
+    <html lang={locale} className={`${sora.variable} ${inter.variable}`}>
       <body className="flex min-h-screen flex-col bg-background font-sans text-foreground antialiased">
         <NextIntlClientProvider>
           <SmoothScroll />

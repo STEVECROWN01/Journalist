@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Plus } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -95,7 +95,8 @@ export function HomeHero({ copy }: { copy: HomeHeroCopy }) {
             .fromTo(
               ".dt-mosaic-grid",
               { rotationX: 18, rotationY: -24, rotationZ: -12, z: -150 },
-              { rotationX: 3, rotationY: -3, rotationZ: -5, z: 0, duration: 1 },
+              /* Retour à zéro : la mosaïque finit droite — netteté au pixel */
+              { rotationX: 0, rotationY: 0, rotationZ: 0, z: 0, duration: 1 },
               "unfurl"
             );
           gsap.utils
@@ -139,7 +140,7 @@ export function HomeHero({ copy }: { copy: HomeHeroCopy }) {
                         sizes="(min-width: 760px) 22vw, 42vw"
                         priority={index === 1 && copyIndex === 0 && tile < 2}
                         className="dt-mosaic-tile"
-  quality={85}
+  quality={95}
 />
                     ))}
                   </div>
@@ -156,7 +157,14 @@ export function HomeHero({ copy }: { copy: HomeHeroCopy }) {
       {/* Contenu éditorial — copywriting inchangé */}
       <div className="dt-hero-content hero-pad relative z-[2] mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center px-6 py-14 sm:py-16 lg:py-20">
         <Reveal>
-          <p className="eyebrow hero-eyebrow-row">{copy.eyebrow}</p>
+          <p className="hero-eyebrow-row">
+            <span className="dt-experience">
+              <span className="dt-experience-plus" aria-hidden="true">
+                <Plus size={16} strokeWidth={2.75} />
+              </span>
+              {copy.eyebrow}
+            </span>
+          </p>
         </Reveal>
         <Reveal delay={0.08}>
           <h1

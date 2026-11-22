@@ -187,8 +187,9 @@ export default async function HomePage({
         }}
       />
 
-      {/* ============ 02 — INTRODUCTION : split éditorial ============ */}
-      <div className="border-t border-mist/10">
+      {/* ============ 02 · À PROPOS : split éditorial (section claire,
+            collée à la bande de mots-clés du hero — aucune marge) ============ */}
+      <div className="dt-light">
         <HomeIntro
           copy={{
             eyebrow: t("intro.eyebrow"),
@@ -285,10 +286,10 @@ export default async function HomePage({
         ]}
       />
 
-      {/* ============ 06 — PUBLICATIONS ============ */}
+      {/* ============ 06 — PUBLICATIONS (section claire alternée) ============ */}
       <section
         aria-labelledby="sec-publications"
-        className="border-t border-mist/10"
+        className="dt-light"
       >
         <div className="mx-auto max-w-6xl px-6 py-24 md:py-32">
           <SectionHeading
@@ -356,7 +357,7 @@ export default async function HomePage({
                   className="absolute -right-2 -top-2 size-3 rounded-full bg-or"
                   aria-hidden="true"
                 />
-                <Parallax amplitude={26} scale={1.12} className="relative rounded-xl">
+                <Parallax amplitude={16} scale={1.03} className="relative rounded-xl">
                   <Image
                     src="/assets/portrait-studio-professionnel.jpg"
                     alt={fr
@@ -366,7 +367,7 @@ export default async function HomePage({
                     height={620}
                     sizes="(min-width: 1024px) 260px, 240px"
                     className="block aspect-[5/6] w-full rounded-xl object-cover"
-  quality={85}
+  quality={95}
 />
                 </Parallax>
                 <figcaption className="mt-3 text-[0.66rem] font-medium uppercase tracking-[0.18em] text-steel">

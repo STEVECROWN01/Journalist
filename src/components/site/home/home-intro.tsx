@@ -163,7 +163,7 @@ export function HomeIntro({
                 height={1010}
                 sizes="(min-width: 760px) 40vw, 88vw"
                 className="dt-editorial-img"
-  quality={85}
+  quality={95}
 />
             </Link>
           </div>
@@ -194,7 +194,7 @@ export function HomeIntro({
                     width={358}
                     height={231}
                     sizes="120px"
-  quality={85}
+  quality={95}
 />
                 ) : null}
                 <i aria-hidden="true">
@@ -217,7 +217,7 @@ export function HomeIntro({
                 width={358}
                 height={231}
                 sizes="140px"
-  quality={85}
+  quality={95}
 />
               <strong>{cards.result.title}</strong>
             </Link>
@@ -237,7 +237,7 @@ export function HomeIntro({
           <p className="lede dt-editorial-text">{copy.p1}</p>
           <p className="dt-editorial-text">{copy.p2}</p>
           <p className="dt-editorial-text">{copy.p3}</p>
-          <p className="dt-editorial-text border-l-2 border-or pl-6 text-white">
+          <p className="dt-editorial-text border-l-2 border-ink pl-6 font-medium text-ink">
             {copy.p4}
           </p>
         </div>

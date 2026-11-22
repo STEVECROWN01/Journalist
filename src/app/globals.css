@@ -11,8 +11,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-source-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-source-serif), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -53,9 +53,10 @@
   --color-silver: #c8c8c8;       /* gris moyen clair */
   --color-steel: #8c8c8c;        /* gris atténué */
   --color-graphite: #525252;     /* gris discret */
-  --color-sand: #c9baac;         /* beige chaud (accent secondaire) */
-  --color-or: #d4af37;           /* or accent (remplace le rouge) */
-  --color-or-bright: #e6c96a;    /* or clair — survol des boutons */
+  --color-sand: #2f2f2f;         /* surface secondaire (palette référence) */
+  --color-or: #e4e4e4;           /* accent clair — identique au référent */
+  --color-or-bright: #ffffff;    /* blanc pur — survol des boutons */
+  --color-paper: #f5f5f5;        /* sections claires alternées du référent */
   --color-vert: #039855;         /* vert statut (réservé back-office) */
 }
 
@@ -79,15 +80,15 @@
   --destructive: #ea384c;
   --border: #e4e4e424;
   --input: #e4e4e42e;
-  --ring: #d4af3766;
+  --ring: #e4e4e4;
   --sidebar: #161616;
   --sidebar-foreground: #ffffff;
-  --sidebar-primary: #d4af37;
+  --sidebar-primary: #e4e4e4;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #2f2f2f;
   --sidebar-accent-foreground: #ffffff;
   --sidebar-border: #e4e4e424;
-  --sidebar-ring: #d4af3766;
+  --sidebar-ring: #e4e4e466;
 }
 
 @layer base {
@@ -102,16 +103,16 @@
 
   body {
     @apply bg-background text-foreground;
-    /* Rythme de lecture identique au site de référence */
-    font-size: clamp(0.95rem, 1.4vw, 1.075rem);
-    line-height: 1.75;
+    /* Rythme de lecture identique au site de référence : 16px / 24px */
+    font-size: 1rem;
+    line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-feature-settings: "ss01" on;
   }
 
   ::selection {
-    background: #d4af37;
+    background: #e4e4e4;
     color: #1c1c1c;
   }
 
@@ -147,33 +148,32 @@
 }
 
 @layer components {
-  /* ---------- Typographie éditoriale ---------- */
+  /* ---------- Typographie éditoriale (Sora pour les titres, Inter pour le corps — identique au site de référence) ---------- */
   .eyebrow {
     @apply flex items-center font-sans text-[0.72rem] font-medium uppercase tracking-[0.22em] text-silver;
   }
-  .eyebrow::before {
-    content: "";
-    display: inline-block;
-    width: 1.75rem;
-    height: 1px;
-    background: #d4af37;
-    margin-right: 0.75rem;
-    vertical-align: middle;
-  }
   .display-1 {
-    @apply font-serif font-normal leading-[1.04] tracking-[-0.01em];
-    font-size: clamp(2.6rem, 6vw, 4.6rem);
+    @apply font-serif font-semibold leading-[1.08] tracking-[-0.02em];
+    font-size: clamp(2.5rem, 5vw, 3.4rem);
   }
   .display-2 {
-    @apply font-serif font-normal leading-[1.08] tracking-[-0.005em];
-    font-size: clamp(1.9rem, 3.6vw, 2.9rem);
+    @apply font-serif font-semibold leading-[1.12] tracking-[-0.018em];
+    font-size: clamp(1.875rem, 3.4vw, 3rem);
   }
   .display-3 {
-    @apply font-serif font-normal leading-[1.15];
-    font-size: clamp(1.35rem, 2.2vw, 1.7rem);
+    @apply font-serif font-semibold leading-[1.25] tracking-[-0.01em];
+    font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+  }
+  /* Sora ne possède pas d'italique : l'accent éditorial passe par la
+     graisse (comme le site de référence), jamais l'oblique synthétique. */
+  .display-1 em,
+  .display-2 em,
+  .display-3 em {
+    font-style: normal;
+    font-weight: 700;
   }
   .lede {
-    @apply text-[1.08rem] leading-[1.8] text-mist/90;
+    @apply text-[1.0625rem] leading-[1.7] text-silver;
   }
   .meta {
     @apply font-sans text-[0.72rem] font-medium uppercase tracking-[0.18em] text-steel;
@@ -190,7 +190,7 @@
     bottom: -3px;
     width: 100%;
     height: 1px;
-    background: #d4af37;
+    background: var(--color-mist);
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
@@ -243,16 +243,16 @@
     z-index: 1;
   }
   .btn-primary {
-    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-mist bg-white px-6 py-2.5 text-[0.8rem] font-medium uppercase tracking-[0.14em] text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-or disabled:pointer-events-none disabled:opacity-50;
+    @apply inline-flex min-h-14 items-center justify-center gap-2.5 rounded-full border border-mist bg-white px-7 py-3 text-[0.9375rem] font-medium tracking-[0.01em] text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mist disabled:pointer-events-none disabled:opacity-50;
   }
   .btn-primary::before {
     background: var(--color-mist);
   }
   .btn-primary:hover {
-    border-color: var(--color-sand);
+    border-color: var(--color-white);
   }
   .btn-outline {
-    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-mist/25 bg-transparent px-6 py-2.5 text-[0.8rem] font-medium uppercase tracking-[0.14em] text-mist focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-or disabled:pointer-events-none disabled:opacity-50;
+    @apply inline-flex min-h-14 items-center justify-center gap-2.5 rounded-full border border-mist/30 bg-transparent px-7 py-3 text-[0.9375rem] font-medium tracking-[0.01em] text-mist focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mist disabled:pointer-events-none disabled:opacity-50;
   }
   .btn-outline::before {
     background: var(--color-mist);
@@ -261,7 +261,7 @@
     @apply border-mist text-ink;
   }
   .btn-accent {
-    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-transparent bg-or px-6 py-2.5 text-[0.8rem] font-medium uppercase tracking-[0.14em] text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-or disabled:pointer-events-none disabled:opacity-50;
+    @apply inline-flex min-h-14 items-center justify-center gap-2.5 rounded-full border border-transparent bg-or px-7 py-3 text-[0.9375rem] font-medium tracking-[0.01em] text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mist disabled:pointer-events-none disabled:opacity-50;
   }
   .btn-accent::before {
     background: var(--color-or-bright);
@@ -583,7 +583,9 @@ body {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--dt-gap);
   transform-style: preserve-3d;
-  transform: rotateX(18deg) rotateY(-24deg) rotateZ(-12deg) translateZ(-150px);
+  /* Netteté : aucune rotation permanente — l'image reste au pixel près.
+     GSAP anime le déploiement 3D au défilement puis revient à zéro. */
+  transform: none;
   transform-origin: 50% 50%;
 }
 .dt-mosaic-column {
@@ -641,7 +643,7 @@ body {
    toutes ses lignes restent en deçà de 65 % de la largeur, zone où le
    voile garantit un contraste suffisant sur la mosaïque. */
 .dt-hero .display-1 {
-  font-size: clamp(2.5rem, 5.3vw, 4.15rem);
+  font-size: clamp(2.4rem, 4.8vw, 3.4rem);
 }
 /* Séparation supplémentaire du texte du hero sur les zones claires */
 .dt-hero .display-1,
@@ -658,8 +660,10 @@ body {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
   align-items: center;
   column-gap: clamp(32px, 5.5vw, 85px);
-  padding-block: 85px;
-  margin-block: 35px;
+  /* Collé à la bande de mots-clés du hero : aucune marge extérieure,
+     la respiration vient du padding interne (128px, site de référence). */
+  padding-block: clamp(64px, 9vw, 128px);
+  margin-block: 0;
   position: relative;
 }
 .dt-editorial::before {
@@ -670,10 +674,10 @@ body {
   bottom: 90px;
   left: 20%;
   right: -5%;
-  background: linear-gradient(90deg, transparent, var(--color-surface-2) 45%, var(--color-surface-2));
+  background: linear-gradient(90deg, transparent, #ffffff 45%, #ffffff);
   border-radius: 16px;
   pointer-events: none;
-  opacity: 0.55;
+  opacity: 0.65;
 }
 .dt-editorial-figure {
   margin: 0;
@@ -729,10 +733,10 @@ body {
   left: 69%;
   text-align: left;
   padding: 6px;
-  border: 0;
+  border: 1px solid rgba(28, 28, 28, 0.08);
   border-radius: 10px;
-  background: var(--color-ink);
-  box-shadow: 0 8px 24px rgb(0 0 0 / 0.4);
+  background: #ffffff;
+  box-shadow: 0 14px 34px rgb(28 28 28 / 0.14);
   transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .dt-editorial-card:hover {
@@ -758,11 +762,11 @@ body {
   padding: 6px 4px 2px;
   font-size: clamp(0.6rem, 0.85vw, 0.76rem);
   line-height: 1.25;
-  color: var(--color-mist);
+  color: #1c1c1c;
 }
 .dt-editorial-card small {
   display: block;
-  color: var(--color-steel);
+  color: #525252;
   font-size: clamp(0.48rem, 0.6vw, 0.58rem);
   padding: 1px 4px 4px;
 }
@@ -877,7 +881,8 @@ body {
   position: absolute;
   inset: 0;
   border-radius: 28%;
-  transform: rotate(var(--tilt));
+  /* Netteté : plaques droites, le seul décor reste la couleur */
+  transform: none;
 }
 .dt-creator-backplate.sand {
   background: var(--color-sand);
@@ -1081,7 +1086,8 @@ body {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 10px;
-  rotate: 2deg;
+  /* Netteté : voies droites (aucune rotation = aucun ré-échantillonnage) */
+  rotate: 0deg;
   margin-inline: -30px;
 }
 .dt-gallery-lane {
@@ -1178,7 +1184,7 @@ body {
 }
 .dt-photo-meta strong {
   display: block;
-  font-size: 0.82rem;
+  font-size: 0.94rem;
   font-weight: 600;
   color: var(--color-mist);
   white-space: nowrap;
@@ -1187,8 +1193,8 @@ body {
 }
 .dt-photo-meta small {
   display: block;
-  margin-top: 2px;
-  font-size: 0.62rem;
+  margin-top: 3px;
+  font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--color-steel);
@@ -1258,33 +1264,6 @@ body {
 .dt-note-card:hover .dt-note-cta {
   color: var(--color-or);
 }
-.dt-gallery-footer {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  color: var(--color-steel);
-  font-size: 0.68rem;
-  margin-top: 12px;
-}
-.dt-motion-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  min-width: 64px;
-  min-height: 44px;
-  border: 0;
-  background: transparent;
-  color: var(--color-steel);
-  font-size: 0.68rem;
-  cursor: pointer;
-}
-.dt-motion-toggle:hover {
-  color: var(--color-mist);
-}
-.dt-motion-toggle svg {
-  width: 13px;
-  height: 13px;
-}
 
 /* ---------- 01b · Hero : bande de mots-clés défilante ---------- */
 /* Les mots-clés de référencement du site défilent en continu de la
@@ -1324,10 +1303,10 @@ body {
   gap: clamp(1.5rem, 2.8vw, 2.4rem);
   padding-right: clamp(1.5rem, 2.8vw, 2.4rem);
   white-space: nowrap;
-  font-size: 0.66rem;
+  font-size: 0.74rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.2em;
   color: var(--color-silver);
 }
 .dt-keywords-dot {
@@ -1443,7 +1422,8 @@ body {
   .dt-mosaic-grid {
     height: 560px;
     width: 100%;
-    transform: rotateX(12deg) rotateY(-14deg) rotateZ(-8deg) translateZ(-110px);
+    /* Netteté mobile : mosaïque droite, aucun ré-échantillonnage GPU */
+    transform: none;
   }
   .dt-mosaic-tile {
     aspect-ratio: 0.94;
@@ -1469,11 +1449,11 @@ body {
     grid-template-columns: 1fr;
     gap: 34px;
     padding: 45px 0;
-    margin-block: 10px;
+    margin-block: 0;
   }
   .dt-editorial::before {
     inset: 20% -8px 14px;
-    background: linear-gradient(180deg, transparent, var(--color-surface-2) 62%);
+    background: linear-gradient(180deg, transparent, #ffffff 62%);
   }
   .dt-editorial-figure {
     max-width: 440px;
@@ -1579,16 +1559,12 @@ body {
     width: 12px;
     height: 12px;
   }
-  .dt-gallery-footer {
-    margin-top: 5px;
-    font-size: 0.6rem;
-  }
 }
 
 /* ---------- Motion réduite ---------- */
 @media (prefers-reduced-motion: reduce) {
   .dt-mosaic-grid {
-    transform: rotate(-8deg);
+    transform: none;
   }
   .dt-mosaic-track {
     will-change: auto;
@@ -1597,5 +1573,193 @@ body {
   .dt-editorial-card,
   .dt-note-card {
     transition: none;
+  }
+}
+
+/* ============================================================
+   IMAGES — NOIR ET BLANC AU REPOS, COULEUR RÉVÉLÉE AU SURVOL
+   (comportement exact du site de référence : --mono-filter)
+   ============================================================ */
+.dt-mosaic-tile,
+.dt-editorial-img,
+.dt-editorial-card img,
+.dt-mini-image img,
+.dt-photo img,
+.dt-creator-img,
+article img,
+figure img {
+  filter: grayscale(1);
+  transition: filter 0.5s ease;
+}
+/* La mosaïque du hero est décorative (pointer-events: none) :
+   elle reste en noir et blanc en permanence. */
+/* Survol / focus du conteneur : la véritable couleur est révélée. */
+.dt-editorial-photo:hover .dt-editorial-img,
+.dt-editorial-photo:focus-visible .dt-editorial-img,
+.dt-editorial-card:hover img,
+.dt-editorial-card:focus-visible img,
+.dt-photo:hover img,
+.dt-photo:focus-visible img,
+.dt-creator:hover .dt-creator-img,
+.dt-creator:focus-visible .dt-creator-img,
+article:hover img,
+article:focus-within img,
+figure:hover img,
+figure:focus-within img {
+  filter: grayscale(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .dt-mosaic-tile,
+  .dt-editorial-img,
+  .dt-editorial-card img,
+  .dt-mini-image img,
+  .dt-photo img,
+  .dt-creator-img,
+  article img,
+  figure img {
+    transition: none;
+  }
+}
+
+/* ============================================================
+   SECTIONS CLAIRES — alternance #f5f5f5 / #1c1c1c du référent
+   ============================================================ */
+.dt-light {
+  background: var(--color-paper);
+  color: #1c1c1c;
+}
+.dt-light .text-white,
+.dt-light .text-mist {
+  color: #1c1c1c;
+}
+.dt-light .text-silver,
+.dt-light .text-silver\/90 {
+  color: #3f3f3f;
+}
+.dt-light .text-steel {
+  color: #525252;
+}
+.dt-light .text-or {
+  color: #1c1c1c;
+}
+.dt-light .text-graphite {
+  color: #a3a3a3;
+}
+.dt-light .eyebrow {
+  color: #525252;
+}
+.dt-light .lede {
+  color: #3f3f3f;
+}
+.dt-light .meta {
+  color: #525252;
+}
+.dt-light .link-editorial {
+  color: #1c1c1c;
+}
+.dt-light .link-editorial:hover {
+  color: #000000;
+}
+.dt-light .border-mist\/10 {
+  border-color: rgba(28, 28, 28, 0.12);
+}
+.dt-light .hover\:border-mist\/25:hover {
+  border-color: rgba(28, 28, 28, 0.3);
+}
+.dt-light .btn-outline {
+  color: #1c1c1c;
+  border-color: rgba(28, 28, 28, 0.25);
+}
+.dt-light .btn-outline::before {
+  background: #1c1c1c;
+}
+.dt-light .btn-outline:hover {
+  color: #ffffff;
+  border-color: #1c1c1c;
+}
+.dt-light .card-editorial {
+  background: #ffffff;
+  border-color: rgba(28, 28, 28, 0.1);
+}
+.dt-light .card-editorial:hover {
+  border-color: rgba(28, 28, 28, 0.25);
+}
+
+/* ============================================================
+   HERO — BADGE « +20 ANS D'EXPÉRIENCE » (icône + qui brille)
+   ============================================================ */
+.dt-experience {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.5rem 1.125rem 0.5rem 0.625rem;
+  border: 1px solid rgba(228, 228, 228, 0.22);
+  border-radius: 9999px;
+  background: rgba(7, 7, 7, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #e4e4e4;
+}
+.dt-experience-plus {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 9999px;
+  background: #e4e4e4;
+  color: #1c1c1c;
+  flex: none;
+}
+/* Halo lumineux continu : le + pulse sans fin pour attirer l'œil */
+.dt-experience-plus::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: rgba(228, 228, 228, 0.55);
+  animation: dt-plus-ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+.dt-experience-plus::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 9999px;
+  box-shadow: 0 0 18px 2px rgba(228, 228, 228, 0.4);
+  animation: dt-plus-glow 2.4s ease-in-out infinite;
+}
+.dt-experience-plus svg {
+  position: relative;
+  z-index: 1;
+}
+@keyframes dt-plus-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  75%,
+  100% {
+    transform: scale(2.1);
+    opacity: 0;
+  }
+}
+@keyframes dt-plus-glow {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dt-experience-plus::before,
+  .dt-experience-plus::after {
+    animation: none;
   }
 }

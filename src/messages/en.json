@@ -6,7 +6,7 @@
       "about": "About",
       "journalismShort": "Journalism",
       "journalism": "International Journalism",
-      "documentary": "Documentary",
+      "documentary": "Documentaries",
       "comms": "Communications & Consulting",
       "training": "Training & Knowledge Transfer",
       "productions": "Productions",
@@ -67,7 +67,7 @@
       "description": "International journalist: reporting, documentary production and editorial collaborations. I work with media, producers and organisations on projects that demand a deep understanding of the field and its contexts."
     },
     "hero": {
-      "eyebrow": "International journalism · Reporting · Documentary",
+      "eyebrow": "20 years of experience",
       "title1": "International journalist.",
       "title2": "From field realities to stories",
       "title3": "that illuminate the world.",
@@ -78,12 +78,9 @@
       "ctaSecondary": "Let's talk about your project",
       "keywordsLabel": "Website keywords"
     },
-    "gallery": {
-      "pause": "Pause",
-      "resume": "Resume"
-    },
+    "gallery": {},
     "intro": {
-      "eyebrow": "Introduction",
+      "eyebrow": "About",
       "title": "Understanding the field before telling the story.",
       "p1": "An event never comes down to what is immediately visible.",
       "p2": "There is always a context, people, journeys and realities that give information its full depth.",

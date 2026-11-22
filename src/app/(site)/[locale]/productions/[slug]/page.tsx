@@ -116,7 +116,7 @@ export default async function ProductionDetailPage({
                 priority
                 sizes="(max-width: 1152px) 100vw, 1152px"
                 className="object-cover"
-  quality={85}
+  quality={95}
 />
             </div>
           </Reveal>
