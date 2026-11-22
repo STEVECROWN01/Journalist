@@ -58,14 +58,18 @@ diagnose_migrate() {
       "  1. Railway > votre service PostgreSQL : il doit être actif (pastille" \
       "     verte), pas en pause. Si l'essai gratuit est épuisé, la base est" \
       "     déprovisionnée — rechargez le compte ou recréez le projet." \
-      "  2. Railway > PostgreSQL > onglet Variables : copiez la valeur de" \
-      "     DATABASE_URL (URL PUBLIQUE, du type postgresql://…@containers-xxxx" \
-      "     .rlwy.net:xxxx/railway). N'utilisez jamais l'URL interne" \
-      "     « postgres.railway.internal » : elle n'est joignable que depuis" \
-      "     l'intérieur de Railway." \
-      "  3. Vercel > Settings > Environment Variables > DATABASE_URL : collez" \
+      "  2. Aucun domaine public ? Railway > PostgreSQL > onglet Settings >" \
+      "     section Networking > « Public Access » : appuyez sur" \
+      "     « Generate Domain » si aucun hôte containers-xxxx.rlwy.net" \
+      "     n'apparaît. L'URL interne « postgres.railway.internal » ne" \
+      "     fonctionne QUE depuis l'intérieur de Railway, jamais depuis" \
+      "     Vercel. (L'option « railway connect » / --tunnel-only ne sert" \
+      "     qu'à vos outils locaux : TablePlus, DBeaver….)" \
+      "  3. Railway > PostgreSQL > onglet Variables : copiez la variable" \
+      "     DATABASE_PUBLIC_URL (hôte du type containers-xxxx.rlwy.net)." \
+      "  4. Vercel > Settings > Environment Variables > DATABASE_URL : collez" \
       "     la valeur brute, SANS guillemets, pour Production (et Preview)." \
-      "  4. Deployments > menu du dernier déploiement > Redeploy."
+      "  5. Deployments > menu du dernier déploiement > Redeploy."
   elif grep -q 'P1000' "$LOG_MIGRATE" 2>/dev/null; then
     printf '%s\n' \
       "CAUSE : authentification PostgreSQL refusée (erreur P1000)." \
@@ -182,7 +186,20 @@ else
 
   case "$DATABASE_URL" in
     *railway.internal*|*@postgres:*|*@postgresql:*)
-      printf '\n✖ DATABASE_URL est l URL INTERNE de Railway (postgres.railway.internal), inaccessible depuis Vercel. Copiez l URL PUBLIQUE : Railway > PostgreSQL > onglet Variables > DATABASE_URL (hôte du type containers-xxxx.rlwy.net), puis mettez-la à jour dans Vercel et redéployez.\n'
+      printf '\n%s\n' \
+      "✖ DATABASE_URL est l URL INTERNE de Railway (postgres.railway.internal)," \
+      "inaccessible depuis Vercel. Comment obtenir l URL publique :" \
+      "  1. Railway > service PostgreSQL > onglet Settings > section Networking." \
+      "  2. Sous « Public Access » (l encadré qui avertit que quiconque détient" \
+      "     la chaîne de connexion peut se connecter), appuyez sur" \
+      "     « Generate Domain » : Railway crée un domaine public du type" \
+      "     containers-xxxx.rlwy.net, avec son port." \
+      "  3. Onglet Variables : la variable DATABASE_PUBLIC_URL apparaît alors —" \
+      "     copiez sa valeur complète." \
+      "  4. Vercel > Settings > Environment Variables > DATABASE_URL : collez" \
+      "     cette valeur brute (SANS guillemets), puis Redeploy." \
+      "NB : « railway connect » et l option --tunnel-only servent uniquement à" \
+      "vos outils locaux (TablePlus, DBeaver…) — Vercel exige l URL publique."
       fallback_notice
       DB_SKIPPED=1
       ;;

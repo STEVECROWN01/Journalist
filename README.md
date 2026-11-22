@@ -105,13 +105,23 @@ Le déploiement fonctionne immédiatement (détection Next.js automatique) :
   contenu de démonstration intégré (mode repli statique). Le formulaire de
   contact et le back-office signalent que la base n'est pas configurée.
 - **Avec base de données** (recommandé) : toutes les fonctions sont actives.
-  Créez une base PostgreSQL serverless gratuite (Neon, Supabase…), puis :
-  1. Dans `prisma/schema.prisma`, remplacez `provider = "sqlite"` par
-     `provider = "postgresql"` ;
-  2. Définissez `DATABASE_URL` dans Vercel ;
-  3. Exécutez `bun run db:push && bun run db:seed` localement contre cette
-     base (ou depuis un environnement de build) ;
-  4. Redéployez.
+  Le projet est configuré pour **Railway** (PostgreSQL) — migrations et
+  amorçage s'exécutent automatiquement à chaque build :
+  1. Railway > service PostgreSQL > onglet **Settings** > section
+     **Networking** > « Public Access » : appuyez sur **Generate Domain** si
+     aucun domaine `containers-xxxx.rlwy.net` n'existe encore ;
+  2. Onglet **Variables** : copiez la valeur de `DATABASE_PUBLIC_URL`.
+     N'utilisez jamais l'URL interne `postgres.railway.internal` (elle n'est
+     joignable que depuis l'intérieur de Railway, pas depuis Vercel) ;
+  3. Vercel > Settings > Environment Variables > `DATABASE_URL` : collez
+     l'URL publique brute, **sans guillemets** ;
+  4. **Redeploy** : le script de build applique les migrations Prisma puis
+     l'amorçage (le journal Vercel détaille chaque étape).
+
+  Note : l'option `railway connect` / `--tunnel-only` de l'onglet Settings
+  ne sert qu'aux outils locaux (TablePlus, DBeaver…) — Vercel exige l'URL
+  publique. En cas d'erreur SSL lors du build, ajoutez `?sslmode=require`
+  à la fin de l'URL.
 
 ## Guide du back-office
 
