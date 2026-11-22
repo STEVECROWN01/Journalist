@@ -206,9 +206,10 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
     "hover:after:left-2 xl:hover:after:left-2.5 hover:after:w-[calc(100%-1rem)] xl:hover:after:w-[calc(100%-1.25rem)]";
 
   /* Commutateur bilingue — pilule avec drapeau de la langue cible :
-     le survol annonce clairement la destination (drapeau + libellé). */
+     le survol annonce clairement la destination (drapeau + libellé).
+     Mobile : drapeau seul (compact), libellé dès sm. */
   const switchBase =
-    "group inline-flex h-11 shrink-0 items-center gap-2 rounded-full border px-3.5 text-[0.82rem] font-semibold uppercase tracking-[0.08em] transition-all duration-300";
+    "group inline-flex h-11 shrink-0 items-center gap-2 rounded-full border px-2.5 sm:px-3.5 text-[0.82rem] font-semibold uppercase tracking-[0.08em] transition-all duration-300";
 
   const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -221,7 +222,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
         {t("skipToContent")}
       </a>
 
-      <div className="mx-auto flex h-[76px] w-full max-w-[1440px] items-center justify-between pl-5 sm:pl-8 lg:h-[104px] lg:pl-10">
+      <div className="mx-auto flex h-[76px] w-full max-w-[1440px] items-center justify-between pl-5 pr-5 sm:pl-8 sm:pr-8 lg:h-[104px] lg:pl-10 lg:pr-10">
         {/* Wordmark — Sora 600 comme le logo du site de référence.
             Garnissage horizontal équilibré (px-6) : quand le wrapper sombre
             apparaît au scroll, le nom respire et reste centré dedans.
@@ -230,7 +231,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
           href="/"
           onClick={goHome}
           aria-label={t("brand")}
-          className={`flex h-[76px] items-center px-6 font-serif text-[1.2rem] font-semibold leading-none tracking-[-0.01em] text-white transition-all duration-500 hover:opacity-80 sm:text-[1.3rem] ${
+          className={`flex h-[76px] items-center px-3 font-serif text-[1.2rem] font-semibold leading-none tracking-[-0.01em] text-white transition-all duration-500 hover:opacity-80 sm:px-6 sm:text-[1.3rem] ${
             scrolled
               ? "rounded-b-xl border-x border-b border-mist/10 bg-ink/80 backdrop-blur-xl lg:rounded-xl lg:border"
               : "rounded-b-xl border-x border-b border-transparent lg:rounded-xl lg:border"
@@ -293,7 +294,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
             }`}
           >
             <OtherFlag className="h-3.5 w-5 rounded-[3px] outline outline-1 outline-white/25" />
-            {otherLocale}
+            <span className="hidden sm:inline">{otherLocale}</span>
           </Link>
 
           {/* Hamburger — languette mobile (collée en haut) ; sur desktop,
@@ -306,7 +307,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
             aria-label={t("menu.open")}
             aria-expanded={menuOpen}
             aria-controls="fullscreen-menu"
-            className="group flex h-[76px] w-[88px] shrink-0 flex-col items-center justify-center gap-[5px] rounded-b-lg bg-ink transition-colors duration-300 hover:bg-surface-2 lg:w-[100px] lg:rounded-[10px]"
+            className="group flex h-[76px] w-[76px] shrink-0 flex-col items-center justify-center gap-[5px] rounded-b-lg bg-ink transition-colors duration-300 hover:bg-surface-2 sm:w-[88px] lg:w-[100px] lg:rounded-[10px]"
           >
             <span
               className="block h-[2px] w-6 bg-white transition-all duration-300 group-hover:w-4"
