@@ -1692,7 +1692,7 @@ figure:focus-within img {
 
 /* ============================================================
    HERO — MENTION « +20 ANS D'EXPÉRIENCE »
-   Pas de bouton ni d'arrondi : un simple symbole « + » qui brille
+   Étoile à quatre pointes (haut, bas, gauche, droite) qui brille
    en continu pour attirer l'œil, à côté du texte.
    ============================================================ */
 .dt-experience {
@@ -1721,13 +1721,13 @@ figure:focus-within img {
 @keyframes dt-plus-shine {
   0%,
   100% {
-    filter: drop-shadow(0 0 3px rgb(255 255 255 / 0.55));
-    transform: scale(1);
+    filter: drop-shadow(0 0 4px rgb(255 255 255 / 0.7));
+    transform: scale(1) rotate(-10deg);
   }
   50% {
-    filter: drop-shadow(0 0 11px rgb(255 255 255 / 1))
-      drop-shadow(0 0 26px rgb(255 255 255 / 0.6));
-    transform: scale(1.16);
+    filter: drop-shadow(0 0 13px rgb(255 255 255 / 1))
+      drop-shadow(0 0 32px rgb(255 255 255 / 0.7));
+    transform: scale(1.16) rotate(10deg);
   }
 }
 @media (prefers-reduced-motion: reduce) {

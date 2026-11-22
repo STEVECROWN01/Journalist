@@ -34,11 +34,11 @@ export default async function AboutPage({
           t("hero.p2"),
           t("hero.p3"),
         ]}
-        image="/assets/portrait-bureau-direction.jpg"
+        image="/assets/Man_directing_film_crew_f7c433ef.jpg_f49f5942.jpg"
         imageAlt={
           locale === "fr"
-            ? "Alexandre Morel à son bureau de direction, lumière naturelle"
-            : "Alexandre Morel at his desk, natural light"
+            ? "Alexandre Morel dirigeant une équipe de tournage sur un toit de Paris"
+            : "Alexandre Morel directing a film crew on a Paris rooftop"
         }
       />
 

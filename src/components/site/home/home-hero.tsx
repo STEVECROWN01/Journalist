@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
-import { ArrowRight, Plus } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -160,7 +160,11 @@ export function HomeHero({ copy }: { copy: HomeHeroCopy }) {
           <p className="hero-eyebrow-row">
             <span className="dt-experience">
               <span className="dt-experience-plus" aria-hidden="true">
-                <Plus size={16} strokeWidth={2.75} />
+                {/* Étoile à quatre pointes (haut, bas, gauche, droite) —
+                    même gabarit que l'ancien « + », remplie, qui brille */}
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                  <path d="M12 1.5c.65 6.85 3.65 9.85 10.5 10.5-6.85.65-9.85 3.65-10.5 10.5-.65-6.85-3.65-9.85-10.5-10.5C8.35 11.35 11.35 8.35 12 1.5Z" />
+                </svg>
               </span>
               {copy.eyebrow}
             </span>
