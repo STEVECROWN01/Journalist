@@ -47,11 +47,12 @@ export function MaskLines({
     if (!el) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     setArmed(true);
+    const reveal = () => el.classList.add("ml-in");
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
-            entry.target.classList.add("ml-in");
+            reveal();
             io.unobserve(entry.target);
           }
         }
@@ -59,7 +60,22 @@ export function MaskLines({
       { rootMargin: "0px 0px -64px 0px", threshold: 0.1 }
     );
     io.observe(el);
-    return () => io.disconnect();
+    /* Filet de sécurité : un titre réellement présent à l'écran ne peut
+       jamais rester masqué, même si l'observation initiale a tiré pendant
+       une refonte de mise en page (polices, épinglage GSAP). */
+    const guard = window.setInterval(() => {
+      const r = el.getBoundingClientRect();
+      if (r.height > 0 && r.bottom > 0 && r.top < innerHeight - 72) {
+        reveal();
+        window.clearInterval(guard);
+      }
+    }, 350);
+    const stop = () => window.clearInterval(guard);
+    window.setTimeout(stop, 4500);
+    return () => {
+      io.disconnect();
+      stop();
+    };
   }, []);
 
   /* Chaque enfant direct devient une « ligne » masquée ; un enfant

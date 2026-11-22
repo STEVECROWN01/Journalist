@@ -27,11 +27,12 @@ export function Reveal({ children, delay = 0, className, as = "div" }: RevealPro
     if (!el) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     setArmed(true);
+    const reveal = () => el.classList.add("rv-in");
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
-            entry.target.classList.add("rv-in");
+            reveal();
             io.unobserve(entry.target);
           }
         }
@@ -39,7 +40,23 @@ export function Reveal({ children, delay = 0, className, as = "div" }: RevealPro
       { rootMargin: "0px 0px -72px 0px", threshold: 0.05 }
     );
     io.observe(el);
-    return () => io.disconnect();
+    /* Filet de sécurité : si l'observation initiale a lieu pendant une
+       refonte de mise en page (polices, épinglage GSAP), le callback
+       peut ne jamais tirer. Un élément réellement présent à l’écran ne
+       peut jamais rester masqué. */
+    const guard = window.setInterval(() => {
+      const r = el.getBoundingClientRect();
+      if (r.height > 0 && r.bottom > 0 && r.top < innerHeight - 80) {
+        reveal();
+        window.clearInterval(guard);
+      }
+    }, 350);
+    const stop = () => window.clearInterval(guard);
+    window.setTimeout(stop, 4500);
+    return () => {
+      io.disconnect();
+      stop();
+    };
   }, []);
 
   const Tag = as as "div";
@@ -71,11 +88,12 @@ export function RevealImage({
     if (!el) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     setArmed(true);
+    const reveal = () => el.classList.add("rvi-in");
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
-            entry.target.classList.add("rvi-in");
+            reveal();
             io.unobserve(entry.target);
           }
         }
@@ -83,7 +101,20 @@ export function RevealImage({
       { rootMargin: "0px 0px -56px 0px", threshold: 0.05 }
     );
     io.observe(el);
-    return () => io.disconnect();
+    /* Filet de sécurité identique à Reveal. */
+    const guard = window.setInterval(() => {
+      const r = el.getBoundingClientRect();
+      if (r.height > 0 && r.bottom > 0 && r.top < innerHeight - 64) {
+        reveal();
+        window.clearInterval(guard);
+      }
+    }, 350);
+    const stop = () => window.clearInterval(guard);
+    window.setTimeout(stop, 4500);
+    return () => {
+      io.disconnect();
+      stop();
+    };
   }, []);
 
   return (
