@@ -189,11 +189,13 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
       </a>
 
       <div className="mx-auto flex h-[76px] w-full max-w-[1440px] items-center justify-between pl-5 sm:pl-8 lg:pl-10">
-        {/* Wordmark — Sora 600 comme le logo du site de référence */}
+        {/* Wordmark — Sora 600 comme le logo du site de référence.
+            Garnissage horizontal équilibré (px-6) : quand le wrapper sombre
+            apparaît au scroll, le nom respire et reste centré dedans. */}
         <Link
           href="/"
           aria-label={t("brand")}
-          className={`flex h-[76px] items-center pr-6 font-serif text-[1.2rem] font-semibold leading-none tracking-[-0.01em] text-white transition-all duration-500 hover:opacity-80 sm:text-[1.3rem] lg:h-[104px] ${
+          className={`flex h-[76px] items-center px-6 font-serif text-[1.2rem] font-semibold leading-none tracking-[-0.01em] text-white transition-all duration-500 hover:opacity-80 sm:text-[1.3rem] lg:h-[104px] ${
             scrolled
               ? "rounded-b-xl border-x border-b border-mist/10 bg-ink/80 backdrop-blur-xl"
               : "border-x border-b border-transparent"
