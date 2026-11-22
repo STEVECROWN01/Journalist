@@ -721,8 +721,9 @@ body {
 }
 .dt-editorial-line path {
   fill: none;
-  stroke: var(--color-or);
-  stroke-width: 0.32;
+  /* Flèche noire, bien visible sur la section claire */
+  stroke: #1c1c1c;
+  stroke-width: 0.4;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
@@ -824,7 +825,7 @@ body {
   position: relative;
   isolation: isolate;
   margin: 20px auto 6px;
-  height: 390px;
+  height: 462px;
 }
 .dt-portrait-line {
   position: absolute;
@@ -851,16 +852,16 @@ body {
   width: 100%;
 }
 .dt-creator-arrival {
-  padding-top: 40px;
+  padding-top: 44px;
 }
 .dt-creator-arrival:nth-child(2) {
-  padding-top: 140px;
+  padding-top: 150px;
 }
 .dt-creator-arrival:nth-child(3) {
-  padding-top: 20px;
+  padding-top: 22px;
 }
 .dt-creator-arrival:nth-child(4) {
-  padding-top: 120px;
+  padding-top: 128px;
 }
 .dt-creator {
   display: inline-grid;
@@ -873,9 +874,10 @@ body {
 .dt-creator-plate {
   position: relative;
   display: block;
-  width: clamp(148px, 15vw, 188px);
+  /* Planches agrandies : les titres respirent, sans déborder */
+  width: clamp(216px, 21.5vw, 268px);
   aspect-ratio: 1;
-  margin-bottom: 20px;
+  margin-bottom: 26px;
 }
 .dt-creator-backplate {
   position: absolute;
@@ -929,15 +931,15 @@ body {
 }
 .dt-creator-caption {
   position: absolute;
-  inset: 58% 5% auto;
+  inset: 58% 4.5% auto;
   display: grid;
   justify-items: center;
-  gap: 8px;
+  gap: 10px;
   color: var(--color-mist);
 }
 .dt-creator-caption strong {
-  font-size: clamp(0.62rem, 0.92vw, 0.8rem);
-  line-height: 1.3;
+  font-size: clamp(0.86rem, 1.02vw, 1rem);
+  line-height: 1.35;
   text-align: center;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -948,16 +950,16 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 3px 8px;
-  font-size: 0.55rem;
+  padding: 4px 10px;
+  font-size: 0.62rem;
   font-weight: 650;
   border-radius: 99px;
   color: var(--color-silver);
   background: var(--color-surface-2);
 }
 .dt-creator-badge svg {
-  width: 10px;
-  height: 10px;
+  width: 11px;
+  height: 11px;
 }
 .dt-creator:hover .dt-creator-caption strong {
   color: var(--color-or);
@@ -1086,8 +1088,8 @@ body {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 10px;
-  /* Netteté : voies droites (aucune rotation = aucun ré-échantillonnage) */
-  rotate: 0deg;
+  /* Position d'origine restaurée : les deux voies sont inclinées */
+  rotate: 2deg;
   margin-inline: -30px;
 }
 .dt-gallery-lane {
@@ -1468,11 +1470,11 @@ body {
   }
   /* Champ de plaques : deux colonnes */
   .dt-people {
-    padding: 50px 0 40px;
+    padding: 55px 0 46px;
   }
   .dt-portrait-field {
     width: min(420px, 100%);
-    height: 530px;
+    height: 610px;
     margin-top: 20px;
   }
   .dt-portrait-line-wide {
@@ -1483,26 +1485,29 @@ body {
   }
   .dt-creators {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 240px 240px;
+    grid-template-rows: 295px 295px;
   }
   .dt-creator-arrival {
-    padding-top: 24px;
+    padding-top: 28px;
   }
   .dt-creator-arrival:nth-child(2) {
-    padding-top: 80px;
+    padding-top: 96px;
   }
   .dt-creator-arrival:nth-child(3) {
-    padding-top: 12px;
+    padding-top: 14px;
   }
   .dt-creator-arrival:nth-child(4) {
-    padding-top: 66px;
+    padding-top: 78px;
   }
   .dt-creator-plate {
-    width: clamp(130px, 35vw, 155px);
-    margin-bottom: 17px;
+    width: clamp(150px, 40vw, 176px);
+    margin-bottom: 18px;
   }
   .dt-creator-caption {
-    gap: 6px;
+    gap: 7px;
+  }
+  .dt-creator-caption strong {
+    font-size: 0.88rem;
   }
   .particle-1 {
     top: 4%;
@@ -1686,80 +1691,47 @@ figure:focus-within img {
 }
 
 /* ============================================================
-   HERO — BADGE « +20 ANS D'EXPÉRIENCE » (icône + qui brille)
+   HERO — MENTION « +20 ANS D'EXPÉRIENCE »
+   Pas de bouton ni d'arrondi : un simple symbole « + » qui brille
+   en continu pour attirer l'œil, à côté du texte.
    ============================================================ */
 .dt-experience {
   display: inline-flex;
   align-items: center;
-  gap: 0.625rem;
-  padding: 0.5rem 1.125rem 0.5rem 0.625rem;
-  border: 1px solid rgba(228, 228, 228, 0.22);
-  border-radius: 9999px;
-  background: rgba(7, 7, 7, 0.55);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  gap: 0.6rem;
   font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  font-size: 0.78rem;
+  font-size: 0.88rem;
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.17em;
   text-transform: uppercase;
-  color: #e4e4e4;
+  color: #f5f5f5;
 }
 .dt-experience-plus {
-  position: relative;
   display: grid;
   place-items: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 9999px;
-  background: #e4e4e4;
-  color: #1c1c1c;
   flex: none;
-}
-/* Halo lumineux continu : le + pulse sans fin pour attirer l'œil */
-.dt-experience-plus::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 9999px;
-  background: rgba(228, 228, 228, 0.55);
-  animation: dt-plus-ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-.dt-experience-plus::after {
-  content: "";
-  position: absolute;
-  inset: -4px;
-  border-radius: 9999px;
-  box-shadow: 0 0 18px 2px rgba(228, 228, 228, 0.4);
-  animation: dt-plus-glow 2.4s ease-in-out infinite;
+  color: #ffffff;
+  /* Halo lumineux continu sur le glyphe lui-même */
+  animation: dt-plus-shine 2.1s ease-in-out infinite;
 }
 .dt-experience-plus svg {
-  position: relative;
-  z-index: 1;
+  width: 21px;
+  height: 21px;
 }
-@keyframes dt-plus-ping {
-  0% {
-    transform: scale(1);
-    opacity: 0.7;
-  }
-  75%,
-  100% {
-    transform: scale(2.1);
-    opacity: 0;
-  }
-}
-@keyframes dt-plus-glow {
+@keyframes dt-plus-shine {
   0%,
   100% {
-    opacity: 0.25;
+    filter: drop-shadow(0 0 3px rgb(255 255 255 / 0.55));
+    transform: scale(1);
   }
   50% {
-    opacity: 1;
+    filter: drop-shadow(0 0 11px rgb(255 255 255 / 1))
+      drop-shadow(0 0 26px rgb(255 255 255 / 0.6));
+    transform: scale(1.16);
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .dt-experience-plus::before,
-  .dt-experience-plus::after {
+  .dt-experience-plus {
     animation: none;
   }
 }

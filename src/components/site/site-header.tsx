@@ -159,17 +159,18 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
   };
 
   const socialList = [
-    { name: "LinkedIn", href: socials.linkedin, Icon: Linkedin },
-    { name: "X (Twitter)", href: socials.twitter, Icon: Twitter },
-    { name: "Vimeo", href: socials.vimeo, Icon: Video },
+    { name: "LinkedIn", href: socials.linkedin, Icon: Linkedin, hover: "hover:border-[#0A66C2] hover:bg-[#0A66C2] hover:text-white" },
+    { name: "X (Twitter)", href: socials.twitter, Icon: Twitter, hover: "hover:border-black hover:bg-black hover:text-white" },
+    { name: "Vimeo", href: socials.vimeo, Icon: Video, hover: "hover:border-[#1AB7EA] hover:bg-[#1AB7EA] hover:text-white" },
   ];
 
-  /* Liens de la bande : soulignement fin qui s'étend depuis le centre
-     (style du site de référence) — aucun fond au survol */
+  /* Liens de la bande : 16 px comme le site de référence, soulignement
+     fin qui s'étend depuis le centre — aucun fond au survol */
   const linkBase =
-    "relative rounded-lg px-3.5 py-2 text-[0.95rem] font-medium transition-colors duration-300 " +
-    "after:absolute after:bottom-0 after:left-1/2 after:h-px after:w-0 after:bg-white after:transition-all after:duration-300 " +
-    "hover:after:left-3.5 hover:after:w-[calc(100%-1.75rem)]";
+    "relative rounded-lg font-medium transition-colors duration-300 " +
+    "lg:px-2 lg:py-2.5 lg:text-[0.95rem] xl:px-2.5 xl:py-3 xl:text-base " +
+    "after:absolute after:bottom-1.5 xl:after:bottom-2 after:left-1/2 after:h-px after:w-0 after:bg-white after:transition-all after:duration-300 " +
+    "hover:after:left-2 xl:hover:after:left-2.5 hover:after:w-[calc(100%-1rem)] xl:hover:after:w-[calc(100%-1.25rem)]";
 
   /* Commutateur bilingue — pilule avec drapeau de la langue cible :
      le survol annonce clairement la destination (drapeau + libellé). */
@@ -201,10 +202,12 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
           Alexandre&nbsp;Morel<span className="text-or">.</span>
         </Link>
 
-        {/* Bande de navigation — pilule sombre permanente (référence) */}
+        {/* Bande de navigation — pilule sombre spacieuse calquée sur le
+            référent : 85 px de haut, garnissage généreux, liens 16 px,
+            CTA de 52 px. Elle respire en haut, en bas et à droite. */}
         <nav
           aria-label={t("menu.label")}
-          className="hidden h-[52px] items-center gap-0.5 rounded-full border border-mist/10 bg-ink/90 px-2 shadow-[0_10px_36px_rgba(0,0,0,0.28)] backdrop-blur-xl lg:flex"
+          className="hidden items-center rounded-[10px] border border-mist/10 bg-ink/95 shadow-[0_10px_36px_rgba(0,0,0,0.32)] backdrop-blur-xl lg:flex lg:h-[76px] lg:px-3 xl:h-[85px] xl:px-6"
         >
           {NAV_LINKS.map((item) => (
             <Link
@@ -221,14 +224,13 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
           ))}
 
           {/* CTA — mène à la page Contact */}
-          <span className="mx-1.5 h-5 w-px bg-mist/10" aria-hidden="true" />
           <Link
             href="/contact"
-            className="group ml-0.5 inline-flex h-11 items-center gap-2 rounded-full bg-white px-5 text-[0.9rem] font-semibold tracking-[0.01em] text-ink transition-all duration-300 hover:bg-mist"
+            className="group inline-flex items-center gap-2 rounded-full bg-white font-semibold tracking-[0.01em] text-ink transition-all duration-300 hover:bg-mist lg:ml-3 lg:h-11 lg:px-4 lg:text-[0.9rem] xl:ml-6 xl:h-[52px] xl:px-6 xl:text-base"
           >
             {t("cta.header")}
             <ArrowUpRight
-              size={16}
+              size={17}
               className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
               aria-hidden="true"
             />
@@ -242,10 +244,10 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
             locale={otherLocale}
             aria-label={t("language.switch")}
             title={t("language.switch")}
-            className={`${switchBase} ${
+            className={`${switchBase} lg:hidden xl:inline-flex ${
               scrolled
-                ? "border-mist/15 bg-ink/80 text-mist backdrop-blur-xl hover:border-mist/40 hover:text-white"
-                : "border-mist/25 bg-ink/40 text-mist backdrop-blur-sm hover:border-mist/50 hover:text-white"
+                ? "border-mist/15 bg-ink/80 text-mist backdrop-blur-xl hover:border-white hover:bg-white hover:text-ink"
+                : "border-mist/25 bg-ink/40 text-mist backdrop-blur-sm hover:border-white hover:bg-white hover:text-ink"
             }`}
           >
             <OtherFlag className="h-3.5 w-5 rounded-[3px] outline outline-1 outline-white/25" />
@@ -290,8 +292,9 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
             exit={{ opacity: 0 }}
             transition={{ duration: reduce ? 0 : 0.35, ease: "easeOut" }}
           >
-            {/* Ligne supérieure : wordmark + langue + fermer */}
-            <div className="mx-auto flex h-[76px] w-full shrink-0 max-w-[1440px] items-center justify-between pl-5 sm:pl-8 lg:h-[104px] lg:pl-10">
+            {/* Ligne supérieure : wordmark + langue + fermer — le bouton
+                de fermeture respire à droite comme au-dessus de lui */}
+            <div className="mx-auto flex h-[76px] w-full shrink-0 max-w-[1440px] items-center justify-between pl-5 pr-5 sm:pl-8 sm:pr-8 lg:h-[104px] lg:pl-10 lg:pr-10">
               <motion.div
                 initial={reduce ? false : { opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -314,7 +317,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
                   onClick={() => setMenuOpen(false)}
                   aria-label={t("language.switch")}
                   title={t("language.switch")}
-                  className={`${switchBase} border-mist/25 bg-ink/40 text-mist hover:border-mist/50 hover:text-white`}
+                  className={`${switchBase} border-mist/25 bg-ink/40 text-mist hover:border-white hover:bg-white hover:text-ink`}
                 >
                   <OtherFlag className="h-3.5 w-5 rounded-[3px] outline outline-1 outline-white/25" />
                   {otherLocale}
@@ -327,7 +330,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
                   initial={reduce ? false : { rotate: -90, opacity: 0 }}
                   animate={{ rotate: 0, opacity: 1 }}
                   transition={{ delay: 0.1, duration: 0.4, ease }}
-                  className="inline-flex size-[52px] shrink-0 items-center justify-center rounded-full border border-mist/25 text-mist transition-all duration-300 hover:border-mist/60 hover:bg-mist/10 hover:text-white"
+                  className="inline-flex size-[52px] shrink-0 items-center justify-center rounded-full border border-mist/25 text-mist transition-all duration-300 hover:border-white hover:bg-white hover:text-ink"
                 >
                   <X size={20} aria-hidden="true" />
                 </motion.button>
@@ -421,7 +424,8 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
                   ))}
                 </ul>
 
-                {/* Réseaux — icônes seules (ronds blancs), sans titre */}
+                {/* Réseaux — icônes seules (ronds blancs), sans titre :
+                   au survol, chaque réseau prend sa couleur officielle */}
                 <motion.div
                   initial={reduce ? false : { opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -429,7 +433,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
                   className="mt-12 border-t border-mist/10 pt-7"
                 >
                   <div className="flex items-center gap-2.5">
-                    {socialList.map(({ name, href, Icon }) => (
+                    {socialList.map(({ name, href, Icon, hover }) => (
                       <a
                         key={name}
                         href={href}
@@ -437,7 +441,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
                         rel="noopener noreferrer"
                         aria-label={name}
                         title={name}
-                        className="inline-flex size-11 items-center justify-center rounded-full bg-white text-ink transition-all duration-300 hover:bg-mist"
+                        className={`inline-flex size-11 items-center justify-center rounded-full bg-white text-ink transition-all duration-300 ${hover}`}
                       >
                         <Icon size={18} aria-hidden="true" />
                       </a>

@@ -17,16 +17,19 @@ export function ShareButtons({ url, title }: { url: string; title: string }) {
       name: "X (Twitter)",
       href: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
       Icon: Twitter,
+      hover: "hover:border-black hover:bg-black hover:text-white",
     },
     {
       name: "LinkedIn",
       href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
       Icon: Linkedin,
+      hover: "hover:border-[#0A66C2] hover:bg-[#0A66C2] hover:text-white",
     },
     {
       name: "Facebook",
       href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
       Icon: Facebook,
+      hover: "hover:border-[#1877F2] hover:bg-[#1877F2] hover:text-white",
     },
   ];
 
@@ -43,14 +46,14 @@ export function ShareButtons({ url, title }: { url: string; title: string }) {
   return (
     <div className="flex items-center gap-2">
       <span className="meta mr-1">{t("title")}</span>
-      {links.map(({ name, href, Icon }) => (
+      {links.map(({ name, href, Icon, hover }) => (
         <a
           key={name}
           href={href}
           target="_blank"
           rel="noopener noreferrer"
           aria-label={name}
-          className="flex size-10 items-center justify-center rounded-full border border-mist/15 text-silver transition-colors hover:border-mist/40 hover:text-white"
+          className={`flex size-10 items-center justify-center rounded-full border border-mist/15 text-silver transition-colors duration-300 ${hover}`}
         >
           <Icon size={15} aria-hidden="true" />
         </a>

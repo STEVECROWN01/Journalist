@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react";
 import { getProductions, getPublications, getSettings } from "@/lib/content";
 import { site, SEO_KEYWORDS } from "@/lib/site";
 import { Reveal } from "@/components/site/reveal";
-import { MaskLines, Parallax } from "@/components/site/motion";
+import { MaskLines } from "@/components/site/motion";
 import { SectionHeading } from "@/components/site/section-heading";
 import { PublicationCard } from "@/components/site/publication-card";
 import { HomeHero } from "@/components/site/home/home-hero";
@@ -341,14 +341,18 @@ export default async function HomePage({
         aria-labelledby="sec-collab"
         className="border-t border-mist/10 bg-ink-deep"
       >
-        <div className="mx-auto grid max-w-6xl gap-10 px-6 py-24 md:py-32 lg:grid-cols-[1fr_2.2fr]">
-          <div className="lg:sticky lg:top-28 lg:self-start">
+        <div className="mx-auto grid max-w-6xl gap-10 px-6 py-24 md:py-32 lg:grid-cols-[0.95fr_2.05fr]">
+          <div className="lg:sticky lg:top-28">
             <Reveal>
               <p className="eyebrow">{t("collaboration.eyebrow")}</p>
             </Reveal>
-            {/* Portrait du journaliste — présentation en plaque du design */}
-            <Reveal delay={0.12}>
-              <figure className="group relative mt-10 max-w-[260px]">
+            {/* Portrait du journaliste — grande plaque dont la hauteur
+                épouse celle du bloc de texte à sa droite */}
+            <Reveal
+              delay={0.12}
+              className="mt-8 lg:mt-10 lg:flex lg:h-[calc(100%-3.75rem)]"
+            >
+              <figure className="group relative flex w-full max-w-[420px] flex-col lg:max-w-none">
                 <span
                   className="absolute -inset-2.5 -rotate-3 rounded-2xl bg-surface-2/60 transition-transform duration-500 group-hover:rotate-0"
                   aria-hidden="true"
@@ -357,20 +361,19 @@ export default async function HomePage({
                   className="absolute -right-2 -top-2 size-3 rounded-full bg-or"
                   aria-hidden="true"
                 />
-                <Parallax amplitude={16} scale={1.03} className="relative rounded-xl">
+                <div className="relative aspect-[5/6] w-full overflow-hidden rounded-xl lg:aspect-auto lg:min-h-0 lg:flex-1">
                   <Image
                     src="/assets/portrait-studio-professionnel.jpg"
                     alt={fr
                       ? "Alexandre Morel, journaliste international, en studio"
                       : "Alexandre Morel, international journalist, in the studio"}
-                    width={520}
-                    height={620}
-                    sizes="(min-width: 1024px) 260px, 240px"
-                    className="block aspect-[5/6] w-full rounded-xl object-cover"
-  quality={95}
-/>
-                </Parallax>
-                <figcaption className="mt-3 text-[0.66rem] font-medium uppercase tracking-[0.18em] text-steel">
+                    fill
+                    sizes="(min-width: 1024px) 30vw, 92vw"
+                    className="object-cover"
+                    quality={95}
+                  />
+                </div>
+                <figcaption className="mt-3.5 px-3 text-center text-[0.7rem] font-medium uppercase tracking-[0.16em] text-steel">
                   {site.name} — {site.city}
                 </figcaption>
               </figure>
