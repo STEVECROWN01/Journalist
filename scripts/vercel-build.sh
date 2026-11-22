@@ -58,13 +58,15 @@ diagnose_migrate() {
       "  1. Railway > votre service PostgreSQL : il doit être actif (pastille" \
       "     verte), pas en pause. Si l'essai gratuit est épuisé, la base est" \
       "     déprovisionnée — rechargez le compte ou recréez le projet." \
-      "  2. Aucun domaine public ? Railway > PostgreSQL > onglet Settings >" \
-      "     section Networking > « Public Access » : appuyez sur" \
-      "     « Generate Domain » si aucun hôte containers-xxxx.rlwy.net" \
-      "     n'apparaît. L'URL interne « postgres.railway.internal » ne" \
-      "     fonctionne QUE depuis l'intérieur de Railway, jamais depuis" \
-      "     Vercel. (L'option « railway connect » / --tunnel-only ne sert" \
-      "     qu'à vos outils locaux : TablePlus, DBeaver….)" \
+      "  2. Railway > PostgreSQL > onglet Settings > section Networking >" \
+      "     bloc « Public Access » (l encadré qui avertit que quiconque" \
+      "     détient la chaîne peut se connecter) : activez l accès public —" \
+      "     Railway crée alors un proxy TCP public (hôte du type" \
+      "     containers-xxxx.rlwy.net). Si le bouton n apparaît pas sur" \
+      "     téléphone, ouvrez railway.com depuis un ordinateur. L URL" \
+      "     interne « postgres.railway.internal » ne fonctionne QUE depuis" \
+      "     l intérieur de Railway, jamais depuis Vercel. (L option « railway" \
+      "     connect » / --tunnel-only ne sert qu à vos outils locaux.)" \
       "  3. Railway > PostgreSQL > onglet Variables : copiez la variable" \
       "     DATABASE_PUBLIC_URL (hôte du type containers-xxxx.rlwy.net)." \
       "  4. Vercel > Settings > Environment Variables > DATABASE_URL : collez" \
@@ -190,10 +192,12 @@ else
       "✖ DATABASE_URL est l URL INTERNE de Railway (postgres.railway.internal)," \
       "inaccessible depuis Vercel. Comment obtenir l URL publique :" \
       "  1. Railway > service PostgreSQL > onglet Settings > section Networking." \
-      "  2. Sous « Public Access » (l encadré qui avertit que quiconque détient" \
-      "     la chaîne de connexion peut se connecter), appuyez sur" \
-      "     « Generate Domain » : Railway crée un domaine public du type" \
-      "     containers-xxxx.rlwy.net, avec son port." \
+      "  2. Dans le bloc « Public Access » (l encadré qui avertit que quiconque" \
+      "     détient la chaîne de connexion peut se connecter), ACTIVEZ l accès" \
+      "     public : Railway crée un proxy TCP public du type" \
+      "     containers-xxxx.rlwy.net, avec son port. NB : ce bouton est absent" \
+      "     de l app mobile — ouvrez railway.com depuis un navigateur" \
+      "     d ordinateur si vous ne le voyez pas." \
       "  3. Onglet Variables : la variable DATABASE_PUBLIC_URL apparaît alors —" \
       "     copiez sa valeur complète." \
       "  4. Vercel > Settings > Environment Variables > DATABASE_URL : collez" \
