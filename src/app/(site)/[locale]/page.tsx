@@ -201,10 +201,10 @@ export default async function HomePage({
           }}
           cards={{
             stage: {
-              src: "/assets/realisation-documentaire-tournage.jpg",
+              src: "/assets/Man_directing_film_crew_f7c433ef.jpg_f49f5942.jpg",
               alt: fr
-                ? "Tournage d'un reportage documentaire en immersion sur le terrain"
-                : "Documentary shoot filmed in immersion in the field",
+                ? "Alexandre Morel dirigeant une équipe de tournage sur un toit de Paris"
+                : "Alexandre Morel directing a film crew on a Paris rooftop",
               href: "/productions",
               linkLabel: t("hero.ctaPrimary"),
             },
