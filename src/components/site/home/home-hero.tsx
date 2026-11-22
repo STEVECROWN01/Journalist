@@ -178,7 +178,7 @@ export function HomeHero({ copy }: { copy: HomeHeroCopy }) {
             {copy.title1}
             <br />
             {copy.title2}{" "}
-            <em className="text-mist">{copy.title3}</em>
+            <em className="hero-title-accent">{copy.title3}</em>
           </h1>
         </Reveal>
         <Reveal delay={0.16}>

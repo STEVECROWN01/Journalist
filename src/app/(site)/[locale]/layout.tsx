@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { Sora, Inter } from "next/font/google";
+import { Sora, Inter, Playfair_Display } from "next/font/google";
 import { routing } from "@/i18n/routing";
 import { site, SEO_KEYWORDS } from "@/lib/site";
 import { SiteHeader } from "@/components/site/site-header";
@@ -25,6 +25,17 @@ const sora = Sora({
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
+});
+
+/* Playfair Display ITALIQUE — uniquement pour l'accent éditorial du hero
+   (« qui éclairent le monde. ») : l'élégance italique d'un titre de presse
+   magazine, en contraste avec la neutralité géométrique de Sora. */
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["500", "600"],
+  style: ["italic"],
+  variable: "--font-playfair",
   display: "swap",
 });
 
@@ -101,7 +112,7 @@ export default async function SiteLayout({
   const settings = await getSettings();
 
   return (
-    <html lang={locale} className={`${sora.variable} ${inter.variable}`}>
+    <html lang={locale} className={`${sora.variable} ${inter.variable} ${playfair.variable}`}>
       <body className="flex min-h-screen flex-col bg-background font-sans text-foreground antialiased">
         <NextIntlClientProvider>
           <SmoothScroll />

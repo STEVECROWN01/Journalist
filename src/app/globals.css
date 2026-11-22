@@ -172,6 +172,31 @@
     font-style: normal;
     font-weight: 700;
   }
+
+  /* ------------------------------------------------------------
+     ACCENT ÉDITORIAL DU HERO — « qui éclairent le monde. »
+     Playfair Display italique en dégradé blanc → argent : l'élégance
+     d'un titre de presse magazine, dans la palette noir/blanc.
+     ------------------------------------------------------------ */
+  .display-1 em.hero-title-accent,
+  .hero-title-accent {
+    font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
+    font-style: italic;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    background: linear-gradient(
+      100deg,
+      #ffffff 30%,
+      #f0f0f0 60%,
+      #b8b8b8 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    /* Débordement optique de l'italique à droite */
+    padding-right: 0.08em;
+  }
   .lede {
     @apply text-[1.0625rem] leading-[1.7] text-silver;
   }
