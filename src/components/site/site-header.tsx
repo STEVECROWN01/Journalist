@@ -109,9 +109,10 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
   const hamburgerRef = useRef<HTMLButtonElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
 
-  /* Effet discret dès que l'on quitte le sommet de la page */
+  /* Effet discret dès que l'on quitte le sommet de la page — la bande
+     des menus apparaît dès les premiers pixels de défilement */
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 32);
+    const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -158,6 +159,38 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
     hamburgerRef.current?.focus();
   };
 
+  /* Le wordmark joue le rôle de menu « Accueil » : depuis l'accueil, un
+     clic actualise la page et ramène tout en haut ; depuis une autre
+     page, la navigation normale vers l'accueil suffit (défilement en haut
+     garanti par l'App Router). */
+  const goHome = (e: React.MouseEvent) => {
+    if (pathname !== "/") return;
+    e.preventDefault();
+    try {
+      sessionStorage.setItem("am-home-top", "1");
+      if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    } catch {
+      /* stockage indisponible — la navigation s'en sortira */
+    }
+    window.location.reload();
+  };
+
+  /* Après une actualisation demandée depuis l'accueil : retour forcé au
+     sommet (certains navigateurs restaurent la position au rechargement). */
+  useEffect(() => {
+    let forceTop = false;
+    try {
+      forceTop = sessionStorage.getItem("am-home-top") === "1";
+      sessionStorage.removeItem("am-home-top");
+      if ("scrollRestoration" in history) history.scrollRestoration = "auto";
+    } catch {
+      /* ignoré */
+    }
+    if (!forceTop) return;
+    window.scrollTo(0, 0);
+    getLenis()?.scrollTo(0, { immediate: true });
+  }, []);
+
   const socialList = [
     { name: "LinkedIn", href: socials.linkedin, Icon: Linkedin, hover: "hover:border-[#0A66C2] hover:bg-[#0A66C2] hover:text-white" },
     { name: "X (Twitter)", href: socials.twitter, Icon: Twitter, hover: "hover:border-black hover:bg-black hover:text-white" },
@@ -188,28 +221,35 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
         {t("skipToContent")}
       </a>
 
-      <div className="mx-auto flex h-[76px] w-full max-w-[1440px] items-center justify-between pl-5 sm:pl-8 lg:pl-10">
+      <div className="mx-auto flex h-[76px] w-full max-w-[1440px] items-center justify-between pl-5 sm:pl-8 lg:h-[104px] lg:pl-10">
         {/* Wordmark — Sora 600 comme le logo du site de référence.
             Garnissage horizontal équilibré (px-6) : quand le wrapper sombre
-            apparaît au scroll, le nom respire et reste centré dedans. */}
+            apparaît au scroll, le nom respire et reste centré dedans.
+            Desktop : même hauteur que la bande des menus (76 px), flottant. */}
         <Link
           href="/"
+          onClick={goHome}
           aria-label={t("brand")}
-          className={`flex h-[76px] items-center px-6 font-serif text-[1.2rem] font-semibold leading-none tracking-[-0.01em] text-white transition-all duration-500 hover:opacity-80 sm:text-[1.3rem] lg:h-[104px] ${
+          className={`flex h-[76px] items-center px-6 font-serif text-[1.2rem] font-semibold leading-none tracking-[-0.01em] text-white transition-all duration-500 hover:opacity-80 sm:text-[1.3rem] ${
             scrolled
-              ? "rounded-b-xl border-x border-b border-mist/10 bg-ink/80 backdrop-blur-xl"
-              : "border-x border-b border-transparent"
+              ? "rounded-b-xl border-x border-b border-mist/10 bg-ink/80 backdrop-blur-xl lg:rounded-xl lg:border"
+              : "rounded-b-xl border-x border-b border-transparent lg:rounded-xl lg:border"
           }`}
         >
           Alexandre&nbsp;Morel<span className="text-or">.</span>
         </Link>
 
-        {/* Bande de navigation — pilule sombre spacieuse calquée sur le
-            référent : 85 px de haut, garnissage généreux, liens 16 px,
-            CTA de 52 px. Elle respire en haut, en bas et à droite. */}
+        {/* Bande de navigation — aucun arrière-plan au sommet de la page :
+            il n'apparaît qu'au défilement, derrière les menus, en vrai
+            rectangle (bord haut visible, 14 px d'air au-dessus). Même
+            hauteur (76 px) que le wordmark et le hamburger. */}
         <nav
           aria-label={t("menu.label")}
-          className="hidden items-center rounded-[10px] border border-mist/10 bg-ink/95 shadow-[0_10px_36px_rgba(0,0,0,0.32)] backdrop-blur-xl lg:flex lg:h-[76px] lg:px-3 xl:h-[85px] xl:px-6"
+          className={`hidden items-center rounded-[10px] transition-all duration-500 lg:flex lg:h-[76px] lg:px-3 xl:px-6 ${
+            scrolled
+              ? "border border-mist/10 bg-ink/95 shadow-[0_10px_36px_rgba(0,0,0,0.32)] backdrop-blur-xl"
+              : "border border-transparent"
+          }`}
         >
           {NAV_LINKS.map((item) => (
             <Link
@@ -256,9 +296,9 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
             {otherLocale}
           </Link>
 
-          {/* Hamburger — languette pleine hauteur, coins bas arrondis,
-              deux barres (la seconde plus courte), exactement comme le
-              site de référence */}
+          {/* Hamburger — languette mobile (collée en haut) ; sur desktop,
+              même hauteur que la bande des menus (76 px), rectangle flottant
+              aligné avec elle */}
           <button
             ref={hamburgerRef}
             type="button"
@@ -266,7 +306,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
             aria-label={t("menu.open")}
             aria-expanded={menuOpen}
             aria-controls="fullscreen-menu"
-            className="group flex h-[76px] w-[88px] shrink-0 flex-col items-center justify-center gap-[5px] rounded-b-lg bg-ink transition-colors duration-300 hover:bg-surface-2 lg:h-[104px] lg:w-[100px]"
+            className="group flex h-[76px] w-[88px] shrink-0 flex-col items-center justify-center gap-[5px] rounded-b-lg bg-ink transition-colors duration-300 hover:bg-surface-2 lg:w-[100px] lg:rounded-[10px]"
           >
             <span
               className="block h-[2px] w-6 bg-white transition-all duration-300 group-hover:w-4"
@@ -304,7 +344,10 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
               >
                 <Link
                   href="/"
-                  onClick={closeMenu}
+                  onClick={(e) => {
+                    closeMenu();
+                    goHome(e);
+                  }}
                   aria-label={t("brand")}
                   className="font-serif text-[1.2rem] font-semibold leading-none tracking-[-0.01em] text-white transition-opacity duration-300 hover:opacity-80 sm:text-[1.3rem]"
                 >

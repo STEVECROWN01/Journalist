@@ -82,7 +82,7 @@ export default async function HomePage({
       key: "journalism",
       num: "01",
       href: "/journalisme",
-      image: "/assets/journaliste-reportage-microphone.jpg",
+      image: "/assets/Journalist_holding_microphone_in…_0b601b53.jpg",
       plate: "sand",
       tilt: -8,
       title: t("expertise.items.journalism.title"),
@@ -363,10 +363,10 @@ export default async function HomePage({
                 />
                 <div className="relative aspect-[5/6] w-full overflow-hidden rounded-xl lg:aspect-auto lg:min-h-0 lg:flex-1">
                   <Image
-                    src="/assets/portrait-studio-professionnel.jpg"
+                    src="/assets/Man_holding_tablet_in_studio_ea89e09a.jpg"
                     alt={fr
-                      ? "Alexandre Morel, journaliste international, en studio"
-                      : "Alexandre Morel, international journalist, in the studio"}
+                      ? "Alexandre Morel en studio, tablette en main"
+                      : "Alexandre Morel in the studio, tablet in hand"}
                     fill
                     sizes="(min-width: 1024px) 30vw, 92vw"
                     className="object-cover"

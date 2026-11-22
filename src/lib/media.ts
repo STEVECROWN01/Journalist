@@ -8,7 +8,7 @@ export interface MediaAsset {
 }
 
 export const mediaAssets: MediaAsset[] = [
-  { file: "/assets/journaliste-reportage-microphone.jpg", label: "Reportage — micro, toits de Paris" },
+  { file: "/assets/Journalist_holding_microphone_in…_0b601b53.jpg", label: "Reportage — micro, toits de Paris" },
   { file: "/assets/editorial-presse-magazines.jpg", label: "Presse — magazines et ordinateur" },
   { file: "/assets/realisation-documentaire-tournage.jpg", label: "Tournage — direction d'équipe" },
   { file: "/assets/formation-masterclass-journalisme.jpg", label: "Formation — masterclass en amphithéâtre" },

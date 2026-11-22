@@ -38,7 +38,7 @@ const MOSAIC_COLUMNS: string[][] = [
   ],
   [
     "/assets/realisation-documentaire-tournage.jpg",
-    "/assets/journaliste-reportage-microphone.jpg",
+    "/assets/Journalist_holding_microphone_in…_0b601b53.jpg",
     "/assets/salle-redaction-internationale.jpg",
     "/assets/editorial-presse-magazines.jpg",
   ],
