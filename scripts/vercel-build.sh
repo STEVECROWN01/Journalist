@@ -62,13 +62,15 @@ diagnose_migrate() {
       "     bloc « Public Access » (l encadré qui avertit que quiconque" \
       "     détient la chaîne peut se connecter) : activez l accès public —" \
       "     Railway crée alors un proxy TCP public (hôte du type" \
-      "     containers-xxxx.rlwy.net). Si le bouton n apparaît pas sur" \
-      "     téléphone, ouvrez railway.com depuis un ordinateur. L URL" \
-      "     interne « postgres.railway.internal » ne fonctionne QUE depuis" \
-      "     l intérieur de Railway, jamais depuis Vercel. (L option « railway" \
-      "     connect » / --tunnel-only ne sert qu à vos outils locaux.)" \
+      "     xxx.proxy.rlwy.net ou containers-xxxx.rlwy.net). Si le bouton" \
+      "     n apparaît pas sur téléphone, ouvrez railway.com depuis un" \
+      "     ordinateur. L URL interne « postgres.railway.internal » ne" \
+      "     fonctionne QUE depuis l intérieur de Railway, jamais depuis" \
+      "     Vercel. (L option « railway connect » / --tunnel-only ne sert" \
+      "     qu à vos outils locaux.)" \
       "  3. Railway > PostgreSQL > onglet Variables : copiez la variable" \
-      "     DATABASE_PUBLIC_URL (hôte du type containers-xxxx.rlwy.net)." \
+      "     DATABASE_PUBLIC_URL (hôte du type mainline.proxy.rlwy.net ou" \
+      "     containers-xxxx.rlwy.net, avec un port dédié)." \
       "  4. Vercel > Settings > Environment Variables > DATABASE_URL : collez" \
       "     la valeur brute, SANS guillemets, pour Production (et Preview)." \
       "  5. Deployments > menu du dernier déploiement > Redeploy."
@@ -194,8 +196,10 @@ else
       "  1. Railway > service PostgreSQL > onglet Settings > section Networking." \
       "  2. Dans le bloc « Public Access » (l encadré qui avertit que quiconque" \
       "     détient la chaîne de connexion peut se connecter), ACTIVEZ l accès" \
-      "     public : Railway crée un proxy TCP public du type" \
-      "     containers-xxxx.rlwy.net, avec son port. NB : ce bouton est absent" \
+      "     public : Railway crée un point d accès public du type" \
+      "     mainline.proxy.rlwy.net:port (ou containers-xxxx.rlwy.net selon" \
+      "     les projets) — le port public diffère du 5432 interne, c est" \
+      "     normal. NB : ce bouton est absent" \
       "     de l app mobile — ouvrez railway.com depuis un navigateur" \
       "     d ordinateur si vous ne le voyez pas." \
       "  3. Onglet Variables : la variable DATABASE_PUBLIC_URL apparaît alors —" \

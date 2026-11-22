@@ -109,8 +109,10 @@ Le déploiement fonctionne immédiatement (détection Next.js automatique) :
   amorçage s'exécutent automatiquement à chaque build :
   1. Railway > service PostgreSQL > onglet **Settings** > section
      **Networking** > bloc **Public Access** : activez l'accès public.
-     Railway crée un proxy TCP `containers-xxxx.rlwy.net` et remplit la
-     variable `DATABASE_PUBLIC_URL`. NB : ce bouton n'apparaît pas dans
+     Railway crée un point d'accès public (`mainline.proxy.rlwy.net:port`
+     ou `containers-xxxx.rlwy.net` selon les projets — le port public
+     diffère du 5432 interne, c'est normal) et remplit la variable
+     `DATABASE_PUBLIC_URL`. NB : ce bouton n'apparaît pas dans
      l'app mobile Railway — passez par un navigateur d'ordinateur ;
   2. Onglet **Variables** : copiez la valeur de `DATABASE_PUBLIC_URL`.
      N'utilisez jamais l'URL interne `postgres.railway.internal` (elle n'est
