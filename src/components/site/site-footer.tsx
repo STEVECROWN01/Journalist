@@ -188,8 +188,8 @@ export async function SiteFooter() {
                 href="/publications"
                 className="footer-link mt-5 inline-flex items-center gap-2 text-[0.94rem] font-medium text-white sm:text-[1.05rem]"
               >
-                <span className="text-or" aria-hidden="true">→</span>
-                {t("nav.articlesAnalyses")}
+                <span className="text-or mr-2" aria-hidden="true">→</span>
+                <span>{t("nav.articlesAnalyses")}</span>
               </Link>
             </div>
             <div>

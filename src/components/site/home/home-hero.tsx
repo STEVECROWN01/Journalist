@@ -186,9 +186,12 @@ export function HomeHero({ copy }: { copy: HomeHeroCopy }) {
       {/* Voile de lisibilité entre la mosaïque et le texte */}
       <div className="dt-hero-shade" aria-hidden="true" />
 
-      {/* Contenu éditorial — copywriting inchangé, largement dégagé
-          de l'en-tête fixe (104 px) */}
-      <div className="dt-hero-content hero-pad relative z-[2] mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center px-6 pb-14 pt-24 sm:pb-16 sm:pt-32 lg:pb-20 lg:pt-40">
+      {/* Contenu éditorial — largement dégagé de l'en-tête fixe (104 px).
+          Le bloc est centré par marges automatiques (my-auto) : s'il
+          déborde de l'espace disponible, il commence au padding haut
+          au lieu de remonter SOUS l'en-tête — plus jamais coincé. */}
+      <div className="dt-hero-content hero-pad relative z-[2] mx-auto flex w-full max-w-6xl flex-1 flex-col px-6 pb-14 pt-28 sm:pb-16 sm:pt-36 lg:pb-20 lg:pt-48">
+        <div className="my-auto w-full">
         <Reveal>
           <p className="hero-eyebrow-row">
             <span className="dt-experience">
@@ -254,10 +257,11 @@ export function HomeHero({ copy }: { copy: HomeHeroCopy }) {
             ))}
           </p>
         </Reveal>
+        </div>
       </div>
 
       {/* Bande de mots-clés de référencement — défilement continu
-          de la droite vers la gauche, points de séparation dorés */}
+          de la droite vers la gauche, points de séparation simples */}
       <div className="dt-hero-band relative z-10 overflow-clip border-t border-white/[0.08] bg-ink-deep/40 backdrop-blur-sm">
         <div className="dt-keywords">
           <div className="dt-keywords-track">

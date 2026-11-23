@@ -8,6 +8,7 @@ import {
   X,
   ArrowUpRight,
   Linkedin,
+  Mail,
   Twitter,
   Video,
 } from "lucide-react";
@@ -43,6 +44,7 @@ export interface HeaderSocials {
   linkedin: string;
   twitter: string;
   vimeo: string;
+  email: string;
 }
 
 function isActive(pathname: string, href: string): boolean {
@@ -192,7 +194,17 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
     }
   };
 
+  /* Réseaux — série complète du footer : Email, LinkedIn, X, Vimeo.
+     Icônes seules (ronds blancs) : au survol, chaque réseau prend sa
+     couleur officielle. */
   const socialList = [
+    {
+      name: "Email",
+      href: `mailto:${socials.email}`,
+      Icon: Mail,
+      hover: "hover:border-ink hover:bg-ink hover:text-white",
+      internal: true,
+    },
     { name: "LinkedIn", href: socials.linkedin, Icon: Linkedin, hover: "hover:border-[#0A66C2] hover:bg-[#0A66C2] hover:text-white" },
     { name: "X (Twitter)", href: socials.twitter, Icon: Twitter, hover: "hover:border-black hover:bg-black hover:text-white" },
     { name: "Vimeo", href: socials.vimeo, Icon: Video, hover: "hover:border-[#1AB7EA] hover:bg-[#1AB7EA] hover:text-white" },
@@ -223,16 +235,20 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
         {t("skipToContent")}
       </a>
 
-      <div className="mx-auto flex h-[76px] w-full max-w-[1440px] items-center justify-between pl-5 pr-5 sm:pl-8 sm:pr-8 lg:h-[104px] lg:pl-10 lg:pr-10">
-        {/* Wordmark — Sora 600 comme le logo du site de référence.
-            Même hauteur (76 px) que la bande des menus : aucun fond ne
-            dépasse celle-ci. Au survol, l'inverse d'un effacement : le
-            fond sombre se matérialise (ou se renforce une fois scrollé). */}
+      {/* Alignement du site de référence : items-start — le nom et le
+          hamburger sont des languettes collées au haut de page (aucun
+          espace au-dessus de leur fond), pleine hauteur (104 px) ; la
+          pilule des menus démarre 13 px plus bas et son bas affleure
+          exactement au bas des languettes. */}
+      <div className="mx-auto flex h-[76px] w-full max-w-[1440px] items-start justify-between pl-5 pr-5 sm:pl-8 sm:pr-8 lg:h-[104px] lg:pl-10 lg:pr-10">
+        {/* Wordmark — languette pleine hauteur aux coins bas arrondis,
+            exactement comme le logo du site de référence. Au survol,
+            l'inverse d'un effacement : le fond sombre se matérialise. */}
         <Link
           href="/"
           onClick={goHome}
           aria-label={t("brand")}
-          className={`flex h-[76px] items-center rounded-b-xl border-x border-b px-3 font-serif text-[1.2rem] font-semibold leading-none tracking-[-0.01em] text-white transition-all duration-500 sm:px-6 sm:text-[1.3rem] ${
+          className={`flex h-[76px] items-center rounded-b-lg border-x border-b px-3 font-serif text-[1.2rem] font-semibold leading-none tracking-[-0.01em] text-white transition-all duration-500 sm:px-6 sm:text-[1.3rem] lg:h-[104px] lg:rounded-b-[9px] ${
             scrolled
               ? "border-mist/10 bg-ink/80 backdrop-blur-xl hover:bg-ink/95"
               : "border-transparent hover:border-mist/10 hover:bg-ink/80 hover:backdrop-blur-xl"
@@ -241,13 +257,12 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
           Alexandre&nbsp;Morel<span className="text-or">.</span>
         </Link>
 
-        {/* Bande de navigation — aucun arrière-plan au sommet de la page :
-            il n'apparaît qu'au défilement, derrière les menus, en vrai
-            rectangle (bord haut visible, 14 px d'air au-dessus). Même
-            hauteur (76 px) que le wordmark et le hamburger. */}
+        {/* Bande de navigation — pilule positionnée comme le site de
+            référence : 13 px sous le haut de page, 91 px de haut, bas
+            aligné au bas des languettes nom / hamburger. */}
         <nav
           aria-label={t("menu.label")}
-          className={`hidden items-center rounded-[10px] transition-all duration-500 lg:flex lg:h-[76px] lg:px-3 xl:px-6 ${
+          className={`hidden items-center rounded-[9px] transition-all duration-500 lg:mt-[13px] lg:flex lg:h-[91px] lg:px-3 xl:px-6 ${
             scrolled
               ? "border border-mist/10 bg-ink/95 shadow-[0_10px_36px_rgba(0,0,0,0.32)] backdrop-blur-xl"
               : "border border-transparent"
@@ -302,9 +317,9 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
             <span className="hidden sm:inline">{otherLocale}</span>
           </Link>
 
-          {/* Hamburger — design exact du site de référence : languette
-              aux coins bas arrondis, fond #1c1c1c → #232323 au survol,
-              limitée à la hauteur (76 px) de la bande des menus. */}
+          {/* Hamburger — languette du site de référence : collée au
+              haut de page, pleine hauteur (104 px), coins bas arrondis,
+              fond #1c1c1c → #232323 au survol. */}
           <button
             ref={hamburgerRef}
             type="button"
@@ -312,7 +327,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
             aria-label={t("menu.open")}
             aria-expanded={menuOpen}
             aria-controls="fullscreen-menu"
-            className="flex h-[76px] w-[50px] shrink-0 items-center justify-center rounded-b-lg bg-ink transition-colors duration-300 hover:bg-surface sm:w-[56px] lg:w-[62px] lg:rounded-b-[9px]"
+            className="flex h-[76px] w-[50px] shrink-0 items-center justify-center rounded-b-lg bg-ink transition-colors duration-300 hover:bg-surface sm:w-[56px] lg:h-[104px] lg:w-[62px] lg:rounded-b-[9px]"
           >
             <span
               className="flex w-6 flex-col gap-[5px]"
@@ -483,12 +498,12 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
                   className="mt-12 border-t border-mist/10 pt-7"
                 >
                   <div className="flex items-center gap-2.5">
-                    {socialList.map(({ name, href, Icon, hover }) => (
+                    {socialList.map(({ name, href, Icon, hover, internal }) => (
                       <a
                         key={name}
                         href={href}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        target={internal ? undefined : "_blank"}
+                        rel={internal ? undefined : "noopener noreferrer"}
                         aria-label={name}
                         title={name}
                         className={`inline-flex size-11 items-center justify-center rounded-full bg-white text-ink transition-all duration-300 ${hover}`}

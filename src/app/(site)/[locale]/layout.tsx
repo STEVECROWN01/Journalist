@@ -121,6 +121,7 @@ export default async function SiteLayout({
               linkedin: settings.linkedin,
               twitter: settings.twitter,
               vimeo: settings.vimeo,
+              email: settings.email,
             }}
           />
           <main id="main-content" className="flex-1">

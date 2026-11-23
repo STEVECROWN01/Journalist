@@ -307,10 +307,10 @@ export function HomeMarquee({
       className="dt-library"
     >
       <div className="dt-library-heading dt-wrap">
-        <Reveal>
+        <Reveal toggle>
           <p className="eyebrow justify-center">{copy.eyebrow}</p>
         </Reveal>
-        <Reveal delay={0.06}>
+        <Reveal delay={0.06} toggle>
           <h2
             id="sec-productions"
             className="display-2 mx-auto mt-6 max-w-3xl text-balance text-white"
@@ -318,17 +318,17 @@ export function HomeMarquee({
             <MaskLines delay={0.05}>{copy.title}</MaskLines>
           </h2>
         </Reveal>
-        <Reveal delay={0.12}>
+        <Reveal delay={0.12} toggle>
           <p className="lede mx-auto mt-6 max-w-2xl text-balance">
             {copy.intro1}
           </p>
         </Reveal>
-        <Reveal delay={0.16}>
+        <Reveal delay={0.16} toggle>
           <p className="mx-auto mt-4 max-w-2xl text-[0.95rem] leading-[1.8] text-steel">
             {copy.intro2}
           </p>
         </Reveal>
-        <Reveal delay={0.2}>
+        <Reveal delay={0.2} toggle>
           <p className="mx-auto mt-2 max-w-2xl text-[0.95rem] leading-[1.8] text-steel">
             {copy.intro3}
           </p>
@@ -357,12 +357,12 @@ export function HomeMarquee({
         </div>
       </div>
 
-      <div className="dt-wrap mt-12 flex justify-center">
+      <Reveal className="dt-wrap mt-12 flex justify-center" from="zoom" toggle>
         <Link href="/productions" className="btn-outline">
           {copy.cta}
           <ArrowRight size={15} aria-hidden="true" />
         </Link>
-      </div>
+      </Reveal>
     </section>
   );
 }

@@ -18,10 +18,11 @@ export interface StatItem {
 
 /**
  * Bande de chiffres clés — même écriture que le titre du hero (Sora
- * semibold, interlettrage serré), point final à l'accent du site.
- * Chaque statistique s'anime à l'entrée dans l'écran : filet qui se
- * trace, compteur qui grimpe, libellé qui monte. Sans JS ou avec
- * prefers-reduced-motion, les valeurs finales restent affichées.
+ * semibold, interlettrage serré). À CHAQUE fois que la bande entre
+ * dans l'écran par le haut (scroll-down), les compteurs repartent de
+ * zéro et grimpent jusqu'à la valeur finale ; en remontant, tout se
+ * réinitialise. Sans JS ou avec prefers-reduced-motion, les valeurs
+ * finales restent affichées.
  */
 export function HomeStats({
   stats,
@@ -37,8 +38,17 @@ export function HomeStats({
   useGSAP(
     () => {
       const media = gsap.matchMedia();
+      /* Attention : gsap.matchMedia().add() n'exécute le callback que
+         si AU MOINS une condition correspond. « prefers-reduced-motion:
+         reduce » seule ne correspond jamais chez un utilisateur normal
+         (valeur « no-preference ») — le callback ne serait jamais
+         appelé et les compteurs resteraient figés. On déclare donc
+         explicitement les deux états. */
       media.add(
-        { reduce: "(prefers-reduced-motion: reduce)" },
+        {
+          reduce: "(prefers-reduced-motion: reduce)",
+          motionOk: "(prefers-reduced-motion: no-preference)",
+        },
         (context) => {
           const { reduce } = context.conditions!;
           if (reduce) return;
@@ -53,19 +63,23 @@ export function HomeStats({
               const target = Number(numEl?.dataset.value ?? 0);
               const prefix = numEl?.dataset.prefix ?? "";
               const counter = { v: 0 };
-              /* État initial du compteur : la valeur finale n'apparaît
-                 que par l'animation (le bloc est masqué au départ). */
-              if (numEl) {
-                numEl.textContent = prefix + "00";
-              }
 
               gsap
                 .timeline({
-                  delay: index * 0.1,
+                  delay: index * 0.09,
                   scrollTrigger: {
                     trigger: item,
-                    start: "top 90%",
-                    once: true,
+                    start: "top 88%",
+                    /* restart à chaque entrée par le haut, remise à
+                       zéro en sortie par le haut : chaque scroll-down
+                       rejoue le compteur depuis 0. */
+                    toggleActions: "restart none none reset",
+                  },
+                  onStart: () => {
+                    counter.v = 0;
+                    if (numEl) {
+                      numEl.textContent = prefix + "00";
+                    }
                   },
                 })
                 /* Filet : se déploie depuis le centre */
@@ -79,8 +93,7 @@ export function HomeStats({
                   },
                   0
                 )
-                /* Chiffre : bascule 3D + montée (le bloc entier,
-                   point final compris) */
+                /* Chiffre : bascule 3D + montée */
                 .fromTo(
                   numBox,
                   { y: 36, opacity: 0, rotateX: -40 },
@@ -94,9 +107,10 @@ export function HomeStats({
                   },
                   0.05
                 )
-                /* Compteur : grimpe jusqu'à la valeur finale */
-                .to(
+                /* Compteur : grimpe de 0 jusqu'à la valeur finale */
+                .fromTo(
                   counter,
+                  { v: 0 },
                   {
                     v: target,
                     duration: 1.4,
@@ -144,9 +158,6 @@ export function HomeStats({
                 data-prefix={stat.prefix ?? ""}
               >
                 {(stat.prefix ?? "") + String(stat.value).padStart(2, "0")}
-              </span>
-              <span className="dt-stat-dot" aria-hidden="true">
-                .
               </span>
             </dt>
             <dd className="dt-stat-label">{stat.label}</dd>

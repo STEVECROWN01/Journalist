@@ -481,8 +481,10 @@ html.lenis body {
     margin-top: 1.75rem;
   }
   .hero-pad {
-    padding-top: 4.5rem;
-    padding-bottom: 4.5rem;
+    /* Jamais moins haut que l'en-tête (104 px) : le texte ne peut
+       pas remonter sous lui, même quand le contenu déborde. */
+    padding-top: 7rem;
+    padding-bottom: 3.5rem;
   }
 }
 /* Très petits heights (mobiles en paysage) : essentiel uniquement */
@@ -499,8 +501,8 @@ html.lenis body {
     margin-top: 1.25rem;
   }
   .hero-pad {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+    padding-top: 6.5rem;
+    padding-bottom: 2.5rem;
   }
 }
 
@@ -703,15 +705,15 @@ body {
   pointer-events: auto;
 }
 /* Cibles du hero (médias · producteurs · organisations · entreprises) :
-   gros points de séparation, même pastille que la bande de mots-clés. */
+   simple point plein de séparation, exactement comme les points sous
+   les CTA du hero du site de référence (h-1 w-1, aucun halo). */
 .dt-audience-dot {
   display: block;
-  width: 8px;
-  height: 8px;
+  width: 4px;
+  height: 4px;
   flex: none;
   border-radius: 50%;
-  background: var(--color-or);
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-or) 20%, transparent);
+  background: var(--color-mist);
 }
 /* Dans le hero, le titre adopte une taille légèrement plus contenue :
    toutes ses lignes restent en deçà de 65 % de la largeur, zone où le
@@ -743,8 +745,6 @@ body {
   grid-template-columns: repeat(2, 1fr);
   gap: 2.75rem 1.5rem;
   padding-block: clamp(1.75rem, 3vw, 2.75rem);
-  border-top: 1px solid rgba(28, 28, 28, 0.14);
-  border-bottom: 1px solid rgba(28, 28, 28, 0.14);
 }
 @media (min-width: 860px) {
   .dt-stats-grid {
@@ -779,9 +779,6 @@ body {
   line-height: 1;
   color: #1c1c1c;
 }
-.dt-stat-dot {
-  color: #a3a3a3;
-}
 .dt-stat-label {
   margin-top: 0.95rem;
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
@@ -793,83 +790,25 @@ body {
 }
 
 /* ============================================================
-   APPROCHE — options dépliables : première ligne visible, « + »
-   qui pivote en croix, description qui se déplie avec fluidité.
+   APPROCHE — calque exact de « Comment je travaille » du site de
+   référence : cartes arrondies sombres, numéro fantôme, cercle
+   « + » / « − » (fermé : bord discret ; ouvert : cercle rempli
+   clair, icône sombre), panneau déplié par la grille CSS 0fr↔1fr.
+   Aucun état de survol, comme le référent.
    ============================================================ */
 .dt-step-title {
   margin: 0;
 }
-.dt-step-head {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 1.15rem;
-  width: 100%;
-  padding: 0;
-  border: 0;
-  background: none;
-  text-align: left;
-  cursor: pointer;
-}
-.dt-step-num {
-  width: clamp(2.4rem, 3vw, 3.2rem);
-  font-size: clamp(1.8rem, 2.6vw, 2.4rem);
-  line-height: 0.9;
-  color: var(--color-steel);
-}
 .dt-step-name {
-  font-size: clamp(1.15rem, 1.6vw, 1.35rem);
+  font-size: clamp(1.3rem, 2.2vw, 1.6rem);
   line-height: 1.3;
   color: #ffffff;
-  transition: color 0.3s ease;
 }
-.dt-step-head:hover .dt-step-name {
-  color: var(--color-or);
-}
-.dt-step-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 999px;
-  border: 1px solid rgba(228, 228, 228, 0.22);
-  color: var(--color-mist);
-  background: transparent;
-  transition:
-    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.3s ease,
-    background-color 0.3s ease,
-    color 0.3s ease;
-}
-.dt-step-head:hover .dt-step-toggle {
-  border-color: rgba(228, 228, 228, 0.55);
-  background: rgba(255, 255, 255, 0.05);
-}
-.dt-step-toggle.is-open {
-  transform: rotate(45deg);
-  border-color: var(--color-or);
-  color: var(--color-or);
-}
-.dt-step-body {
-  overflow: hidden;
-  padding-left: calc(clamp(2.4rem, 3vw, 3.2rem) + 1.15rem);
-}
-.dt-step-desc {
-  max-width: 36rem;
-  padding-top: 0.25rem;
-  font-size: 0.95rem;
-  line-height: 1.65;
-  color: var(--color-silver);
-}
-.dt-step-desc.is-clamped {
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
+.dt-step-panel > div {
   overflow: hidden;
 }
 @media (prefers-reduced-motion: reduce) {
-  .dt-step-toggle,
+  .dt-step-panel,
   .dt-stat-rule {
     transition: none;
   }
@@ -1354,10 +1293,14 @@ body {
   height: 100%;
   object-fit: cover;
   object-position: center 35%;
-  transition: scale 0.45s;
+  /* Zoom au survol : glissement long et amorti (ease-out exponentiel),
+     jamais un changement sec. */
+  transition:
+    scale 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .dt-photo:hover img {
-  scale: 1.035;
+  scale: 1.05;
 }
 .dt-photo-badge {
   position: absolute;
@@ -1536,13 +1479,14 @@ body {
   color: var(--color-silver);
 }
 .dt-keywords-dot {
+  /* Simple point plein de séparation, comme le « • » du bandeau
+     défilant du site de référence — aucun halo. */
   display: block;
-  width: 10px;
-  height: 10px;
+  width: 7px;
+  height: 7px;
   flex: none;
   border-radius: 50%;
-  background: var(--color-or);
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-or) 20%, transparent);
+  background: var(--color-mist);
 }
 @keyframes dt-keywords-scroll {
   from {
@@ -1823,23 +1767,26 @@ body {
 article img,
 figure img {
   filter: grayscale(1);
-  transition: filter 0.5s ease;
+  /* Révélation de la couleur : fondu long et doux, jamais brutal. */
+  transition: filter 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 /* La mosaïque du hero reçoit le survol sur ses vignettes : chaque
    image révèle sa couleur originale à l'endroit survolé. */
-/* Survol / focus du conteneur : la véritable couleur est révélée. */
+/* La couleur se révèle EXCLUSIVEMENT au survol de l'image elle-même
+   (le focus clavier sur le lien interactif parent reste actif pour
+   l'accessibilité) — jamais au survol du texte ou de la section. */
 .dt-mosaic-tile:hover,
-.dt-editorial-photo:hover .dt-editorial-img,
+.dt-editorial-img:hover,
 .dt-editorial-photo:focus-visible .dt-editorial-img,
-.dt-editorial-card:hover img,
+.dt-editorial-card img:hover,
 .dt-editorial-card:focus-visible img,
-.dt-photo:hover img,
+.dt-photo img:hover,
 .dt-photo:focus-visible img,
-.dt-creator:hover .dt-creator-img,
+.dt-creator-img:hover,
 .dt-creator:focus-visible .dt-creator-img,
-article:hover img,
+article img:hover,
 article:focus-within img,
-figure:hover img,
+figure img:hover,
 figure:focus-within img {
   filter: grayscale(0);
 }

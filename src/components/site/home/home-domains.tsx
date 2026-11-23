@@ -233,10 +233,10 @@ export function HomeDomains({
       className="dt-people border-t border-mist/10"
     >
       <div className="dt-wrap">
-        <Reveal>
+        <Reveal toggle>
           <p className="eyebrow justify-center">{eyebrow}</p>
         </Reveal>
-        <Reveal delay={0.08}>
+        <Reveal delay={0.08} toggle>
           <h2
             id="sec-expertise"
             className="display-2 mx-auto mt-6 max-w-3xl text-balance text-white"
@@ -309,7 +309,12 @@ export function HomeDomains({
       {/* Grille détaillée : l'intégralité du texte éditorial des domaines */}
       <div className="dt-wrap dt-domain-details">
         {domains.map((domain, i) => (
-          <Reveal key={domain.key} delay={i * 0.06}>
+          <Reveal
+            key={domain.key}
+            delay={i * 0.06}
+            from={i % 2 === 0 ? "left" : "right"}
+            toggle
+          >
             <Link
               href={domain.href}
               className="group flex h-full flex-col border-t border-mist/15 pt-6 transition-colors duration-300 hover:border-or/60"

@@ -251,18 +251,25 @@ export default async function HomePage({
         />
       </div>
 
-      {/* ============ 03 — APPROCHE JOURNALISTIQUE : la méthode,
-            étape par étape (options dépliables) ============ */}
+      {/* ============ 03 — DOMAINES D'INTERVENTION : plaques ============ */}
+      <HomeDomains
+        eyebrow={t("expertise.eyebrow")}
+        title={t("expertise.title")}
+        domains={domains}
+      />
+
+      {/* ============ 04 — APPROCHE JOURNALISTIQUE : la méthode,
+            étape par étape (accordéon du site de référence) ============ */}
       <section
         aria-labelledby="sec-approach"
         className="dt-panel relative border-t border-mist/10 bg-surface/40"
       >
         <div className="mx-auto grid max-w-6xl gap-12 px-6 py-24 md:py-32 lg:grid-cols-[1fr_2.2fr] lg:gap-16">
           <div className="lg:sticky lg:top-28 lg:self-start">
-            <Reveal>
+            <Reveal toggle>
               <p className="eyebrow">{t("approach.eyebrow")}</p>
             </Reveal>
-            <Reveal delay={0.08}>
+            <Reveal delay={0.08} toggle>
               <h2
                 id="sec-approach"
                 className="display-2 mt-6 max-w-md text-balance text-white"
@@ -270,7 +277,7 @@ export default async function HomePage({
                 <MaskLines delay={0.06}>{t("approach.title")}</MaskLines>
               </h2>
             </Reveal>
-            <Reveal delay={0.14}>
+            <Reveal delay={0.14} toggle>
               <p className="mt-6 max-w-md text-[0.95rem] leading-[1.8] text-silver/90">
                 {t("approach.lede")}
               </p>
@@ -283,13 +290,6 @@ export default async function HomePage({
           />
         </div>
       </section>
-
-      {/* ============ 04 — DOMAINES D'INTERVENTION : plaques ============ */}
-      <HomeDomains
-        eyebrow={t("expertise.eyebrow")}
-        title={t("expertise.title")}
-        domains={domains}
-      />
 
       {/* ============ 05 — PRODUCTIONS : galerie défilante ============ */}
       <HomeMarquee

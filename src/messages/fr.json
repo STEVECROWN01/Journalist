@@ -102,23 +102,23 @@
       "collapse": "Replier l'étape",
       "steps": [
         {
-          "title": "L'écoute du terrain",
+          "title": "Écoute du terrain",
           "desc": "Avant d'écrire ou de filmer, je rencontre celles et ceux qui vivent le sujet. Sur place, sans intermédiaire : cette écoute fidèle révèle ce qu'aucun communiqué, aucun dossier de presse ne dira jamais."
         },
         {
-          "title": "La compréhension du contexte",
+          "title": "Compréhension du contexte",
           "desc": "Chaque fait s'inscrit dans une histoire, une économie, une culture. J'articule ces fils pour situer chaque information dans la réalité qui la façonne — et écarter le contresens dès l'enquête."
         },
         {
-          "title": "La construction du récit",
+          "title": "Construction du récit",
           "desc": "De cette matière brute naît une architecture claire : un récit pensé pour son public, qui tient en haleine sans jamais sacrifier la nuance ni céder au jargon."
         },
         {
-          "title": "La restitution rigoureuse",
+          "title": "Restitution rigoureuse",
           "desc": "Vérification des sources, équilibre des points de vue, précision du langage : l'essentiel livré dans les temps, à la hauteur des enjeux — et défendable face à toute critique."
         },
         {
-          "title": "La transmission du métier",
+          "title": "Transmission du métier",
           "desc": "Le terrain s'apprend et se transmet. Masterclasses, formation en rédaction, accompagnement d'équipes : je partage les méthodes et les réflexes qui rendent autonomes."
         }
       ]
