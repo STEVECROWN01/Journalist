@@ -430,32 +430,38 @@ html.lenis body {
 }
 
 /* ============================================================
-   HERO — hauteur d'écran au minimum et adaptation aux écrans courts
-   Le hero occupe AU MOINS le viewport (100svh quand disponible).
-   Si le contenu déborde (écrans peu hauts), la section GRANDIT au
-   lieu de rogner : la bande de mots-clés reste toujours visible,
-   aucun texte n'est coupé.
+   HERO — hauteur d'écran exacte et adaptation aux écrans courts
+   Le hero occupe PRÉCISÉMENT le viewport (100svh quand disponible)
+   et reste entièrement visible sans défilement, du mobile au 4K.
+   L'espace libre se place au-dessus du texte (mt-auto) : l'écart
+   entre l'en-tête et « 20 ans d'expérience » est maximal SANS jamais
+   faire déborder le contenu. Les écrans peu hauts replient le
+   complément et resserrent les espacements, palier par palier.
    ============================================================ */
 .hero-full {
-  min-height: 100vh;
+  height: 100vh;
 }
 @supports (height: 100svh) {
   .hero-full {
-    min-height: 100svh;
+    height: 100svh;
   }
 }
 
-/* Écrans peu hauts (ordinateurs portables) : on allège le contenu */
-@media (max-height: 820px) {
-  .hero-complement {
-    display: none;
-  }
-}
-/* Portables standards (≈900 px de haut) : seul le premier paragraphe
-   de complément reste visible afin que le bandeau de réassurance
-   tienne toujours dans l'écran. */
+/* Écrans peu hauts (≤ 940 px de haut, ordinateurs portables) : le
+   second paragraphe de complément se replie et le plancher haut se
+   resserre afin que tout tienne à l'écran. */
 @media (max-height: 940px) {
   .hero-complement-p2 {
+    display: none;
+  }
+  .dt-hero .hero-pad {
+    padding-top: 8rem;
+  }
+}
+/* Portables compacts et tablettes en paysage (≤ 850 px de haut) :
+   complément masqué — le sous-titre suffit, tout reste visible. */
+@media (max-height: 850px) {
+  .hero-complement {
     display: none;
   }
 }
@@ -467,11 +473,11 @@ html.lenis body {
   }
 }
 @media (max-height: 760px) {
-  .hero-scroll {
-    display: none !important;
-  }
-  .hero-title {
-    font-size: clamp(2rem, 7vw, 3.4rem);
+  /* Sélecteur renforcé (.dt-hero .display-1, ligne 715, a une
+     spécificité supérieure à .hero-title seul) : la réduction du
+     titre s'applique réellement sur les écrans peu hauts. */
+  .dt-hero .display-1.hero-title {
+    font-size: clamp(2rem, 5vw, 3rem);
   }
   .hero-block {
     margin-top: 1.25rem;
@@ -482,29 +488,90 @@ html.lenis body {
   .hero-ctas {
     margin-top: 1.75rem;
   }
-  .hero-pad {
-    /* Jamais moins haut que l'en-tête (95 px) : le texte ne peut
-       pas remonter sous lui, même quand le contenu déborde. */
-    padding-top: 8.5rem;
-    padding-bottom: 3.5rem;
+  .dt-hero .hero-pad {
+    padding-top: 7rem;
+    padding-bottom: 3rem;
   }
 }
-/* Très petits heights (mobiles en paysage) : essentiel uniquement */
+/* Mobiles compacts (étroits ET peu hauts — 360×740, 375×667, 375×812…) :
+   cibles sous les boutons repliées, titre contenu, planchers
+   abaissés — le hero tient entièrement à l'écran. */
+@media (max-width: 459px) and (max-height: 820px) {
+  .hero-audiences {
+    display: none;
+  }
+  .dt-hero .display-1.hero-title {
+    font-size: clamp(1.9rem, 8vw, 2.3rem);
+  }
+  .hero-subtitle {
+    line-height: 1.58;
+  }
+  .dt-hero .hero-pad {
+    padding-top: 6.5rem;
+    padding-bottom: 2.25rem;
+  }
+}
+/* Écrans très compacts (≤ 660 px de haut) : cibles repliées, titre
+   et espacements resserrés, plancher au strict nécessaire. */
+@media (max-height: 660px) {
+  .hero-audiences {
+    display: none;
+  }
+  .dt-hero .display-1.hero-title {
+    font-size: clamp(1.75rem, 7.5vw, 2.2rem);
+  }
+  .hero-block {
+    margin-top: 1rem;
+  }
+  .hero-ctas {
+    margin-top: 1.5rem;
+  }
+  .dt-hero .hero-pad {
+    padding-top: 6rem;
+  }
+}
+/* Petits heights (≤ 600 px) : sous-titre et cibles repliés, titre
+   resserré — la mention « 20 ans d'expérience » reste visible. */
 @media (max-height: 600px) {
-  .hero-eyebrow-row,
   .hero-subtitle,
   .hero-audiences {
     display: none;
   }
-  .hero-title {
-    font-size: clamp(1.6rem, 5vw, 2.4rem);
+  .dt-hero .display-1.hero-title {
+    font-size: clamp(1.5rem, 4.5vw, 2.2rem);
   }
   .hero-ctas {
     margin-top: 1.25rem;
   }
-  .hero-pad {
-    padding-top: 7.5rem;
-    padding-bottom: 2.5rem;
+  .dt-hero .hero-pad {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+}
+/* Mobiles en paysage (≤ 480 px de haut) : essentiel uniquement —
+   titre, mention d'expérience et boutons compacts sur une ligne. */
+@media (max-height: 480px) {
+  .hero-eyebrow-row {
+    display: none;
+  }
+  .dt-hero .display-1.hero-title {
+    font-size: clamp(1.35rem, 4.5vw, 2rem);
+  }
+  .hero-block {
+    margin-top: 0.75rem;
+  }
+  .hero-ctas {
+    margin-top: 1rem;
+    gap: 0.6rem;
+  }
+  .hero-ctas :is(.btn-accent, .btn-outline) {
+    min-height: 44px;
+    padding-inline: 1.15rem;
+    font-size: 0.8rem;
+  }
+  .dt-hero .hero-pad {
+    padding-top: 5rem;
+    padding-bottom: 0.75rem;
   }
 }
 

@@ -95,10 +95,11 @@ function FlagGB({ className = "" }: { className?: string }) {
 
 /**
  * En-tête fixe — structure du site de référence, resserrée :
- * languettes nom / hamburger de 95 px collées au haut de page (aucun
- * espace au-dessus de leur fond), pilule des menus de 85 px démarrant
- * à 10 px sous le haut — son bas affleure EXACTEMENT au bas des
- * languettes. Coins inférieurs arrondis (14 px) sur les trois fonds.
+ * languettes nom / hamburger de 85 px collées au haut de page (aucun
+ * espace au-dessus de leur fond), pilule des menus de 80 px démarrant
+ * à 5 px sous le haut — son bas affleure EXACTEMENT au bas des
+ * languettes (5 + 80 = 85). Coins inférieurs arrondis (14 px) sur les
+ * trois fonds.
  */
 export function SiteHeader({ socials }: { socials: HeaderSocials }) {
   const t = useTranslations("common");
@@ -122,7 +123,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
       const heroText = document.querySelector(".dt-hero-content");
       const first = heroText?.firstElementChild;
       if (first instanceof HTMLElement) {
-        const headerHeight = window.innerWidth >= 1024 ? 95 : 76;
+        const headerHeight = window.innerWidth >= 1024 ? 85 : 76;
         const textTop =
           first.getBoundingClientRect().top + window.scrollY;
         return Math.max(8, textTop - headerHeight);
@@ -238,10 +239,10 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
 
       {/* Alignement du site de référence : items-start — le nom et le
           hamburger sont des languettes collées au haut de page (aucun
-          espace au-dessus de leur fond), hautes de 95 px ; la pilule des
-          menus démarre 10 px plus bas (85 px de haut) : son bas affleure
+          espace au-dessus de leur fond), hautes de 85 px ; la pilule des
+          menus démarre 5 px plus bas (80 px de haut) : son bas affleure
           exactement au bas des languettes. */}
-      <div className="mx-auto flex h-[76px] w-full max-w-[1440px] items-start justify-between pl-5 pr-5 sm:pl-8 sm:pr-8 lg:h-[95px] lg:pl-10 lg:pr-10">
+      <div className="mx-auto flex h-[76px] w-full max-w-[1440px] items-start justify-between pl-5 pr-5 sm:pl-8 sm:pr-8 lg:h-[85px] lg:pl-10 lg:pr-10">
         {/* Wordmark — languette pleine hauteur aux coins bas arrondis,
             exactement comme le logo du site de référence. Au survol,
             l'inverse d'un effacement : le fond sombre se matérialise. */}
@@ -249,7 +250,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
           href="/"
           onClick={goHome}
           aria-label={t("brand")}
-          className={`flex h-[76px] items-center rounded-b-[12px] border-x border-b px-3 font-serif text-[1.2rem] font-semibold leading-none tracking-[-0.01em] text-white transition-all duration-500 sm:px-6 sm:text-[1.3rem] lg:h-[95px] lg:rounded-b-[14px] ${
+          className={`flex h-[76px] items-center rounded-b-[12px] border-x border-b px-3 font-serif text-[1.2rem] font-semibold leading-none tracking-[-0.01em] text-white transition-all duration-500 sm:px-6 sm:text-[1.3rem] lg:h-[85px] lg:rounded-b-[14px] ${
             scrolled
               ? "border-mist/10 bg-ink/80 backdrop-blur-xl hover:bg-ink/95"
               : "border-transparent hover:border-mist/10 hover:bg-ink/80 hover:backdrop-blur-xl"
@@ -258,12 +259,12 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
           Alexandre&nbsp;Morel<span className="text-or">.</span>
         </Link>
 
-        {/* Bande de navigation — pilule resserrée : 10 px sous le haut
-            de page, 85 px de haut, bas aligné au bas des languettes nom /
-            hamburger (95 px), coins arrondis 14 px. */}
+        {/* Bande de navigation — pilule resserrée : 5 px sous le haut
+            de page, 80 px de haut, bas aligné au bas des languettes nom /
+            hamburger (85 px), coins arrondis 14 px. */}
         <nav
           aria-label={t("menu.label")}
-          className={`hidden items-center rounded-[14px] transition-all duration-500 lg:mt-[10px] lg:flex lg:h-[85px] lg:px-3 xl:px-6 ${
+          className={`hidden items-center rounded-[14px] transition-all duration-500 lg:mt-[5px] lg:flex lg:h-[80px] lg:px-3 xl:px-6 ${
             scrolled
               ? "border border-mist/10 bg-ink/95 shadow-[0_10px_36px_rgba(0,0,0,0.32)] backdrop-blur-xl"
               : "border border-transparent"
@@ -319,7 +320,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
           </Link>
 
           {/* Hamburger — languette du site de référence : collée au
-              haut de page, 95 px de haut (bas aligné à la pilule des
+              haut de page, 85 px de haut (bas aligné à la pilule des
               menus), coins bas arrondis 14 px, fond #1c1c1c → #232323
               au survol. */}
           <button
@@ -329,7 +330,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
             aria-label={t("menu.open")}
             aria-expanded={menuOpen}
             aria-controls="fullscreen-menu"
-            className="flex h-[76px] w-[50px] shrink-0 items-center justify-center rounded-b-[12px] bg-ink transition-colors duration-300 hover:bg-surface sm:w-[56px] lg:h-[95px] lg:w-[62px] lg:rounded-b-[14px]"
+            className="flex h-[76px] w-[50px] shrink-0 items-center justify-center rounded-b-[12px] bg-ink transition-colors duration-300 hover:bg-surface sm:w-[56px] lg:h-[85px] lg:w-[62px] lg:rounded-b-[14px]"
           >
             <span
               className="flex w-6 flex-col gap-[5px]"
@@ -358,7 +359,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
           >
             {/* Ligne supérieure : wordmark + langue + fermer — le bouton
                 de fermeture respire à droite comme au-dessus de lui */}
-            <div className="mx-auto flex h-[76px] w-full shrink-0 max-w-[1440px] items-center justify-between pl-5 pr-5 sm:pl-8 sm:pr-8 lg:h-[95px] lg:pl-10 lg:pr-10">
+            <div className="mx-auto flex h-[76px] w-full shrink-0 max-w-[1440px] items-center justify-between pl-5 pr-5 sm:pl-8 sm:pr-8 lg:h-[85px] lg:pl-10 lg:pr-10">
               <motion.div
                 initial={reduce ? false : { opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}

@@ -186,12 +186,16 @@ export function HomeHero({ copy }: { copy: HomeHeroCopy }) {
       {/* Voile de lisibilité entre la mosaïque et le texte */}
       <div className="dt-hero-shade" aria-hidden="true" />
 
-      {/* Contenu éditorial — largement dégagé de l'en-tête fixe (95 px).
-          Le bloc est poussé vers le bas (mt-auto) : tout l'espace libre
-          se place AU-DESSUS du texte, qui descend loin du header. S'il
-          déborde, il commence au padding haut (plancher relevé) — et la
-          section grandit au lieu de rogner (min-height). */}
-      <div className="dt-hero-content hero-pad relative z-[2] mx-auto flex w-full max-w-6xl flex-1 flex-col px-6 pb-14 pt-32 sm:pb-16 sm:pt-44 lg:pb-20 lg:pt-64">
+      {/* Contenu éditorial — dégagé de l'en-tête fixe (85 px). Le hero
+          occupe EXACTEMENT l'écran (100svh) : le bloc texte est poussé
+          vers le bas (mt-auto), donc tout l'espace libre se place
+          AU-DESSUS du texte — l'écart au-dessus de « 20 ans
+          d'expérience » est maximal tout en restant entièrement
+          visible. Le padding haut n'est qu'un plancher (jamais sous
+          l'en-tête) ; les paliers par hauteur d'écran (globals.css)
+          replient le complément et resserrent les espacements sur les
+          écrans peu hauts pour que rien ne déborde jamais. */}
+      <div className="dt-hero-content hero-pad relative z-[2] mx-auto flex w-full max-w-6xl flex-1 flex-col px-6 pb-14 pt-28 sm:pb-16 sm:pt-32 lg:pb-20 lg:pt-36">
         <div className="mt-auto w-full">
         <Reveal>
           <p className="hero-eyebrow-row">
