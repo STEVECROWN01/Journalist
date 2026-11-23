@@ -430,16 +430,18 @@ html.lenis body {
 }
 
 /* ============================================================
-   HERO — hauteur d'écran exacte et adaptation aux écrans courts
-   Le hero occupe précisément le viewport (100svh quand disponible)
-   et reste entièrement visible sans défilement, du mobile au 4K.
+   HERO — hauteur d'écran au minimum et adaptation aux écrans courts
+   Le hero occupe AU MOINS le viewport (100svh quand disponible).
+   Si le contenu déborde (écrans peu hauts), la section GRANDIT au
+   lieu de rogner : la bande de mots-clés reste toujours visible,
+   aucun texte n'est coupé.
    ============================================================ */
 .hero-full {
-  height: 100vh;
+  min-height: 100vh;
 }
 @supports (height: 100svh) {
   .hero-full {
-    height: 100svh;
+    min-height: 100svh;
   }
 }
 
@@ -481,9 +483,9 @@ html.lenis body {
     margin-top: 1.75rem;
   }
   .hero-pad {
-    /* Jamais moins haut que l'en-tête (104 px) : le texte ne peut
+    /* Jamais moins haut que l'en-tête (95 px) : le texte ne peut
        pas remonter sous lui, même quand le contenu déborde. */
-    padding-top: 7rem;
+    padding-top: 8.5rem;
     padding-bottom: 3.5rem;
   }
 }
@@ -501,7 +503,7 @@ html.lenis body {
     margin-top: 1.25rem;
   }
   .hero-pad {
-    padding-top: 6.5rem;
+    padding-top: 7.5rem;
     padding-bottom: 2.5rem;
   }
 }
@@ -1581,7 +1583,7 @@ body {
   }
   .dt-hero-content {
     flex: 1 1 auto;
-    padding-top: 9rem;
+    padding-top: 10rem;
     padding-bottom: 2.5rem;
   }
   .dt-mosaic {

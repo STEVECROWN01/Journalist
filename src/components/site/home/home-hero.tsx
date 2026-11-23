@@ -186,12 +186,13 @@ export function HomeHero({ copy }: { copy: HomeHeroCopy }) {
       {/* Voile de lisibilité entre la mosaïque et le texte */}
       <div className="dt-hero-shade" aria-hidden="true" />
 
-      {/* Contenu éditorial — largement dégagé de l'en-tête fixe (104 px).
-          Le bloc est centré par marges automatiques (my-auto) : s'il
-          déborde de l'espace disponible, il commence au padding haut
-          au lieu de remonter SOUS l'en-tête — plus jamais coincé. */}
-      <div className="dt-hero-content hero-pad relative z-[2] mx-auto flex w-full max-w-6xl flex-1 flex-col px-6 pb-14 pt-28 sm:pb-16 sm:pt-36 lg:pb-20 lg:pt-48">
-        <div className="my-auto w-full">
+      {/* Contenu éditorial — largement dégagé de l'en-tête fixe (95 px).
+          Le bloc est poussé vers le bas (mt-auto) : tout l'espace libre
+          se place AU-DESSUS du texte, qui descend loin du header. S'il
+          déborde, il commence au padding haut (plancher relevé) — et la
+          section grandit au lieu de rogner (min-height). */}
+      <div className="dt-hero-content hero-pad relative z-[2] mx-auto flex w-full max-w-6xl flex-1 flex-col px-6 pb-14 pt-32 sm:pb-16 sm:pt-44 lg:pb-20 lg:pt-64">
+        <div className="mt-auto w-full">
         <Reveal>
           <p className="hero-eyebrow-row">
             <span className="dt-experience">
