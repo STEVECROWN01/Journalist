@@ -29,10 +29,10 @@ export function PublicationCard({
 
   if (featured) {
     return (
-      <article className={`group grid gap-8 md:grid-cols-2 ${className}`}>
+      <article className={`grid gap-8 md:grid-cols-2 ${className}`}>
         <Link
           href={`/publications/${publication.slug}`}
-          className="relative block aspect-[3/2] overflow-hidden rounded-lg border border-mist/10"
+          className="group/image relative block aspect-[3/2] overflow-hidden rounded-lg border border-mist/10"
           aria-hidden="true"
           tabIndex={-1}
         >
@@ -42,7 +42,12 @@ export function PublicationCard({
               alt=""
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
+              /* Zoom EXCLUSIVEMENT au survol de l'image (groupe « image »
+                 only) — la transition vit dans globals.css (.dt-pub-img) :
+                 la règle noir et blanc « article img » hors couche écrase
+                 sinon toute transition utilitaire et le zoom claque
+                 instantanément au lieu de se dérouler en douceur. */
+              className="dt-pub-img transform-gpu object-cover group-hover/image:scale-[1.05]"
   quality={95}
 />
           ) : null}

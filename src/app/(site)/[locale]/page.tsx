@@ -189,8 +189,6 @@ export default async function HomePage({
           title2: t("hero.title2"),
           title3: t("hero.title3"),
           subtitle: t("hero.subtitle"),
-          complement: t("hero.complement"),
-          approach: t("hero.approach"),
           ctaPrimary: t("hero.ctaPrimary"),
           ctaSecondary: t("hero.ctaSecondary"),
           audiences: t.raw("hero.audiences") as string[],
@@ -260,7 +258,8 @@ export default async function HomePage({
       />
 
       {/* ============ 04 — APPROCHE JOURNALISTIQUE : la méthode,
-            étape par étape (style précédent restauré) ============ */}
+            étape par étape (design des cartes, numéros au style
+            d'écriture précédent) ============ */}
       <section
         aria-labelledby="sec-approach"
         className="dt-panel relative border-t border-mist/10 bg-surface/40"

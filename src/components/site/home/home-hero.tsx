@@ -18,8 +18,6 @@ export interface HomeHeroCopy {
   title2: string;
   title3: string;
   subtitle: string;
-  complement: string;
-  approach: string;
   ctaPrimary: string;
   ctaSecondary: string;
   /** Cibles clientes sous les boutons (séparées par de gros points) */
@@ -229,10 +227,6 @@ export function HomeHero({ copy }: { copy: HomeHeroCopy }) {
           <p className="hero-subtitle hero-block mt-7 max-w-2xl text-[1.02rem] leading-[1.8] text-mist/85 md:mt-9">
             {copy.subtitle}
           </p>
-          <div className="hero-complement mt-4 max-w-xl space-y-3 text-[0.92rem] leading-[1.75] text-silver/90">
-            <p>{copy.complement}</p>
-            <p className="hero-complement-p2">{copy.approach}</p>
-          </div>
         </Reveal>
         <Reveal delay={0.24}>
           <div className="hero-ctas mt-8 flex flex-wrap items-center gap-4 md:mt-10">

@@ -71,8 +71,6 @@
       "title2": "From field realities to stories",
       "title3": "that illuminate the world.",
       "subtitle": "I explore international realities through reporting, documentary production and editorial work.",
-      "complement": "I work with media, producers and organisations on projects that require a deep understanding of the field, of local contexts and of human stakes.",
-      "approach": "My approach combines international experience, listening, adaptability and editorial rigour to turn complex realities into stories that are accessible, documented and human.",
       "ctaPrimary": "Discover my productions",
       "ctaSecondary": "Let's talk about your project",
       "audiences": [
@@ -102,7 +100,7 @@
     "approach": {
       "eyebrow": "A journalistic approach",
       "title": "A proven method, step by step.",
-      "lede": "Twenty years of fieldwork in sensitive zones — Africa, the Middle East, Asia, the Balkans — have forged a simple, demanding method, common to all my projects, from news reporting to documentary.",
+      "lede": "Twenty years of fieldwork in sensitive zones — Africa, the Middle East, Asia, the Balkans — have forged a simple, demanding method, common to all my projects: listening, adaptability and editorial rigour, to turn complex realities into stories that are accessible, documented and human.",
       "expand": "Show this step",
       "collapse": "Collapse this step",
       "steps": [
@@ -131,7 +129,7 @@
     "expertise": {
       "eyebrow": "Areas of work",
       "title": "Complex subjects. Accessible stories.",
-      "lede": "Twenty years of fieldwork across four complementary areas of practice — each domain opens onto a selection of works and collaborations.",
+      "lede": "A story to cover? A film to produce? A message to sharpen, a team to train? Four ways we can work together — choose yours.",
       "items": {
         "journalism": {
           "title": "International journalism",
@@ -174,7 +172,7 @@
     "collaboration": {
       "eyebrow": "Collaborations",
       "title": "Do you have a subject to document or a story to tell?",
-      "p1": "Media, producers, organisations: I work with those who want to document the world with rigour — reports, documentaries and editorial projects, from major international networks to independent producers.",
+      "p1": "Media, producers, organisations: I work with those who want to document the world with rigour. Every project rests on a deep understanding of the field, of local contexts and of human stakes — from major international networks to independent producers.",
       "p2": "Every project begins with an honest conversation about your objectives, your constraints and your audience, then unfolds transparently, from framing to delivery.",
       "p3": "Tell me about your project: the subject, the goals, the deadline. I will reply to you personally — and together we will shape the story that deserves to be told.",
       "assurance": "Personal reply · Source protection · FR / EN",

@@ -471,12 +471,6 @@ html.lenis body {
   .hero-block {
     margin-top: 1.5rem;
   }
-  .hero-complement {
-    margin-top: 0.875rem;
-  }
-  .hero-complement p + p {
-    margin-top: 0.625rem;
-  }
   .hero-ctas {
     margin-top: 1.75rem;
   }
@@ -516,13 +510,6 @@ html.lenis body {
   }
   .hero-subtitle {
     line-height: 1.55;
-  }
-  .hero-complement {
-    margin-top: 0.75rem;
-    line-height: 1.6;
-  }
-  .hero-complement p + p {
-    margin-top: 0.5rem;
   }
   .hero-ctas {
     margin-top: 1.5rem;
@@ -795,8 +782,7 @@ body {
 }
 /* Séparation supplémentaire du texte du hero sur les zones claires */
 .dt-hero .display-1,
-.dt-hero .hero-subtitle,
-.dt-hero .hero-complement {
+.dt-hero .hero-subtitle {
   text-shadow:
     0 2px 18px rgba(7, 7, 7, 0.55),
     0 1px 3px rgba(7, 7, 7, 0.45);
@@ -862,85 +848,31 @@ body {
 }
 
 /* ============================================================
-   APPROCHE — style précédent restauré : liste à filets (aucune
-   carte), numéro serif italique « 01 » à gauche du titre, « + »
-   qui pivote en croix à droite, description dont la première
-   ligne reste visible fermée et qui se déplie avec fluidité.
+   APPROCHE — design des cartes restauré (cartes arrondies sombres,
+   cercle « + » / « − » à droite, panneau déplié par la grille CSS
+   0fr ↔ 1fr). Numéros au style d'écriture précédent : « 01 » serif
+   italique, acier, doré au survol de la carte.
    ============================================================ */
 .dt-step-title {
   margin: 0;
 }
-.dt-step-head {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 1.15rem;
-  width: 100%;
-  padding: 0;
-  border: 0;
-  background: none;
-  text-align: left;
-  cursor: pointer;
-}
 .dt-step-num {
-  width: clamp(2.4rem, 3vw, 3.2rem);
-  font-size: clamp(1.8rem, 2.6vw, 2.4rem);
+  flex: none;
+  width: clamp(2.2rem, 2.8vw, 2.9rem);
+  font-size: clamp(1.55rem, 2.2vw, 1.95rem);
   line-height: 0.9;
   color: var(--color-steel);
 }
 .dt-step-name {
-  font-size: clamp(1.15rem, 1.6vw, 1.35rem);
+  font-size: clamp(1.3rem, 2.2vw, 1.6rem);
   line-height: 1.3;
   color: #ffffff;
-  transition: color 0.3s ease;
 }
-.dt-step-head:hover .dt-step-name {
-  color: var(--color-or);
-}
-.dt-step-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 999px;
-  border: 1px solid rgba(228, 228, 228, 0.22);
-  color: var(--color-mist);
-  background: transparent;
-  transition:
-    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.3s ease,
-    background-color 0.3s ease,
-    color 0.3s ease;
-}
-.dt-step-head:hover .dt-step-toggle {
-  border-color: rgba(228, 228, 228, 0.55);
-  background: rgba(255, 255, 255, 0.05);
-}
-.dt-step-toggle.is-open {
-  transform: rotate(45deg);
-  border-color: var(--color-or);
-  color: var(--color-or);
-}
-.dt-step-body {
-  overflow: hidden;
-  padding-left: calc(clamp(2.4rem, 3vw, 3.2rem) + 1.15rem);
-}
-.dt-step-desc {
-  max-width: 36rem;
-  padding-top: 0.25rem;
-  font-size: 0.95rem;
-  line-height: 1.65;
-  color: var(--color-silver);
-}
-.dt-step-desc.is-clamped {
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
+.dt-step-panel > div {
   overflow: hidden;
 }
 @media (prefers-reduced-motion: reduce) {
-  .dt-step-toggle,
+  .dt-step-panel,
   .dt-stat-rule {
     transition: none;
   }
@@ -1980,6 +1912,18 @@ figure:focus-within img {
 .dt-mosaic-tile.dt-tile-color:hover {
   filter: grayscale(0);
 }
+/* Image de la publication mise en avant : son zoom de survol (groupe
+   « image » uniquement) doit se dérouler avec la même douceur que la
+   révélation de la couleur. La règle « article img » ci-dessus, non
+   rangée en couche, écrase les transitions utilitaires de Tailwind —
+   cette déclaration explicite, plus spécifique, rétablit un fondu
+   long et régulier sur la propriété « scale » (celle qu'utilise le
+   groupe de survol), en plus du filtre. */
+article img.dt-pub-img {
+  transition:
+    filter 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    scale 0.7s cubic-bezier(0.25, 1, 0.35, 1);
+}
 @media (prefers-reduced-motion: reduce) {
   .dt-mosaic-tile,
   .dt-editorial-img,
@@ -1989,6 +1933,9 @@ figure:focus-within img {
   .dt-creator-img,
   article img,
   figure img {
+    transition: none;
+  }
+  article img.dt-pub-img {
     transition: none;
   }
 }
