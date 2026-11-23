@@ -584,10 +584,18 @@ html.lenis body {
    (ink / surface / mist / steel / graphite / sand / rouge).
    ============================================================ */
 
-/* Les éléments inclinés (mosaïque, voies de galerie) dépassent
-   volontairement : on clippe l'axe horizontal sans créer de
-   conteneur de défilement (le positionnement sticky reste actif).
-   Repli « hidden » pour les navigateurs sans support de « clip ». */
+/* Les éléments inclinés (mosaïque, voies de galerie) et les translations
+   d'entrée des révélations (±56 px) dépassent volontairement : on clippe
+   l'axe horizontal AU NIVEAU DU CONTENU (main + footer). Chrome ne
+   propage pas le « clip » du body vers le viewport : sans cette règle,
+   34 px de défilement horizontal restaient possibles sur mobile.
+   « clip » ne crée PAS de conteneur de défilement : le positionnement
+   sticky des colonnes éditoriales reste actif. Repli « hidden » sur
+   body pour les navigateurs sans support de « clip ». */
+main,
+footer {
+  overflow-x: clip;
+}
 body {
   overflow-x: hidden;
   overflow-x: clip;
