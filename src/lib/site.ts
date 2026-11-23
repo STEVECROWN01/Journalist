@@ -20,7 +20,8 @@ export const site = {
 /**
  * Mots-clés de référencement du site — source unique.
  * Utilisés dans les métadonnées (meta keywords, JSON-LD `knowsAbout`)
- * et présentés dans la bande défilante au bas du hero de l'accueil.
+ * et présentés dans la bande défilante claire entre la section
+ * « Approche journalistique » et la section « Productions sélectionnées ».
  */
 export const SEO_KEYWORDS: Record<"fr" | "en", string[]> = {
   fr: [
@@ -56,6 +57,27 @@ export const SEO_KEYWORDS: Record<"fr" | "en", string[]> = {
     "Journalist in Paris",
   ],
 };
+
+/**
+ * Médias, producteurs et organisations avec lesquels Alexandre Morel
+ * a collaboré — noms issus exclusivement du contenu réel du site
+ * (parcours, productions, CV). Présentés dans la bande défilante au
+ * bas du hero de l'accueil.
+ */
+export const PARTNERS: string[] = [
+  "ARTE",
+  "France 24",
+  "Al Jazeera",
+  "France 5",
+  "Public Sénat",
+  "Radio France",
+  "Libération",
+  "Le Temps",
+  "L'Express",
+  "Agat Films",
+  "Association Aïna",
+  "Cambodge Soir",
+];
 
 /** Clés de sujet du formulaire de contact */
 export const CONTACT_SUBJECTS = [

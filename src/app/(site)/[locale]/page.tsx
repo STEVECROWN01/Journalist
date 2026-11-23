@@ -4,7 +4,7 @@ import { Link } from "@/i18n/navigation";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { ArrowRight } from "lucide-react";
 import { getProductions, getPublications, getSettings } from "@/lib/content";
-import { site, SEO_KEYWORDS } from "@/lib/site";
+import { site, SEO_KEYWORDS, PARTNERS } from "@/lib/site";
 import { Reveal } from "@/components/site/reveal";
 import { MaskLines } from "@/components/site/motion";
 import { SectionHeading } from "@/components/site/section-heading";
@@ -14,6 +14,7 @@ import { HomeIntro } from "@/components/site/home/home-intro";
 import { HomeStats } from "@/components/site/home/home-stats";
 import { HomeApproachSteps } from "@/components/site/home/home-approach";
 import { NavigationGuard } from "@/components/site/navigation-guard";
+import { KeywordsBand } from "@/components/site/keywords-band";
 import { HomeDomains, type DomainPlate } from "@/components/site/home/home-domains";
 import {
   HomeMarquee,
@@ -192,8 +193,8 @@ export default async function HomePage({
           ctaPrimary: t("hero.ctaPrimary"),
           ctaSecondary: t("hero.ctaSecondary"),
           audiences: t.raw("hero.audiences") as string[],
-          keywords: SEO_KEYWORDS[fr ? "fr" : "en"],
-          keywordsLabel: t("hero.keywordsLabel"),
+          partners: PARTNERS,
+          partnersLabel: t("hero.partnersLabel"),
         }}
       />
 
@@ -290,6 +291,14 @@ export default async function HomePage({
           />
         </div>
       </section>
+
+      {/* Bande mots-clés défilante — même défilement que la bande des
+          partenaires du hero, en clair : fond blanc, texte noir. Elle
+          sépare l'approche journalistique des productions sélectionnées. */}
+      <KeywordsBand
+        keywords={SEO_KEYWORDS[fr ? "fr" : "en"]}
+        label={t("keywords.label")}
+      />
 
       {/* ============ 05 — PRODUCTIONS : galerie défilante ============ */}
       <HomeMarquee

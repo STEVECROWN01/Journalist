@@ -1519,10 +1519,12 @@ body {
   color: var(--color-or);
 }
 
-/* ---------- 01b · Hero : bande de mots-clés défilante ---------- */
-/* Les mots-clés de référencement du site défilent en continu de la
-   droite vers la gauche, séparés par de gros points dorés. Les bords
-   de la bande s'estompent en fondu pour une lecture continue. */
+/* ---------- 01b · Bandes défilantes (mécanique partagée) ---------- */
+/* La même bande défile en continu de la droite vers la gauche, séparée
+   par de gros points, avec fondu sur les bords : au bas du hero elle
+   présente les partenaires (médias, producteurs, organisations) ; en
+   version claire (.dt-keywords-band) elle présente les mots-clés du
+   site entre l'approche et les productions. */
 .dt-keywords {
   overflow: clip;
   -webkit-mask-image: linear-gradient(
@@ -1585,6 +1587,21 @@ body {
   .dt-keywords-track {
     animation: none;
   }
+}
+
+/* ---------- Bande mots-clés claire (approche → productions) ----------
+   Même mécanique que la bande du hero, en négatif : fond blanc,
+   texte et points noirs — une respiration claire entre deux
+   sections sombres. */
+.dt-keywords-band {
+  background: #ffffff;
+  border-block: 1px solid rgba(28, 28, 28, 0.1);
+}
+.dt-keywords-band .dt-keywords-set li {
+  color: var(--color-ink);
+}
+.dt-keywords-band .dt-keywords-dot {
+  background: var(--color-ink);
 }
 
 /* ---------- Pied de page — présentation du site de référence ---------- */

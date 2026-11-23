@@ -22,9 +22,9 @@ export interface HomeHeroCopy {
   ctaSecondary: string;
   /** Cibles clientes sous les boutons (séparées par de gros points) */
   audiences: string[];
-  /** Mots-clés de référencement du site (bande défilante) */
-  keywords: string[];
-  keywordsLabel: string;
+  /** Médias, producteurs et organisations partenaires (bande défilante du hero) */
+  partners: string[];
+  partnersLabel: string;
 }
 
 /* Mosaïque du hero : douze visuels réels du site (reportages, tournages,
@@ -259,8 +259,9 @@ export function HomeHero({ copy }: { copy: HomeHeroCopy }) {
         </div>
       </div>
 
-      {/* Bande de mots-clés de référencement — défilement continu
-          de la droite vers la gauche, points de séparation simples */}
+      {/* Bande des partenaires — médias, producteurs et organisations
+          avec lesquels Alexandre Morel a collaboré. Défilement continu
+          de la droite vers la gauche, points de séparation simples. */}
       <div className="dt-hero-band relative z-10 overflow-clip border-t border-white/[0.08] bg-ink-deep/40 backdrop-blur-sm">
         <div className="dt-keywords">
           <div className="dt-keywords-track">
@@ -268,12 +269,12 @@ export function HomeHero({ copy }: { copy: HomeHeroCopy }) {
               <ul
                 key={setIndex}
                 className="dt-keywords-set"
-                aria-label={copy.keywordsLabel}
+                aria-label={copy.partnersLabel}
                 aria-hidden={setIndex === 1 ? true : undefined}
               >
-                {copy.keywords.map((keyword) => (
-                  <li key={keyword}>
-                    {keyword}
+                {copy.partners.map((partner) => (
+                  <li key={partner}>
+                    {partner}
                     <i className="dt-keywords-dot" aria-hidden="true" />
                   </li>
                 ))}

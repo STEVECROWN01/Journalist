@@ -76,10 +76,12 @@
       "audiences": [
         "Médias",
         "Producteurs",
-        "Organisations",
-        "Entreprises"
+        "Organisations"
       ],
-      "keywordsLabel": "Mots-clés du site"
+      "partnersLabel": "Médias, producteurs et organisations partenaires"
+    },
+    "keywords": {
+      "label": "Mots-clés du site"
     },
     "stats": {
       "label": "Chiffres clés",

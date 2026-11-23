@@ -76,10 +76,12 @@
       "audiences": [
         "Media",
         "Producers",
-        "Organisations",
-        "Companies"
+        "Organisations"
       ],
-      "keywordsLabel": "Website keywords"
+      "partnersLabel": "Media, producers and partner organisations"
+    },
+    "keywords": {
+      "label": "Website keywords"
     },
     "stats": {
       "label": "Key figures",
