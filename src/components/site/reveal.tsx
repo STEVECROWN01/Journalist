@@ -7,6 +7,12 @@ interface RevealProps {
   delay?: number;
   className?: string;
   as?: "div" | "section" | "article" | "li" | "span";
+  /** Direction d'entrée : bas (défaut), côtés avec légère rotation,
+     ou zoom avant — pour donner du relief aux sections. */
+  from?: "up" | "left" | "right" | "zoom";
+  /** Réversible : l'élément ressort (et revient) au défilement,
+   *  au lieu d'apparaître une fois pour toutes. */
+  toggle?: boolean;
 }
 
 /**
@@ -18,7 +24,14 @@ interface RevealProps {
  * (.rv-armed) puis la révélation joue à l'entrée dans le viewport
  * (.rv-in). prefers-reduced-motion : aucune transformation.
  */
-export function Reveal({ children, delay = 0, className, as = "div" }: RevealProps) {
+export function Reveal({
+  children,
+  delay = 0,
+  className,
+  as = "div",
+  from = "up",
+  toggle = false,
+}: RevealProps) {
   const ref = useRef<HTMLElement | null>(null);
   const [armed, setArmed] = useState(false);
 
@@ -33,7 +46,11 @@ export function Reveal({ children, delay = 0, className, as = "div" }: RevealPro
         for (const entry of entries) {
           if (entry.isIntersecting) {
             reveal();
-            io.unobserve(entry.target);
+            if (!toggle) io.unobserve(entry.target);
+          } else if (toggle) {
+            /* In-out : la sortie est aussi animée — la page respire
+               dans les deux sens du défilement. */
+            el.classList.remove("rv-in");
           }
         }
       },
@@ -64,6 +81,7 @@ export function Reveal({ children, delay = 0, className, as = "div" }: RevealPro
   return (
     <Tag
       ref={ref}
+      data-from={from}
       className={`${className ?? ""} ${armed ? "rv-armed" : ""}`.trim()}
       style={style}
     >

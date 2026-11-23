@@ -109,13 +109,31 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
   const hamburgerRef = useRef<HTMLButtonElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
 
-  /* Effet discret dès que l'on quitte le sommet de la page — la bande
-     des menus apparaît dès les premiers pixels de défilement */
+  /* La bande sombre n'apparaît que lorsque le bas de l'en-tête
+     atteint le bloc de texte du hero (accueil) — pas avant. Ailleurs,
+     elle apparaît dès les premiers pixels de défilement. La mesure est
+     refaite à chaque défilement : police, épinglage GSAP et hauteurs
+     d'écran ne faussent jamais le seuil. */
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const threshold = () => {
+      const heroText = document.querySelector(".dt-hero-content");
+      const first = heroText?.firstElementChild;
+      if (first instanceof HTMLElement) {
+        const headerHeight = window.innerWidth >= 1024 ? 104 : 76;
+        const textTop =
+          first.getBoundingClientRect().top + window.scrollY;
+        return Math.max(8, textTop - headerHeight);
+      }
+      return 8;
+    };
+    const onScroll = () => setScrolled(window.scrollY > threshold());
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
   /* Verrouille le défilement (native + Lenis) quand le menu est ouvert */
@@ -207,18 +225,17 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
 
       <div className="mx-auto flex h-[76px] w-full max-w-[1440px] items-center justify-between pl-5 pr-5 sm:pl-8 sm:pr-8 lg:h-[104px] lg:pl-10 lg:pr-10">
         {/* Wordmark — Sora 600 comme le logo du site de référence.
-            Pleine hauteur du header, collé au sommet : quand le wrapper
-            sombre apparaît au scroll, il pend depuis le bord haut sans
-            espace ni arrondi (coins hauts droits), languette like le
-            hamburger du référent. Garnissage horizontal équilibré (px-6). */}
+            Même hauteur (76 px) que la bande des menus : aucun fond ne
+            dépasse celle-ci. Au survol, l'inverse d'un effacement : le
+            fond sombre se matérialise (ou se renforce une fois scrollé). */}
         <Link
           href="/"
           onClick={goHome}
           aria-label={t("brand")}
-          className={`flex h-[76px] items-center px-3 font-serif text-[1.2rem] font-semibold leading-none tracking-[-0.01em] text-white transition-all duration-500 hover:opacity-80 sm:px-6 sm:text-[1.3rem] lg:h-[104px] ${
+          className={`flex h-[76px] items-center rounded-b-xl border-x border-b px-3 font-serif text-[1.2rem] font-semibold leading-none tracking-[-0.01em] text-white transition-all duration-500 sm:px-6 sm:text-[1.3rem] ${
             scrolled
-              ? "rounded-b-xl border-x border-b border-mist/10 bg-ink/80 backdrop-blur-xl"
-              : "rounded-b-xl border-x border-b border-transparent"
+              ? "border-mist/10 bg-ink/80 backdrop-blur-xl hover:bg-ink/95"
+              : "border-transparent hover:border-mist/10 hover:bg-ink/80 hover:backdrop-blur-xl"
           }`}
         >
           Alexandre&nbsp;Morel<span className="text-or">.</span>
@@ -286,9 +303,8 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
           </Link>
 
           {/* Hamburger — design exact du site de référence : languette
-              pleine hauteur collée au sommet, coins bas arrondis, fond
-              #1c1c1c → #232323 au survol. L'espace intérieur gauche et
-              droite est réduit de moitié (barres de 24 px). */}
+              aux coins bas arrondis, fond #1c1c1c → #232323 au survol,
+              limitée à la hauteur (76 px) de la bande des menus. */}
           <button
             ref={hamburgerRef}
             type="button"
@@ -296,7 +312,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
             aria-label={t("menu.open")}
             aria-expanded={menuOpen}
             aria-controls="fullscreen-menu"
-            className="flex h-[76px] w-[50px] shrink-0 items-center justify-center rounded-b-lg bg-ink transition-colors duration-300 hover:bg-surface sm:w-[56px] lg:h-[104px] lg:w-[62px] lg:rounded-b-[9px]"
+            className="flex h-[76px] w-[50px] shrink-0 items-center justify-center rounded-b-lg bg-ink transition-colors duration-300 hover:bg-surface sm:w-[56px] lg:w-[62px] lg:rounded-b-[9px]"
           >
             <span
               className="flex w-6 flex-col gap-[5px]"

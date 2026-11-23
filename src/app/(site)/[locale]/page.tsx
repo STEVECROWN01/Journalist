@@ -11,6 +11,9 @@ import { SectionHeading } from "@/components/site/section-heading";
 import { PublicationCard } from "@/components/site/publication-card";
 import { HomeHero } from "@/components/site/home/home-hero";
 import { HomeIntro } from "@/components/site/home/home-intro";
+import { HomeStats } from "@/components/site/home/home-stats";
+import { HomeApproachSteps } from "@/components/site/home/home-approach";
+import { NavigationGuard } from "@/components/site/navigation-guard";
 import { HomeDomains, type DomainPlate } from "@/components/site/home/home-domains";
 import {
   HomeMarquee,
@@ -170,6 +173,9 @@ export default async function HomePage({
 
   return (
     <>
+      {/* Pré-lancement : neutralise toute navigation au clic sur
+          l'accueil (le survol des liens reste informatif). */}
+      <NavigationGuard />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -187,6 +193,7 @@ export default async function HomePage({
           approach: t("hero.approach"),
           ctaPrimary: t("hero.ctaPrimary"),
           ctaSecondary: t("hero.ctaSecondary"),
+          audiences: t.raw("hero.audiences") as string[],
           keywords: SEO_KEYWORDS[fr ? "fr" : "en"],
           keywordsLabel: t("hero.keywordsLabel"),
         }}
@@ -195,47 +202,18 @@ export default async function HomePage({
       {/* ============ 02 · PREUVE IMMÉDIATE : chiffres clés + conviction
             (section claire, collée à la bande de mots-clés du hero) ============ */}
       <div className="dt-light">
-        <section
-          aria-label={t("stats.label")}
-          className="dt-wrap pt-12 sm:pt-16"
-        >
-          <Reveal>
-            <dl className="grid grid-cols-2 gap-x-6 gap-y-9 border-y border-ink/10 py-10 sm:py-12 md:grid-cols-4">
-              <div className="text-center">
-                <dt className="font-serif text-[2.5rem] leading-none text-ink sm:text-[3.25rem]">
-                  20
-                </dt>
-                <dd className="mt-2.5 text-[0.7rem] font-medium uppercase tracking-[0.16em] text-steel">
-                  {t("stats.years")}
-                </dd>
-              </div>
-              <div className="text-center">
-                <dt className="font-serif text-[2.5rem] leading-none text-ink sm:text-[3.25rem]">
-                  3
-                </dt>
-                <dd className="mt-2.5 text-[0.7rem] font-medium uppercase tracking-[0.16em] text-steel">
-                  {t("stats.languages")}
-                </dd>
-              </div>
-              <div className="text-center">
-                <dt className="font-serif text-[2.5rem] leading-none text-ink sm:text-[3.25rem]">
-                  4
-                </dt>
-                <dd className="mt-2.5 text-[0.7rem] font-medium uppercase tracking-[0.16em] text-steel">
-                  {t("stats.fields")}
-                </dd>
-              </div>
-              <div className="text-center">
-                <dt className="font-serif text-[2.5rem] leading-none text-ink sm:text-[3.25rem]">
-                  {productions.length + publications.length}
-                </dt>
-                <dd className="mt-2.5 text-[0.7rem] font-medium uppercase tracking-[0.16em] text-steel">
-                  {t("stats.works")}
-                </dd>
-              </div>
-            </dl>
-          </Reveal>
-        </section>
+        <HomeStats
+          label={t("stats.label")}
+          stats={[
+            { value: 20, prefix: "+", label: t("stats.years") },
+            { value: 3, label: t("stats.languages") },
+            { value: 4, label: t("stats.fields") },
+            {
+              value: productions.length + publications.length,
+              label: t("stats.works"),
+            },
+          ]}
+        />
         <HomeIntro
           copy={{
             eyebrow: t("intro.eyebrow"),
@@ -274,7 +252,7 @@ export default async function HomePage({
       </div>
 
       {/* ============ 03 — APPROCHE JOURNALISTIQUE : la méthode,
-            étape par étape ============ */}
+            étape par étape (options dépliables) ============ */}
       <section
         aria-labelledby="sec-approach"
         className="dt-panel relative border-t border-mist/10 bg-surface/40"
@@ -298,30 +276,11 @@ export default async function HomePage({
               </p>
             </Reveal>
           </div>
-          <ol>
-            {approachSteps.map((step, i) => (
-              <Reveal
-                as="li"
-                key={step.title}
-                delay={0.07 * i}
-                className={`group grid gap-3 border-t border-mist/10 py-7 sm:grid-cols-[4.5rem_1fr] sm:gap-x-7 sm:py-8 ${
-                  i === 0 ? "pt-0" : ""
-                } ${i === approachSteps.length - 1 ? "border-b" : ""}`}
-              >
-                <span className="font-serif text-[2.6rem] italic leading-[0.9] text-steel transition-colors duration-300 group-hover:text-or">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <h3 className="font-serif text-[1.3rem] leading-snug text-white">
-                    {step.title}
-                  </h3>
-                  <p className="mt-2.5 max-w-xl text-[0.95rem] leading-[1.8] text-silver/90">
-                    {step.desc}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </ol>
+          <HomeApproachSteps
+            steps={approachSteps}
+            expandLabel={t("approach.expand")}
+            collapseLabel={t("approach.collapse")}
+          />
         </div>
       </section>
 
@@ -364,7 +323,7 @@ export default async function HomePage({
           />
 
           {featured ? (
-            <Reveal className="mt-14">
+            <Reveal className="mt-14" from="left" toggle>
               <PublicationCard
                 publication={featured}
                 featured
@@ -378,8 +337,14 @@ export default async function HomePage({
 
           {recent.length > 0 ? (
             <div className="mt-10 grid gap-10 md:grid-cols-2">
-              {recent.map((p) => (
-                <Reveal key={p.slug} className="min-w-0">
+              {recent.map((p, i) => (
+                <Reveal
+                  key={p.slug}
+                  className="min-w-0"
+                  from={i % 2 === 0 ? "right" : "left"}
+                  delay={i * 0.08}
+                  toggle
+                >
                   <PublicationCard
                     publication={p}
                     labels={{
@@ -392,7 +357,7 @@ export default async function HomePage({
             </div>
           ) : null}
 
-          <Reveal className="mt-14 flex justify-center">
+          <Reveal className="mt-14 flex justify-center" from="zoom">
             <Link href="/publications" className="btn-outline">
               {t("publications.cta")}
               <ArrowRight size={15} aria-hidden="true" />
@@ -406,7 +371,7 @@ export default async function HomePage({
         aria-labelledby="sec-collab"
         className="border-t border-mist/10 bg-ink-deep"
       >
-        <div className="mx-auto grid max-w-6xl gap-10 px-6 py-24 md:py-32 lg:grid-cols-[0.95fr_2.05fr] lg:gap-16">
+        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-24 md:py-32 lg:grid-cols-[1.15fr_1.85fr] lg:gap-24">
           <div className="lg:sticky lg:top-28">
             <Reveal>
               <p className="eyebrow">{t("collaboration.eyebrow")}</p>
@@ -415,9 +380,11 @@ export default async function HomePage({
                 épouse celle du bloc de texte à sa droite */}
             <Reveal
               delay={0.12}
+              from="left"
+              toggle
               className="mt-8 lg:mt-10 lg:flex lg:h-[calc(100%-3.75rem)]"
             >
-              <figure className="group relative flex w-full max-w-[420px] flex-col lg:max-w-none">
+              <figure className="group relative flex w-full max-w-[440px] flex-col lg:max-w-none">
                 <span
                   className="absolute -inset-2.5 -rotate-3 rounded-2xl bg-surface-2/60 transition-transform duration-500 group-hover:rotate-0"
                   aria-hidden="true"
@@ -433,7 +400,7 @@ export default async function HomePage({
                       ? "Alexandre Morel en studio, tablette en main"
                       : "Alexandre Morel in the studio, tablet in hand"}
                     fill
-                    sizes="(min-width: 1024px) 30vw, 92vw"
+                    sizes="(min-width: 1024px) 36vw, 92vw"
                     className="object-cover"
                     quality={95}
                   />
@@ -453,14 +420,20 @@ export default async function HomePage({
                 <MaskLines delay={0.06}>{t("collaboration.title")}</MaskLines>
               </h2>
             </Reveal>
-            <Reveal delay={0.1}>
-              <div className="mt-8 max-w-2xl space-y-5 text-[1rem] leading-[1.85] text-silver/90">
+            <div className="mt-8 max-w-2xl space-y-5 text-[1rem] leading-[1.85] text-silver/90">
+              <Reveal from="right" toggle delay={0.08}>
                 <p>{t("collaboration.p1")}</p>
+              </Reveal>
+              <Reveal from="right" toggle delay={0.14}>
                 <p>{t("collaboration.p2")}</p>
+              </Reveal>
+              <Reveal from="right" toggle delay={0.2}>
                 <p className="border-l-2 border-or pl-6 text-white">
                   {t("collaboration.p3")}
                 </p>
-              </div>
+              </Reveal>
+            </div>
+            <Reveal delay={0.1} from="up" toggle>
               <div className="mt-10 flex flex-wrap items-center gap-4">
                 <Link href="/contact" className="btn-accent">
                   {t("collaboration.ctaPrimary")}

@@ -75,6 +75,7 @@
       "approach": "Mon approche associe expérience internationale, écoute, adaptation et exigence éditoriale pour transformer des réalités complexes en récits accessibles, documentés et humains.",
       "ctaPrimary": "Découvrir mes productions",
       "ctaSecondary": "Parlons de votre projet",
+      "audiences": ["Médias", "Producteurs", "Organisations", "Entreprises"],
       "keywordsLabel": "Mots-clés du site"
     },
     "stats": {
@@ -97,22 +98,28 @@
       "eyebrow": "Approche journalistique",
       "title": "Une méthode éprouvée, étape par étape.",
       "lede": "Vingt ans de terrain ont forgé une façon de travailler simple et exigeante, commune à tous mes projets — du reportage presse au documentaire.",
+      "expand": "Voir le détail de l'étape",
+      "collapse": "Replier l'étape",
       "steps": [
         {
-          "title": "Écouter le terrain",
-          "desc": "Avant d'écrire ou de filmer, je rencontre celles et ceux qui vivent le sujet. Cette écoute fidèle révèle ce qu'aucun communiqué ne dira jamais."
+          "title": "L'écoute du terrain",
+          "desc": "Avant d'écrire ou de filmer, je rencontre celles et ceux qui vivent le sujet. Sur place, sans intermédiaire : cette écoute fidèle révèle ce qu'aucun communiqué, aucun dossier de presse ne dira jamais."
         },
         {
-          "title": "Comprendre le contexte",
-          "desc": "J'articule les faits, l'histoire locale et les acteurs en présence, pour situer chaque information dans la réalité qui la façonne."
+          "title": "La compréhension du contexte",
+          "desc": "Chaque fait s'inscrit dans une histoire, une économie, une culture. J'articule ces fils pour situer chaque information dans la réalité qui la façonne — et écarter le contresens dès l'enquête."
         },
         {
-          "title": "Construire le récit",
-          "desc": "De cette matière brute naît une structure claire : un récit pensé pour le public qui le recevra, sans jargon ni simplification."
+          "title": "La construction du récit",
+          "desc": "De cette matière brute naît une architecture claire : un récit pensé pour son public, qui tient en haleine sans jamais sacrifier la nuance ni céder au jargon."
         },
         {
-          "title": "Restituer avec rigueur",
-          "desc": "Vérification, équilibre des points de vue, précision du langage : l'essentiel livré dans les temps, à la hauteur des enjeux."
+          "title": "La restitution rigoureuse",
+          "desc": "Vérification des sources, équilibre des points de vue, précision du langage : l'essentiel livré dans les temps, à la hauteur des enjeux — et défendable face à toute critique."
+        },
+        {
+          "title": "La transmission du métier",
+          "desc": "Le terrain s'apprend et se transmet. Masterclasses, formation en rédaction, accompagnement d'équipes : je partage les méthodes et les réflexes qui rendent autonomes."
         }
       ]
     },

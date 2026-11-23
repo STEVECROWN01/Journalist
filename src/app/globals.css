@@ -488,7 +488,8 @@ html.lenis body {
 /* Très petits heights (mobiles en paysage) : essentiel uniquement */
 @media (max-height: 600px) {
   .hero-eyebrow-row,
-  .hero-subtitle {
+  .hero-subtitle,
+  .hero-audiences {
     display: none;
   }
   .hero-title {
@@ -520,18 +521,31 @@ body {
 /* ---------- Révélations au défilement (Reveal / RevealImage) ----------
    L'état masqué n'est posé qu'après montage du JavaScript : le HTML
    servi reste intégralement visible sans JS (connexion lente, lecteur
-   d'écran, robots). prefers-reduced-motion : aucun mouvement. */
+   d'écran, robots). La transition vit sur l'état de base : les sorties
+   (in-out) s'animent aussi naturellement que les entrées.
+   prefers-reduced-motion : aucun mouvement. */
 .rv-armed {
   opacity: 0;
   transform: translateY(26px);
-}
-.rv-armed.rv-in {
-  opacity: 1;
-  transform: none;
   transition:
     opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--rv-delay, 0s),
     transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--rv-delay, 0s);
   will-change: opacity, transform;
+}
+/* Directions d'entrée : arrivées latérales légèrement inclinées ou
+   zoom avant — du relief pour les sections éditoriales. */
+.rv-armed[data-from="left"] {
+  transform: translate3d(-56px, 0, 0) rotate(-1.2deg);
+}
+.rv-armed[data-from="right"] {
+  transform: translate3d(56px, 0, 0) rotate(1.2deg);
+}
+.rv-armed[data-from="zoom"] {
+  transform: scale(0.88);
+}
+.rv-armed.rv-in {
+  opacity: 1;
+  transform: none;
 }
 .rvi-armed {
   opacity: 0;
@@ -688,6 +702,17 @@ body {
 .dt-hero-content :is(a, button) {
   pointer-events: auto;
 }
+/* Cibles du hero (médias · producteurs · organisations · entreprises) :
+   gros points de séparation, même pastille que la bande de mots-clés. */
+.dt-audience-dot {
+  display: block;
+  width: 8px;
+  height: 8px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--color-or);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-or) 20%, transparent);
+}
 /* Dans le hero, le titre adopte une taille légèrement plus contenue :
    toutes ses lignes restent en deçà de 65 % de la largeur, zone où le
    voile garantit un contraste suffisant sur la mosaïque. */
@@ -703,6 +728,153 @@ body {
     0 1px 3px rgba(7, 7, 7, 0.45);
 }
 
+/* ============================================================
+   CHIFFRES CLÉS — même écriture que le titre du hero (Sora
+   semibold, interlettrage serré), point final en graphite.
+   Entrée : filet qui se déploie, compteur, libellé qui monte.
+   ============================================================ */
+.dt-stats {
+  width: min(1152px, calc(100% - 48px));
+  margin-inline: auto;
+  padding-top: clamp(2.25rem, 4.5vw, 3.5rem);
+}
+.dt-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.75rem 1.5rem;
+  padding-block: clamp(1.75rem, 3vw, 2.75rem);
+  border-top: 1px solid rgba(28, 28, 28, 0.14);
+  border-bottom: 1px solid rgba(28, 28, 28, 0.14);
+}
+@media (min-width: 860px) {
+  .dt-stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.75rem;
+  }
+}
+.dt-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.dt-stat-rule {
+  width: 38px;
+  height: 2px;
+  margin-bottom: 1.15rem;
+  background: #1c1c1c;
+  transform-origin: center;
+  transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.dt-stat:hover .dt-stat-rule {
+  width: 64px;
+}
+.dt-stat-num {
+  display: flex;
+  align-items: baseline;
+  font-family: var(--font-serif), ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(3.1rem, 5.2vw, 4.4rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: #1c1c1c;
+}
+.dt-stat-dot {
+  color: #a3a3a3;
+}
+.dt-stat-label {
+  margin-top: 0.95rem;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: #525252;
+}
+
+/* ============================================================
+   APPROCHE — options dépliables : première ligne visible, « + »
+   qui pivote en croix, description qui se déplie avec fluidité.
+   ============================================================ */
+.dt-step-title {
+  margin: 0;
+}
+.dt-step-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1.15rem;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+.dt-step-num {
+  width: clamp(2.4rem, 3vw, 3.2rem);
+  font-size: clamp(1.8rem, 2.6vw, 2.4rem);
+  line-height: 0.9;
+  color: var(--color-steel);
+}
+.dt-step-name {
+  font-size: clamp(1.15rem, 1.6vw, 1.35rem);
+  line-height: 1.3;
+  color: #ffffff;
+  transition: color 0.3s ease;
+}
+.dt-step-head:hover .dt-step-name {
+  color: var(--color-or);
+}
+.dt-step-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: 1px solid rgba(228, 228, 228, 0.22);
+  color: var(--color-mist);
+  background: transparent;
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s ease,
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+.dt-step-head:hover .dt-step-toggle {
+  border-color: rgba(228, 228, 228, 0.55);
+  background: rgba(255, 255, 255, 0.05);
+}
+.dt-step-toggle.is-open {
+  transform: rotate(45deg);
+  border-color: var(--color-or);
+  color: var(--color-or);
+}
+.dt-step-body {
+  overflow: hidden;
+  padding-left: calc(clamp(2.4rem, 3vw, 3.2rem) + 1.15rem);
+}
+.dt-step-desc {
+  max-width: 36rem;
+  padding-top: 0.25rem;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--color-silver);
+}
+.dt-step-desc.is-clamped {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+@media (prefers-reduced-motion: reduce) {
+  .dt-step-toggle,
+  .dt-stat-rule {
+    transition: none;
+  }
+}
+
 /* ---------- 02 · Introduction : split éditorial ---------- */
 .dt-editorial {
   display: grid;
@@ -710,8 +882,9 @@ body {
   align-items: center;
   column-gap: clamp(32px, 5.5vw, 85px);
   /* Collé à la bande de mots-clés du hero : aucune marge extérieure,
-     la respiration vient du padding interne (128px, site de référence). */
-  padding-block: clamp(64px, 9vw, 128px);
+     la respiration vient du padding interne (resserré sous la bande
+     de chiffres clés). */
+  padding-block: clamp(44px, 6.5vw, 88px);
   margin-block: 0;
   position: relative;
 }
@@ -719,8 +892,8 @@ body {
   content: "";
   position: absolute;
   z-index: 0;
-  top: 80px;
-  bottom: 90px;
+  top: 48px;
+  bottom: 56px;
   left: 20%;
   right: -5%;
   background: linear-gradient(90deg, transparent, #ffffff 45%, #ffffff);
@@ -865,7 +1038,7 @@ body {
 
 /* ---------- 04 · Domaines : champ de plaques ---------- */
 .dt-people {
-  padding: 72px 0 78px;
+  padding: 72px 0 60px;
   text-align: center;
   overflow: clip;
 }
@@ -1056,12 +1229,13 @@ body {
   height: 9px;
   background: var(--color-sand);
 }
-/* Grille détaillée sous le champ de plaques */
+/* Grille détaillée sous le champ de plaques — resserrée sous les
+   cartes photographiques */
 .dt-domain-details {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2.75rem 2.5rem;
-  margin-top: 3.5rem;
+  margin-top: 2rem;
   text-align: left;
 }
 @media (min-width: 640px) {
@@ -1441,6 +1615,11 @@ body {
   .dt-wrap {
     width: calc(100% - 40px);
   }
+  /* La bande de chiffres clés partage la même marge que dt-wrap
+     sur mobile (40 px) pour un alignement parfait des bords. */
+  .dt-stats {
+    width: calc(100% - 40px);
+  }
   /* La bande de mots-clés (piste très large) ne doit pas gonfler les
      colonnes — min-width: 0 pour que le contenu reste dans l'écran. */
   .dt-hero-content,
@@ -1458,7 +1637,7 @@ body {
   }
   .dt-hero-content {
     flex: 1 1 auto;
-    padding-top: 7.5rem;
+    padding-top: 9rem;
     padding-bottom: 2.5rem;
   }
   .dt-mosaic {
@@ -1662,6 +1841,12 @@ article:hover img,
 article:focus-within img,
 figure:hover img,
 figure:focus-within img {
+  filter: grayscale(0);
+}
+/* Le portrait du journaliste face caméra, micro en main, échappe au
+   jeu noir et blanc : sa couleur originale est permanente. */
+.dt-mosaic-tile.dt-tile-color,
+.dt-mosaic-tile.dt-tile-color:hover {
   filter: grayscale(0);
 }
 @media (prefers-reduced-motion: reduce) {

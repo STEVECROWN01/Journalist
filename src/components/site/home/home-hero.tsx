@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { Fragment, useRef } from "react";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { ArrowRight } from "lucide-react";
@@ -22,6 +22,8 @@ export interface HomeHeroCopy {
   approach: string;
   ctaPrimary: string;
   ctaSecondary: string;
+  /** Cibles clientes sous les boutons (séparées par de gros points) */
+  audiences: string[];
   /** Mots-clés de référencement du site (bande défilante) */
   keywords: string[];
   keywordsLabel: string;
@@ -161,7 +163,15 @@ export function HomeHero({ copy }: { copy: HomeHeroCopy }) {
                         height={411}
                         sizes="(min-width: 760px) 22vw, 42vw"
                         priority={index === 1 && copyIndex === 0 && tile < 2}
-                        className="dt-mosaic-tile"
+                        /* Le portrait du journaliste face caméra, micro
+                           en main, reste en couleur originale en
+                           permanence — les autres vignettes jouent le
+                           noir et blanc. */
+                        className={`dt-mosaic-tile ${
+                          src.includes("Journalist_holding_microphone")
+                            ? "dt-tile-color"
+                            : ""
+                        }`}
   quality={95}
 />
                     ))}
@@ -176,8 +186,9 @@ export function HomeHero({ copy }: { copy: HomeHeroCopy }) {
       {/* Voile de lisibilité entre la mosaïque et le texte */}
       <div className="dt-hero-shade" aria-hidden="true" />
 
-      {/* Contenu éditorial — copywriting inchangé */}
-      <div className="dt-hero-content hero-pad relative z-[2] mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center px-6 py-14 sm:py-16 lg:py-20">
+      {/* Contenu éditorial — copywriting inchangé, largement dégagé
+          de l'en-tête fixe (104 px) */}
+      <div className="dt-hero-content hero-pad relative z-[2] mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center px-6 pb-14 pt-24 sm:pb-16 sm:pt-32 lg:pb-20 lg:pt-40">
         <Reveal>
           <p className="hero-eyebrow-row">
             <span className="dt-experience">
@@ -225,6 +236,23 @@ export function HomeHero({ copy }: { copy: HomeHeroCopy }) {
               {copy.ctaSecondary}
             </Link>
           </div>
+        </Reveal>
+        {/* Cibles — à qui s'adresse le travail : médias, producteurs,
+            organisations, entreprises. Gros points séparateurs, même
+            pastille que la bande de mots-clés. */}
+        <Reveal delay={0.32}>
+          <p className="hero-audiences mt-7 flex flex-wrap items-center gap-x-4 gap-y-2.5 md:mt-9">
+            {copy.audiences.map((audience, index) => (
+              <Fragment key={audience}>
+                {index > 0 ? (
+                  <span className="dt-audience-dot" aria-hidden="true" />
+                ) : null}
+                <span className="text-[0.72rem] font-medium uppercase tracking-[0.18em] text-mist/75">
+                  {audience}
+                </span>
+              </Fragment>
+            ))}
+          </p>
         </Reveal>
       </div>
 

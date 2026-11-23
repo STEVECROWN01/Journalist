@@ -75,6 +75,7 @@
       "approach": "My approach combines international experience, listening, adaptability and editorial rigour to turn complex realities into stories that are accessible, documented and human.",
       "ctaPrimary": "Discover my productions",
       "ctaSecondary": "Let's talk about your project",
+      "audiences": ["Media", "Producers", "Organisations", "Companies"],
       "keywordsLabel": "Website keywords"
     },
     "stats": {
@@ -97,22 +98,28 @@
       "eyebrow": "A journalistic approach",
       "title": "A proven method, step by step.",
       "lede": "Twenty years in the field have forged a simple, demanding way of working, shared by every project I take on — from press reporting to documentary.",
+      "expand": "Show this step",
+      "collapse": "Collapse this step",
       "steps": [
         {
-          "title": "Listen to the field",
-          "desc": "Before writing or filming, I meet the people who live the subject. Faithful listening reveals what no press release will ever say."
+          "title": "Field listening",
+          "desc": "Before writing or filming, I meet the people who live the story. On the ground, face to face — listening that reveals what no press release ever will."
         },
         {
-          "title": "Understand the context",
-          "desc": "I connect the facts, the local history and the players involved, situating each piece of information in the reality that shapes it."
+          "title": "Context understanding",
+          "desc": "Every fact belongs to a history, an economy, a culture. I connect those threads so each piece of information sits within the reality that shapes it — ruling out misreading from the start."
         },
         {
-          "title": "Build the story",
-          "desc": "From that raw material emerges a clear structure: a narrative designed for the audience who will receive it, free of jargon and oversimplification."
+          "title": "Story building",
+          "desc": "From that raw material rises a clear architecture: a story designed for its audience, compelling without ever trading nuance for jargon."
         },
         {
-          "title": "Deliver with rigour",
-          "desc": "Verification, balance of perspectives, precision of language: the essential, delivered on time and equal to the stakes."
+          "title": "Rigorous delivery",
+          "desc": "Source verification, balance of perspectives, precision of language: the essential, delivered on time, equal to the stakes — and defensible under scrutiny."
+        },
+        {
+          "title": "Craft transmission",
+          "desc": "The craft is learned in the field and passed on. Masterclasses, newsroom training, team coaching: I share the methods and instincts that make journalists autonomous."
         }
       ]
     },
