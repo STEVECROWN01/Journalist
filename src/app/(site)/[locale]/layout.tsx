@@ -98,6 +98,68 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+/* Retour en haut au rechargement — script inline exécuté pendant le
+   parse du HTML, AVANT l'hydratation : Chrome et Firefox restaurent
+   sinon la position de défilement de la page précédente.
+   Double verrou :
+   1. la restauration native est neutralisée (mode « manual ») pour ce
+      rechargement, hors ancre explicite ;
+   2. un sentinel remonte la page si une restauration tardive la fait
+      malgré tout sauter — grand décalage sans aucune interaction.
+   Le mode « auto » est rétabli à la première interaction passée un
+   délai de sécurité après le chargement (la tentative de restauration
+   du navigateur est alors passée) : les navigations retour / avant
+   continuent de retrouver leurs positions, comme attendu. */
+const RELOAD_TO_TOP_SCRIPT = `(function () {
+  try {
+    if (window.location.hash) return;
+    var nav = performance.getEntriesByType("navigation")[0];
+    var reload = nav
+      ? nav.type === "reload"
+      : performance.navigation && performance.navigation.type === 1;
+    if (!reload) return;
+
+    history.scrollRestoration = "manual";
+    window.scrollTo(0, 0);
+
+    var inputs = ["wheel", "pointerdown", "keydown", "touchstart"];
+    var touched = false;
+    var mark = function () { touched = true; };
+    inputs.forEach(function (name) {
+      window.addEventListener(name, mark, { capture: true, passive: true, once: true });
+    });
+
+    /* Sentinel : saut de scroll sans interaction = restauration → top. */
+    var settled = false;
+    var onScroll = function () {
+      if (touched || settled) return;
+      if (window.scrollY > 200) window.scrollTo(0, 0);
+    };
+    window.addEventListener("scroll", onScroll, true);
+
+    /* Rétablit « auto » (retour / avant) à la première interaction,
+       une fois la fenêtre de restauration du navigateur passée. */
+    var armedAt = 0;
+    var onInteract = function () {
+      if (!armedAt || performance.now() < armedAt) return;
+      history.scrollRestoration = "auto";
+      inputs.forEach(function (name) {
+        window.removeEventListener(name, onInteract, true);
+      });
+      window.removeEventListener("scroll", onScroll, true);
+    };
+    inputs.forEach(function (name) {
+      window.addEventListener(name, onInteract, { capture: true, passive: true });
+    });
+    var arm = function () {
+      armedAt = performance.now() + 2000;
+      setTimeout(function () { if (!touched) settled = true; }, 2500);
+    };
+    if (document.readyState === "complete") arm();
+    else window.addEventListener("load", arm, { once: true });
+  } catch (e) {}
+})();`;
+
 export default async function SiteLayout({
   children,
   params,
@@ -114,6 +176,7 @@ export default async function SiteLayout({
   return (
     <html lang={locale} className={`${sora.variable} ${inter.variable} ${playfair.variable}`}>
       <body className="flex min-h-screen flex-col bg-background font-sans text-foreground antialiased">
+        <script dangerouslySetInnerHTML={{ __html: RELOAD_TO_TOP_SCRIPT }} />
         <NextIntlClientProvider>
           <SmoothScroll />
           <SiteHeader
