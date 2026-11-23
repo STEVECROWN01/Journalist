@@ -18,6 +18,8 @@ export interface HomeHeroCopy {
   title2: string;
   title3: string;
   subtitle: string;
+  complement: string;
+  approach: string;
   ctaPrimary: string;
   ctaSecondary: string;
   /** Mots-clés de référencement du site (bande défilante) */
@@ -174,8 +176,8 @@ export function HomeHero({ copy }: { copy: HomeHeroCopy }) {
       {/* Voile de lisibilité entre la mosaïque et le texte */}
       <div className="dt-hero-shade" aria-hidden="true" />
 
-      {/* Contenu éditorial — promesse unique : titre, sous-titre, boutons */}
-      <div className="dt-hero-content hero-pad relative z-[2] mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center px-6 pb-14 pt-24 sm:pb-16 sm:pt-28 lg:pb-20 lg:pt-36">
+      {/* Contenu éditorial — copywriting inchangé */}
+      <div className="dt-hero-content hero-pad relative z-[2] mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center px-6 py-14 sm:py-16 lg:py-20">
         <Reveal>
           <p className="hero-eyebrow-row">
             <span className="dt-experience">
@@ -208,6 +210,10 @@ export function HomeHero({ copy }: { copy: HomeHeroCopy }) {
           <p className="hero-subtitle hero-block mt-7 max-w-2xl text-[1.02rem] leading-[1.8] text-mist/85 md:mt-9">
             {copy.subtitle}
           </p>
+          <div className="hero-complement mt-4 max-w-xl space-y-3 text-[0.92rem] leading-[1.75] text-silver/90">
+            <p>{copy.complement}</p>
+            <p className="hero-complement-p2">{copy.approach}</p>
+          </div>
         </Reveal>
         <Reveal delay={0.24}>
           <div className="hero-ctas mt-8 flex flex-wrap items-center gap-4 md:mt-10">

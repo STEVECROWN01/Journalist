@@ -443,9 +443,27 @@ html.lenis body {
   }
 }
 
-/* Écrans peu hauts (ordinateurs portables) : le hero tient en un
-   écran — titre, sous-titre unique et boutons. Le padding supérieur
-   reste supérieur à la hauteur de l'en-tête fixe (104 px). */
+/* Écrans peu hauts (ordinateurs portables) : on allège le contenu */
+@media (max-height: 820px) {
+  .hero-complement {
+    display: none;
+  }
+}
+/* Portables standards (≈900 px de haut) : seul le premier paragraphe
+   de complément reste visible afin que le bandeau de réassurance
+   tienne toujours dans l'écran. */
+@media (max-height: 940px) {
+  .hero-complement-p2 {
+    display: none;
+  }
+}
+/* Mobiles : le complément est masqué (le sous-titre suffit) afin que
+   le contenu centré ne remonte jamais sous l'en-tête fixe. */
+@media (max-width: 639px) {
+  .hero-complement {
+    display: none;
+  }
+}
 @media (max-height: 760px) {
   .hero-scroll {
     display: none !important;
@@ -463,15 +481,8 @@ html.lenis body {
     margin-top: 1.75rem;
   }
   .hero-pad {
-    padding-top: 7rem;
+    padding-top: 4.5rem;
     padding-bottom: 4.5rem;
-  }
-}
-/* Écrans très compacts (≤ 680 px de haut) : le sous-titre cède la
-   place — le titre sur trois lignes et les boutons tiennent seuls. */
-@media (max-height: 680px) {
-  .hero-subtitle {
-    display: none;
   }
 }
 /* Très petits heights (mobiles en paysage) : essentiel uniquement */
@@ -685,7 +696,8 @@ body {
 }
 /* Séparation supplémentaire du texte du hero sur les zones claires */
 .dt-hero .display-1,
-.dt-hero .hero-subtitle {
+.dt-hero .hero-subtitle,
+.dt-hero .hero-complement {
   text-shadow:
     0 2px 18px rgba(7, 7, 7, 0.55),
     0 1px 3px rgba(7, 7, 7, 0.45);

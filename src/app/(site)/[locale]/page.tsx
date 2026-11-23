@@ -183,6 +183,8 @@ export default async function HomePage({
           title2: t("hero.title2"),
           title3: t("hero.title3"),
           subtitle: t("hero.subtitle"),
+          complement: t("hero.complement"),
+          approach: t("hero.approach"),
           ctaPrimary: t("hero.ctaPrimary"),
           ctaSecondary: t("hero.ctaSecondary"),
           keywords: SEO_KEYWORDS[fr ? "fr" : "en"],
