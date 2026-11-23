@@ -212,10 +212,11 @@ export async function SiteFooter() {
         {/* Filet dégradé qui s'estompe aux extrémités */}
         <div aria-hidden="true" className="footer-separator footer-separator-half" />
 
-        {/* Barre inférieure : © + mentions légales */}
-        <div className="flex items-center justify-between gap-3 py-4 text-[0.8rem] sm:text-[0.92rem]">
-          <p className="whitespace-nowrap text-mist">
-            © {year} {settings.ownerName} — {t("footer.rights")}
+        {/* Barre inférieure : © + mentions légales (sans débordement,
+            même sur les très petits écrans — passage à la ligne permis) */}
+        <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 py-4 text-[0.72rem] sm:text-[0.85rem]">
+          <p className="min-w-0 text-mist">
+            © {year} {settings.ownerName}
           </p>
           <Link
             href="/mentions-legales"

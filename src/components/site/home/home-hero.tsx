@@ -18,8 +18,6 @@ export interface HomeHeroCopy {
   title2: string;
   title3: string;
   subtitle: string;
-  complement: string;
-  approach: string;
   ctaPrimary: string;
   ctaSecondary: string;
   /** Mots-clés de référencement du site (bande défilante) */
@@ -73,6 +71,28 @@ export function HomeHero({ copy }: { copy: HomeHeroCopy }) {
         (context) => {
           const { reduce, wide, tall } = context.conditions!;
           if (reduce) return;
+
+          /* Mobile : la galerie défile en continu (marquee vertical) —
+             chaque colonne boucle sans fin, la colonne centrale à
+             contre-sens pour le rythme visuel. */
+          if (!wide) {
+            gsap.utils
+              .toArray<HTMLElement>(".dt-mosaic-track", root.current)
+              .forEach((track, index) => {
+                const downward = index === 1;
+                gsap.fromTo(
+                  track,
+                  { yPercent: downward ? -50 : 0 },
+                  {
+                    yPercent: downward ? 0 : -50,
+                    duration: 22 + index * 6,
+                    ease: "none",
+                    repeat: -1,
+                  }
+                );
+              });
+            return;
+          }
 
           const unfurl = gsap.timeline({
             defaults: { ease: "none" },
@@ -154,8 +174,8 @@ export function HomeHero({ copy }: { copy: HomeHeroCopy }) {
       {/* Voile de lisibilité entre la mosaïque et le texte */}
       <div className="dt-hero-shade" aria-hidden="true" />
 
-      {/* Contenu éditorial — copywriting inchangé */}
-      <div className="dt-hero-content hero-pad relative z-[2] mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center px-6 py-14 sm:py-16 lg:py-20">
+      {/* Contenu éditorial — promesse unique : titre, sous-titre, boutons */}
+      <div className="dt-hero-content hero-pad relative z-[2] mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center px-6 pb-14 pt-24 sm:pb-16 sm:pt-28 lg:pb-20 lg:pt-36">
         <Reveal>
           <p className="hero-eyebrow-row">
             <span className="dt-experience">
@@ -177,7 +197,10 @@ export function HomeHero({ copy }: { copy: HomeHeroCopy }) {
           >
             {copy.title1}
             <br />
-            {copy.title2}{" "}
+            {copy.title2}
+            {/* La portion en écriture différente démarre toujours sur
+                sa propre ligne (desktop) — jamais à cheval sur deux lignes */}
+            <br className="hidden md:block" />{" "}
             <em className="hero-title-accent">{copy.title3}</em>
           </h1>
         </Reveal>
@@ -185,10 +208,6 @@ export function HomeHero({ copy }: { copy: HomeHeroCopy }) {
           <p className="hero-subtitle hero-block mt-7 max-w-2xl text-[1.02rem] leading-[1.8] text-mist/85 md:mt-9">
             {copy.subtitle}
           </p>
-          <div className="hero-complement mt-4 max-w-xl space-y-3 text-[0.92rem] leading-[1.75] text-silver/90">
-            <p>{copy.complement}</p>
-            <p className="hero-complement-p2">{copy.approach}</p>
-          </div>
         </Reveal>
         <Reveal delay={0.24}>
           <div className="hero-ctas mt-8 flex flex-wrap items-center gap-4 md:mt-10">

@@ -27,7 +27,6 @@
     },
     "footer": {
       "baseline": "International journalism · Documentary productions · Editorial collaborations",
-      "rights": "All rights reserved.",
       "legal": "Legal notice",
       "colExpertises": "Expertise",
       "colProfessional": "Professional",
@@ -71,16 +70,21 @@
       "title1": "International journalist.",
       "title2": "From field realities to stories",
       "title3": "that illuminate the world.",
-      "subtitle": "I explore international realities through reporting, documentary production and editorial work.",
-      "complement": "I work with media, producers and organisations on projects that require a deep understanding of the field, of local contexts and of human stakes.",
-      "approach": "My approach combines international experience, listening, adaptability and editorial rigour to turn complex realities into stories that are accessible, documented and human.",
+      "subtitle": "I help media, producers and organisations turn complex realities into stories that are accurate, documented and human — from reporting to documentary.",
       "ctaPrimary": "Discover my productions",
       "ctaSecondary": "Let's talk about your project",
       "keywordsLabel": "Website keywords"
     },
+    "stats": {
+      "label": "Key figures",
+      "years": "years of experience",
+      "languages": "working languages",
+      "fields": "areas of expertise",
+      "works": "productions & publications"
+    },
     "gallery": {},
     "intro": {
-      "eyebrow": "About",
+      "eyebrow": "Field first",
       "title": "Understanding the field before telling the story.",
       "p1": "An event never comes down to what is immediately visible.",
       "p2": "There is always a context, people, journeys and realities that give information its full depth.",
@@ -89,10 +93,26 @@
     },
     "approach": {
       "eyebrow": "A journalistic approach",
-      "title": "Information only makes full sense when it is put back into its context.",
-      "p1": "Working across different international environments calls for adaptability, but also for a genuine understanding of cultures, ways of life and human relationships.",
-      "p2": "Over the course of my career I have learned to listen before interpreting, to build relationships of trust and to work with discretion in demanding environments.",
-      "p3": "These experiences shape the way I handle subjects: understanding the realities I encounter, gathering the relevant perspectives and conveying the essential with rigour."
+      "title": "A proven method, step by step.",
+      "lede": "Twenty years in the field have forged a simple, demanding way of working, shared by every project I take on — from press reporting to documentary.",
+      "steps": [
+        {
+          "title": "Listen to the field",
+          "desc": "Before writing or filming, I meet the people who live the subject. Faithful listening reveals what no press release will ever say."
+        },
+        {
+          "title": "Understand the context",
+          "desc": "I connect the facts, the local history and the players involved, situating each piece of information in the reality that shapes it."
+        },
+        {
+          "title": "Build the story",
+          "desc": "From that raw material emerges a clear structure: a narrative designed for the audience who will receive it, free of jargon and oversimplification."
+        },
+        {
+          "title": "Deliver with rigour",
+          "desc": "Verification, balance of perspectives, precision of language: the essential, delivered on time and equal to the stakes."
+        }
+      ]
     },
     "expertise": {
       "eyebrow": "Areas of work",
@@ -139,9 +159,10 @@
     "collaboration": {
       "eyebrow": "Collaborations",
       "title": "Do you have a subject to document or a story to tell?",
-      "p1": "I collaborate with media, producers and organisations looking to develop journalistic, documentary or editorial projects.",
-      "p2": "Every collaboration starts with a precise understanding of the subject, the objectives and the constraints of the project.",
-      "p3": "Tell me about your idea. We can discuss it and explore the possibilities of working together.",
+      "p1": "Media, producers, organisations: I collaborate with those who want to document the world with rigour — reports, documentaries, editorial projects.",
+      "p2": "Every project begins with an honest conversation about your objectives, your constraints and your audience, then unfolds transparently, from framing to delivery.",
+      "p3": "Tell me about your project: the subject, the goals, the deadline. I will reply to you personally — and together we will shape the story that deserves to be told.",
+      "assurance": "Personal reply · Confidentiality assured · FR / EN / ES",
       "ctaPrimary": "Present your project",
       "ctaSecondary": "Get in touch"
     }

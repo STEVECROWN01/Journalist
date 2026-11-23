@@ -160,36 +160,19 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
   };
 
   /* Le wordmark joue le rôle de menu « Accueil » : depuis l'accueil, un
-     clic actualise la page et ramène tout en haut ; depuis une autre
-     page, la navigation normale vers l'accueil suffit (défilement en haut
-     garanti par l'App Router). */
+     clic ramène en haut de page (défilement fluide, sans rechargement) ;
+     depuis une autre page, la navigation normale vers l'accueil suffit
+     (défilement en haut garanti par l'App Router). */
   const goHome = (e: React.MouseEvent) => {
     if (pathname !== "/") return;
     e.preventDefault();
-    try {
-      sessionStorage.setItem("am-home-top", "1");
-      if ("scrollRestoration" in history) history.scrollRestoration = "manual";
-    } catch {
-      /* stockage indisponible — la navigation s'en sortira */
+    const lenis = getLenis();
+    if (lenis) {
+      lenis.scrollTo(0, { duration: 1.05 });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
-    window.location.reload();
   };
-
-  /* Après une actualisation demandée depuis l'accueil : retour forcé au
-     sommet (certains navigateurs restaurent la position au rechargement). */
-  useEffect(() => {
-    let forceTop = false;
-    try {
-      forceTop = sessionStorage.getItem("am-home-top") === "1";
-      sessionStorage.removeItem("am-home-top");
-      if ("scrollRestoration" in history) history.scrollRestoration = "auto";
-    } catch {
-      /* ignoré */
-    }
-    if (!forceTop) return;
-    window.scrollTo(0, 0);
-    getLenis()?.scrollTo(0, { immediate: true });
-  }, []);
 
   const socialList = [
     { name: "LinkedIn", href: socials.linkedin, Icon: Linkedin, hover: "hover:border-[#0A66C2] hover:bg-[#0A66C2] hover:text-white" },
@@ -224,17 +207,18 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
 
       <div className="mx-auto flex h-[76px] w-full max-w-[1440px] items-center justify-between pl-5 pr-5 sm:pl-8 sm:pr-8 lg:h-[104px] lg:pl-10 lg:pr-10">
         {/* Wordmark — Sora 600 comme le logo du site de référence.
-            Garnissage horizontal équilibré (px-6) : quand le wrapper sombre
-            apparaît au scroll, le nom respire et reste centré dedans.
-            Desktop : même hauteur que la bande des menus (76 px), flottant. */}
+            Pleine hauteur du header, collé au sommet : quand le wrapper
+            sombre apparaît au scroll, il pend depuis le bord haut sans
+            espace ni arrondi (coins hauts droits), languette like le
+            hamburger du référent. Garnissage horizontal équilibré (px-6). */}
         <Link
           href="/"
           onClick={goHome}
           aria-label={t("brand")}
-          className={`flex h-[76px] items-center px-3 font-serif text-[1.2rem] font-semibold leading-none tracking-[-0.01em] text-white transition-all duration-500 hover:opacity-80 sm:px-6 sm:text-[1.3rem] ${
+          className={`flex h-[76px] items-center px-3 font-serif text-[1.2rem] font-semibold leading-none tracking-[-0.01em] text-white transition-all duration-500 hover:opacity-80 sm:px-6 sm:text-[1.3rem] lg:h-[104px] ${
             scrolled
-              ? "rounded-b-xl border-x border-b border-mist/10 bg-ink/80 backdrop-blur-xl lg:rounded-xl lg:border"
-              : "rounded-b-xl border-x border-b border-transparent lg:rounded-xl lg:border"
+              ? "rounded-b-xl border-x border-b border-mist/10 bg-ink/80 backdrop-blur-xl"
+              : "rounded-b-xl border-x border-b border-transparent"
           }`}
         >
           Alexandre&nbsp;Morel<span className="text-or">.</span>
@@ -266,17 +250,21 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
             </Link>
           ))}
 
-          {/* CTA — mène à la page Contact */}
+          {/* CTA — design exact du site de référence : pilule blanche,
+              libellé 15 px, pastille circulaire avec flèche qui s'inverse
+              au survol, remplissage montant */}
           <Link
             href="/contact"
-            className="group inline-flex items-center gap-2 rounded-full bg-white font-semibold tracking-[0.01em] text-ink transition-all duration-300 hover:bg-mist lg:ml-3 lg:h-11 lg:px-4 lg:text-[0.9rem] xl:ml-6 xl:h-[52px] xl:px-6 xl:text-base"
+            className="btn-fill group/cta lg:ml-3 xl:ml-6"
           >
-            {t("cta.header")}
-            <ArrowUpRight
-              size={17}
-              className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-              aria-hidden="true"
-            />
+            <span className="text-[15px]">{t("cta.header")}</span>
+            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-mist transition-colors duration-300 group-hover/cta:bg-ink">
+              <ArrowUpRight
+                size={14}
+                className="text-ink transition-colors duration-300 group-hover/cta:text-white"
+                aria-hidden="true"
+              />
+            </span>
           </Link>
         </nav>
 
@@ -297,9 +285,10 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
             <span className="hidden sm:inline">{otherLocale}</span>
           </Link>
 
-          {/* Hamburger — languette mobile (collée en haut) ; sur desktop,
-              même hauteur que la bande des menus (76 px), rectangle flottant
-              aligné avec elle */}
+          {/* Hamburger — design exact du site de référence : languette
+              pleine hauteur collée au sommet, coins bas arrondis, fond
+              #1c1c1c → #232323 au survol. L'espace intérieur gauche et
+              droite est réduit de moitié (barres de 24 px). */}
           <button
             ref={hamburgerRef}
             type="button"
@@ -307,16 +296,15 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
             aria-label={t("menu.open")}
             aria-expanded={menuOpen}
             aria-controls="fullscreen-menu"
-            className="group flex h-[76px] w-[76px] shrink-0 flex-col items-center justify-center gap-[5px] rounded-b-lg bg-ink transition-colors duration-300 hover:bg-surface-2 sm:w-[88px] lg:w-[100px] lg:rounded-[10px]"
+            className="flex h-[76px] w-[50px] shrink-0 items-center justify-center rounded-b-lg bg-ink transition-colors duration-300 hover:bg-surface sm:w-[56px] lg:h-[104px] lg:w-[62px] lg:rounded-b-[9px]"
           >
             <span
-              className="block h-[2px] w-6 bg-white transition-all duration-300 group-hover:w-4"
+              className="flex w-6 flex-col gap-[5px]"
               aria-hidden="true"
-            />
-            <span
-              className="block h-[2px] w-4 bg-white transition-all duration-300 group-hover:w-6"
-              aria-hidden="true"
-            />
+            >
+              <span className="block h-[2px] w-full bg-white" />
+              <span className="block h-[2px] w-4 bg-white" />
+            </span>
           </button>
         </div>
       </div>

@@ -27,7 +27,6 @@
     },
     "footer": {
       "baseline": "Journalisme international · Productions documentaires · Collaborations éditoriales",
-      "rights": "Tous droits réservés.",
       "legal": "Mentions légales",
       "colExpertises": "Expertises",
       "colProfessional": "Professionnel",
@@ -71,16 +70,21 @@
       "title1": "Journaliste international.",
       "title2": "Des réalités du terrain aux récits",
       "title3": "qui éclairent le monde.",
-      "subtitle": "J'explore les réalités internationales à travers le reportage, la production documentaire et le travail éditorial.",
-      "complement": "J'accompagne les médias, les producteurs et les organisations dans la réalisation de projets qui nécessitent une compréhension approfondie du terrain, des contextes locaux et des enjeux humains.",
-      "approach": "Mon approche associe expérience internationale, écoute, adaptation et exigence éditoriale pour transformer des réalités complexes en récits accessibles, documentés et humains.",
+      "subtitle": "J'aide les médias, les producteurs et les organisations à transformer des réalités complexes en récits justes, documentés et humains — du reportage au documentaire.",
       "ctaPrimary": "Découvrir mes productions",
       "ctaSecondary": "Parlons de votre projet",
       "keywordsLabel": "Mots-clés du site"
     },
+    "stats": {
+      "label": "Chiffres clés",
+      "years": "années d'expérience",
+      "languages": "langues de travail",
+      "fields": "domaines d'intervention",
+      "works": "productions & publications"
+    },
     "gallery": {},
     "intro": {
-      "eyebrow": "À propos",
+      "eyebrow": "Le terrain avant tout",
       "title": "Comprendre le terrain avant de raconter l'histoire.",
       "p1": "Un événement ne se résume jamais à ce qui est immédiatement visible.",
       "p2": "Il existe un contexte, des personnes, des trajectoires et des réalités qui donnent à l'information toute sa profondeur.",
@@ -89,10 +93,26 @@
     },
     "approach": {
       "eyebrow": "Approche journalistique",
-      "title": "L'information prend tout son sens lorsqu'elle est replacée dans son contexte.",
-      "p1": "Travailler dans différents environnements internationaux demande une capacité d'adaptation, mais aussi une véritable compréhension des cultures, des modes de vie et des relations humaines.",
-      "p2": "Au fil de mon parcours, j'ai appris à écouter avant d'interpréter, à construire des relations de confiance et à travailler avec discrétion dans des environnements exigeants.",
-      "p3": "Ces expériences nourrissent ma manière de traiter les sujets : comprendre les réalités rencontrées, recueillir les perspectives pertinentes et restituer l'essentiel avec rigueur."
+      "title": "Une méthode éprouvée, étape par étape.",
+      "lede": "Vingt ans de terrain ont forgé une façon de travailler simple et exigeante, commune à tous mes projets — du reportage presse au documentaire.",
+      "steps": [
+        {
+          "title": "Écouter le terrain",
+          "desc": "Avant d'écrire ou de filmer, je rencontre celles et ceux qui vivent le sujet. Cette écoute fidèle révèle ce qu'aucun communiqué ne dira jamais."
+        },
+        {
+          "title": "Comprendre le contexte",
+          "desc": "J'articule les faits, l'histoire locale et les acteurs en présence, pour situer chaque information dans la réalité qui la façonne."
+        },
+        {
+          "title": "Construire le récit",
+          "desc": "De cette matière brute naît une structure claire : un récit pensé pour le public qui le recevra, sans jargon ni simplification."
+        },
+        {
+          "title": "Restituer avec rigueur",
+          "desc": "Vérification, équilibre des points de vue, précision du langage : l'essentiel livré dans les temps, à la hauteur des enjeux."
+        }
+      ]
     },
     "expertise": {
       "eyebrow": "Domaines d'intervention",
@@ -139,9 +159,10 @@
     "collaboration": {
       "eyebrow": "Collaborations",
       "title": "Vous avez un sujet à documenter ou une histoire à raconter ?",
-      "p1": "Je collabore avec les médias, les producteurs et les organisations qui souhaitent développer des projets journalistiques, documentaires ou éditoriaux.",
-      "p2": "Chaque collaboration commence par une compréhension précise du sujet, des objectifs et des contraintes du projet.",
-      "p3": "Présentez-moi votre idée. Nous pourrons en discuter et étudier ensemble les possibilités de collaboration.",
+      "p1": "Médias, producteurs, organisations : je collabore avec celles et ceux qui veulent documenter le monde avec exigence — reportages, documentaires, projets éditoriaux.",
+      "p2": "Chaque projet commence par un échange honnête sur vos objectifs, vos contraintes et votre public, puis se construit dans la transparence, du cadrage à la livraison.",
+      "p3": "Racontez-moi votre projet : sujet, objectifs, échéance. Je vous réponds personnellement — et nous définirons ensemble le récit qui mérite d'être raconté.",
+      "assurance": "Réponse personnelle · Confidentialité assurée · FR / EN / ES",
       "ctaPrimary": "Présenter votre projet",
       "ctaSecondary": "Me contacter"
     }

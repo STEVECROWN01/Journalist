@@ -49,6 +49,11 @@ export default async function HomePage({
   ]);
   const featured = publications[0] ?? null;
   const recent = publications.slice(1, 3);
+  /* Étapes de la méthode (section « Approche journalistique ») */
+  const approachSteps = t.raw("approach.steps") as {
+    title: string;
+    desc: string;
+  }[];
 
   /* Données structurées : personne + site */
   const jsonLd = {
@@ -178,8 +183,6 @@ export default async function HomePage({
           title2: t("hero.title2"),
           title3: t("hero.title3"),
           subtitle: t("hero.subtitle"),
-          complement: t("hero.complement"),
-          approach: t("hero.approach"),
           ctaPrimary: t("hero.ctaPrimary"),
           ctaSecondary: t("hero.ctaSecondary"),
           keywords: SEO_KEYWORDS[fr ? "fr" : "en"],
@@ -187,9 +190,50 @@ export default async function HomePage({
         }}
       />
 
-      {/* ============ 02 · À PROPOS : split éditorial (section claire,
-            collée à la bande de mots-clés du hero — aucune marge) ============ */}
+      {/* ============ 02 · PREUVE IMMÉDIATE : chiffres clés + conviction
+            (section claire, collée à la bande de mots-clés du hero) ============ */}
       <div className="dt-light">
+        <section
+          aria-label={t("stats.label")}
+          className="dt-wrap pt-12 sm:pt-16"
+        >
+          <Reveal>
+            <dl className="grid grid-cols-2 gap-x-6 gap-y-9 border-y border-ink/10 py-10 sm:py-12 md:grid-cols-4">
+              <div className="text-center">
+                <dt className="font-serif text-[2.5rem] leading-none text-ink sm:text-[3.25rem]">
+                  20
+                </dt>
+                <dd className="mt-2.5 text-[0.7rem] font-medium uppercase tracking-[0.16em] text-steel">
+                  {t("stats.years")}
+                </dd>
+              </div>
+              <div className="text-center">
+                <dt className="font-serif text-[2.5rem] leading-none text-ink sm:text-[3.25rem]">
+                  3
+                </dt>
+                <dd className="mt-2.5 text-[0.7rem] font-medium uppercase tracking-[0.16em] text-steel">
+                  {t("stats.languages")}
+                </dd>
+              </div>
+              <div className="text-center">
+                <dt className="font-serif text-[2.5rem] leading-none text-ink sm:text-[3.25rem]">
+                  4
+                </dt>
+                <dd className="mt-2.5 text-[0.7rem] font-medium uppercase tracking-[0.16em] text-steel">
+                  {t("stats.fields")}
+                </dd>
+              </div>
+              <div className="text-center">
+                <dt className="font-serif text-[2.5rem] leading-none text-ink sm:text-[3.25rem]">
+                  {productions.length + publications.length}
+                </dt>
+                <dd className="mt-2.5 text-[0.7rem] font-medium uppercase tracking-[0.16em] text-steel">
+                  {t("stats.works")}
+                </dd>
+              </div>
+            </dl>
+          </Reveal>
+        </section>
         <HomeIntro
           copy={{
             eyebrow: t("intro.eyebrow"),
@@ -227,36 +271,55 @@ export default async function HomePage({
         />
       </div>
 
-      {/* ============ 03 — APPROCHE JOURNALISTIQUE ============ */}
+      {/* ============ 03 — APPROCHE JOURNALISTIQUE : la méthode,
+            étape par étape ============ */}
       <section
         aria-labelledby="sec-approach"
         className="dt-panel relative border-t border-mist/10 bg-surface/40"
       >
-        <div className="mx-auto grid max-w-6xl gap-10 px-6 py-24 md:py-32 lg:grid-cols-[1fr_2.2fr]">
+        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-24 md:py-32 lg:grid-cols-[1fr_2.2fr] lg:gap-16">
           <div className="lg:sticky lg:top-28 lg:self-start">
             <Reveal>
               <p className="eyebrow">{t("approach.eyebrow")}</p>
             </Reveal>
-          </div>
-          <div>
-            <Reveal>
+            <Reveal delay={0.08}>
               <h2
                 id="sec-approach"
-                className="display-2 max-w-2xl text-balance text-white"
+                className="display-2 mt-6 max-w-md text-balance text-white"
               >
                 <MaskLines delay={0.06}>{t("approach.title")}</MaskLines>
               </h2>
             </Reveal>
-            <Reveal delay={0.1}>
-              <div className="mt-8 max-w-2xl space-y-5 text-[1rem] leading-[1.85] text-silver/90">
-                <p className="lede">{t("approach.p1")}</p>
-                <p>{t("approach.p2")}</p>
-              </div>
-              <p className="mt-8 max-w-xl border-l-2 border-or pl-6 font-serif text-[1.25rem] leading-[1.6] text-white">
-                {t("approach.p3")}
+            <Reveal delay={0.14}>
+              <p className="mt-6 max-w-md text-[0.95rem] leading-[1.8] text-silver/90">
+                {t("approach.lede")}
               </p>
             </Reveal>
           </div>
+          <ol>
+            {approachSteps.map((step, i) => (
+              <Reveal
+                as="li"
+                key={step.title}
+                delay={0.07 * i}
+                className={`group grid gap-3 border-t border-mist/10 py-7 sm:grid-cols-[4.5rem_1fr] sm:gap-x-7 sm:py-8 ${
+                  i === 0 ? "pt-0" : ""
+                } ${i === approachSteps.length - 1 ? "border-b" : ""}`}
+              >
+                <span className="font-serif text-[2.6rem] italic leading-[0.9] text-steel transition-colors duration-300 group-hover:text-or">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3 className="font-serif text-[1.3rem] leading-snug text-white">
+                    {step.title}
+                  </h3>
+                  <p className="mt-2.5 max-w-xl text-[0.95rem] leading-[1.8] text-silver/90">
+                    {step.desc}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </ol>
         </div>
       </section>
 
@@ -341,7 +404,7 @@ export default async function HomePage({
         aria-labelledby="sec-collab"
         className="border-t border-mist/10 bg-ink-deep"
       >
-        <div className="mx-auto grid max-w-6xl gap-10 px-6 py-24 md:py-32 lg:grid-cols-[0.95fr_2.05fr]">
+        <div className="mx-auto grid max-w-6xl gap-10 px-6 py-24 md:py-32 lg:grid-cols-[0.95fr_2.05fr] lg:gap-16">
           <div className="lg:sticky lg:top-28">
             <Reveal>
               <p className="eyebrow">{t("collaboration.eyebrow")}</p>
@@ -405,6 +468,9 @@ export default async function HomePage({
                   {t("collaboration.ctaSecondary")}
                 </a>
               </div>
+              <p className="mt-7 text-[0.72rem] font-medium uppercase tracking-[0.16em] text-steel">
+                {t("collaboration.assurance")}
+              </p>
             </Reveal>
           </div>
         </div>

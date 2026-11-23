@@ -175,8 +175,8 @@
 
   /* ------------------------------------------------------------
      ACCENT ÉDITORIAL DU HERO — « qui éclairent le monde. »
-     Playfair Display italique en dégradé blanc → argent : l'élégance
-     d'un titre de presse magazine, dans la palette noir/blanc.
+     Playfair Display italique, même blanc que le titre : seule
+     l'élégance de l'italique distingue la dernière portion.
      ------------------------------------------------------------ */
   .display-1 em.hero-title-accent,
   .hero-title-accent {
@@ -184,16 +184,8 @@
     font-style: italic;
     font-weight: 500;
     letter-spacing: -0.005em;
-    background: linear-gradient(
-      100deg,
-      #ffffff 30%,
-      #f0f0f0 60%,
-      #b8b8b8 100%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
+    /* Même blanc que le titre */
+    color: #ffffff;
     /* Débordement optique de l'italique à droite */
     padding-right: 0.08em;
   }
@@ -240,7 +232,8 @@
   }
   .btn-primary::before,
   .btn-outline::before,
-  .btn-accent::before {
+  .btn-accent::before,
+  .btn-fill::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -250,7 +243,8 @@
   }
   .btn-primary:hover,
   .btn-outline:hover,
-  .btn-accent:hover {
+  .btn-accent:hover,
+  .btn-fill:hover {
     transform: translateY(-2px);
   }
   .btn-primary:hover::before,
@@ -258,12 +252,15 @@
   .btn-outline:hover::before,
   .btn-outline:focus-visible::before,
   .btn-accent:hover::before,
-  .btn-accent:focus-visible::before {
+  .btn-accent:focus-visible::before,
+  .btn-fill:hover::before,
+  .btn-fill:focus-visible::before {
     transform: translateY(0);
   }
   .btn-primary > *,
   .btn-outline > *,
-  .btn-accent > * {
+  .btn-accent > *,
+  .btn-fill > * {
     position: relative;
     z-index: 1;
   }
@@ -290,6 +287,22 @@
   }
   .btn-accent::before {
     background: var(--color-or-bright);
+  }
+  /* Bouton d'en-tête — design exact du site de référence : pilule
+     blanche, libellé 15 px, pastille circulaire à droite (flèche),
+     remplissage montant au survol. */
+  .btn-fill {
+    @apply relative isolate inline-flex min-h-[52px] items-center gap-3 overflow-hidden rounded-full border border-mist bg-white py-2 pl-6 pr-2.5 font-medium tracking-[0.01em] text-ink focus-visible:outline-2 focus-visible:outline-offset-4;
+    transition:
+      transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.3s,
+      border-color 0.3s;
+  }
+  .btn-fill::before {
+    background: var(--color-mist);
+  }
+  .btn-fill:hover {
+    border-color: var(--color-silver);
   }
 
   /* ---------- Surfaces ---------- */
@@ -430,27 +443,9 @@ html.lenis body {
   }
 }
 
-/* Écrans peu hauts (ordinateurs portables) : on allège le contenu */
-@media (max-height: 820px) {
-  .hero-complement {
-    display: none;
-  }
-}
-/* Portables standards (≈900 px de haut) : seul le premier paragraphe
-   de complément reste visible afin que le bandeau de réassurance
-   tienne toujours dans l'écran. */
-@media (max-height: 940px) {
-  .hero-complement-p2 {
-    display: none;
-  }
-}
-/* Mobiles : le complément est masqué (le sous-titre suffit) afin que
-   le contenu centré ne remonte jamais sous l'en-tête fixe. */
-@media (max-width: 639px) {
-  .hero-complement {
-    display: none;
-  }
-}
+/* Écrans peu hauts (ordinateurs portables) : le hero tient en un
+   écran — titre, sous-titre unique et boutons. Le padding supérieur
+   reste supérieur à la hauteur de l'en-tête fixe (104 px). */
 @media (max-height: 760px) {
   .hero-scroll {
     display: none !important;
@@ -468,8 +463,15 @@ html.lenis body {
     margin-top: 1.75rem;
   }
   .hero-pad {
-    padding-top: 4.5rem;
+    padding-top: 7rem;
     padding-bottom: 4.5rem;
+  }
+}
+/* Écrans très compacts (≤ 680 px de haut) : le sous-titre cède la
+   place — le titre sur trois lignes et les boutons tiennent seuls. */
+@media (max-height: 680px) {
+  .hero-subtitle {
+    display: none;
   }
 }
 /* Très petits heights (mobiles en paysage) : essentiel uniquement */
@@ -633,6 +635,9 @@ body {
   object-position: center 30%;
   border-radius: 13px;
   background: var(--color-surface);
+  /* Chaque vignette reçoit le survol (le conteneur de contenu du
+     hero laisse passer les événements) : la couleur se révèle. */
+  pointer-events: auto;
 }
 /* Adoucissement du bord gauche de la mosaïque : un simple dégradé
    (remplace un backdrop-filter coûteux sur mobile pendant l'animation
@@ -664,6 +669,14 @@ body {
     rgba(7, 7, 7, 0) 100%
   );
 }
+/* Le contenu éditorial du hero laisse passer le survol vers la
+   mosaïque : seuls les liens et boutons interceptent le pointeur. */
+.dt-hero-content {
+  pointer-events: none;
+}
+.dt-hero-content :is(a, button) {
+  pointer-events: auto;
+}
 /* Dans le hero, le titre adopte une taille légèrement plus contenue :
    toutes ses lignes restent en deçà de 65 % de la largeur, zone où le
    voile garantit un contraste suffisant sur la mosaïque. */
@@ -672,8 +685,7 @@ body {
 }
 /* Séparation supplémentaire du texte du hero sur les zones claires */
 .dt-hero .display-1,
-.dt-hero .hero-subtitle,
-.dt-hero .hero-complement {
+.dt-hero .hero-subtitle {
   text-shadow:
     0 2px 18px rgba(7, 7, 7, 0.55),
     0 1px 3px rgba(7, 7, 7, 0.45);
@@ -899,8 +911,9 @@ body {
 .dt-creator-plate {
   position: relative;
   display: block;
-  /* Planches agrandies : les titres respirent, sans déborder */
-  width: clamp(216px, 21.5vw, 268px);
+  /* Planches resserrées : le trait qui relie les quatre cartes
+     reste visible de part et d'autre. */
+  width: clamp(160px, 17vw, 224px);
   aspect-ratio: 1;
   margin-bottom: 26px;
 }
@@ -956,14 +969,14 @@ body {
 }
 .dt-creator-caption {
   position: absolute;
-  inset: 58% 4.5% auto;
+  inset: 58% 8% auto;
   display: grid;
   justify-items: center;
   gap: 10px;
   color: var(--color-mist);
 }
 .dt-creator-caption strong {
-  font-size: clamp(0.86rem, 1.02vw, 1rem);
+  font-size: clamp(0.78rem, 0.95vw, 0.92rem);
   line-height: 1.35;
   text-align: center;
   display: -webkit-box;
@@ -1433,7 +1446,7 @@ body {
   }
   .dt-hero-content {
     flex: 1 1 auto;
-    padding-top: 6.5rem;
+    padding-top: 7.5rem;
     padding-bottom: 2.5rem;
   }
   .dt-mosaic {
@@ -1621,9 +1634,10 @@ figure img {
   filter: grayscale(1);
   transition: filter 0.5s ease;
 }
-/* La mosaïque du hero est décorative (pointer-events: none) :
-   elle reste en noir et blanc en permanence. */
+/* La mosaïque du hero reçoit le survol sur ses vignettes : chaque
+   image révèle sa couleur originale à l'endroit survolé. */
 /* Survol / focus du conteneur : la véritable couleur est révélée. */
+.dt-mosaic-tile:hover,
 .dt-editorial-photo:hover .dt-editorial-img,
 .dt-editorial-photo:focus-visible .dt-editorial-img,
 .dt-editorial-card:hover img,
@@ -1657,6 +1671,10 @@ figure:focus-within img {
 .dt-light {
   background: var(--color-paper);
   color: #1c1c1c;
+  /* Le panneau décoratif de la section éditoriale déborde à droite
+     (right: -5 %) : on clippe au bord réel de l'écran pour qu'aucune
+     taille d'écran ne présente de défilement horizontal. */
+  overflow: clip;
 }
 .dt-light .text-white,
 .dt-light .text-mist {
