@@ -1521,30 +1521,16 @@ body {
 
 /* ---------- 01b · Bandes défilantes (mécanique partagée) ---------- */
 /* La même bande défile en continu de la droite vers la gauche, séparée
-   par de gros points, avec fondu sur les bords : au bas du hero elle
-   présente les partenaires (médias, producteurs, organisations) ; en
-   version claire (.dt-keywords-band) elle présente les mots-clés du
-   site entre l'approche et les productions.
-   Lecture : le défilement est volontairement lent (durée distincte par
+   par de gros points, coupée net aux bords de la bande (aucun fondu) :
+   au bas du hero elle présente les partenaires (médias, producteurs,
+   organisations) ; en version claire (.dt-keywords-band) elle présente
+   les mots-clés du site entre l'approche et les productions.
+   Lecture : le défilement est lent et régulier (durée distincte par
    bande pour une vitesse comparable malgré des contenus de longueurs
    différentes) et la bande se suspend au survol du pointeur, comme
    les voies de la galerie « Productions sélectionnées ». */
 .dt-keywords {
   overflow: clip;
-  -webkit-mask-image: linear-gradient(
-    90deg,
-    transparent 0,
-    #000 72px,
-    #000 calc(100% - 72px),
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    90deg,
-    transparent 0,
-    #000 72px,
-    #000 calc(100% - 72px),
-    transparent 100%
-  );
 }
 .dt-keywords-track {
   display: flex;
@@ -1600,14 +1586,14 @@ body {
   }
 }
 
-/* Vitesses : ~25–35 px/s par bande, lisible à l'œil nu. La bande des
+/* Vitesses : ~28–42 px/s par bande, lisible à l'œil nu. La bande des
    partenaires (hero) porte moins de texte que la bande mots-clés : sa
    boucle est plus courte pour conserver la même allure. */
 .dt-hero-band .dt-keywords-track {
   --dt-keywords-duration: 75s;
 }
 .dt-keywords-band .dt-keywords-track {
-  --dt-keywords-duration: 135s;
+  --dt-keywords-duration: 95s;
 }
 
 /* ---------- Bande mots-clés claire (approche → productions) ----------
@@ -1742,13 +1728,10 @@ body {
   .dt-mosaic-grid {
     height: 560px;
     width: 100%;
-    /* Oblique 3D permanente sur mobile et tablette : EXACTEMENT la
-       position par défaut du desktop avant défilement (rotationX 18°,
-       rotationY -24°, rotationZ -12°, z -150). La mosaïque n'est
-       jamais 100 % verticale — le défilement vertical des colonnes
-       (GSAP) conserve, lui, son rythme. */
-    transform: rotateX(18deg) rotateY(-24deg) rotateZ(-12deg)
-      translateZ(-150px);
+    /* Netteté mobile : mosaïque droite, aucun ré-échantillonnage GPU.
+       La galerie défilante reste verticale — les colonnes défilent
+       verticalement (GSAP), sans inclinaison 3D. */
+    transform: none;
   }
   .dt-mosaic-tile {
     aspect-ratio: 0.94;
