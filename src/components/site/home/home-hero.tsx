@@ -187,15 +187,14 @@ export function HomeHero({ copy }: { copy: HomeHeroCopy }) {
       <div className="dt-hero-shade" aria-hidden="true" />
 
       {/* Contenu éditorial — dégagé de l'en-tête fixe. Le hero occupe
-          EXACTEMENT l'écran (100svh). Sur desktop (≥ 1024 px), le bloc
-          texte reste poussé vers le bas (mt-auto) : tout l'espace libre
-          se place AU-DESSUS du texte. Sur mobile et tablette (< 1024 px),
+          AU MOINS l'écran (min-height : 100svh) : tous ses éléments
+          (sous-titre, complément, cibles) restent visibles à toutes
+          les tailles — sur les écrans peu hauts la section grandit
+          au lieu de rogner. Sur desktop (≥ 1024 px), le bloc texte
+          reste poussé vers le bas (mt-auto) : tout l'espace libre se
+          place AU-DESSUS du texte. Sur mobile et tablette (< 1024 px),
           le bloc se CENTRE dans l'espace sous l'en-tête (voir
-          .hero-copy-anchor dans globals.css) : l'espace au-dessus de
-          « 20 ans d'expérience » est réduit de moitié et tout le
-          contenu du hero reste visible sans défilement. Les paliers par
-          hauteur d'écran (globals.css) replient le complément et
-          resserrent les espacements sur les écrans peu hauts. */}
+          .hero-copy-anchor dans globals.css). */}
       <div className="dt-hero-content hero-pad relative z-[2] mx-auto flex w-full max-w-6xl flex-1 flex-col px-6 pb-14 pt-28 sm:pb-16 sm:pt-32 lg:pb-20 lg:pt-36">
         <div className="hero-copy-anchor mt-auto w-full">
         <Reveal>

@@ -52,10 +52,13 @@ const WAVES = [
 export function HomeDomains({
   eyebrow,
   title,
+  lede,
   domains,
 }: {
   eyebrow: string;
   title: string;
+  /** Courte description sous le titre : ce que présente la section */
+  lede: string;
   domains: DomainPlate[];
 }) {
   const root = useRef<HTMLElement>(null);
@@ -243,6 +246,13 @@ export function HomeDomains({
           >
             <MaskLines delay={0.05}>{title}</MaskLines>
           </h2>
+        </Reveal>
+        {/* Courte description : ce que présente la section — quatre
+            domaines, chacun relié à sa page et à ses réalisations. */}
+        <Reveal delay={0.14} toggle>
+          <p className="mx-auto mt-6 max-w-2xl text-[0.95rem] leading-[1.8] text-steel">
+            {lede}
+          </p>
         </Reveal>
       </div>
 

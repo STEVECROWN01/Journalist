@@ -255,11 +255,12 @@ export default async function HomePage({
       <HomeDomains
         eyebrow={t("expertise.eyebrow")}
         title={t("expertise.title")}
+        lede={t("expertise.lede")}
         domains={domains}
       />
 
       {/* ============ 04 — APPROCHE JOURNALISTIQUE : la méthode,
-            étape par étape (accordéon du site de référence) ============ */}
+            étape par étape (style précédent restauré) ============ */}
       <section
         aria-labelledby="sec-approach"
         className="dt-panel relative border-t border-mist/10 bg-surface/40"
@@ -300,8 +301,6 @@ export default async function HomePage({
           intro2: t("productions.intro2"),
           intro3: t("productions.intro3"),
           cta: t("productions.cta"),
-          pause: t("gallery.pause"),
-          resume: t("gallery.resume"),
           readMore: tC("actions.readMore"),
         }}
         lanes={[
