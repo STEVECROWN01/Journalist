@@ -63,7 +63,7 @@
   "home": {
     "meta": {
       "title": "Alexandre Morel — International journalist, documentary & communications",
-      "description": "International journalist: reporting, documentary production and editorial collaborations. I work with media, producers and organisations on projects that demand a deep understanding of the field and its contexts."
+      "description": "International journalist covering crisis zones: field investigation, documentary production and journalism training — for ARTE, France 24, Al Jazeera, France 5 and Public Sénat, across Africa, the Middle East, Asia and the Balkans."
     },
     "hero": {
       "eyebrow": "20 years of experience",
@@ -75,7 +75,12 @@
       "approach": "My approach combines international experience, listening, adaptability and editorial rigour to turn complex realities into stories that are accessible, documented and human.",
       "ctaPrimary": "Discover my productions",
       "ctaSecondary": "Let's talk about your project",
-      "audiences": ["Media", "Producers", "Organisations", "Companies"],
+      "audiences": [
+        "Media",
+        "Producers",
+        "Organisations",
+        "Companies"
+      ],
       "keywordsLabel": "Website keywords"
     },
     "stats": {
@@ -89,15 +94,15 @@
     "intro": {
       "eyebrow": "Field first",
       "title": "Understanding the field before telling the story.",
-      "p1": "An event never comes down to what is immediately visible.",
-      "p2": "There is always a context, people, journeys and realities that give information its full depth.",
-      "p3": "My work consists in seeking out these realities, understanding what shapes them and building stories that allow audiences to grasp the stakes.",
-      "p4": "This approach rests on international experience, on listening and on a constant attention to the accuracy of information."
+      "p1": "For more than twenty years I have been covering crisis zones and sensitive contexts — in Africa, the Middle East, Asia and the Balkans — for ARTE, France 24, Al Jazeera, France 5 and Public Sénat.",
+      "p2": "An event is never reduced to what is immediately visible: there is a context, people, trajectories and realities that give information its full depth.",
+      "p3": "My work is to go out and meet these realities, to understand what shapes them and to build narratives that allow audiences to grasp the issues — from breaking-news reporting to long-form documentary.",
+      "p4": "This approach rests on field investigation, listening, source protection and a constant attention to the accuracy of information."
     },
     "approach": {
       "eyebrow": "A journalistic approach",
       "title": "A proven method, step by step.",
-      "lede": "Twenty years in the field have forged a simple, demanding way of working, shared by every project I take on — from press reporting to documentary.",
+      "lede": "Twenty years of fieldwork in sensitive zones — Africa, the Middle East, Asia, the Balkans — have forged a simple, demanding method, common to all my projects, from news reporting to documentary.",
       "expand": "Show this step",
       "collapse": "Collapse this step",
       "steps": [
@@ -119,7 +124,7 @@
         },
         {
           "title": "Craft transmission",
-          "desc": "The craft is learned in the field and passed on. Masterclasses, newsroom training, team coaching: I share the methods and instincts that make journalists autonomous."
+          "desc": "Masterclasses, newsroom training, team mentoring: from the Faculty of Journalism of Tunis to the newsrooms of Afghanistan and Cambodia, I share the methods and reflexes that make journalists autonomous — investigation, media ethics, fake news, source protection."
         }
       ]
     },
@@ -129,22 +134,22 @@
       "items": {
         "journalism": {
           "title": "International journalism",
-          "desc": "Field reporting, investigations and editorial content to document international realities, understand their stakes and convey contextualised information.",
+          "desc": "Covering sensitive zones and crisis contexts, field investigation, geopolitical analysis and international editorial coordination: documented, contextualised narratives delivered to international audiences.",
           "cta": "Discover my journalistic work"
         },
         "documentary": {
           "title": "Documentary production",
-          "desc": "Designing and crafting documentary stories that give pride of place to people, contexts and human stories.",
+          "desc": "Designing and directing documentary narratives with a strong human dimension — from the 90-minute feature to the four-part series — for ARTE, France 5, Al Jazeera and Public Sénat.",
           "cta": "Explore the productions"
         },
         "comms": {
           "title": "Communications and editorial consulting",
-          "desc": "Supporting editorial and communications projects that demand a deep understanding of the stakes, a narrative approach and particular attention to audiences.",
+          "desc": "Intercultural communication, coordination of international media projects, project development and fundraising: support grounded in journalistic networks and a fine understanding of the stakes.",
           "cta": "Discuss your project"
         },
         "training": {
           "title": "Training and knowledge transfer",
-          "desc": "Sharing experience and providing guidance on journalistic practice, editorial work and the understanding of international contexts.",
+          "desc": "Training and mentoring journalists in sensitive contexts: investigation, media ethics, fake news, source protection and journalist safety.",
           "cta": "Discover the possibilities"
         }
       }
@@ -154,7 +159,7 @@
       "title": "Stories that deserve to be told.",
       "intro1": "Every production starts with a reality that needs to be understood.",
       "intro2": "An encounter, an event, a context or a question that deserves to be explored beyond the obvious.",
-      "intro3": "Through this selection, discover a few works that illustrate my approach to the field, the way I build a narrative and the attention given to the people at its heart.",
+      "intro3": "From Afghanistan to Ukraine, from Libya to Tunisia: a selection of documentaries and reports — recognised with two Étoiles de la Scam and a Prix Jeunes FIGRA — illustrating my field approach and the attention paid to the people at the heart of each story.",
       "cta": "Explore all productions"
     },
     "publications": {
@@ -168,10 +173,10 @@
     "collaboration": {
       "eyebrow": "Collaborations",
       "title": "Do you have a subject to document or a story to tell?",
-      "p1": "Media, producers, organisations: I collaborate with those who want to document the world with rigour — reports, documentaries, editorial projects.",
+      "p1": "Media, producers, organisations: I work with those who want to document the world with rigour — reports, documentaries and editorial projects, from major international networks to independent producers.",
       "p2": "Every project begins with an honest conversation about your objectives, your constraints and your audience, then unfolds transparently, from framing to delivery.",
       "p3": "Tell me about your project: the subject, the goals, the deadline. I will reply to you personally — and together we will shape the story that deserves to be told.",
-      "assurance": "Personal reply · Confidentiality assured · FR / EN / ES",
+      "assurance": "Personal reply · Source protection · FR / EN",
       "ctaPrimary": "Present your project",
       "ctaSecondary": "Get in touch"
     }
@@ -179,63 +184,63 @@
   "about": {
     "meta": {
       "title": "About",
-      "description": "International experience in the service of accurate, documented storytelling: journey, professional vision and editorial collaborations of Alexandre Morel."
+      "description": "International journalist and media consultant specialising in crisis zones: more than 20 years of field investigation, documentary production and journalism training in Africa, the Middle East, Asia and the Balkans."
     },
     "hero": {
       "eyebrow": "About",
       "title": "International experience in the service of accurate, documented storytelling.",
-      "p1": "My career has been shaped by contact with different cultures, contexts and professional environments.",
-      "p2": "These experiences have shaped the way I work: observing, listening, understanding and conveying the realities I encounter with rigour.",
-      "p3": "Today they nourish my approach to journalism, documentary production and editorial collaborations."
+      "p1": "An international journalist and media consultant, I specialise in crisis zones: more than twenty years of field investigation, documentary production and journalism training in Africa, the Middle East, Asia and the Balkans.",
+      "p2": "A correspondent for ARTE, France 24, Al Jazeera, France 5, Public Sénat and Radio France, my career was built through contact with different cultures and contexts — from Kabul to Cairo, from Tunis to Athens — with collaborations for Libération, Le Temps and L'Express.",
+      "p3": "These experiences shaped a specific expertise: field reporting, international journalist networks, source protection and the passing on of skills in sensitive environments."
     },
     "journey": {
       "eyebrow": "Journey",
-      "title": "Experiences that shape a way of seeing.",
-      "p1": "Working in different countries means coming to grips with environments that do not always follow the same codes.",
-      "p2": "One has to learn to listen, to adapt to ways of life, to respect cultures and to build solid professional relationships.",
-      "p3": "These experiences taught me to consider every situation within its context, to take the time to understand people and to appreciate how much trust matters in fieldwork.",
-      "p4": "Today they form an essential foundation of my professional approach."
+      "title": "From Kabul to the Balkans: twenty years of postings.",
+      "p1": "The journey begins with transmission: taking part in the creation of the daily newspaper Cambodge Soir and training Cambodian journalists, then training camerawomen and Afghan journalists for the Aïna association in Kabul — years of journeys across Asia, Africa and the Arab world.",
+      "p2": "Then came the war postings: Afghanistan and Pakistan for ARTE, Radio France and France 24, with collaborations for Libération, Le Temps and L'Express — TV, radio and print coverage, producing content in war zones and field coordination in high-risk contexts.",
+      "p3": "Then post-Arab Spring Tunisia for ARTE, Egypt and Libya for ARTE and France 24 — international reports demanding adaptation, discretion and the handling of sensitive sources, built on a local network of institutional contacts, journalists and field actors established over the years.",
+      "p4": "From Greece and the Balkans, I now produce reports and geopolitical analyses for ARTE — with continuous coverage of Greek and Balkan affairs and of the Ukrainian conflict since 2022. A career marked by two Étoiles de la Scam and a Prix Jeunes FIGRA."
     },
     "vision": {
       "eyebrow": "Vision",
       "title": "Telling without oversimplifying. Understanding without prejudging.",
-      "p1": "I see journalism as a work of understanding as much as of transmission.",
-      "p2": "It is not only about reporting facts, but about giving them a context, letting the relevant perspectives be heard and helping audiences better grasp the stakes.",
-      "p3": "This requirement guides my work, from the field to the construction of the story."
+      "p1": "A master's degree in philosophy, training as a video journalist at the CFPJ, war-zone journalism training: I regard journalism as a craft of understanding as much as of transmission.",
+      "p2": "It is not only about reporting facts, but giving them a context, making the relevant perspectives heard and helping audiences better grasp the issues at stake.",
+      "p3": "Source protection, media ethics and the fight against fake news are not options: they are the very conditions of the craft."
     },
     "beyond": {
       "eyebrow": "Beyond journalism",
       "title": "An experience that can serve other projects.",
-      "p1": "Field experience and editorial work can also contribute to communications, consulting and knowledge-transfer projects.",
-      "p2": "Understanding a context, identifying the stakes of a message and building a fitting narrative are all dimensions that can enrich a collaboration.",
-      "p3": "My approach always begins with listening to the need and understanding the objectives.",
+      "p1": "As a media consultant and trainer, I support newsrooms, universities and organisations: editorial project supervision, field mentoring, pedagogical structuring — from the Faculty of Journalism of Tunis, where I teach investigation, media ethics, fake news, source protection and social networks, to African capitals.",
+      "p2": "Co-founder of the North African Correspondent Club (NAFCC), dedicated to the defence of press freedom, I also develop media projects and their financing: international project coordination, intercultural communication, fundraising — as in 2025, with the assessment of journalistic needs across several African capitals for the Afrikibaaru2 programme (CFI).",
+      "p3": "Understanding a context, identifying the stakes of a message and building a suitable narrative: my approach always begins with listening to the need and understanding the objectives.",
       "cta": "Discuss your project"
     }
   },
   "journalism": {
     "meta": {
       "title": "International journalism",
-      "description": "Field reporting, investigations and editorial content: understanding international realities and telling them with accuracy, from the field to the final story."
+      "description": "Field reports and investigations in sensitive zones: correspondent in Afghanistan, Pakistan, Tunisia, Egypt, Libya and the Balkans for ARTE, France 24, Radio France, Libération, Le Temps and L'Express."
     },
     "hero": {
       "eyebrow": "International journalism",
       "title": "Understanding international realities. Telling them with accuracy.",
-      "p1": "International journalism demands close attention to the contexts, the people and the dynamics that shape events.",
-      "p2": "My work consists in documenting these realities, gathering the relevant perspectives and building stories that make the stakes accessible to audiences.",
+      "p1": "International journalism demands particular attention to contexts, people and the dynamics that shape events — especially in crisis zones, where information itself is a stake of power.",
+      "p2": "From Kabul to Cairo and from Athens to Tunis, my work as a correspondent is to document these realities, gather the relevant perspectives and build narratives that make the issues accessible — on television, on radio and in print.",
       "cta": "Discover the journalistic productions"
     },
     "approach": {
       "eyebrow": "Approach",
       "title": "Going into the field to understand what is at stake.",
       "p1": "Information cannot be fully understood without taking its environment into account.",
-      "p2": "Journalistic work begins with observation, listening and an understanding of the situations encountered.",
-      "p3": "This approach makes it possible to put facts back into their context, to better grasp the stakes and to build a story that is faithful to the documented reality."
+      "p2": "Covering a sensitive zone requires rigorous preparation: understanding the actors and the balances, securing and protecting one's sources, working discreetly — gestures that are learned and passed on.",
+      "p3": "This approach makes it possible to put facts back into context, to better grasp geopolitical and societal issues, and to build a narrative faithful to the documented reality."
     },
     "collab": {
       "eyebrow": "Collaborations",
       "title": "A subject to document?",
       "p1": "Are you preparing a report, an investigation or an editorial project?",
-      "p2": "Are you looking for a journalist able to understand an international context and to help build a documented story?",
+      "p2": "Are you looking for a journalist able to understand an international context, to operate discreetly in sensitive zones and to contribute to building a documented narrative?",
       "p3": "Tell me about your project and its objectives.",
       "cta": "Present your subject"
     },
@@ -249,26 +254,26 @@
   "documentary": {
     "meta": {
       "title": "Documentary",
-      "description": "Designing and crafting documentary stories: giving a place to people, contexts and human stories."
+      "description": "Documentary narratives with a strong human dimension: films broadcast by ARTE, France 5, Al Jazeera and Public Sénat — recognised with two Étoiles de la Scam and a Prix Jeunes FIGRA."
     },
     "hero": {
       "eyebrow": "Documentary",
       "title": "Giving a place to human stories.",
       "p1": "Documentary offers the time needed to understand a reality, to meet the people who live it and to explore its many dimensions.",
-      "p2": "My approach consists in building stories that combine an understanding of the field, attention to people and narrative rigour.",
+      "p2": "My approach is to build narratives combining an understanding of the field, attention to people and narrative rigour — from the 90-minute feature to the four-part documentary series.",
       "cta": "Explore the productions"
     },
     "approach": {
       "eyebrow": "Documentary approach",
       "title": "Understanding a story before telling it.",
       "p1": "Every documentary project has its own context, its own interlocutors and its own stakes.",
-      "p2": "The work begins with a deep understanding of the subject, then continues with gathering the elements needed to build the narrative.",
+      "p2": "The work begins with a thorough understanding of the subject, then continues with gathering the elements needed to build the narrative — video capture (Premiere Pro, Filmic Pro), audio editing (Audacity), writing and editorial production.",
       "p3": "The goal is to give shape to that material without ever losing sight of the subject's reality, or of the responsibility towards the people encountered."
     },
     "portfolio": {
       "eyebrow": "Portfolio",
       "title": "Productions, perspectives, realities.",
-      "p1": "Discover a selection of documentary productions and editorial projects.",
+      "p1": "Discover a selection of documentary productions and editorial projects — from \"Afghanistan, the Price of Peace\" (Étoile de la Scam 2023) to \"Kyiv, an Opera at War\" (ARTE / Agat Films).",
       "p2": "Each project presents its subject, its context and the approach adopted to tell its story.",
       "cta": "Discover the productions"
     },
@@ -282,19 +287,19 @@
   "productions": {
     "meta": {
       "title": "Production",
-      "description": "From idea to story: building editorial and documentary productions that make sense, fitted to their context and their audience."
+      "description": "Documentaries and reports broadcast to international audiences: ARTE, France 24, Al Jazeera, France 5, Public Sénat — two Étoiles de la Scam, one Prix Jeunes FIGRA."
     },
     "hero": {
       "eyebrow": "Production",
       "title": "From idea to story: building productions that make sense.",
-      "p1": "An editorial project demands a precise understanding of the subject, a coherent narrative approach and careful attention to how the story will be told.",
-      "p2": "My work consists in supporting the construction of documented stories, adapted to their context and their audience.",
+      "p1": "Correspondent in Greece and the Balkans, in Egypt and Libya, in Tunisia, in Afghanistan and Pakistan: a continuous practice of field reporting for ARTE, France 24, Al Jazeera, France 5 and Public Sénat.",
+      "p2": "Documentaries and reports broadcast to international audiences — a filmography recognised with two Étoiles de la Scam and a Prix Jeunes FIGRA.",
       "cta": "Present your project"
     },
     "approach": {
       "eyebrow": "Approach",
       "title": "A production begins with a good understanding of the subject.",
-      "p1": "Before building a story, it is essential to understand its stakes, the people involved and the editorial objectives.",
+      "p1": "Every production starts from a reality to be understood: an encounter, an event, a context or a question that deserves to be explored beyond the obvious.",
       "p2": "This approach makes it possible to define a fitting method, to structure the essential information and to build a coherent production.",
       "cta": "Discuss your project"
     },
@@ -393,41 +398,41 @@
   "comms": {
     "meta": {
       "title": "Communications & Consulting",
-      "description": "Understanding the stakes, building messages that make sense: editorial support nourished by journalistic and international experience."
+      "description": "Understanding the stakes, building messages that make sense: editorial support nourished by twenty years of international journalism — intercultural communication, media projects and fundraising."
     },
     "hero": {
       "eyebrow": "Communications & Consulting",
       "title": "Understanding the stakes. Building messages that make sense.",
       "p1": "An effective message must be clear, coherent and adapted to its context.",
-      "p2": "My journalistic and international experience nourishes an approach to communications that is attentive to understanding the stakes, to the quality of messages and to the relationship with audiences.",
+      "p2": "My experience as an international correspondent nourishes a communication approach attentive to the understanding of stakes, to the quality of messages and to the relationship with audiences — including intercultural ones.",
       "cta": "Discuss your needs"
     },
     "approach": {
       "eyebrow": "Approach",
       "title": "Clarity begins with understanding.",
       "p1": "Before building a message, it is essential to understand the situation, the objectives and the audiences it addresses.",
-      "p2": "This approach makes it possible to define a fitting editorial strategy, to structure the essential information and to build more coherent communications.",
+      "p2": "This approach makes it possible to define a suitable editorial strategy, structure the essential information and build more coherent communication — drawing on intercultural communication, the coordination of international media projects and project development (fundraising).",
       "cta": "Present your project"
     }
   },
   "training": {
     "meta": {
       "title": "Training & Knowledge Transfer",
-      "description": "Passing on experience, improving practice: talks, training sessions and support tailored to objectives and audiences."
+      "description": "Training journalists in sensitive contexts: investigation, media ethics, fake news, source protection. Interventions across Africa, the Middle East and Asia — in French and English."
     },
     "hero": {
       "eyebrow": "Training & Knowledge Transfer",
       "title": "Passing on experience. Improving practice.",
-      "p1": "Knowledge transfer makes it possible to share methods, reference points and lessons drawn from experience.",
-      "p2": "My approach favours exchange, concrete examples and adaptation to participants' needs.",
+      "p1": "From the creation of the daily newspaper Cambodge Soir to the Faculty of Journalism of Tunis, transmission runs through the whole journey: training local journalists in Cambodia, Afghanistan, Pakistan, Tunisia and Egypt.",
+      "p2": "My approach favours exchange, concrete examples and adaptation to participants' needs: investigation, media ethics, fake news, source protection and social networks.",
       "cta": "Discuss an intervention"
     },
     "interventions": {
       "eyebrow": "Interventions",
       "title": "An intervention tailored to your objectives.",
-      "p1": "Would you like to organise a training session, a support programme or a professional intervention?",
-      "p2": "Tell me about your audience, your objectives and the subjects you would like to address.",
-      "p3": "Together we can identify the most relevant format.",
+      "p1": "Would you like to organise a training course, mentoring or a professional intervention — in a newsroom, at a university or within an international programme?",
+      "p2": "I intervene in French and English, on site and remotely: editorial project supervision, field mentoring, pedagogical structuring.",
+      "p3": "A recent mission (2025): assessing the journalistic needs of several African capitals for the Afrikibaaru2 programme (CFI).",
       "cta": "Present your needs"
     }
   },

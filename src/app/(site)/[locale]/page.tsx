@@ -68,10 +68,10 @@ export default async function HomePage({
         alternateName: site.shortName,
         url: `${site.siteUrl}/${locale}`,
         jobTitle: fr
-          ? "Journaliste international et réalisateur de documentaires"
-          : "International journalist and documentary filmmaker",
+          ? "Journaliste international, consultant médias et réalisateur documentaire"
+          : "International journalist, media consultant and documentary director",
         address: { "@type": "PostalAddress", addressLocality: "Paris", addressCountry: "FR" },
-        knowsLanguage: ["fr", "en", "es"],
+        knowsLanguage: ["fr", "en"],
         knowsAbout: SEO_KEYWORDS[fr ? "fr" : "en"],
         sameAs: [settings.linkedin, settings.twitter, settings.vimeo],
       },
@@ -206,7 +206,7 @@ export default async function HomePage({
           label={t("stats.label")}
           stats={[
             { value: 20, prefix: "+", label: t("stats.years") },
-            { value: 3, label: t("stats.languages") },
+            { value: 2, label: t("stats.languages") },
             { value: 4, label: t("stats.fields") },
             {
               value: productions.length + publications.length,

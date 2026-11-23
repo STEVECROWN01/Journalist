@@ -82,6 +82,24 @@ async function main() {
     console.log("  • Paramètres déjà présents");
   }
 
+  /* Ancien catalogue illustratif — remplacé par la filmographie réelle.
+     Retrait idempotent : n'efface que les slugs de démonstration
+     historiques, jamais les productions créées depuis le back-office. */
+  const LEGACY_DEMO_SLUGS = [
+    "ligne-directe",
+    "terrain-partage",
+    "contrepoints",
+    "cap-sur-les-organisations",
+  ];
+  const removed = await db.production.deleteMany({
+    where: { slug: { in: LEGACY_DEMO_SLUGS } },
+  });
+  if (removed.count > 0) {
+    console.log(
+      `  ✓ Anciennes productions illustratives retirées : ${removed.count}`
+    );
+  }
+
   /* Productions de démonstration */
   for (const p of demoProductions) {
     const existing = await db.production.findUnique({ where: { slug: p.slug } });

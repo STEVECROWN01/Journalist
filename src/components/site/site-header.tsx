@@ -95,11 +95,12 @@ function FlagGB({ className = "" }: { className?: string }) {
 
 /**
  * En-tête fixe — structure du site de référence, resserrée :
- * languettes nom / hamburger de 85 px collées au haut de page (aucun
- * espace au-dessus de leur fond), pilule des menus de 80 px démarrant
- * à 5 px sous le haut — son bas affleure EXACTEMENT au bas des
- * languettes (5 + 80 = 85). Coins inférieurs arrondis (14 px) sur les
- * trois fonds.
+ * desktop (≥ 1024 px) : languettes nom / hamburger de 85 px collées au
+ * haut de page, pilule des menus de 80 px démarrant à 5 px sous le haut
+ * — son bas affleure EXACTEMENT au bas des languettes (5 + 80 = 85).
+ * Mobile / tablette (< 1024 px) : fonds du nom et du hamburger
+ * rabattus à 64 px pour dégager l'écran. Coins inférieurs arrondis
+ * (14 px desktop / 12 px mobile) sur les trois fonds.
  */
 export function SiteHeader({ socials }: { socials: HeaderSocials }) {
   const t = useTranslations("common");
@@ -123,7 +124,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
       const heroText = document.querySelector(".dt-hero-content");
       const first = heroText?.firstElementChild;
       if (first instanceof HTMLElement) {
-        const headerHeight = window.innerWidth >= 1024 ? 85 : 76;
+        const headerHeight = window.innerWidth >= 1024 ? 85 : 64;
         const textTop =
           first.getBoundingClientRect().top + window.scrollY;
         return Math.max(8, textTop - headerHeight);
@@ -239,10 +240,9 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
 
       {/* Alignement du site de référence : items-start — le nom et le
           hamburger sont des languettes collées au haut de page (aucun
-          espace au-dessus de leur fond), hautes de 85 px ; la pilule des
-          menus démarre 5 px plus bas (80 px de haut) : son bas affleure
-          exactement au bas des languettes. */}
-      <div className="mx-auto flex h-[76px] w-full max-w-[1440px] items-start justify-between pl-5 pr-5 sm:pl-8 sm:pr-8 lg:h-[85px] lg:pl-10 lg:pr-10">
+          espace au-dessus de leur fond). Desktop : 85 px, pilule des
+          menus alignée au bas. Mobile / tablette : fonds de 64 px. */}
+      <div className="mx-auto flex h-[64px] w-full max-w-[1440px] items-start justify-between pl-5 pr-5 sm:pl-8 sm:pr-8 lg:h-[85px] lg:pl-10 lg:pr-10">
         {/* Wordmark — languette pleine hauteur aux coins bas arrondis,
             exactement comme le logo du site de référence. Au survol,
             l'inverse d'un effacement : le fond sombre se matérialise. */}
@@ -250,7 +250,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
           href="/"
           onClick={goHome}
           aria-label={t("brand")}
-          className={`flex h-[76px] items-center rounded-b-[12px] border-x border-b px-3 font-serif text-[1.2rem] font-semibold leading-none tracking-[-0.01em] text-white transition-all duration-500 sm:px-6 sm:text-[1.3rem] lg:h-[85px] lg:rounded-b-[14px] ${
+          className={`flex h-[64px] items-center rounded-b-[12px] border-x border-b px-3 font-serif text-[1.2rem] font-semibold leading-none tracking-[-0.01em] text-white transition-all duration-500 sm:px-6 sm:text-[1.3rem] lg:h-[85px] lg:rounded-b-[14px] ${
             scrolled
               ? "border-mist/10 bg-ink/80 backdrop-blur-xl hover:bg-ink/95"
               : "border-transparent hover:border-mist/10 hover:bg-ink/80 hover:backdrop-blur-xl"
@@ -320,9 +320,9 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
           </Link>
 
           {/* Hamburger — languette du site de référence : collée au
-              haut de page, 85 px de haut (bas aligné à la pilule des
-              menus), coins bas arrondis 14 px, fond #1c1c1c → #232323
-              au survol. */}
+              haut de page (64 px mobile / tablette, 85 px desktop, bas
+              aligné à la pilule des menus), coins bas arrondis, fond
+              #1c1c1c → #232323 au survol. */}
           <button
             ref={hamburgerRef}
             type="button"
@@ -330,7 +330,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
             aria-label={t("menu.open")}
             aria-expanded={menuOpen}
             aria-controls="fullscreen-menu"
-            className="flex h-[76px] w-[50px] shrink-0 items-center justify-center rounded-b-[12px] bg-ink transition-colors duration-300 hover:bg-surface sm:w-[56px] lg:h-[85px] lg:w-[62px] lg:rounded-b-[14px]"
+            className="flex h-[64px] w-[50px] shrink-0 items-center justify-center rounded-b-[12px] bg-ink transition-colors duration-300 hover:bg-surface sm:w-[56px] lg:h-[85px] lg:w-[62px] lg:rounded-b-[14px]"
           >
             <span
               className="flex w-6 flex-col gap-[5px]"
@@ -359,7 +359,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
           >
             {/* Ligne supérieure : wordmark + langue + fermer — le bouton
                 de fermeture respire à droite comme au-dessus de lui */}
-            <div className="mx-auto flex h-[76px] w-full shrink-0 max-w-[1440px] items-center justify-between pl-5 pr-5 sm:pl-8 sm:pr-8 lg:h-[85px] lg:pl-10 lg:pr-10">
+            <div className="mx-auto flex h-[64px] w-full shrink-0 max-w-[1440px] items-center justify-between pl-5 pr-5 sm:pl-8 sm:pr-8 lg:h-[85px] lg:pl-10 lg:pr-10">
               <motion.div
                 initial={reduce ? false : { opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}

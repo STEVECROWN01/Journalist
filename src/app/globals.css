@@ -433,10 +433,12 @@ html.lenis body {
    HERO — hauteur d'écran exacte et adaptation aux écrans courts
    Le hero occupe PRÉCISÉMENT le viewport (100svh quand disponible)
    et reste entièrement visible sans défilement, du mobile au 4K.
-   L'espace libre se place au-dessus du texte (mt-auto) : l'écart
-   entre l'en-tête et « 20 ans d'expérience » est maximal SANS jamais
-   faire déborder le contenu. Les écrans peu hauts replient le
-   complément et resserrent les espacements, palier par palier.
+   Desktop (≥ 1024 px) : l'espace libre se place au-dessus du texte
+   (mt-auto). Mobile / tablette (< 1024 px) : le bloc texte se
+   CENTRE (voir .hero-copy-anchor plus bas) — l'écart au-dessus de
+   « 20 ans d'expérience » est réduit de moitié. Les écrans peu
+   hauts replient le complément et resserrent les espacements,
+   palier par palier.
    ============================================================ */
 .hero-full {
   height: 100vh;
@@ -584,8 +586,10 @@ html.lenis body {
 
 /* Les éléments inclinés (mosaïque, voies de galerie) dépassent
    volontairement : on clippe l'axe horizontal sans créer de
-   conteneur de défilement (le positionnement sticky reste actif). */
+   conteneur de défilement (le positionnement sticky reste actif).
+   Repli « hidden » pour les navigateurs sans support de « clip ». */
 body {
+  overflow-x: hidden;
   overflow-x: clip;
 }
 
@@ -1624,6 +1628,30 @@ body {
     gap: 2.5rem 1.75rem;
   }
 }
+
+/* Mobile & tablette (< 1024 px) — hero exactement à l'écran :
+   le bloc texte n'est plus collé en bas (mt-auto) mais CENTRÉ dans
+   l'espace sous l'en-tête. L'espace au-dessus de « 20 ans
+   d'expérience » est ainsi réduit de moitié (mesuré : ~54 % de
+   l'écart précédent sur les grandes tallies, ~50 % sur tablettes)
+   et le hero tient entièrement dans le viewport sans défilement.
+   Ce bloc est placé APRÈS les paliers par hauteur d'écran : son
+   plancher de padding-top (4,5 rem > en-tête 64 px) prime donc sur
+   eux sur les petits écrans, garantissant que le texte ne remonte
+   jamais sous l'en-tête fixe. Desktop (≥ 1024 px) inchangé : le
+   texte reste poussé vers le bas, espace maximal au-dessus. */
+@media (max-width: 1023px) {
+  .dt-hero-content {
+    justify-content: center;
+  }
+  .hero-copy-anchor {
+    margin-top: 0;
+  }
+  .dt-hero .hero-pad {
+    padding-top: 4.5rem;
+  }
+}
+
 @media (max-width: 759px) {
   .dt-wrap {
     width: calc(100% - 40px);
@@ -1640,17 +1668,17 @@ body {
     min-width: 0;
   }
   /* Hero mobile : la mosaïque devient un FOND plein écran derrière le
-     contenu (visible dès l'arrivée, sans défilement préalable). Le
-     contenu reste en flex-1, la bande de mots-clés clôt la section. */
+     contenu (visible dès l'arrivée, sans défilement préalable). Le hero
+     garde la hauteur EXACTE de l'écran (100svh, héritée de .hero-full) :
+     tout son contenu — texte, boutons, cibles, bande de mots-clés —
+     reste entièrement visible sans défilement. */
   .dt-hero {
     display: flex;
     flex-direction: column;
-    height: auto;
-    min-height: 100svh;
   }
   .dt-hero-content {
     flex: 1 1 auto;
-    padding-top: 10rem;
+    padding-top: 4.5rem;
     padding-bottom: 2.5rem;
   }
   .dt-mosaic {
@@ -1666,8 +1694,13 @@ body {
   .dt-mosaic-grid {
     height: 560px;
     width: 100%;
-    /* Netteté mobile : mosaïque droite, aucun ré-échantillonnage GPU */
-    transform: none;
+    /* Oblique 3D permanente sur mobile et tablette : EXACTEMENT la
+       position par défaut du desktop avant défilement (rotationX 18°,
+       rotationY -24°, rotationZ -12°, z -150). La mosaïque n'est
+       jamais 100 % verticale — le défilement vertical des colonnes
+       (GSAP) conserve, lui, son rythme. */
+    transform: rotateX(18deg) rotateY(-24deg) rotateZ(-12deg)
+      translateZ(-150px);
   }
   .dt-mosaic-tile {
     aspect-ratio: 0.94;

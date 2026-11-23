@@ -1,5 +1,8 @@
 /**
- * Catalogue initial des productions audiovisuelles — Alexandre Morel.
+ * Catalogue des productions audiovisuelles — filmographie réelle.
+ * Documentaires et reportages diffusés par ARTE, France 5, France 3,
+ * Al Jazeera, Public Sénat, Radio France — deux Étoiles de la Scam
+ * (2013, 2023) et un Prix Jeunes FIGRA (2013).
  * Sert de repli statique si la base n'est pas joignable et de données
  * d'amorçage (seed). Les articles et analyses, eux, sont gérés
  * exclusivement depuis le back-office : aucun contenu éditorial
@@ -29,100 +32,172 @@ export interface DemoProduction {
 
 export const demoProductions: DemoProduction[] = [
   {
-    slug: "ligne-directe",
-    titleFr: "Ligne directe",
-    titleEn: "Direct Line",
-    category: "reportage",
-    year: 2025,
-    territoryFr: "France — Sénégal",
-    territoryEn: "France — Senegal",
-    roleFr: "Journaliste-reporter, montage",
-    roleEn: "Reporter, edit",
+    slug: "kyiv-un-opera-en-guerre",
+    titleFr: "Kyiv, un opéra en guerre",
+    titleEn: "Kyiv, an Opera at War",
+    category: "documentaire",
+    year: 2023,
+    territoryFr: "Ukraine",
+    territoryEn: "Ukraine",
+    roleFr: "Réalisation et image",
+    roleEn: "Direction and cinematography",
     contextFr:
-      "Série de reportages sur les corridors économiques entre l'Europe et l'Afrique de l'Ouest : flux, acteurs et réalités humaines derrière les statistiques.",
+      "Série documentaire en quatre volets (4 × 26 min) — ARTE France / Agat Films. Une continuité de la couverture du conflit ukrainien engagée depuis 2022.",
     contextEn:
-      "A series of reports on the economic corridors between Europe and West Africa: flows, actors and the human realities behind the statistics.",
-    descriptionFr: `Format de 26 minutes pensé pour une diffusion télévisée et une reprise en plateforme. Le tournage s'est appuyé sur un travail de sourcing de plusieurs semaines, une immersion dans trois lieux de commerce différents et une écriture qui privilégie les protagonistes sur les commentaires en voix off.
+      "Four-part documentary series (4 × 26 min) — ARTE France / Agat Films. A continuation of the coverage of the Ukrainian conflict undertaken since 2022.",
+    descriptionFr: `Le quotidien à la fois précaire et vibrant de l'Opéra national d'Ukraine, dont le rideau continue de se lever, saison après saison, comme un acte de résistance.
 
-Le parti pris éditorial : ne jamais illustrer, mais raconter. Chaque séquence découle d'une situation filmée, chaque situation d'une relation établie sur le terrain. La démonstration documentaire passe par ce que l'on montre, pas par ce que l'on affirme.`,
-    descriptionEn: `A 26-minute format designed for television broadcast and platform reuse. Shooting relied on several weeks of sourcing, immersion in three different trading locations, and writing that gives precedence to protagonists over voice-over commentary.
+Filmée en immersion au cœur du théâtre et de sa troupe, la série raconte celles et ceux qui ont fait de leur art un front culturel : danseurs, chanteurs, musiciens. La culture comme arme de construction — la beauté comme défi lancé à la guerre.`,
+    descriptionEn: `The precarious yet vibrant daily life of the National Opera of Ukraine, whose curtain keeps rising, season after season, as an act of resistance.
 
-The editorial stance: never illustrate, but narrate. Every sequence stems from a filmed situation, every situation from a relationship established in the field. Documentary proof lies in what you show, not in what you assert.`,
-    coverImage: "/assets/production-ligne-directe.jpg",
+Filmed in immersion inside the theatre and its troupe, the series tells of those who have made their art a cultural front: dancers, singers, musicians. Culture as a weapon of construction — beauty as a challenge thrown at war.`,
+    coverImage: "/assets/production-terrain-partage.jpg",
     videoUrl: null,
     order: 1,
   },
   {
-    slug: "terrain-partage",
-    titleFr: "Terrain partagé",
-    titleEn: "Shared Ground",
+    slug: "afghanistan-le-prix-de-la-paix",
+    titleFr: "Afghanistan, le prix de la paix",
+    titleEn: "Afghanistan, the Price of Peace",
     category: "documentaire",
-    year: 2024,
-    territoryFr: "Afrique de l'Ouest",
-    territoryEn: "West Africa",
-    roleFr: "Réalisateur et journaliste",
-    roleEn: "Director and journalist",
+    year: 2022,
+    territoryFr: "Afghanistan",
+    territoryEn: "Afghanistan",
+    roleFr: "Co-réalisation et journaliste",
+    roleEn: "Co-direction and journalism",
     contextFr:
-      "Série documentaire en trois volets sur les communautés qui composent avec les transformations économiques et climatiques de leur territoire.",
+      "Documentaire de 90 minutes — France 5, Al Jazeera, Point du Jour. Étoile de la Scam 2023.",
     contextEn:
-      "A three-part documentary series on communities adapting to the economic and climatic transformations of their land.",
-    descriptionFr: `Écriture longue, tournage itinérant, temps de confiance : cette série documentaire assume la lenteur comme méthode. Trois volets de cinquante-deux minutes construits autour de personnages suivis sur plusieurs mois, dans des environnements filmés sans mise en scène.
+      "90-minute documentary — France 5, Al Jazeera, Point du Jour. Étoile de la Scam 2023.",
+    descriptionFr: `Août 2021 : les talibans reprennent le pouvoir en Afghanistan. Le film revient sur quarante ans d'histoire — guerres, occupations, espoirs déçus — pour éclairer la question qui hante le pays : quel est le véritable prix de la paix ?
 
-La direction photographique privilégie la lumière naturelle et les cadres larges ; la bande sonore, les langues des protagonistes. L'objectif : une œuvre qui respecte la dignité des personnes filmées et la complexité des situations traversées.`,
-    descriptionEn: `Long-form writing, itinerant shooting, time built on trust: this documentary series assumes slowness as method. Three fifty-two-minute episodes built around characters followed over several months, in environments filmed without staging.
+Prolongement d'années de terrain en Afghanistan et au Pakistan, ce documentaire donne la parole à celles et ceux qui ont vécu ces décennies, loin des analyses toutes faites. Récompensé par l'Étoile de la Scam 2023.`,
+    descriptionEn: `August 2021: the Taliban take back power in Afghanistan. The film looks back on forty years of history — wars, occupations, dashed hopes — to shed light on the question that haunts the country: what is the true price of peace?
 
-The cinematographic direction favours natural light and wide frames; the soundtrack, the protagonists' own languages. The goal: a work that respects the dignity of the people filmed and the complexity of the situations traversed.`,
-    coverImage: "/assets/production-terrain-partage.jpg",
+Building on years of reporting in Afghanistan and Pakistan, this documentary gives a voice to those who lived through these decades, far from ready-made analyses. Awarded the Étoile de la Scam 2023.`,
+    coverImage: "/assets/realisation-documentaire-tournage.jpg",
     videoUrl: null,
     order: 2,
   },
   {
-    slug: "contrepoints",
-    titleFr: "Contrepoints",
-    titleEn: "Counterpoints",
-    category: "interview",
-    year: 2025,
-    territoryFr: "Paris",
-    territoryEn: "Paris",
-    roleFr: "Conception, préparation et interview",
-    roleEn: "Concept, research and interview",
+    slug: "libye-dans-les-prisons-de-haute-securite",
+    titleFr: "Libye, dans les prisons de haute sécurité",
+    titleEn: "Libya, Inside High-Security Prisons",
+    category: "reportage",
+    year: 2022,
+    territoryFr: "Libye",
+    territoryEn: "Libya",
+    roleFr: "Journaliste reporter",
+    roleEn: "Reporter",
     contextFr:
-      "Collection d'entretiens longs avec des professionnels dont les trajectoires éclairent les mutations du monde médiatique et des relations internationales.",
+      "ARTE Reportage — Découpage. Tourné dans le cadre de la couverture continue de l'Égypte et de la Libye.",
     contextEn:
-      "A collection of long-form interviews with professionals whose trajectories shed light on the transformations of the media world and international relations.",
-    descriptionFr: `Un format de treize minutes par entretien, tourné en studio, pensé pour la clarté : une préparation documentée, un fil narratif défini en amont, un montage resserré qui conserve la substance des échanges.
+      "ARTE Reportage — Découpage. Filmed as part of the ongoing coverage of Egypt and Libya.",
+    descriptionFr: `Au cœur des établissements pénitentiaires libyens, là où l'État lui-même peine à entrer : une plongée dans les prisons de haute sécurité d'un pays en proie à la fragmentation.
 
-La collection vise l'exigence de fond d'un débat d'idées avec l'accessibilité d'un format numérique : chaque épisode traite un sujet unique, approfondi, sans jargon.`,
-    descriptionEn: `A thirteen-minute format per interview, shot in studio, designed for clarity: documented preparation, a narrative thread defined in advance, tight editing that preserves the substance of the exchanges.
+Un reportage qui exige adaptation, discrétion et gestion de sources sensibles — et qui témoigne des réalités sécuritaires, politiques et humaines de la Libye d'aujourd'hui.`,
+    descriptionEn: `Inside Libyan penal institutions, where even the state struggles to go: a descent into the high-security prisons of a country torn apart by fragmentation.
 
-The collection aims for the intellectual rigour of a public debate with the accessibility of a digital format: each episode addresses a single subject, in depth, without jargon.`,
+A report demanding adaptation, discretion and the handling of sensitive sources — bearing witness to the security, political and human realities of Libya today.`,
     coverImage: "/assets/production-contrepoints.jpg",
     videoUrl: null,
     order: 3,
   },
   {
-    slug: "cap-sur-les-organisations",
-    titleFr: "Cap sur les organisations",
-    titleEn: "Setting a Course for Organisations",
-    category: "communication",
-    year: 2026,
-    territoryFr: "France",
-    territoryEn: "France",
-    roleFr: "Conseil éditorial et réalisation",
-    roleEn: "Editorial advisory and direction",
+    slug: "egypte-les-droits-de-l-homme-en-question",
+    titleFr: "Égypte, les droits de l'homme en question",
+    titleEn: "Egypt, Human Rights in Question",
+    category: "reportage",
+    year: 2021,
+    territoryFr: "Égypte",
+    territoryEn: "Egypt",
+    roleFr: "Journaliste reporter",
+    roleEn: "Reporter",
     contextFr:
-      "Films et contenus de communication conçus pour des organisations : valoriser des projets, expliquer des métiers, donner de la profondeur à une prise de parole institutionnelle.",
+      "ARTE Reportage — Nova Prod. Couverture des dynamiques politiques, sécuritaires et sociétales en Égypte.",
     contextEn:
-      "Communication films and content designed for organisations: showcasing projects, explaining professions, adding depth to institutional statements.",
-    descriptionFr: `Cette production illustre l'orientation la plus récente du parcours : appliquer les méthodes journalistiques — investigation de sujet, hiérarchisation, récit — à la communication des organisations.
+      "ARTE Reportage — Nova Prod. Covering Egypt's political, security and social dynamics.",
+    descriptionFr: `Dans l'Égypte contemporaine, qu'en est-il des droits fondamentaux ? Entre promesses officielles et réalités du terrain, le reportage interroge la situation des droits de l'homme — presse, justice, sociétés civiles.
 
-Chaque film part des mêmes exigences : comprendre l'organisation et ses publics avant d'écrire, chercher la justesse plutôt que le spectaculaire, construire des contenus qui restent crédibles parce qu'ils sont documentés. Format modulaire : film signature, déclinaisons courtes, contenus d'accompagnement.`,
-    descriptionEn: `This production illustrates the most recent turn in the career: applying journalistic methods — subject research, prioritisation, narrative — to organisational communication.
+Une production qui s'appuie sur un réseau local de contacts institutionnels, journalistes et acteurs de terrain, bâti année après année depuis Le Caire.`,
+    descriptionEn: `In contemporary Egypt, what remains of fundamental rights? Between official promises and realities on the ground, the report questions the state of human rights — press, justice, civil society.
 
-Every film starts from the same requirements: understanding the organisation and its audiences before writing, seeking precision rather than spectacle, building content that remains credible because it is documented. Modular format: signature film, short declinations, accompanying content.`,
-    coverImage: "/assets/production-cap-organisations.jpg",
+A production relying on a local network of institutional contacts, journalists and field actors, built up year after year from Cairo.`,
+    coverImage: "/assets/editorial-presse-magazines.jpg",
     videoUrl: null,
     order: 4,
+  },
+  {
+    slug: "tunisie-les-oublies-du-phosphate",
+    titleFr: "Tunisie, les oubliés du phosphate",
+    titleEn: "Tunisia, the Forgotten of Phosphate",
+    category: "reportage",
+    year: 2018,
+    territoryFr: "Tunisie",
+    territoryEn: "Tunisia",
+    roleFr: "Journaliste-réalisateur",
+    roleEn: "Journalist-director",
+    contextFr:
+      "Public Sénat — Wild Angle. La Tunisie post-Printemps arabe : enjeux politiques, économiques et sociaux.",
+    contextEn:
+      "Public Sénat — Wild Angle. Post-Arab Spring Tunisia: political, economic and social stakes.",
+    descriptionFr: `Dans les régions du phosphate, la richesse du sous-sol ne se traduit pas toujours en emplois ni en dignité. Le reportage part à la rencontre des oubliés d'une transition : ouvriers, jeunes sans perspectives, habitants de bassins miniers délaissés.
+
+Le prolongement d'années de couverture de la Tunisie post-Printemps arabe pour ARTE — et d'un réseau de contacts locaux construit sur la durée.`,
+    descriptionEn: `In the phosphate regions, underground wealth does not always translate into jobs or dignity. The report meets the forgotten of a transition: workers, young people without prospects, residents of neglected mining basins.
+
+The continuation of years covering post-Arab Spring Tunisia for ARTE — and of a local contact network built over time.`,
+    coverImage: "/assets/Man_directing_film_crew_f7c433ef.jpg_f49f5942.jpg",
+    videoUrl: null,
+    order: 5,
+  },
+  {
+    slug: "afghanistan-le-prix-de-la-vengeance",
+    titleFr: "Afghanistan, le prix de la vengeance",
+    titleEn: "Afghanistan, the Price of Revenge",
+    category: "documentaire",
+    year: 2012,
+    territoryFr: "Afghanistan",
+    territoryEn: "Afghanistan",
+    roleFr: "Co-réalisation et écriture",
+    roleEn: "Co-direction and writing",
+    contextFr:
+      "Documentaire de 90 minutes — France 3, Al Jazeera, Point du Jour. Étoile de la Scam 2013.",
+    contextEn:
+      "90-minute documentary — France 3, Al Jazeera, Point du Jour. Étoile de la Scam 2013.",
+    descriptionFr: `« Vous n'êtes pas morts pour rien. Vous avez combattu dans une guerre juste. » Des familles de soldats aux villages de montagne, le film mesure ce que la vengeance a coûté à l'Afghanistan — et interroge le sens d'une guerre qui s'achève.
+
+Récompensé par l'Étoile de la Scam 2013, ce documentaire s'inscrit dans une décennie d'allers-retours entre l'Afghanistan et le Pakistan, pour ARTE, Radio France et France 24.`,
+    descriptionEn: `"You did not die for nothing. You fought in a just war." From soldiers' families to mountain villages, the film measures what vengeance cost Afghanistan — and questions the meaning of a war coming to an end.
+
+Awarded the Étoile de la Scam 2013, this documentary is part of a decade of journeys between Afghanistan and Pakistan, for ARTE, Radio France and France 24.`,
+    coverImage: "/assets/Journalist_holding_microphone_in…_0b601b53.jpg",
+    videoUrl: null,
+    order: 6,
+  },
+  {
+    slug: "bangladesh-hazaribagh-cuir-toxique",
+    titleFr: "Bangladesh, Hazaribagh cuir toxique",
+    titleEn: "Bangladesh, Hazaribagh Toxic Leather",
+    category: "reportage",
+    year: 2012,
+    territoryFr: "Bangladesh",
+    territoryEn: "Bangladesh",
+    roleFr: "Journaliste-réalisateur",
+    roleEn: "Journalist-director",
+    contextFr:
+      "Public Sénat — Wild Angle. Prix Jeunes FIGRA 2013.",
+    contextEn:
+      "Public Sénat — Wild Angle. Prix Jeunes FIGRA 2013.",
+    descriptionFr: `À Hazaribagh, quartier des tanneries de Dacca, le cuir s'achète au prix de la santé de celles et ceux qui le travaillent : eaux chargées de chrome, maladies professionnelles, un quartier sacrifié à une industrie qui exporte vers le monde entier.
+
+Un reportage d'alerte sur les coulisses de la mode — récompensé du Prix Jeunes FIGRA 2013.`,
+    descriptionEn: `In Hazaribagh, Dhaka's tannery district, leather is bought at the cost of the health of those who work it: chrome-laden waters, occupational diseases, a neighbourhood sacrificed to an industry exporting worldwide.
+
+An investigative report on the hidden side of fashion — awarded the Prix Jeunes FIGRA 2013.`,
+    coverImage: "/assets/production-ligne-directe.jpg",
+    videoUrl: null,
+    order: 7,
   },
 ];
 
