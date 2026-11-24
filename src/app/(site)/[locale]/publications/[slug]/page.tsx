@@ -12,7 +12,18 @@ import {
   getAdjacentPublications,
   getPublicationBySlug,
 } from "@/lib/content";
+import { demoPublications } from "@/content/demo";
 import { site } from "@/lib/site";
+
+/* Pages pré-rendues au build pour tous les articles de démonstration ;
+   les articles créés ensuite depuis le back-office sont rendus à la
+ demande puis servis depuis le cache (ISR, régénéré au plus toutes les
+ 5 minutes) — la page n'interroge plus la base à CHAQUE visite. */
+export const revalidate = 300;
+
+export function generateStaticParams() {
+  return demoPublications.map((p) => ({ slug: p.slug }));
+}
 
 export async function generateMetadata({
   params,

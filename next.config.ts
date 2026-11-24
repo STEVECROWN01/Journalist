@@ -9,6 +9,8 @@ const nextConfig: NextConfig = {
   allowedDevOrigins: ["*.space-z.ai", "localhost"],
   // Pas d'indicateur dev flottant (démos commerciales propres)
   devIndicators: false,
+  // Un octet de moins dans chaque réponse, un signal de stack en moins
+  poweredByHeader: false,
   images: {
     formats: ["image/avif", "image/webp"],
     // Qualité 95 sur les <Image> éditoriales : les photographies restent

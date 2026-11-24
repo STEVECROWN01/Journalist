@@ -1729,9 +1729,45 @@ body {
     height: 560px;
     width: 100%;
     /* Netteté mobile : mosaïque droite, aucun ré-échantillonnage GPU.
-       La galerie défilante reste verticale — les colonnes défilent
-       verticalement (GSAP), sans inclinaison 3D. */
+       La galerie défilante reste verticale — sans inclinaison 3D. */
     transform: none;
+  }
+  /* Marquee vertical : animation CSS PURE — elle démarre dès le premier
+     rendu (dès le parse du HTML/CSS), SANS attendre le chargement ni
+     l'hydratation du JavaScript : la galerie défile immédiatement au
+     rechargement de la page, même sur connexion lente. Chaque colonne
+     contient deux jeux de vignettes : translater de ±50 % de la hauteur
+     de la piste boucle sans couture. La colonne centrale défile à
+     contre-sens pour le rythme visuel. */
+  .dt-mosaic-track {
+    animation: dt-mosaic-scroll-up var(--dt-mosaic-duration, 24s)
+      linear infinite;
+  }
+  .dt-mosaic-column:nth-child(1) .dt-mosaic-track {
+    --dt-mosaic-duration: 22s;
+  }
+  .dt-mosaic-column:nth-child(2) .dt-mosaic-track {
+    --dt-mosaic-duration: 28s;
+    animation-name: dt-mosaic-scroll-down;
+  }
+  .dt-mosaic-column:nth-child(3) .dt-mosaic-track {
+    --dt-mosaic-duration: 34s;
+  }
+  @keyframes dt-mosaic-scroll-up {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-50%);
+    }
+  }
+  @keyframes dt-mosaic-scroll-down {
+    from {
+      transform: translateY(-50%);
+    }
+    to {
+      transform: translateY(0);
+    }
   }
   .dt-mosaic-tile {
     aspect-ratio: 0.94;
@@ -1883,6 +1919,8 @@ body {
   }
   .dt-mosaic-track {
     will-change: auto;
+    /* Marquee CSS (mobile) : figé aussi — aucune vignette ne bouge. */
+    animation: none;
   }
   .dt-photo img,
   .dt-editorial-card,

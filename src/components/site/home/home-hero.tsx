@@ -55,6 +55,9 @@ const MOSAIC_COLUMNS: string[][] = [
  * inclinée en 3D à droite. Au premier défilement, la mosaïque se déplie
  * (la matrice porte l'orientation, chaque colonne son défilement vertical),
  * puis la section reste épinglée le temps de l'ouverture.
+ * Sur mobile (< 760 px), le défilement continu des colonnes est une
+ * animation CSS PURE (globals.css) : il démarre dès le premier rendu,
+ * sans attendre l'hydratation JavaScript.
  */
 export function HomeHero({ copy }: { copy: HomeHeroCopy }) {
   const root = useRef<HTMLElement>(null);
@@ -72,29 +75,10 @@ export function HomeHero({ copy }: { copy: HomeHeroCopy }) {
         },
         (context) => {
           const { reduce, wide, tall } = context.conditions!;
-          if (reduce) return;
-
-          /* Mobile : la galerie défile en continu (marquee vertical) —
-             chaque colonne boucle sans fin, la colonne centrale à
-             contre-sens pour le rythme visuel. */
-          if (!wide) {
-            gsap.utils
-              .toArray<HTMLElement>(".dt-mosaic-track", root.current)
-              .forEach((track, index) => {
-                const downward = index === 1;
-                gsap.fromTo(
-                  track,
-                  { yPercent: downward ? -50 : 0 },
-                  {
-                    yPercent: downward ? 0 : -50,
-                    duration: 22 + index * 6,
-                    ease: "none",
-                    repeat: -1,
-                  }
-                );
-              });
-            return;
-          }
+          /* Mobile : RIEN à faire côté JS — le marquee vertical est une
+             animation CSS pure qui démarre immédiatement, même avant
+             l'hydratation. GSAP n'intervient que sur desktop (≥ 760 px). */
+          if (reduce || !wide) return;
 
           const unfurl = gsap.timeline({
             defaults: { ease: "none" },
@@ -160,7 +144,7 @@ export function HomeHero({ copy }: { copy: HomeHeroCopy }) {
                         width={358}
                         height={411}
                         sizes="(min-width: 760px) 22vw, 42vw"
-                        priority={index === 1 && copyIndex === 0 && tile < 2}
+                        priority={copyIndex === 0 && tile < (index === 1 ? 2 : 1)}
                         /* Le portrait du journaliste face caméra, micro
                            en main, reste en couleur originale en
                            permanence — les autres vignettes jouent le
