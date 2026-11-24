@@ -16,7 +16,8 @@
     },
     "cta": {
       "header": "Let's talk about your project",
-      "primary": "Let's discuss your project"
+      "primary": "Let's discuss your project",
+      "collaborate": "Collaborate"
     },
     "actions": {
       "readMore": "Read more",

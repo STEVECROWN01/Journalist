@@ -265,7 +265,10 @@ export default async function HomePage({
         aria-labelledby="sec-approach"
         className="dt-panel relative border-t border-mist/10 bg-surface/40"
       >
-        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-24 md:py-32 lg:grid-cols-[1fr_2.2fr] lg:gap-16">
+        {/* Deux moitiés strictement égales : le bloc de texte (gauche)
+            et la liste des étapes (droite) occupent le même espace — la
+            limite entre eux tombe au milieu exact de la section. */}
+        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-24 md:py-32 lg:grid-cols-2 lg:gap-16">
           <div className="lg:sticky lg:top-28 lg:self-start">
             <Reveal toggle>
               <p className="eyebrow">{t("approach.eyebrow")}</p>

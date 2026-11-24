@@ -291,7 +291,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
             href="/contact"
             className="btn-fill group/cta lg:ml-3 xl:ml-6"
           >
-            <span className="text-[15px]">{t("cta.header")}</span>
+            <span className="text-[15px]">{t("cta.collaborate")}</span>
             <span className="flex h-7 w-7 items-center justify-center rounded-full bg-mist transition-colors duration-300 group-hover/cta:bg-ink">
               <ArrowUpRight
                 size={14}
@@ -405,12 +405,20 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
               </div>
             </div>
 
-            {/* Colonnes : domaines (gauche, sans titre) /
-                autres liens + réseaux (droite) */}
+            {/* Colonnes : domaines (gauche, sans titre) / autres liens +
+                réseaux (droite). Mobile : tout doit tenir à l'écran SANS
+                défilement — options principales à 1,25rem (la taille du
+                menu mobile du site de référence), espacements resserrés,
+                wrapper my-auto : contenu centré verticalement quand il
+                tient ; s'il déborde malgré tout, les marges retombent à
+                zéro et le défilement redevient possible, sans rognage.
+                Desktop (lg) : wrapper dissous (display:contents), la
+                grille d'origine reprend ses droits. */}
             <div
               data-lenis-prevent
-              className="mx-auto grid w-full max-w-[1440px] flex-1 grid-cols-1 content-start gap-14 overflow-y-auto px-5 pb-16 pt-10 sm:px-8 md:content-center lg:grid-cols-[1.35fr_1fr] lg:gap-12 lg:px-10 lg:pb-10 lg:pt-0"
+              className="mx-auto flex w-full max-w-[1440px] flex-1 flex-col overflow-y-auto px-5 pb-8 pt-8 sm:px-8 lg:grid lg:content-center lg:grid-cols-[1.35fr_1fr] lg:gap-12 lg:px-10 lg:pb-10 lg:pt-0"
             >
+              <div className="my-auto grid grid-cols-1 gap-10 lg:contents">
               <nav aria-label={t("menu.primary")}>
                 <ul className="space-y-2.5 md:space-y-4">
                   {MENU_PRIMARY.map((item, i) => (
@@ -429,11 +437,11 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
                         onClick={closeMenu}
                         className="group flex items-baseline gap-5 py-1"
                       >
-                        <span className="w-8 shrink-0 font-sans text-[0.95rem] font-semibold text-graphite transition-colors duration-300 group-hover:text-mist">
+                        <span className="w-8 shrink-0 font-sans text-[0.8rem] font-semibold text-graphite transition-colors duration-300 group-hover:text-mist">
                           {String(i + 1).padStart(2, "0")}
                         </span>
                         <span
-                          className={`relative font-serif text-[1.9rem] font-medium leading-tight tracking-[-0.015em] transition-colors duration-300 after:absolute after:bottom-0 after:left-1/2 after:h-px after:w-0 after:bg-white after:transition-all after:duration-300 group-hover:after:left-0 group-hover:after:w-full md:text-[2.5rem] ${
+                          className={`relative font-serif text-[1.25rem] font-medium leading-tight tracking-[-0.015em] transition-colors duration-300 after:absolute after:bottom-0 after:left-1/2 after:h-px after:w-0 after:bg-white after:transition-all after:duration-300 group-hover:after:left-0 group-hover:after:w-full md:text-[2.5rem] ${
                             isActive(pathname, item.href)
                               ? "text-white"
                               : "text-mist group-hover:text-white"
@@ -461,7 +469,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
                 >
                   {t("menu.otherLinks")}
                 </motion.p>
-                <ul className="mt-8 space-y-1">
+                <ul className="mt-6 space-y-1">
                   {MENU_OTHERS.map((item, i) => (
                     <motion.li
                       key={item.key}
@@ -498,7 +506,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
                   initial={reduce ? false : { opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: reduce ? 0 : 0.44, duration: 0.5, ease }}
-                  className="mt-12 border-t border-mist/10 pt-7"
+                  className="mt-6 border-t border-mist/10 pt-4 lg:mt-12 lg:pt-7"
                 >
                   <div className="flex items-center gap-2.5">
                     {socialList.map(({ name, href, Icon, hover, internal }) => (
@@ -517,6 +525,7 @@ export function SiteHeader({ socials }: { socials: HeaderSocials }) {
                   </div>
                 </motion.div>
               </aside>
+              </div>
             </div>
           </motion.div>
         )}

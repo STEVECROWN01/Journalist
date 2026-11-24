@@ -16,7 +16,8 @@
     },
     "cta": {
       "header": "Parlons de votre projet",
-      "primary": "Discutons de votre projet"
+      "primary": "Discutons de votre projet",
+      "collaborate": "Collaborer"
     },
     "actions": {
       "readMore": "Lire la suite",

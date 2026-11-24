@@ -1586,14 +1586,22 @@ body {
   }
 }
 
-/* Vitesses : ~28–42 px/s par bande, lisible à l'œil nu. La bande des
-   partenaires (hero) porte moins de texte que la bande mots-clés : sa
-   boucle est plus courte pour conserver la même allure. */
+/* Vitesses. La bande mots-clés défile à la VITESSE EXACTE du site de
+   référence (stevensakpovi.vercel.app) : sa bande parcourt la moitié
+   de son rail de 8680 px en 45 s, soit 96,44 px/s. Notre rail mesure
+   8076 px (espacement fixe, voir la bande claire plus bas) :
+   8076 / 2 / 96,44 ≈ 41,87 s. La bande des partenaires (hero) garde
+   son allure lente et posée d'origine (~29 px/s). */
 .dt-hero-band .dt-keywords-track {
   --dt-keywords-duration: 75s;
 }
 .dt-keywords-band .dt-keywords-track {
-  --dt-keywords-duration: 95s;
+  --dt-keywords-duration: 41.87s;
+}
+/* Le rail anglais est un peu plus court (7628 px) : durée propre pour
+   conserver la MÊME vitesse exacte — 7628 / 2 / 96,44 ≈ 39,55 s. */
+html[lang="en"] .dt-keywords-band .dt-keywords-track {
+  --dt-keywords-duration: 39.55s;
 }
 
 /* ---------- Bande mots-clés claire (approche → productions) ----------
@@ -1606,6 +1614,12 @@ body {
 }
 .dt-keywords-band .dt-keywords-set li {
   color: var(--color-ink);
+  /* Espacement FIXE (2,4rem : la valeur que produisait déjà le clamp
+     sur écran large) — la largeur du rail, 8076 px, ne dépend plus du
+     viewport : la vitesse de 96,44 px/s est exactement celle du site
+     de référence sur tous les écrans. */
+  gap: 2.4rem;
+  padding-right: 2.4rem;
 }
 .dt-keywords-band .dt-keywords-dot {
   background: var(--color-ink);
